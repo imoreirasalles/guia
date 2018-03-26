@@ -1,3 +1,7 @@
 from django.contrib import admin
+from guia.models import Colecao
 
-# Register your models here.
+
+@admin.register(Colecao)
+class Colecao(admin.ModelAdmin):
+    pass
