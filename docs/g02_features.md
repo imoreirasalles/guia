@@ -1,4 +1,14 @@
-Lista de funcionalidades do aplicativo
+## Features List
+
+1. Logging Disable Data
+  - Toda manipulação de dados, para todos os modelos, deve ser feita em modo log, isto é, os dados não devem ser efetivamente apagados e sim desabilitados. Essa feature visa facilitar a auditoria de dados no sistema.
+
+2. CRUD de usuários
+  - Via Django Admin, by superadmin
+  - Implementar login via social network (gmail account)
+  - Implementar diferentes perfis de usuário (ver user roles specs)
+
+2.
 
 * Controle interno sobre entradas patrimoniais, apresentando caminhos de procedência dos lotes/coleções;
 * Exibições e/ou dados sobre conhecimento já produzido na instituição, listando exposições, publicações e artistas relacionados às coleções;
@@ -28,7 +38,7 @@ Um `Usuário` preenche uma ficha de `Coleção`, relacionando `Pessoas` de desta
 
 ## Upload semântico de documentos
 
-Organizar semanticamente os arquivos na pasta `STATIC`, renomeando arquivos conforme vocabulário controlado. Upload simples feito pelo admin do Django, na primeira versão só aceita `.jpg` e `.pdf` 
+Organizar semanticamente os arquivos na pasta `STATIC`, renomeando arquivos conforme vocabulário controlado. Upload simples feito pelo admin do Django, na primeira versão só aceita `.jpg` e `.pdf`
 
 **Exemplos**
 
