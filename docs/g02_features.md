@@ -1,3 +1,9 @@
+## Objetivos
+* Consolidar informações da memória institucional, definindo as classes `Coleção`, `Exposição`, `Publicação`, `Evento`, `Pessoa` e `Lugar` a partir de dados fragmentados em diferentes áreas da instituição
+* Estruturar metadados legíveis para cada classe, priorizando a visualização de dados sobre `Coleção`, `Exposição` e `Publicação`
+* Estruturar relacionamentos entre cada classe, priorizando a elegância do banco de dados 
+* Organizar vocabulários controlados, dicionários, taxonomias e ontologias utilizados na instituição
+
 ## Features List
 
 1. Logging Disable Data
@@ -8,14 +14,18 @@
   - Implementar login via social network (gmail account)
   - Implementar diferentes perfis de usuário (ver user roles specs)
 
-2.
+3. I/O para usuários leigos
+  - Exportar relatório em `.pdf` sobre determinadas pesquisas
+  - Exportar dados em `.csv`/`.xlsx` sobre determinadas pesquisas
+  - Importar dados em `.csv`/`.xlsx`sobre determindados atributos de cada classe
 
-* Controle interno sobre entradas patrimoniais, apresentando caminhos de procedência dos lotes/coleções;
-* Exibições e/ou dados sobre conhecimento já produzido na instituição, listando exposições, publicações e artistas relacionados às coleções;
-* Metadados estruturados e com legibilidade sobre acervo.
+4. Fundamentos para implementação de procedimentos Spectrum
+  - Controle de entradas patrimoniais, apresentando caminhos de procedência dos lotes/coleções
+  - Controle de laudos de conservação e outros relatórios técnicos gerados na instituição
+
+5. Outros
 * Criar coleções, de nir conjuntos e criar relações com exposições, publicações, pessoas e entradas patrimoniais (lotes);
-* Fazer o download de pesquisas de dados (excel e/ou csv  le);
-* Exportar relatório em pdf sobre determinadas pesquisas.
+* Exibições e/ou dados sobre conhecimento já produzido na instituição, listando exposições, publicações e artistas relacionados às coleções;
 * Definir um Modelo de Dados desejável, elencando os principais dados que devem constar nas visualizações do guia. Este modelo é o desenho e a seleção de dados já presentes no sistema de gestão de acervos;
 * Documento descritivo com de definição de ACESSOS E PERMISSÕES (User roles);
 * Documento descritivo com CASOS DE USO, descrevendo funções do sistema como criação e edição de coleções, importação de dados, tipos de relatórios, etc;
@@ -60,6 +70,16 @@ Considerar a relação de Itens com a mesma informação em diferentes suportes,
 `Negativo` e suas diversas reproduções _vintages_ e posteriores
 
 `Fonograma` presente em diversos discos
+
+
+## Diferença entre `Publicação` e folheteria
+Considerar que uma publicação é todo projeto editorial consolidado num produto comercial. Ex.: livro, catálogo de exposição, DVD, etc. Já a folheteria distribuída gratuítamente não será considerada uma publicação autônoma, mas um documento anexado a outra entidade.
+
+**Exemplos**
+
+Uma `Publicação` _Catálogo da Exposição_ está relacionada a uma `Exposição`
+
+Um `Evento` _Mostra de Cinema_ tem como documentação anexa um folder da sua programação
 
 ***
 
