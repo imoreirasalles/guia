@@ -68,6 +68,7 @@ Considerar a relação de Itens com a mesma informação em diferentes suportes,
 
 `Fonograma` presente em diversos discos
 
+&nbsp;
 
 ## Diferença entre `Publicação` e folheteria
 Considerar que uma publicação é todo projeto editorial consolidado num produto comercial. Ex.: livro, catálogo de exposição, DVD, etc. Já a folheteria distribuída gratuítamente não será considerada uma publicação autônoma, mas um documento anexado a outra entidade.
@@ -77,6 +78,37 @@ Considerar que uma publicação é todo projeto editorial consolidado num produt
 Uma `Publicação` _Catálogo da Exposição_ está relacionada a uma `Exposição`
 
 Um `Evento` _Mostra de Cinema_ tem como documentação anexa um folder da sua programação
+
+&nbsp;
+
+## Lugar
+
+Criar classe `Lugar` para relacionar a itinerância de `Exposição` e realização de `Evento`
+
+Considerar cada sede do IMS um `Lugar`, e definir diversos `Locais`
+
+Ex.: O `Lugar` _IMS Paulista_ tem os seguintes `Locais`: _Galeria 1_, _Biblioteca_, _Sala de aula_, etc.
+
+Na itinerância de `Exposição` exibir a sequência de edições.
+
+Ex.: `IMS Paulista (Galeria 2) > IMS Rio (Casa) > Maison Européenne de la Photographie`
+
+&nbsp;
+
+## Visualização de dados sobre `Coleção`
+
+Definir métricas simples para visualizar produção da equipe de acervo
+
+Cores distintas preenchem a proporção de itens publicados, catalogados e digitalizados
+
+Ex.: Progress bar com gráfico entre 0 - *Total de itens*.
+
+
+` 0 | ----- |10% Pub.| ----|30% Cat.| ------------------------|80% Dig.|---------| 100% `
+
+- v1.0 dados são inseridos manualmente.
+- v2.0 dados são derivados do Cumulus.
+
 
 ***
 
