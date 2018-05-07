@@ -17,7 +17,7 @@
 3. I/O para usuários leigos
   - Exportar relatório em `.pdf` sobre determinadas pesquisas
   - Exportar dados em `.csv`/`.xlsx` sobre determinadas pesquisas
-  - Importar dados em `.csv`/`.xlsx`sobre determindados atributos de cada classe
+  - Importar dados em `.csv`/`.xlsx`sobre determinados atributos de cada classe
 
 4. Fundamentos para implementação de procedimentos Spectrum
   - Controle de entradas patrimoniais, apresentando caminhos de procedência dos lotes/coleções
@@ -34,11 +34,8 @@
 
 ## Acessos e permissões
 
-Um `Colaborador` só pode editar coleções sob responsabilidade da sua `Coordenação`.
+Ver `user_roles`
 
-Um `Coordenador` revisa e publica o conteúdo da sua `Coordenação`.
-
-Um `Pesquisador` acessa o painel administrativo sem permissão para edição.
 
 ## Casos de Uso
 
