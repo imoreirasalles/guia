@@ -15,16 +15,21 @@ O sistema possui 5 diferentes tipos de usuários, com as seguintes especificaç�
 #### 2. Coordenador `coordinator`
   - EXIGE autenticação para operar;
   - Possui acesso tanto pelo django admin quanto por templates;
-  - Insere, edita e publica `collections` associadas a sua coordenação ou a coordenações concedidas;
+  - Insere, edita e publica uma `collection` associadas a sua coordenação ou a coordenações concedidas;
+
+#### 3. Gestor de Contratos `contractmanager`
+  - EXIGE autenticação para operar;
+  - Possui acesso tanto pelo django admin quanto por templates;
+  - Insere, edita e publica `contract`;
 
 
-#### 3. Pesquisador `researcher`
+#### 4. Pesquisador `researcher`
   - EXIGE autenticação para operar;
   - Possui acesso tanto pelo django admin quanto por templates;
   - NÃO insere, NÃO edita, NÃO publica dados, faz apenas consultas;
 
 
-#### 4. Colaborador `collaborator`
+#### 5. Colaborador `collaborator`
   - EXIGE autenticação para operar;
   - Possui acesso tanto pelo django admin quanto por templates;
   - Insere, edita e publica `collections` associadas a sua coordenação;
