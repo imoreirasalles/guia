@@ -1,0 +1,1 @@
+Esta é a documentação técnica de desenvolvimento do sistema de Gestão de Coleções do Instituto Moreira Salles. Navegue pelos arquivos para conhecer suas funcionalidades, modelos e forma de instalação. 
