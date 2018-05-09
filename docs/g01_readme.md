@@ -1,6 +1,6 @@
-Esta é a documentação técnica e conceitual de desenvolvimento do sistema de Gestão de Coleções do Instituto Moreira Salles. Navegue pelos arquivos para conhecer suas funcionalidades, modelos e forma de instalação. 
+Esta é a documentação técnica e conceitual de desenvolvimento do sistema de Gestão de Coleções do Instituto Moreira Salles. Navegue pelos arquivos para conhecer suas funcionalidades, modelos e forma de instalação.
 
-## Objetivos
+## Objetivos da ferramenta
 
 #### Objetivo Principal
 * Criar um sistema de controle de informações sobre coleções com foco na operação do Instituto Moreira Salles.
@@ -9,4 +9,7 @@ Esta é a documentação técnica e conceitual de desenvolvimento do sistema de 
 * Consolidar informações da memória institucional, definindo as classes `Coleção`, `Exposição`, `Publicação`, `Evento`, `Pessoa` e `Lugar` a partir de dados fragmentados em diferentes áreas da instituição;
 * Estruturar metadados legíveis para cada classe, priorizando a visualização de dados sobre `Coleção`, `Exposição` e `Publicação`;
 * Estruturar relacionamentos entre cada classe, priorizando a elegância do banco de dados e a continuidade do desenvolvimento desta solução (Long Term Service) ao longo do tempo, para além do escopo inicial;
-* Organizar vocabulários controlados, dicionários, taxonomias e ontologias utilizados na instituição.
+* Organizar vocabulários controlados, dicionários, taxonomias e ontologias utilizados na instituição;
+* A aplicação pressupõe diálogo com protocólo [**Spectrum**](https://collectionstrust.org.uk/digital-isnt-different), com ênfase a:
+  - Controle de entradas patrimoniais, apresentando caminhos de procedência dos lotes/coleções;
+  - Controle de laudos de conservação e outros relatórios técnicos gerados na instituição;

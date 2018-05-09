@@ -32,7 +32,7 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
         | -- Conjunto
             | -- Item
             | -- Item
-                | -- Captura 1 
+                | -- Captura 1
 ```
 
 &nbsp;
@@ -97,7 +97,7 @@ Nome do campo       | Tipo    | Descrição                | Exemplo
 `expo_abstract`     | String  | Breve resumo da Exposição escrito em Markdown | A exposição procura contradizer a imagem do Brasil como país pacífico e oferece um olhar sobre a história nacional que colabora...
 `expo_begin_date`   | Data    | Data da primeira abertura da Exposição | 25/11/2017
 `expo_end_date`     | Data    | Data do último encerramento da Exposição  | 25/02/2018
-`expo_url`          | String  | Endereço web da Exposição do site da instituição | museu.edu/expo/conflitos 
+`expo_url`          | String  | Endereço web da Exposição do site da instituição | museu.edu/expo/conflitos
 `expo_roles`        | JSON    | Ficha técnica geral da Exposição, com a atribuição da equipe principal | {"Curadoria": "Heloisa Espada", "Assistente de Curadoria": "Tiê Higashi"}
 
 &nbsp;
@@ -118,6 +118,12 @@ Nome do campo          | Tipo    | Descrição                | Exemplo
 
 _Definir o que é `Publicação`, sob quais critérios._
 
+- Diferença entre `Publicação` e folheteria:
+  - Considerar que uma publicação é todo projeto editorial consolidado num produto comercial. Ex.: livro, catálogo de exposição, DVD, etc. Já a folheteria distribuída gratuítamente não será considerada uma publicação autônoma, mas um documento anexado a outra entidade.
+- **Exemplos**
+  - Uma `Publicação` _Catálogo da Exposição_ está relacionada a uma `Exposição`
+  - Um `Evento` _Mostra de Cinema_ tem como documentação anexa um folder da sua programação
+
 Nome do campo      | Tipo   | Descrição  | Exemplo
 -------------------|--------|--------------------------|------------
 `pub_uuid`         | UUID   | Identificador único universal da Publicação |  123e4567-e89b-12d3-a456-426655440000
@@ -127,7 +133,7 @@ Nome do campo      | Tipo   | Descrição  | Exemplo
 `pub_abstract`     | String | Breve resumo da Publicação escrito em Markdown | A exposição procura contradizer a imagem do Brasil como país pacífico e oferece um olhar sobre a história nacional que colabora...
 `pub_author`       | JSON   | Ficha técnica dos  | {"Autor": "Pessoa 1", "Autor": "Pessoa 2"}
 `pub_release_date` | Date   | Data de publicação | 02/08/2014
-`pub_publisher`    | Date   | Nome da editora | Companhia das Letras 
+`pub_publisher`    | Date   | Nome da editora | Companhia das Letras
 `pub_size`         | JSON   | Dimensão da publicação em centímetros | {"largura": "10", "altura": "10", "prof": "10"}
 `pub_pages`        | Date   | Data de morte da pessoa | 12/01/1923
 `pub_type`         | String | Gênero da Pessoa (binário) | Homem
@@ -164,15 +170,15 @@ Nome do campo        | Tipo   | Descrição  | Exemplo
 `person_slug`        | String | Nome da pessoa para exibição pública | Marc Ferrez
 `person_name_first`  | String | Primeiro nome da Pessoa | Marc
 `person_name_last`   | String | Sobrenome da Pessoa | Ferrez
-`person_begin_date`  | Date   | Data de nascimento da pessoa | 07/12/1843 
+`person_begin_date`  | Date   | Data de nascimento da pessoa | 07/12/1843
 `person_end_date`    | Date   | Data de morte da pessoa | 12/01/1923
 `person_gender`      | String | Gênero da Pessoa (binário) | Homem
 `person_nation`      | String | País de atuação, frequentemente distinto do país de origem | Brasileiro
 `person_role`        | String | Principal papel profissional de atuação  | Fotógrafo
 `person_institution` | String | Principal instituição de atuação  | Casa Marc Ferrez & Cia.
-`person_bio_short`   | String | Biografia curta da Pessoa | Principal fotógrafo brasileiro do século XIX, dono de uma obra que se equipara à dos maiores nomes da fotografia em todo o mundo, Marc Ferrez é o mais significativo fotógrafo do período... 
+`person_bio_short`   | String | Biografia curta da Pessoa | Principal fotógrafo brasileiro do século XIX, dono de uma obra que se equipara à dos maiores nomes da fotografia em todo o mundo, Marc Ferrez é o mais significativo fotógrafo do período...
 `person_bio_full`    | String | Biografia completa da Pessoa | Principal fotógrafo brasileiro do século XIX, dono de uma obra que se equipara à dos maiores nomes da fotografia em todo o mundo, Marc Ferrez é o mais significativo fotógrafo do período... ...
-`person_url`         | String | Endereço web da Pessoa no site da instituição | museu.edu/pessoa/marc-ferrez 
+`person_url`         | String | Endereço web da Pessoa no site da instituição | museu.edu/pessoa/marc-ferrez
 `person_lod`         | JSON   | Dicionário de UIDs em projetos de Linked Open Data, como Virtual International Authority File (VIAF), Wikidata (WIKI), Union List of Artist Names (ULAN) ou Photographers’ Identities Catalog (PIC) | {"VIAF": "69111120", "WIKI": "Q3180571", "ULAN": "500037201", "PIC": "1758"}
 
 &nbsp;
