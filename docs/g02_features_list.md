@@ -1,20 +1,12 @@
-## Objetivos
-* Consolidar informações da memória institucional, definindo as classes `Coleção`, `Exposição`, `Publicação`, `Evento`, `Pessoa` e `Lugar` a partir de dados fragmentados em diferentes áreas da instituição
-* Estruturar metadados legíveis para cada classe, priorizando a visualização de dados sobre `Coleção`, `Exposição` e `Publicação`
-* Estruturar relacionamentos entre cada classe, priorizando a elegância do banco de dados
-* Organizar vocabulários controlados, dicionários, taxonomias e ontologias utilizados na instituição
-
-
 ## Features List 1.0
 > *** Legendas: ***
->
-CRUD: Create, Read, Update, Disable;
+> CRUD: Create, Read, Update, Disable;
 
 #### Logging Disable Data
   - Toda manipulação de dados, para todos os modelos, deve ser feita em modo log, isto é, os dados não devem ser efetivamente apagados e sim desabilitados. Essa feature visa facilitar a auditoria de dados no sistema.
-  - Essa feature deve ser aplicada a todos as classes;
+  - Essa feature faz parte da construção de todas as classes/métodos do sistema;
 
-#### Importação e Exportação em Lote
+#### Importação e Exportação em Lote (csv/xls)
   - Os cadastros que deverão ter essa funcionalidade são: Eventos, Exposições, Publicações, Coleções, Contratos e Conjuntos;
   - O sistema deve permitir exportação(output) de dados para todos os tipos de usuários, inclusive os públicos;
   - O sistema deve permitir exportação(output) de dados a partir do resultado de uma busca (search result);
@@ -32,16 +24,34 @@ CRUD: Create, Read, Update, Disable;
 #### CRUD de CONTRATOS - `Contract`
   - Via Django Admin e templates, por ;
 
+#### CRUD de ESPAÇO e SUBESPAÇO - `space`, `subspace`
+  - Via Django Admin, by superadmin;
+  - Implementar classe para registros os espaços(sedes) do IMS (MG, RJ e SP);
+  - Implementar classe para registro dos subespaços viculados ao espaços-mãe (ex.: biblioteca é subespaço do espaço 'IMS Paulista');
+  - Vincular subespaços a classe `event` e `exhibition` para registro e recuperação de itinerancia de eventos e exposições;
+
 #### CRUD de EVENTOS - `Event`
   - Via Django Admin e templates, by ...; TODO: completar com perfil de usuários autorizado;
   - 1 Exposição pode ter 0 até N Eventos;
   - 1 Evento pode ter 0 até N Exposições;
 
+#### CRUD de EXPOSIÇÕES - `Exhibition`
+  - Via Django Admin e templates,
+
+Na itinerância de `Exposição` exibir a sequência de edições.
+
+Ex.: `IMS Paulista (Galeria 2) > IMS Rio (Casa) > Maison Européenne de la Photographie`
+
 #### CRUD de PUBLICAÇÕES - `Publication`
 
+## Diferença entre `Publicação` e folheteria
+Considerar que uma publicação é todo projeto editorial consolidado num produto comercial. Ex.: livro, catálogo de exposição, DVD, etc. Já a folheteria distribuída gratuítamente não será considerada uma publicação autônoma, mas um documento anexado a outra entidade.
 
-#### CRUD de EXPOSIÇÕES - `Exhibition`
+**Exemplos**
 
+Uma `Publicação` _Catálogo da Exposição_ está relacionada a uma `Exposição`
+
+Um `Evento` _Mostra de Cinema_ tem como documentação anexa um folder da sua programação
 
 #### CRUD de COLEÇÕES - `Collection`
 
@@ -56,19 +66,6 @@ CRUD: Create, Read, Update, Disable;
 * Definir um Modelo de Dados desejável, elencando os principais dados que devem constar nas visualizações do guia. Este modelo é o desenho e a seleção de dados já presentes no sistema de gestão de acervos;
 * Documento descritivo com de definição de ACESSOS E PERMISSÕES (User roles);
 * Documento descritivo com CASOS DE USO, descrevendo funções do sistema como criação e edição de coleções, importação de dados, tipos de relatórios, etc;
-
-***
-
-## Acessos e permissões
-
-Ver `user_roles`
-
-
-## Casos de Uso
-
-Um `Usuário` preenche uma ficha de `Coleção`, relacionando `Pessoas` de destaque no conteúdo descrito, assim como `Exposições`, `Publicações` e `Eventos` já realizados pela instituição.
-
-***
 
 ## Upload semântico de documentos
 
@@ -86,61 +83,13 @@ Upload de lista de obras utilizada numa `Edição` de uma `Exposição`:
 
 &nbsp;
 
-## Página do Item exibe Itens relacionados
-Considerar a relação de Itens com a mesma informação em diferentes suportes, frequentemente relacionando uma matriz com diversas reproduções. Essa informação pode aparecer como uma listagem de `Itens relacionados` na página de detalhe.
+## Features List 2.0
+
+#### CRUD de ITEM do acervo
+  - Todo item deve conter uma página de exibição própria;
+  - Toda página do item exibe Itens relacionados a este;
+  - Considerar a relação de Itens com a mesma informação em diferentes suportes, frequentemente relacionando uma matriz com diversas reproduções. Essa informação pode aparecer como uma listagem de `Itens relacionados` na página de detalhe.
 
 **Exemplos**
-
-`Negativo` e suas diversas reproduções _vintages_ e posteriores
-
-`Fonograma` presente em diversos discos
-
-&nbsp;
-
-## Diferença entre `Publicação` e folheteria
-Considerar que uma publicação é todo projeto editorial consolidado num produto comercial. Ex.: livro, catálogo de exposição, DVD, etc. Já a folheteria distribuída gratuítamente não será considerada uma publicação autônoma, mas um documento anexado a outra entidade.
-
-**Exemplos**
-
-Uma `Publicação` _Catálogo da Exposição_ está relacionada a uma `Exposição`
-
-Um `Evento` _Mostra de Cinema_ tem como documentação anexa um folder da sua programação
-
-&nbsp;
-
-## Lugar
-
-Criar classe `Lugar` para relacionar a itinerância de `Exposição` e realização de `Evento`
-
-Considerar cada sede do IMS um `Lugar`, e definir diversos `Locais`
-
-Ex.: O `Lugar` _IMS Paulista_ tem os seguintes `Locais`: _Galeria 1_, _Biblioteca_, _Sala de aula_, etc.
-
-Na itinerância de `Exposição` exibir a sequência de edições.
-
-Ex.: `IMS Paulista (Galeria 2) > IMS Rio (Casa) > Maison Européenne de la Photographie`
-
-&nbsp;
-
-## Visualização de dados sobre `Coleção`
-
-Definir métricas simples para visualizar produção da equipe de acervo
-
-Cores distintas preenchem a proporção de itens publicados, catalogados e digitalizados
-
-Ex.: Progress bar com gráfico entre 0 - *Total de itens*.
-
-
-` 0 | ----- |10% Pub.| ----|30% Cat.| ------------------------|80% Dig.|---------| 100% `
-
-- v1.0 dados são inseridos manualmente.
-- v2.0 dados são derivados do Cumulus.
-
-
-***
-
-## Questões
-
-* Avaliar o uso do pacote [django-reversion](https://github.com/etianen/django-reversion)
-* Avaliar o uso do [geo-django](https://docs.djangoproject.com/en/2.0/ref/contrib/gis/) para armazenar dados geográficos
-* Avaliar o uso do pacote [django-import-export](https://github.com/django-import-export/django-import-export)
+- `Negativo` e suas diversas reproduções _vintages_ e posteriores;
+- `Fonograma` presente em diversos discos;
