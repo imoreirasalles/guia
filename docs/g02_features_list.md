@@ -21,7 +21,7 @@ MEDIAFILEDIR / collections / collection_slug /
 
 ```
 
-  * Upload de lista de obras utilizada numa `Edição` de uma `Exposição`:
+  - Upload de lista de obras utilizada numa `Edição` de uma `Exposição`:
 
 ```
 MEDIAFILEDIR / exhibitions / expo_slug /
