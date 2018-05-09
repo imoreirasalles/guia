@@ -45,9 +45,11 @@ MEDIAFILEDIR / exhibitions / expo_slug /
 ![alt text](images/tooltip_example.png)
 
 
+----
 ### CRUD Class Features
 > Ver documento de Class Models para maiores informações.
 
+> A ordem de documentação dos CRUD segue a ordem lógica de criação dos modelos em esquema relacional.
 
 #### CRUD de USUÁRIOS - `User`
 - Dado relacionados aos usuários que possuem login e senha no sistema;
@@ -65,23 +67,27 @@ MEDIAFILEDIR / exhibitions / expo_slug /
   - 1 `person` pode estar ligado a 0 ou N `item`, `group`, `collection`, `event`, `exhibition`, `contract`;
 
 
+#### CRUD de ESPAÇOS `space`
+- Dado relacionado aos registros dos espaços(sedes) do IMS (MG, RJ e SP);
+- Via Django Admin, by superadmin;
+- Vincular subespaços a classe `event` e `exhibition` para registro e recuperação de itinerancia de eventos e exposições;
+- Correlação do dado com outros dados:
+  - 1 `space` possui 0 a N `subspaces`;
+
+
+#### CRUD de SUBESPAÇOS - `subspace`
+- Dado relacionado ao subespaços viculados ao espaços-mãe do IMS (ex.: biblioteca é subespaço do espaço 'IMS Paulista');
+- Correlação do dado com outros dados:
+  - 1 `subspace` pode estar ligado a 0 ou N `exhibition`;
+  - 1 `subspace` pode estar ligado a 0 ou N `event`;
+
+
 #### CRUD de CONTRATOS - `Contract`
 - Dado relacionado a administração de contratos;
 - Via Django Admin e templates, by... ;
 - Correlação do dado com outros dados:
   - 1 `contract` pode estar ligado a 0 ou N `group`;
   - 1 `contract` pode estar ligado a 0 ou N `collection`;
-
-
-#### CRUD de ESPAÇO e SUBESPAÇO - `space`, `subspace`
-- Implementar classe para registros os espaços(sedes) do IMS (MG, RJ e SP);
-- Implementar classe para registro dos subespaços viculados ao espaços-mãe (ex.: biblioteca é subespaço do espaço 'IMS Paulista');
-- Via Django Admin, by superadmin;
-- Vincular subespaços a classe `event` e `exhibition` para registro e recuperação de itinerancia de eventos e exposições;
-- Correlação do dado com outros dados:
-  - 1 `space` possui 0 a N `subspaces`;
-  - 1 `subspace` pode estar ligado a 0 ou N `exhibition`;
-  - 1 `subspace` pode estar ligado a 0 ou N `event`;
 
 
 #### CRUD de EVENTOS - `Event`
