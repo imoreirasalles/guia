@@ -1,5 +1,5 @@
 ## Features List 1.0
-*** Legendas: ***
+** Legendas: **
 * CRUD: Create, Read, Update, Disable;
 
 ----
