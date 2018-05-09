@@ -7,8 +7,14 @@
 ### General Features
 > Features gerais, com implicações transversais a diversas partes do sistema.
 
-#### Logging Disable Data
-- Toda manipulação de dados, para todos os modelos/métodos do sistema, deve ser feita em modo log, isto é, os dados não devem ser efetivamente apagados e sim desabilitados. Essa feature visa facilitar a auditoria de dados no sistema.
+#### Disable Data
+- Toda classe deve ter uma campo `active` do tipo boolean que permita habilitar/desabilitar um dado, dispensando assim qualquer empenho de deleção;
+- Não deve haver método `delete` para as classes, um método `active` deve fazer as vezes de deleção, isto é, os dados não devem ser efetivamente apagados e sim desabilitados. Essa feature visa facilitar a auditoria de dados no sistema;
+
+#### Logging Data
+- Toda manipulação de dados, para todos os modelos/métodos do sistema, deve ser feita em modo log, isto é, os métodos de update não deve dar replace total na informação e sim criar um novo registro com base no registro anterior;
+- A construção das classes deve considerar chaves primárias compostas com `update_timestamp` para efetuar esse tipo de operação ou ainda usar algum middleware como [`django-reversion`](https://github.com/etianen/django-reversion)
+
 
 #### Upload Semântico de MediaFiles
 - O sistema deve possuir engine para upload de arquivos (jpg, png, xls, xlsx csv, pdf, doc, docx, odt, ods), dependendo das classes que o pedirem;
