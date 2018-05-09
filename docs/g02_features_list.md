@@ -1,5 +1,5 @@
 ## Features List 1.0
-*** Legendas: ***
+**Legendas:**
 * CRUD: Create, Read, Update, Disable;
 
 ----
@@ -16,16 +16,14 @@
   - Upload de imagem destaque de uma `Coleção`:
 
 ```
-MEDIAFILEDIR / collections / collection_slug /
- timestamp_collection_slug_imagem-destaque.jpg
+MEDIAFILEDIR / collections / collection_slug / timestamp_collection_slug_imagem-destaque.jpg
 
 ```
 
   - Upload de lista de obras utilizada numa `Edição` de uma `Exposição`:
 
 ```
-MEDIAFILEDIR / exhibitions / expo_slug /
- timestamp_expo_ed_slug_lista-de-obras.pdf
+MEDIAFILEDIR / exhibitions / expo_slug / timestamp_expo_ed_slug_lista-de-obras.pdf
 ```
 
 #### Importação e Exportação em Lote (csv/xls)
