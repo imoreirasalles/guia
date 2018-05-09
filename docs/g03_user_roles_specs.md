@@ -17,6 +17,7 @@ O sistema possui 5 diferentes tipos de usuários, com as seguintes especificaç�
   - Possui acesso tanto pelo django admin quanto por templates;
   - Insere, edita e publica uma `collection` associadas a sua coordenação ou a coordenações concedidas;
 
+
 #### 3. Gestor de Contratos `contractmanager`
   - EXIGE autenticação para operar;
   - Possui acesso tanto pelo django admin quanto por templates;
