@@ -68,6 +68,7 @@ MEDIAFILEDIR / exhibitions / expo_slug / timestamp_expo_ed_slug_lista-de-obras.p
 #### CRUD de PESSOAS - `person`
 - Dado relacionados a todo e qualquer pessoa que pode ser associada as classes-base da aplicação (tipologia de exemplo: autor, fotografo, artista, marchand);
 - Via Django Admin e templates, by...;
+- Exibir na views-read uma infobox com dados da página da pessoa na Wikidata e um parágrafo resumido do artigo em Português. Ver issue #5
 - Correlação do dado com outros dados:
   - 1 `person` pode estar ligado a 0 ou N `item`, `group`, `collection`, `event`, `exhibition`, `contract`;
 
