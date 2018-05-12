@@ -113,9 +113,9 @@ MEDIAFILEDIR / exhibitions / expo_slug / timestamp_expo_ed_slug_lista-de-obras.p
   - 1 `publication` pode estar vinculada a 0 ou N Exposições;
 - Na tela de uma Exposição, criar um box para demonstração de itinerancia desta, exibindo assim a sequência de edições desta exposição. Ver exemplo abaixo;
 
-|`Maison Européenne de la Photographie`|
+|`Maison Européenne de la Photographie`|||
 |--|--|--|
-|01.03.2018 a 30.03.2018|01.04.2018 a 30.04.2018|01.05.2018 a 30.05.2018
+|01.03.2018 a 30.03.2018|01.04.2018 a 30.04.2018|01.05.2018 a 30.05.2018|
 |IMS Paulista (Galeria 2)|IMS Rio (Casa)|IMS Poços de Caldas|
 
 #### CRUD de PUBLICAÇÕES - `Publication`
