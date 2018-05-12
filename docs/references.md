@@ -1,5 +1,10 @@
 Projetos relevantes
 
+* Avaliar o uso do pacote [django-reversion](https://github.com/etianen/django-reversion)
+* Avaliar o uso do [geo-django](https://docs.djangoproject.com/en/2.0/ref/contrib/gis/) para armazenar dados geográficos
+* Avaliar o uso do pacote [django-import-export](https://github.com/django-import-export/django-import-export)
+
+
 ### NYPL Digital Collections
 * https://digitalcollections.nypl.org/
 * https://www.nypl.org/blog/2015/01/21/digital-collections-platform-intro
@@ -25,10 +30,9 @@ name source
 display biography
 nationality
 role
-birth date and death date 
+birth date and death date
 ```
 
-&nbsp;
 
 ### Getty Arches
 
@@ -60,5 +64,3 @@ Exibição de variantes da mesma imagem
 Chronam is the **Django** application that the Library of Congress uses to make its Chronicling America website
 
 * https://github.com/LibraryOfCongress/chronam
-
-&nbsp;
