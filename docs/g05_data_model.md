@@ -39,15 +39,32 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
 
 Uma **Coleção** é composta pelos seguintes atributos:
 
-Nome do campo          | Tipo    | Descrição                | Exemplo
------------------------|---------|--------------------------|------------
-`collection_uuid`      | UUID    | Identificador único universal da Coleção |  123e4567-e89b-12d3-a456-426655440000
-`collection_id`        | Número  | Identificador único numérico atribuído a cada Coleção para controle interno da instituição |  001002
-`collection_id_old`    | JSON    | Dicionário de todos os códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
-`collection_title`     | String  | Título completo da Coleção | Biblioteca de Fulano de Tal
-`collection_slug`      | String  | Título curto da Coleção | Biblioteca Fulado
-`collection_abstract`  | String  | Breve apresentação da Coleção | 02/08/2018
-`collection_dimension` | JSON    | Dicionário com quantificação preliminar dos objetos identificados | {"Fotografias": "1439", "Cadernos": "12"}
+Nome do campo            | Tipo           | Descrição                | Exemplo
+-------------------------|----------------|--------------------------|------------
+`collection_uuid`        | UUID           | Identificador único universal |  123e4567-e89b-12d3-a456-426655440000
+`collection_id_human`    | CharField(10)  | Identificador único para controle interno da instituição |  001002
+`collection_id_old`      | JSON           | Dicionário de todos os códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
+`collection_title`       | CharField(200) | Título completo da Coleção | Biblioteca de Fulano de Tal
+`collection_slug`        | CharField(200) | Título curto da Coleção | Biblioteca Fulado
+`collection_abstract`    | TextField(500) | Breve apresentação da Coleção | 02/08/2018
+`collection_fulltext`    | TextField()    | Breve apresentação da Coleção | 02/08/2018
+`collection_doc_genre`   | GENERO_DOCUMENTAL     | Vocabulário controlado | 02/08/2018
+`collection_dimension`   | JSON           | Quantificação preliminar dos objetos identificados | {"Fotografias": "1439", "Cadernos": "12"}
+`collection_begin_date`  | DateField()    | Data inicial do conteúdo da Coleção | 02/08/2018
+`collection_end_date`    | DateField()    | Data final do conteúdo da Coleção | 02/08/2018
+`collection_itens_total` | Number         | Número total de itens na Coleção | 15000
+`collection_itens_processed` | Number     | Número total de itens processados | 5000
+`collection_itens_online` | Number        | Número total de itens disponíveis online | 500
+`collection_access_condition` | ACCESS_CONDITION        | Vocabulário controlado | Parcial
+`collection_access_local_status` | Boolean | Verdadeiro ou falso | Total
+`collection_access_local_path` | CharField()      | Vocabulário controlado | URL
+`collection_access_online_status` | Boolean        | Verdadeiro ou falso | Parcial
+`collection_access_online_path` | CharField()      | Vocabulário controlado | URL
+`collection_location_generic` | CharField(100)  | Vocabulário controlado | URL
+`collection_location_specific` | CharField(100)  | Vocabulário controlado | URL
+`collection_inventary_status` | Boolean()  | Vocabulário controlado | URL
+`collection_inventary_last_date` | DateField()  | Vocabulário controlado | URL
+
 
 &nbsp;
 
