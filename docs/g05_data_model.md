@@ -48,7 +48,8 @@ Nome do campo            | Tipo           | Descrição                | Exemplo
 `collection_slug`        | CharField(200) | Título curto da Coleção | Biblioteca Fulado
 `collection_abstract`    | TextField(500) | Breve apresentação da Coleção | 02/08/2018
 `collection_fulltext`    | TextField()    | Breve apresentação da Coleção | 02/08/2018
-`collection_doc_genre`   | GENERO_DOCUMENTAL     | Vocabulário controlado | 02/08/2018
+`collection_type`        | TIPO_COLECAO     | Vocabulário controlado | Arquivo, Coleção, Conjunto
+`collection_doc_genre`   | GENERO_DOCUMENTAL     | Vocabulário controlado | Cartográfico, Iconográfico, Literário
 `collection_dimension`   | JSON           | Quantificação preliminar dos objetos identificados | {"Fotografias": "1439", "Cadernos": "12"}
 `collection_begin_date`  | DateField()    | Data inicial do conteúdo da Coleção | 02/08/2018
 `collection_end_date`    | DateField()    | Data final do conteúdo da Coleção | 02/08/2018
