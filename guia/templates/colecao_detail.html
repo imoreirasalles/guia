@@ -42,24 +42,32 @@
 																					<td>{{ colecao.area_ims }}</td>
 																				</tr>
 																				<tr>
-																					<td>Data de entrada</td>
-																					<td>{{ colecao.entry_date|date:"d M Y" }}</td>
+																					<td>Data baliza <i class="ti-info-alt"></i></td>
+																					<td>{{ colecao.entry_date|date:"d M Y" }} - {{ colecao.entry_date|date:"d M Y" }} </td>
 																				</tr>
 																				<tr>
-																					<td>Possui contrato</td>
+																					<td>Condição de acesso <i class="ti-info-alt"></i></td>
+																					<td>Parcialmente acessível</td>
+																				</tr>
+																				<tr>
+																					<td>Disponível presencialmente</td>
+																					<td><i class="fa fa-check text-success"></i> (<a href="#">agendar visita</a>)</td>
+																				</tr>
+																				<tr>
+																					<td>Disponível online</td>
 																					<td><i class="fa fa-times text-danger"></i></td>
 																				</tr>
 																				<tr>
-																					<td>Possui seguro</td>
-																					<td><i class="fa fa-check text-success"></i></td>
+																					<td>Gêneros Documentais <i class="ti-info-alt"></i></td>
+																					<td>
+                                            <span class="tag label label-info"> Iconográfico</span>
+                                            <span class="tag label label-info"> Literário</span>
+                                            <span class="tag label label-info"> Audiovisual</span>
+                                          </td>
 																				</tr>
 																				<tr>
-																					<td>Metros Lineares</td>
-																					<td>100</td>
-																				</tr>
-																				<tr>
-																					<td>Número de itens</td>
-																					<td>{{ colecao.num_itens }}</td>
+																					<td>Localização</td>
+																					<td>Rio de Janeiro</td>
 																				</tr>
 																		</tbody>
 																</table>
@@ -67,15 +75,85 @@
 	                    </div>
                 </div>
 
+                <div class="col-md-6">
+    								<div class="card">
+    										<div class="content">
+
+                          <table class="table table-striped">
+                            <thead>
+                              <th>Status de processamento</th>
+                              <th><span class="category"></span></th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <td>Nível de descrição <i class="ti-info-alt"></td>
+                                  <td>1 - Descrição Básica</td>
+                                </tr>
+                                <tr>
+                                  <td>Itens totais</td>
+                                  <td>35000</td>
+                                </tr>
+                                <tr>
+                                  <td>Itens processados <i class="ti-info-alt"></td>
+                                  <td>13500</td>
+                                </tr>
+                                <tr>
+                                  <td>Itens online</td>
+                                  <td>2000</td>
+                                </tr>
+                              </tbody>
+                          </table>
+
+                          <div class="progress">
+                                        <div class="progress-bar progress-bar-success" style="width: 5%">
+                                            <span class="sr-only">5% Online</span>
+                                        </div>
+                                        <div class="progress-bar progress-bar-warning" style="width: 38%">
+                                            <span class="sr-only">38% Processed</span>
+                                        </div>
+                         </div>
+
+    								</div>
+    						</div>
+    						</div>
+
 							<div class="col-md-6">
 									<div class="card">
 											<div class="content">
-												<table class="table table-striped">
+
+
+
+
+                        <table class="table table-striped">
 													<thead>
-														<th>Objetos identificados</th>
+														<th>Dimensionamento preliminar</th>
 														<th><span class="category">Quantidades</span></th>
 													</thead>
 													<tbody>
+															<tr>
+																<td>Metros lineares</td>
+																<td>2500</td>
+															</tr>
+															<tr>
+																<td>Metros quadrados</td>
+																<td>154</td>
+															</tr>
+															<tr>
+																<td>Metros cúbicos</td>
+																<td>44</td>
+															</tr>
+														</tbody>
+												</table>
+												<table class="table table-striped">
+													<thead>
+														<th>Inventário preliminar</th>
+														<th><span class="category">Quantidades</span></th>
+													</thead>
+													<tbody>
+                              <tr>
+                                <td>Envólucros</td>
+                                <td>44</td>
+                              </tr>
 															<tr>
 																<td>Fotografias</td>
 																<td>2500</td>
@@ -93,40 +171,7 @@
 									</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-								<div class="card">
-										<div class="content">
-											<table class="table table-striped">
-												<thead>
-													<th>Lotes</th>
-													<th><span class="category">Tipo</span></th>
-													<th><span class="category">Código de entrada patrimonial</span></th>
-													<th><span class="category">Data</span></th>
-												</thead>
-												<tbody>
-														<tr>
-															<td>1</td>
-															<td>Compra</td>
-															<td><a href="#">c6c6d68fe4674e4bb7e40f1265c6e0e1</a></td>
-															<td>{{ colecao.entry_date|date:"d M Y" }}</td>
-														</tr>
-														<tr>
-															<td>2</td>
-															<td>Doação</td>
-															<td><a href="#">74e4bb7e4c6c6d68fe460f1265c6e0e1</a></td>
-															<td>{{ colecao.entry_date|date:"d M Y" }}</td>
-														</tr>
-														<tr>
-															<td>3</td>
-															<td>Comodato</td>
-															<td><a href="#">0f1265c6e0e1c6c6d68fe4674e4bb7e4</a></td>
-															<td>{{ colecao.entry_date|date:"d M Y" }}</td>
-														</tr>
-													</tbody>
-											</table>
-								</div>
-						</div>
-						</div>
+
 
             </div>
         </div>
