@@ -1,6 +1,6 @@
 Este modelo de dados está em construção, tendo como referência projetos como a [NYPL Digital Collections](http://api.repo.nypl.org/#data-model), o [MoMA Exhibition History](https://github.com/MuseumofModernArt/exhibitions) e o [Getty ULAN](https://www.getty.edu/research/tools/vocabularies/ulan/about.html).
 
-![Modelo UML](https://github.com/buccalon/guia/blob/master/uml.png)
+![Modelo UML](images/ims_collections_guide_uml.png)
 
 ## Coleção
 
@@ -35,60 +35,37 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
                 | -- Captura 1
 ```
 
-&nbsp;
+Uma **Coleção**(`collection`) é composta pelos seguintes atributos:
 
-Uma **Coleção** é composta pelos seguintes atributos:
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`id`       | Número  | Identificador único numérico atribuído a cada Coleção para controle interno da instituição |  001002
+`uuid`     | UUID    | Identificador único universal da Coleção |  123e4567-e89b-12d3-a456-426655440000
+`id_old`   | JSON    | Dicionário de todos os códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
+`title`    | CharField  | Título completo da Coleção | Biblioteca de Fulano de Tal
+`slug`     | String  | Título curto da Coleção | Biblioteca Fulado
+`abstract` | String  | Breve apresentação da Coleção | 02/08/2018
+`description`| TextField | Descrição completa da coleção | Essa coleção foi....
+`unstructured_data` | JSON    | Dicionário com quantificação preliminar dos objetos identificados | {"Fotografias": "1439", "Cadernos": "12"}
 
-Nome do campo            | Tipo           | Descrição                | Exemplo
--------------------------|----------------|--------------------------|------------
-`collection_uuid`        | UUIDField      | Identificador único universal |  123e4567-e89b-12d3-a456-426655440000
-`collection_id_human`    | CharField(10)  | Identificador único para controle interno da instituição |  ABC123
-`collection_id_old`      | JSONField      | Dicionário de códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
-`collection_title`       | CharField(200) | Título da Coleção | Biblioteca de Fulano de Tal
-`collection_slug`        | SlugField      | Slug para URLs | biblioteca-fulado
-`collection_abstract`    | TextField(500) | Breve apresentação da Coleção | A coleção em 3,5 tweets. 
-`collection_fulltext`    | TextField      | Texto completo sobre a Coleção | Textão...
-`collection_type`        | TIPO_COLECAO   | Vocabulário controlado | Arquivo, Coleção, Conjunto
-`collection_doc_genre`   | GENERO_DOCUMENTAL   | Vocabulário controlado | Cartográfico, Iconográfico, Literário
-`collection_dimension`   | JSONField      | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
-`collection_begin_date`  | DateField    | Data inicial do conteúdo da Coleção | 02/08/2018
-`collection_end_date`    | DateField    | Data final do conteúdo da Coleção | 02/08/2018
-`collection_itens_total`          | PositiveIntegerField  | Número total de itens na Coleção | 15000
-`collection_itens_processed`      | PositiveIntegerField  | Número total de itens processados | 5000
-`collection_itens_online`         | PositiveIntegerField  | Número total de itens disponíveis online | 500
-`collection_access_condition`     | ACCESS_CONDITION  | Vocabulário controlado | Total, Parcial, Restrito
-`collection_access_local_status`  | NullBooleanField  | Verdadeiro ou falso | Total
-`collection_access_local_path`    | URLField          | Vocabulário controlado | URL
-`collection_access_online_status` | NullBooleanField  | Verdadeiro ou falso | Parcial
-`collection_access_online_path`   | URLField          | Vocabulário controlado | URL
-`collection_location_generic`     | CharField(100)    | Vocabulário controlado | URL
-`collection_location_specific`    | CharField(100)    | Vocabulário controlado | URL
-`collection_inventary_status`     | NullBooleanField  | Vocabulário controlado | URL
-`collection_inventary_last_date`  | DateField         | Vocabulário controlado | URL
-`collection_inventary_data`       | JSONField         | Quantificação preliminar do inventário | {"Fotografias": "1439", "Cadernos": "12"}
-`collection_other_data`           | JSONField         | Informação sem estrutura definida pelo modelo | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
+Um **Conjunto** (`Container`) é composto pelos seguintes atributos:
 
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`id`       | Número  | Identificador único numérico atribuído a cada Conjunto para controle interno da instituição |  001002
+`uuid` | UUID | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
+`type`     | String  | Tipologia do conjunto |  Arquivo
+`title`    | String  | Título do conjunto |  Arquivo pessoal de Marcel Gautherot
+`abstract` | String  | Breve apresentação do conjunto |  Formado a partir da produção autoral do fotógrafo...
 
-&nbsp;
-
-Um **Conjunto** é composto pelos seguintes atributos:
-
-Nome do campo        | Tipo    | Descrição                | Exemplo
----------------------|---------|--------------------------|------------
-`container_id`       | UUID    | Identificador único do Conjunto criado a partir do `collection_id` |  001002-01
-`container_type`     | String  | Tipologia do conjunto |  Arquivo
-`container_title`    | String  | Título do conjunto |  Arquivo pessoal de Marcel Gautherot
-`container_abstract` | String  | Breve apresentação do conjunto |  Formado a partir da produção autoral do fotógrafo...
-
-&nbsp;
 
 Um **Item** é composto pelos seguintes atributos:
 
-Nome do campo     | Tipo    | Descrição                | Exemplo
-------------------|---------|--------------------------|------------
-`item_uuid`       | UUID    | Identificador único universal do Item |  123e4567-e89b-12d3-a456-426655440000
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`item_uuid`| UUID   | Identificador único universal do Item |  123e4567-e89b-12d3-a456-426655440000
 
-&nbsp;
+
 
 ## Exposição
 
@@ -106,33 +83,30 @@ Uma Exposição pode ter diversas Edições:
 ```
 
 
-Uma **Exposição** é composta pelos seguintes atributos:
+Uma **Exposição** `exhibition` é composta pelos seguintes atributos:
 
-Nome do campo       | Tipo    | Descrição                | Exemplo
---------------------|---------|--------------------------|------------
-`expo_uuid`         | UUID    | Identificador único universal da Exposição |     123e4567-e89b-12d3-a456-426655440000
-`expo_id`           | Número  | Identificador único numérico atribuído a cada Exposição para controle interno da instituição | 0326
-`expo_title`        | String  | Título completo da Exposição | Conflitos: fotografia e violência política no Brasil
-`expo_slug`         | String  | Apelido curto e intuitivo para construção de atalhos e URLs  | Conflitos
-`expo_abstract`     | String  | Breve resumo da Exposição escrito em Markdown | A exposição procura contradizer a imagem do Brasil como país pacífico e oferece um olhar sobre a história nacional que colabora...
-`expo_begin_date`   | Data    | Data da primeira abertura da Exposição | 25/11/2017
-`expo_end_date`     | Data    | Data do último encerramento da Exposição  | 25/02/2018
-`expo_url`          | String  | Endereço web da Exposição do site da instituição | museu.edu/expo/conflitos
-`expo_roles`        | JSON    | Ficha técnica geral da Exposição, com a atribuição da equipe principal | {"Curadoria": "Heloisa Espada", "Assistente de Curadoria": "Tiê Higashi"}
-
-&nbsp;
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`id`       | Número  | Identificador único numérico atribuído a cada Exposição para controle interno da instituição | 0326
+`uuid`     | UUID    | Identificador único universal da Exposição |     123e4567-e89b-12d3-a456-426655440000
+`title` | String  | Título completo da Exposição | Conflitos: fotografia e violência política no Brasil
+`slug` | String  | Apelido curto e intuitivo para construção de atalhos e URLs  | Conflitos
+`abstract`| String  | Breve resumo da Exposição escrito em Markdown | A exposição procura contradizer a imagem do Brasil como país pacífico e oferece um olhar sobre a história nacional que colabora...
+`date_start` | Data    | Data da primeira abertura da Exposição | 25/11/2017
+`date_end`| Data    | Data do último encerramento da Exposição  | 25/02/2018
+`url`   | String  | Endereço web da Exposição do site da instituição | museu.edu/expo/conflitos
+`team`  | JSON    | Ficha técnica geral da Exposição, com a atribuição da equipe principal | {"Curadoria": "Heloisa Espada", "Assistente de Curadoria": "Tiê Higashi"}
 
 A itinerância da exposição é composta por **Edições**, que contém os seguintes atributos:
 
-Nome do campo          | Tipo    | Descrição                | Exemplo
------------------------|---------|--------------------------|------------
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
 `expo_ed_id`           | Número  | Identificador único da Edição composto com ExhibitionNumber |  0326-02
 `expo_ed_place`        | String  | Local de realização da Edição | IMS Paulista
 `expo_ed_begin_date`   | Data    | Data de abertura da Edição, quando conhecida | 02/05/2018
 `expo_ed_end_date`     | Data    | Data de encerramento da Edição, quando conhecida  | 02/08/2018
 `expo_ed_roles`        | JSON    | Ficha técnica específica da Edição, com a atribuição de toda equipe envolvida | {"Produção": "Equipe"; "Montagem": "Equipe"}
 
-&nbsp;
 
 ## Publicação
 
@@ -159,8 +133,6 @@ Nome do campo      | Tipo   | Descrição  | Exemplo
 `pub_type`         | String | Gênero da Pessoa (binário) | Homem
 `pub_type`         | String | Gênero da Pessoa (binário) | Homem
 
-&nbsp;
-
 ## Evento
 
 _Definir o que é `Evento`, sob quais critérios._
@@ -177,8 +149,6 @@ Nome do campo          | Tipo    | Descrição                | Exemplo
 `event_place`          | String  | Local de realização do Evento  | Museu de Arte
 `event_abstract`       | String  | Breve apresentação do Evento | IMS Paulista
 `event_roles`          | JSON    | Ficha técnica específica do Evento | {"Palestrante": "Equipe", "Filmagem": "Equipe"}
-
-&nbsp;
 
 ## Pessoa
 
@@ -201,18 +171,7 @@ Nome do campo        | Tipo   | Descrição  | Exemplo
 `person_url`         | String | Endereço web da Pessoa no site da instituição | museu.edu/pessoa/marc-ferrez
 `person_lod`         | JSON   | Dicionário de UIDs em projetos de Linked Open Data, como Virtual International Authority File (VIAF), Wikidata (WIKI), Union List of Artist Names (ULAN) ou Photographers’ Identities Catalog (PIC) | {"VIAF": "69111120", "WIKI": "Q3180571", "ULAN": "500037201", "PIC": "1758"}
 
-&nbsp;
-
-## Aquisição
-
-Nome do campo            | Tipo       | Descrição  | Exemplo
--------------------------|------------|------------|------------
-`acquisition_uuid`       | UUIDField  | ...        | ...
-`acquisition_method`     | METODO_AQUISICAO | ...  | ...
-`acquisition_source`     | Person 1-* | ...        | ...
-`acquisition_dealer`     | Person 1-* | ...        | ...
-`acquisition_begin_date` | DateField  | ...        | ...
-`acquisition_end_date`   | DateField  | ...        | ...
-`acquisition_abstract`   | TextField  | ...        | ...
-`acquisition_other_data` | JSONField  | ...        | ...
-
+## References
+* Django Default Field https://docs.djangoproject.com/en/2.0/ref/models/fields/
+* Django Hash Field https://github.com/amcat/django-hash-field
+* Django Json Field https://github.com/dmkoch/django-jsonfield
