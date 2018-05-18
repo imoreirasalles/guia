@@ -64,3 +64,7 @@ Exibição de variantes da mesma imagem
 Chronam is the **Django** application that the Library of Congress uses to make its Chronicling America website
 
 * https://github.com/LibraryOfCongress/chronam
+
+### Chart Tools
+* http://www.chartjs.org
+* https://www.highcharts.com
