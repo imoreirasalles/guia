@@ -39,15 +39,35 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
 
 Uma **Coleção** é composta pelos seguintes atributos:
 
-Nome do campo          | Tipo    | Descrição                | Exemplo
------------------------|---------|--------------------------|------------
-`collection_uuid`      | UUID    | Identificador único universal da Coleção |  123e4567-e89b-12d3-a456-426655440000
-`collection_id`        | Número  | Identificador único numérico atribuído a cada Coleção para controle interno da instituição |  001002
-`collection_id_old`    | JSON    | Dicionário de todos os códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
-`collection_title`     | String  | Título completo da Coleção | Biblioteca de Fulano de Tal
-`collection_slug`      | String  | Título curto da Coleção | Biblioteca Fulado
-`collection_abstract`  | String  | Breve apresentação da Coleção | 02/08/2018
-`collection_dimension` | JSON    | Dicionário com quantificação preliminar dos objetos identificados | {"Fotografias": "1439", "Cadernos": "12"}
+Nome do campo            | Tipo           | Descrição                | Exemplo
+-------------------------|----------------|--------------------------|------------
+`collection_uuid`        | UUIDField      | Identificador único universal |  123e4567-e89b-12d3-a456-426655440000
+`collection_id_human`    | CharField(10)  | Identificador único para controle interno da instituição |  ABC123
+`collection_id_old`      | JSONField      | Dicionário de códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
+`collection_title`       | CharField(200) | Título da Coleção | Biblioteca de Fulano de Tal
+`collection_slug`        | SlugField      | Slug para URLs | biblioteca-fulado
+`collection_abstract`    | TextField(500) | Breve apresentação da Coleção | A coleção em 3,5 tweets. 
+`collection_fulltext`    | TextField      | Texto completo sobre a Coleção | Textão...
+`collection_type`        | TIPO_COLECAO   | Vocabulário controlado | Arquivo, Coleção, Conjunto
+`collection_doc_genre`   | GENERO_DOCUMENTAL   | Vocabulário controlado | Cartográfico, Iconográfico, Literário
+`collection_dimension`   | JSONField      | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
+`collection_begin_date`  | DateField    | Data inicial do conteúdo da Coleção | 02/08/2018
+`collection_end_date`    | DateField    | Data final do conteúdo da Coleção | 02/08/2018
+`collection_itens_total`          | PositiveIntegerField  | Número total de itens na Coleção | 15000
+`collection_itens_processed`      | PositiveIntegerField  | Número total de itens processados | 5000
+`collection_itens_online`         | PositiveIntegerField  | Número total de itens disponíveis online | 500
+`collection_access_condition`     | ACCESS_CONDITION  | Vocabulário controlado | Total, Parcial, Restrito
+`collection_access_local_status`  | NullBooleanField  | Verdadeiro ou falso | Total
+`collection_access_local_path`    | URLField          | Vocabulário controlado | URL
+`collection_access_online_status` | NullBooleanField  | Verdadeiro ou falso | Parcial
+`collection_access_online_path`   | URLField          | Vocabulário controlado | URL
+`collection_location_generic`     | CharField(100)    | Vocabulário controlado | URL
+`collection_location_specific`    | CharField(100)    | Vocabulário controlado | URL
+`collection_inventary_status`     | NullBooleanField  | Vocabulário controlado | URL
+`collection_inventary_last_date`  | DateField         | Vocabulário controlado | URL
+`collection_inventary_data`       | JSONField         | Quantificação preliminar do inventário | {"Fotografias": "1439", "Cadernos": "12"}
+`collection_other_data`           | JSONField         | Informação sem estrutura definida pelo modelo | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
+
 
 &nbsp;
 
@@ -182,3 +202,17 @@ Nome do campo        | Tipo   | Descrição  | Exemplo
 `person_lod`         | JSON   | Dicionário de UIDs em projetos de Linked Open Data, como Virtual International Authority File (VIAF), Wikidata (WIKI), Union List of Artist Names (ULAN) ou Photographers’ Identities Catalog (PIC) | {"VIAF": "69111120", "WIKI": "Q3180571", "ULAN": "500037201", "PIC": "1758"}
 
 &nbsp;
+
+## Aquisição
+
+Nome do campo            | Tipo       | Descrição  | Exemplo
+-------------------------|------------|------------|------------
+`acquisition_uuid`       | UUIDField  | ...        | ...
+`acquisition_method`     | METODO_AQUISICAO | ...  | ...
+`acquisition_source`     | Person 1-* | ...        | ...
+`acquisition_dealer`     | Person 1-* | ...        | ...
+`acquisition_begin_date` | DateField  | ...        | ...
+`acquisition_end_date`   | DateField  | ...        | ...
+`acquisition_abstract`   | TextField  | ...        | ...
+`acquisition_other_data` | JSONField  | ...        | ...
+
