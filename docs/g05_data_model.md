@@ -37,16 +37,16 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
 
 Uma **Coleção**(`collection`) é composta pelos seguintes atributos:
 
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|------------
-`id`       | Número  | Identificador único numérico atribuído a cada Coleção para controle interno da instituição |  001002
-`uuid`     | UUID    | Identificador único universal da Coleção |  123e4567-e89b-12d3-a456-426655440000
-`id_old`   | JSON    | Dicionário de todos os códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
-`title`    | CharField  | Título completo da Coleção | Biblioteca de Fulano de Tal
-`slug`     | String  | Título curto da Coleção | Biblioteca Fulado
-`abstract` | String  | Breve apresentação da Coleção | 02/08/2018
-`description`| TextField | Descrição completa da coleção | Essa coleção foi....
-`unstructured_data` | JSON    | Dicionário com quantificação preliminar dos objetos identificados | {"Fotografias": "1439", "Cadernos": "12"}
+Field Name         | Django Type Field  | Field Description  | Example
+-------------------|--------------------|--------------------|------------
+`id`               | Número             | Identificador único numérico atribuído a cada Coleção para controle interno da instituição |  001002
+`uuid`             | UUID               | Identificador único universal da Coleção |  123e4567-e89b-12d3-a456-426655440000
+`id_old`           | JSON               | Dicionário de todos os códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
+`title`            | CharField          | Título completo da Coleção | Biblioteca de Fulano de Tal
+`slug`             | String             | Título curto da Coleção | Biblioteca Fulado
+`abstract`         | String             | Breve apresentação da Coleção | 02/08/2018
+`description`      | TextField          | Descrição completa da coleção | Essa coleção foi....
+`unstructured_data`| JSON               | Dicionário com quantificação preliminar dos objetos identificados | {"Fotografias": "1439", "Cadernos": "12"}
 
 Um **Conjunto** (`Container`) é composto pelos seguintes atributos:
 

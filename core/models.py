@@ -2,6 +2,5 @@ from django.db import models
 from django.contrib import admin
 
 
-@admin.register(Collection)
-class Collection(VersionAdmin):
-    uuid
+class Collection(models.Model):
+    title =  models.CharField(max_length=250, null=False)
