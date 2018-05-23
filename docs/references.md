@@ -68,3 +68,6 @@ Chronam is the **Django** application that the Library of Congress uses to make 
 ### Chart Tools
 * http://www.chartjs.org
 * https://www.highcharts.com
+
+### Python Packages
+* https://github.com/henriquebastos/python-decouple
