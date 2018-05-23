@@ -1,5 +1,5 @@
 # Django minimum version
-Django==2.0.3
+Django==2.0.5
 
 # freeze is used to get used dependencies
 freeze==1.0.10
@@ -7,9 +7,9 @@ freeze==1.0.10
 # psycopg2 is used to postgresql connections
 psycopg2==2.7.4
 
-# This package protects your secrents
+# This package protects your secrets
 python-decouple==3.1
 
-Pillow==5.0.0
+Pillow==5.1.0
 pytz==2018.3
 six==1.11.0

@@ -176,6 +176,7 @@ _Definir o que é `Pessoa`, sob quais critérios._
 
 Nome do campo        | Tipo   | Descrição  | Exemplo
 ---------------------|--------|--------------------------|------------
+<<<<<<< HEAD
 `uuid`        | UUID   | Identificador único universal da Pessoa no banco de dados da instituição |  123e4567-e89b-12d3-a456-426655440000
 `slug`        | String | Nome da pessoa para exibição pública | Marc Ferrez
 `name_first`  | String | Primeiro nome da Pessoa | Marc
@@ -203,7 +204,21 @@ Nome do campo            | Tipo       | Descrição  | Exemplo
 `end_date`   | DateField  | ...        | ...
 `abstract`   | TextField  | ...        | ...
 `other_data` | JSONField  | ...        | ...
-
+=======
+`person_uuid`        | UUID   | Identificador único universal da Pessoa no banco de dados da instituição |  123e4567-e89b-12d3-a456-426655440000
+`person_slug`        | String | Nome da pessoa para exibição pública | Marc Ferrez
+`person_name_first`  | String | Primeiro nome da Pessoa | Marc
+`person_name_last`   | String | Sobrenome da Pessoa | Ferrez
+`person_begin_date`  | Date   | Data de nascimento da pessoa | 07/12/1843
+`person_end_date`    | Date   | Data de morte da pessoa | 12/01/1923
+`person_gender`      | String | Gênero da Pessoa (binário) | Homem
+`person_nation`      | String | País de atuação, frequentemente distinto do país de origem | Brasileiro
+`person_role`        | String | Principal papel profissional de atuação  | Fotógrafo
+`person_institution` | String | Principal instituição de atuação  | Casa Marc Ferrez & Cia.
+`person_bio_short`   | String | Biografia curta da Pessoa | Principal fotógrafo brasileiro do século XIX, dono de uma obra que se equipara à dos maiores nomes da fotografia em todo o mundo, Marc Ferrez é o mais significativo fotógrafo do período...
+`person_bio_full`    | String | Biografia completa da Pessoa | Principal fotógrafo brasileiro do século XIX, dono de uma obra que se equipara à dos maiores nomes da fotografia em todo o mundo, Marc Ferrez é o mais significativo fotógrafo do período... ...
+`person_url`         | String | Endereço web da Pessoa no site da instituição | museu.edu/pessoa/marc-ferrez
+`person_lod`         | JSON   | Dicionário de UIDs em projetos de Linked Open Data, como Virtual International Authority File (VIAF), Wikidata (WIKI), Union List of Artist Names (ULAN) ou Photographers’ Identities Catalog (PIC) | {"VIAF": "69111120", "WIKI": "Q3180571", "ULAN": "500037201", "PIC": "1758"}
 
 ## Adopted References
 * Django Default Fields https://docs.djangoproject.com/en/2.0/ref/models/fields/
@@ -216,3 +231,4 @@ Nome do campo            | Tipo       | Descrição  | Exemplo
 * Django Json Field
 * Django Json Widget - https://github.com/jmrivas86/django-json-widget, https://pypi.org/project/django-json-widget (It could be useful on future, but at moment we are using hstore)
 * Django Pretty Json http://kevinmickey.github.io/django-prettyjson (Good for programmers and geeks, bad to all others)
+>>>>>>> local-dev

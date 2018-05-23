@@ -67,18 +67,57 @@ Esse comando deve ser dado com env ativado e sem sudo. Se for exigido root, há 
 $ pip install django
 ```
 
+##### .env
+Crie um arquivo .env na raiz da aplicação e preencha com as seguintes informações:
+```
+DEBUG=True
+SECRET_KEY=YourSecretHere
+DB_NAME=YourDataBase
+DB_USER=YourUserDB
+DB_PASSWORD=YourPasswordDatabse
+DB_HOST=YourHostExLocalhost
+#COMMENTED=Some comment
+```
+Referencia: https://pypi.org/project/python-decouple/#where-the-settings-data-are-stored
+
 ### 3. Database
 
 ##### 3.1. User database e banco
 
 ```
-# sudo su - postgres -c "createuser -d cataloguecollections"
+# sudo su - postgres -c "createuser -d guia"
 ```
 
-Com usuário da aplicação - logado como **cataloguecollections** - crie a base de dados
+Caso precise trocar a senha do usuário:
+```
+psql=> ALTER USER guia WITH PASSWORD 'passwordguia';
+```
+
+Com usuário da aplicação - logado como **guia** - crie a base de dados
+```
+psql=>
+```
+
+ou com usuário postgres:
 
 ```
-$ createdb --encoding "UTF-8" cataloguecollections
+postgres@server$ createdb --encoding "UTF-8" guia
+```
+
+Caso precise dar privilegios:
+
+```
+postgres# psql guia -c "GRANT all privileges on DATABASE guia TO guia WITH GRANT OPTION;"
+postgres# psql guia -c "GRANT ALL ON ALL TABLES IN SCHEMA public to guia;"
+postgres# psql guia -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to guia;"
+postgres# psql guia -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to guia;"
+```
+
+Para usar campos hstore, como super user você deve aplicar:
+```
+postgres@server$ psql
+postgres=# \c guia
+guia=# CREATE EXTENSION IF NOT EXISTS hstore;
 ```
 
 ##### 3.2. Django Database

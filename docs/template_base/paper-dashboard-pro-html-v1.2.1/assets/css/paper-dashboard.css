@@ -5586,7 +5586,7 @@ strong {
 }
 .main-panel > .content {
   padding: 30px 15px 0 15px;
-  min-height: calc(100% - 123px);
+  min-height: calc(100% - 160px);
 }
 .main-panel > .content .row .col-md-12 > .title {
   margin-top: 0;
