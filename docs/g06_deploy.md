@@ -72,13 +72,34 @@ $ pip install django
 ##### 3.1. User database e banco
 
 ```
-# sudo su - postgres -c "createuser -d cataloguecollections"
+# sudo su - postgres -c "createuser -d guia"
 ```
 
-Com usuário da aplicação - logado como **cataloguecollections** - crie a base de dados
+Caso precise trocar a senha do usuário:
+```
+psql=> ALTER USER guia WITH PASSWORD 'passwordguia';
+```
+
+Com usuário da aplicação - logado como **guia** - crie a base de dados
 
 ```
-$ createdb --encoding "UTF-8" cataloguecollections
+$ createdb --encoding "UTF-8" guia
+```
+
+Caso precise dar privilegios:
+```
+psql=> GRANT all privileges on DATABASE guia TO guia WITH GRANT OPTION;
+```
+Também pode ser necessário:
+```
+postgres# psql guia -c "GRANT ALL ON ALL TABLES IN SCHEMA public to guia;"
+postgres# psql guia -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to guia;"
+postgres# psql guia -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to guia;"
+```
+
+Para usar campos hstore:
+```
+guia=# CREATE EXTENSION IF NOT EXISTS hstore;
 ```
 
 ##### 3.2. Django Database
