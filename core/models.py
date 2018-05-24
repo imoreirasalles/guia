@@ -10,6 +10,7 @@ class Collection(models.Model):
     title    = models.CharField(max_length=250, null=False)
     slug     = models.CharField(max_length=60, null=True, blank=True)
     abstract = models.TextField(null=True, blank=True)
+    thumb    = models.ImageField(upload_to='collection', null=True, blank=True)
 
     def __str__(self):
         return self.title
