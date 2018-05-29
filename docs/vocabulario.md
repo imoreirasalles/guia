@@ -6,7 +6,17 @@
 
 --------
 
-### Access Condition
+### CollectionGenre
+
+- Fotográfico
+- Literário
+- Iconográfico
+- Audiovisual
+- ...
+
+--------
+
+### AccessCondition
 
 - Nível 0 - Livre
 - Nível 1 - Restrito
@@ -16,7 +26,7 @@
 
 --------
 
-### Description Level
+### DescriptionLevel
 
 - Nível 0 - Nenhum
 - Nível 1
@@ -26,6 +36,4 @@
 
 --------
 
-### Gênero Documental
-
-### Outros...
+### Others
