@@ -9,7 +9,9 @@ from django.contrib.postgres import fields
 from django_admin_hstore_widget.forms import HStoreFormField
 
 
-# admin.site.register(Collection)
+admin.site.register(Thumbnail)
+admin.site.register(Person)
+
 class CollectionAdminForm(forms.ModelForm):
     id_old = HStoreFormField()
 
