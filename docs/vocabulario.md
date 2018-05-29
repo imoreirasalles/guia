@@ -8,11 +8,24 @@
 
 ### CollectionGenre
 
-- Fotográfico
-- Literário
-- Iconográfico
 - Audiovisual
+- Cartográfico
+- Fotográfico
+- Iconográfico
+- Literário
+- Musical
 - ...
+
+--------
+
+### ManagementUnit
+
+- Coordenação de Acervo
+- Coordenação de Bibliotecas
+- Coordenação de Fotografia
+- Coordenação de Iconografia
+- Coordenação de Literatura
+- Coordenação de Música
 
 --------
 
