@@ -46,7 +46,7 @@ ID      | Access    | Name             | Helptext            |
 
 ### DescriptionLevel
 
-Level | Name                    | Helptext     |
+ID    | Name                    | Helptext     |
 ------|-------------------------|--------------|
 0     | Controle patrimonial primário | Conferência, identificação e localização primária para estabelecimento de controle físico, patrimonial e intelectual inicial. |
 1     | Descrição Básica        | Identificação, transcrição e registro de informações básicas de procedência, proveniência, contextualização e caracterização geral do conjunto. Foco nas coleções e fundos/arquivos. |
@@ -58,7 +58,7 @@ Level | Name                    | Helptext     |
 
 ### AcquisitionMethod
 
-Code | Name           | Helptext     |
+ID   | Name           | Helptext     |
 -----|----------------|--------------|
 1    | Compra         | Definição... |
 2    | Doação         | Definição... |
