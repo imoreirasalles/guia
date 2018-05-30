@@ -34,8 +34,8 @@
 ID      | Access    | Name             | Helptext            |
 --------|-----------|------------------|---------------------|
 0       | Livre     | Acesso integral  | Todos os documentos originais e seus representantes digitais estão disponíveis para consulta.
-1       | Parcial   | Estado de conservação | Existem restrições ao acesso físico a documentos originais cujo estado de conservação coloque em risco a estabilidade ou a própria existência dos mesmos.
-2       | Parcial   | Em processamento | Existem documentos indisponíveis por estarem em fase de processamento técnico (inventário, identificação, ordenação, higienização, acondicionamento, digitalização ou restauro) ou em uso (empréstimo para exposições ou em consulta por outros pesquisadores).
+1       | Parcial   | Estado de conservação | Existem documentos cujo estado de conservação colocam em risco a estabilidade ou a própria existência dos mesmos.
+2       | Parcial   | Em processamento | Existem documentos em processamento técnico (inventário, identificação, ordenação, higienização, acondicionamento, digitalização ou restauro) ou em uso (empréstimo para exposições ou em consulta por outros pesquisadores).
 3       | Restrito  | Direito autoral  | Existem restrições ao acesso aos documentos por questões de direito autoral. O pesquisador pode solicitar acesso mediante autorização expressa do titular, herdeiro ou detentor dos referidos direitos.
 4       | Restrito  | Contratual       | Existem restrições ao acesso aos documentos por questões contratuais definidas por cláusulas especificadas no processo de aquisição. 
 5       | Restrito  | Segurança institucional | Existem restrições ao acesso aos documentos por questões de risco à seguraça operacional. Aplica-se exclusivamente a documentos do arquivo institucional.
