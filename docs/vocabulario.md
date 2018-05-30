@@ -31,13 +31,16 @@
 
 ### AccessCondition
 
-Code | Name       | Access   | Helptext     |
------|------------|----------|--------------|
-0    | Nível 0    | Livre    | Definição... |
-1    | Nível 1    | Restrito | Definição... |
-2    | Nível 2    | Restrito | Definição... |
-3    | Nível 3    | Restrito | Definição... |
-4    | Nível 4    | Restrito | Definição... |
+ID      | Access    | Name             | Helptext            |
+--------|-----------|------------------|---------------------|
+0       | Livre     | Acesso integral  | Visualização completa de documentos originais ou de seus representantes digitais.
+1       | Parcial   | Estado de conservação | Existem restrições ao acesso físico de documentos originais cujo estado de conservação coloque em risco a estabilidade ou a própria existência dos mesmos.
+2       | Parcial   | Em processamento | Existem documentos indisponíveis por estarem em fase de processamento técnico (inventário, identificação, ordenação, higienização, acondicionamento, digitalização ou restauro) ou em uso (empréstimo para exposições ou em consulta por outros pesquisadores).
+3       | Restrito  | Direito autoral  | Existem restrições ao acesso aos documentos por questões de direito autoral. O pesquisador pode solicitar acesso mediante autorização expressa do titular, herdeiro ou detentor dos referidos direitos.
+4       | Restrito  | Contratual       | Existem restrições ao acesso aos documentos por questões contratuais definidas por cláusulas específicas no processo de aquisição. 
+5       | Restrito  | Segurança institucional | Existem restrições ao acesso aos documentos por questões de risco à seguraça operacional e institucional do IMS. Aplica-se exclusivamente aos documentos do arquivo institucional.
+6       | Restrito  | Informação privada | Existem restrições ao acesso aos documentos por questões de privacidade envolvendo informações de cunho extritamente privado de terceiros.
+
 
 --------
 
