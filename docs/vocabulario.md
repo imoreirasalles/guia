@@ -59,7 +59,14 @@ ID    | Name                    | Helptext     |
 0     | Controle inicial        | Conferência, identificação e localização da aquisição para estabelecimento de controle patrimonial. |
 1     | Descrição Básica        | Registro de informações de procedência, proveniência e contextualização das coleções e arquivos. |
 2     | Descrição Intermediária | Identificação de informações para produção do arranjo, a partir da função primária e tipologia documental. Registro de informações de série, autoria, data de produção e caracterização formal. |
-3     | Descrição Avançada      | Identificação, transcrição e registro de informações/relações complexas extraídas dos documentos. Pesquisa de cunho mais especializado que visa a identificação de informações não presentes nos documentos, mas necessárias para sua adequada interpretação ou contextualização. Levantamento feito a partir do cruzamento de informações internas (próprio acervo) ou de fontes externas. Envolve a documentação retrospectiva e o mapeamento/reconstituição de usos e referências ao documento em questão ou o detalhamento/reconstituição de seu contexto de produção, apresentação e circulação. |
+3     | Descrição Avançada      | Descrição do Item. Identificação, transcrição e registro de informações/relações complexas extraídas dos documentos. Pesquisa de cunho mais especializado que visa a identificação de informações não presentes nos documentos, mas necessárias para sua adequada interpretação ou contextualização. Levantamento feito a partir do cruzamento de informações internas (próprio acervo) ou de fontes externas. Envolve a documentação retrospectiva e o mapeamento/reconstituição de usos e referências ao documento em questão ou o detalhamento/reconstituição de seu contexto de produção, apresentação e circulação. |
+
+--------
+
+### ResearchLevel
+
+ID    | Name                    | Helptext     |
+------|-------------------------|--------------|
 4     | Pesquisa especializada  | Elaboração de argumento interpretativo e construção de conhecimento novo a partir da seleção e co-relação de obras documentos pertencentes a um ou mais arquivos ou coleções. Criação e organização de soluções e estratégias de apresentação, mediação e interpretação para fins específicos de difusão digital ou analógica de conteúdo e conhecimento (exposição, catálogo, mesa-redonda, colóquio, seminário, livro, site, blog, portal etc.). Redação de legendas expandidas e textos de inéditos dentro desse contexto. |
 
 --------
