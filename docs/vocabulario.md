@@ -3,21 +3,25 @@
 
 ID  | Name         | Helptext     |
 ----|--------------|--------------|
-1   | Coleção      | Definição... |
-2   | Arquivo      | Definição... |
-3   | Conjunto     | Definição... |
+1   | Coleção      | Conjuntos de documentos __reunidos intencionalmente__ por uma pessoa ou instituição |
+2   | Arquivo      | Conjuntos de documentos __produzidos e acumulados__ por uma pessoa ou instituição __no desempenho de suas atividades__ |
+3   | Conjunto     | Agrupamento documentos |
 
 --------
 
 ### CollectionGenre
 
-- Audiovisual
-- Cartográfico
-- Fotográfico
-- Iconográfico
-- Literário
-- Musical
-- ...
+ID  | Name           | Helptext             |
+----|----------------|----------------------|
+1   | Audiovisual    | Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais. |
+2   | Bibliográfico  | Livros, jornais, revistas, catálogos e brochuras. |
+3   | Cartográfico   | Mapas e plantas arquitetônicas. |
+4   | Fotográfico    | Fotografias em papel, slides, negativos, cromos e demais suportes fotográficos. |
+5   | Iconográfico   | Desenhos, gravuras, caricaturas, charges, cartazes e peças gráficas. |
+6   | Nato-digital   | Documentos originalmente gerados em computadores. |
+7   | Sonoro         | Discos, fitas, cds e álbums. |
+8   | Textual        | Cadernos, manuscritos, impressos e folheteria. |
+9   | Tridimensional | Objetos tridimensionais. |
 
 --------
 
@@ -25,6 +29,7 @@ ID  | Name         | Helptext     |
 
 - Coordenação de Acervo
 - Coordenação de Bibliotecas
+- Coordenação de Cinema
 - Coordenação de Fotografia
 - Coordenação de Iconografia
 - Coordenação de Literatura
