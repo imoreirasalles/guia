@@ -1,8 +1,11 @@
 ### CollectionType
 
-- Arquivo
-- Coleção
-- Conjunto
+
+ID  | Name         | Helptext     |
+----|--------------|--------------|
+1   | Coleção      | Definição... |
+2   | Arquivo      | Definição... |
+3   | Conjunto     | Definição... |
 
 --------
 
