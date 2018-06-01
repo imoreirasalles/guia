@@ -3,9 +3,10 @@
 
 ID  | Name         | Helptext     |
 ----|--------------|--------------|
-1   | Coleção      | Conjuntos de documentos __reunidos intencionalmente__ por uma pessoa ou instituição |
-2   | Arquivo      | Conjuntos de documentos __produzidos e acumulados__ por uma pessoa ou instituição __no desempenho de suas atividades__ |
-3   | Conjunto     | Agrupamento documentos |
+1   | Coleção      | Conjuntos de __documentos reunidos intencionalmente__ por uma pessoa ou instituição |
+2   | Arquivo      | Conjuntos de __documentos produzidos e acumulados__ por uma pessoa ou instituição __no desempenho de suas atividades__ |
+3   | Biblioteca   | Conjuntos de __livros e publicações reunidos__ por uma pessoa ou instituição |
+4   | Conjunto     | Agrupamento documentos |
 
 --------
 
