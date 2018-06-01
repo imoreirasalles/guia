@@ -1,4 +1,4 @@
-### CollectionType
+### CollectionType [1]
 
 
 ID  | Name         | Helptext     |
@@ -10,7 +10,7 @@ ID  | Name         | Helptext     |
 
 --------
 
-### CollectionGenre
+### CollectionGenre [0..\*]
 
 ID  | Name           | Helptext             |
 ----|----------------|----------------------|
@@ -26,7 +26,7 @@ ID  | Name           | Helptext             |
 
 --------
 
-### ManagementUnit
+### ManagementUnit [1..\*]
 
 - Coordenação de Acervo
 - Coordenação de Bibliotecas
@@ -38,7 +38,7 @@ ID  | Name           | Helptext             |
 
 --------
 
-### AccessCondition
+### AccessCondition [1]
 
 ID      | Access    | Name             | Helptext            |
 --------|-----------|------------------|---------------------|
@@ -53,7 +53,7 @@ ID      | Access    | Name             | Helptext            |
 
 --------
 
-### DescriptionLevel
+### DescriptionLevel [1]
 
 ID    | Name                    | Helptext     |
 ------|-------------------------|--------------|
@@ -65,7 +65,7 @@ ID    | Name                    | Helptext     |
 
 --------
 
-### AcquisitionMethod
+### AcquisitionMethod [1]
 
 ID   | Name           | Helptext     |
 -----|----------------|--------------|
