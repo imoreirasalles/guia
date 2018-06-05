@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from django.contrib.postgres.fields import HStoreField
+from django.contrib.postgres.fields import JSONField
 import uuid
 
 
@@ -48,6 +49,7 @@ class Collection(models.Model):
     abstract = models.TextField(null=True, blank=True)
     thumbnail = models.ForeignKey(Thumbnail, null=True, blank=True, on_delete=models.SET_NULL)
     author = models.ManyToManyField(Person)
+    other_data = JSONField(null=True, blank=True)
 
     def __str__(self):
         return self.title
