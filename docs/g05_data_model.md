@@ -39,8 +39,8 @@ Uma **Coleção**(`collection`) é composta pelos seguintes atributos:
 
 Nome do campo            | Tipo           | Descrição                | Exemplo
 -------------------------|----------------|--------------------------|------------
-`uuid`        | UUIDField      | Identificador único universal |  123e4567-e89b-12d3-a456-426655440000
-`id_human`    | CharField(10)  | Identificador único para controle interno da instituição |  ABC123
+`uuid`        | UUIDField      | Identificador único universal do objeto  |  123e4567-e89b-12d3-a456-426655440000
+`id_ims`      | CharField(30)  | Identificador único atribuido manualmente pelo IMS   |  ABC123
 `id_old`      | JSONField      | Dicionário de códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
 `title`       | CharField(200) | Título da Coleção | Biblioteca de Fulano de Tal
 `slug`        | SlugField      | Slug para URLs | biblioteca-fulado
@@ -216,3 +216,9 @@ Nome do campo            | Tipo       | Descrição  | Exemplo
 * Django Json Field
 * Django Json Widget - https://github.com/jmrivas86/django-json-widget, https://pypi.org/project/django-json-widget (It could be useful on future, but at moment we are using hstore)
 * Django Pretty Json http://kevinmickey.github.io/django-prettyjson (Good for programmers and geeks, bad to all others)
+
+
+Experimentar:
+https://github.com/tooreht/django-jsonsuit
+https://github.com/mbraak/django-mptt-admin
+https://github.com/mbi/django-rosetta
