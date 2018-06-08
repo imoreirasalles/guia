@@ -1,6 +1,5 @@
 {% load staticfiles %}
 
-
 <!DOCTYPE html>
 <html lang=”pt-br”>
   <head>
@@ -336,17 +335,18 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Título</a>
+            <a class="navbar-brand" href="#pablo"></a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
+
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <form>
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="text" value="" class="form-control" placeholder="Pesquisar...">
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <i class="nc-icon nc-zoom-split"></i>
@@ -354,6 +354,7 @@
                 </div>
               </div>
             </form>
+
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link btn-magnify" href="#pablo">
@@ -392,6 +393,8 @@
       <!-- block navbar_top END -->
 
       <div class="content">
+        <!-- content_row1 START -->
+        {% block content_row1 %}
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
@@ -498,6 +501,11 @@
             </div>
           </div>
         </div>
+        {% endblock %}
+        <!-- content_row1 END -->
+
+        <!-- content_row2 START -->
+        {% block content_row2 %}
         <div class="row">
           <div class="col-lg-4 col-sm-6">
             <div class="card">
@@ -617,8 +625,11 @@
             </div>
           </div>
         </div>
+        {% endblock %}
+        <!-- content_row2 END -->
 
-<!-- ROW 50% CARD - START -->
+        <!-- content_row3 START -->
+        {% block content_row3 %}
         <div class="row">
           <div class="col-md-6">
             <div class="card  card-tasks">
@@ -761,9 +772,11 @@
             </div>
           </div>
         </div>
-<!-- ROW 50% CARD - END -->
+        {% endblock %}
+        <!-- content_row3 END -->
 
-<!-- ROW 100% CARD - start -->
+        <!-- content_row4 START -->
+        {% block content_row4 %}
         <div class="row">
           <div class="col-md-12">
             <div class="card ">
@@ -873,8 +886,11 @@
             </div>
           </div>
         </div>
-<!-- ROW 100% CARD - end -->
+        {% endblock %}
+        <!-- content_row4 END -->
 
+        <!-- content_row5 START -->
+        {% block content_row5 %}
         <div class="row">
           <div class="col-md-3">
             <div class="card ">
@@ -957,6 +973,8 @@
             </div>
           </div>
         </div>
+        {% endblock %}
+        <!-- content_row5 END -->
       </div>
 
       {% block footer %}
