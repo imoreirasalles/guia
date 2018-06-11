@@ -35,7 +35,7 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-        <a href="#" class="simple-text logo-normal">
+        <a href="{% url 'home' %}" class="simple-text logo-normal">
           <div class="logo-image-big text-center">
             <img src="{% static 'img/ims_guia_logo.png' %}">
           </div>
@@ -317,7 +317,7 @@
 
 
     <div class="main-panel">
-      <!-- block Navbar_top START -->
+      <!-- block navbar_top START -->
       {% block navbar_top %}
       <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div class="container-fluid">
@@ -392,9 +392,11 @@
       {% endblock %}
       <!-- block navbar_top END -->
 
+      <!-- block content START -->
+      {% block content %}
       <div class="content">
-        <!-- content_row1 START -->
-        {% block content_row1 %}
+        <!-- block content_row1 START -->
+        {% block content_row_card25percent %}
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
@@ -505,7 +507,7 @@
         <!-- content_row1 END -->
 
         <!-- content_row2 START -->
-        {% block content_row2 %}
+        {% block content_row_card33percent %}
         <div class="row">
           <div class="col-lg-4 col-sm-6">
             <div class="card">
@@ -629,7 +631,7 @@
         <!-- content_row2 END -->
 
         <!-- content_row3 START -->
-        {% block content_row3 %}
+        {% block content_row_card50percent %}
         <div class="row">
           <div class="col-md-6">
             <div class="card  card-tasks">
@@ -776,7 +778,7 @@
         <!-- content_row3 END -->
 
         <!-- content_row4 START -->
-        {% block content_row4 %}
+        {% block content_row_card100percent %}
         <div class="row">
           <div class="col-md-12">
             <div class="card ">
@@ -976,6 +978,9 @@
         {% endblock %}
         <!-- content_row5 END -->
       </div>
+      {% endblock %}
+      <!-- block content END -->
+
 
       {% block footer %}
       <footer class="footer footer-black  footer-white ">
