@@ -3,14 +3,14 @@
 
 <!-- block title_page START -->
 {% block title_page %}
-  Guia
+  Guia - Pessoas
 {% endblock %}
 <!-- block title_page END -->
 
 <!-- block sidebar_menu START -->
 {% block sidebar_menu %}
 <ul class="nav">
-  <li class="active">
+  <li>
     <a href="{% url 'collection' %}">
       <i class="far fa-folder-open"></i>
       <p>Coleções</p>
@@ -28,7 +28,7 @@
       <p> Publicações </p>
     </a>
   </li>
-  <li>
+  <li class="active">
     <a href="{% url 'person' %}">
       <i class="fas fa-user-circle"></i>
       <p> Pessoas </p>
@@ -135,13 +135,6 @@
 
     <!-- content_row_card100percent START -->
     {% block content_row_card100percent %}
-
-      {% for collection in collection_list %}
-        <a href="{{ collection.get_absolute_url }}">{{ collection.title }}</a><br>
-      {% empty %}
-      <p>Nenhuma coleção no momento!</p>
-      {% endfor %}
-
     {% endblock %}
     <!-- content_row_card100percent END -->
 
