@@ -49,6 +49,10 @@ MEDIAFILEDIR / exhibitions / expo_slug / timestamp_expo_ed_slug_lista-de-obras.p
 - Implementar tool tip na interface para ajudar na intuitividade do preenchimento de algumas infos;
 ![alt text](images/tooltip_example.png)
 
+#### Editor WYSWYG para TextField
+- Aplicar editor a todos os campos do tipo `TextField` dos modelos;
+- Aplicar possibilidade de Accordion editor. Ver issue #4
+
 
 ----
 ### CRUD Class Features
