@@ -59,9 +59,9 @@
 <!-- block sidebar_menu START -->
 {% block sidebar_menu %}
 <ul class="nav">
-  <li class="">
-    <a href="{% url 'collection' %}">
-      <i class="fas fa-folder"></i>
+  <li class="active">
+    <a href={% url 'collection' %}>
+      <i class="far fa-folder-open"></i>
       <p>Coleções</p>
     </a>
   </li>
@@ -169,139 +169,60 @@
   <div class="content">
     <!-- content_row_card25percent START -->
     {% block content_row_card25percent %}
+    {% endblock %}
+    <!-- content_row_card25percent END -->
+
+    <!-- content_row_card33percent START -->
+    {% block content_row_card33percent %}
+    {% endblock %}
+    <!-- content_row_card33percent END -->
+
+    <!-- content_row_card50percent START -->
+    {% block content_row_card50percent %}
     <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body ">
-          </div>
-          <div class="card-footer ">
+      <div class="col-md-6">
+        <div class="card ">
+          <div class="card-header ">
+            <h4 class="card-title">Coleção Ana Cristina Cesar</h4>
+            <p class="card-category">sub title</p>
             <hr>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
           <div class="card-body ">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
           </div>
-          <div class="card-footer ">
-            <hr>
           </div>
         </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body ">
-            <div class="row">
+        <div class="col-md-6">
+          <div class="card ">
+            <div class="card-header ">
+              <p class="card-category"><b>Metadados</b></p>
             </div>
-          </div>
-          <div class="card-footer ">
-            <hr>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body ">
-            <div class="row">
+            <div class="card-body ">
             </div>
-          </div>
-          <div class="card-footer ">
-            <hr>
+            <div class="card-footer ">
+              <div class="legend">
+              </div>
+              <hr>
+              <div class="stats">
+                <i class="fa fa-check"></i> Data information certified
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     {% endblock %}
-    <!-- content_row_card25percent END -->
+    <!-- content_row50percent END -->
 
-  <!-- content_row_card33percent START -->
-  {% block content_row_card33percent %}
-  <div class="row">
-    <div class="col-lg-4 col-sm-6">
-      <div class="card">
-        <div class="card-header">
-        </div>
-        <div class="card-body">
-        </div>
-        <div class="card-footer">
-          <hr>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-      <div class="card">
-        <div class="card-header">
-        </div>
-        <div class="card-body">
-        </div>
-        <div class="card-footer">
-          <hr>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-      <div class="card">
-        <div class="card-header">
-        </div>
-        <div class="card-body">
-        </div>
-        <div class="card-footer">
-          <hr>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endblock %}
-  <!-- content_row_card33percent END -->
+    <!-- content_row_card100percent START -->
+    {% block content_row_card100percent %}
+    {% endblock %}
+    <!-- content_row_card100percent END -->
 
-  <!-- content_row_card50percent START -->
-  {% block content_row_card50percent %}
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card  card-tasks">
-        <div class="card-header ">
-        </div>
-        <div class="card-body ">
-        </div>
-        <div class="card-footer ">
-          <hr>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card ">
-        <div class="card-header ">
-        </div>
-        <div class="card-body ">
-        </div>
-        <div class="card-footer ">
-          <hr>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endblock %}
-  <!-- content_row_card50percent END -->
-
-  <!-- content_row_card100percent START -->
-  {% block content_row_card100percent %}
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card ">
-        <div class="card-header ">
-        </div>
-        <div class="card-body ">
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endblock %}
-  <!-- content_row_card100percent END -->
-
-  <!-- content_row5 START -->
-  {% block content_row5 %}
-  {% endblock %}
-  <!-- content_row5 END -->
+    <!-- content_row5 START -->
+    {% block content_row5 %}
+    {% endblock %}
+    <!-- content_row5 END -->
 
   {% endblock %}
   <!-- block content END -->
