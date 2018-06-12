@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
+    path('froala_editor/', include('froala_editor.urls')),
     path('base/', views.base, name='base'),
     path('', views.home, name='home'),
     path('collection/', views.collection, name='collection'),

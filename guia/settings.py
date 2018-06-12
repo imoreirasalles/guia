@@ -28,10 +28,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Database postgres apps
     'django.contrib.postgres',
     'django_json_widget',
     'django_admin_json_editor',
     'django_admin_hstore_widget',
+    # 3rd part apps
+    'froala_editor',
+    # My apps
     'core',
 ]
 
