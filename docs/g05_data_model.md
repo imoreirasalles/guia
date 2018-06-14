@@ -4,13 +4,11 @@ Este modelo de dados está em construção, tendo como referência projetos como
 
 ## Coleção
 
-_Definir o que é `Coleção`, sob quais critérios._
-
 É composta pelos seguintes elementos:
 
 ```
 Coleção     (Collection)
-Conjunto    (Container)
+Conjunto    (Set)
 Item        (Item)
 Captura     (Capture)
 ```
@@ -35,26 +33,27 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
                 | -- Captura 1
 ```
 
-Uma **Coleção**(`collection`) é composta pelos seguintes atributos:
+###  Coleção (`collection`)
 
 Nome do campo            | Tipo           | Descrição                | Exemplo
 -------------------------|----------------|--------------------------|------------
 `uuid`        | UUIDField      | Identificador único universal do objeto  |  123e4567-e89b-12d3-a456-426655440000
-`id_ims`      | CharField(30)  | Identificador único atribuido manualmente pelo IMS   |  ABC123
+`id`          | CharField(30)  | Identificador único atribuido manualmente pelo IMS   |  ABC123
 `id_old`      | JSONField      | Dicionário de códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
 `title`       | CharField(200) | Título da Coleção | Biblioteca de Fulano de Tal
 `slug`        | SlugField      | Slug para URLs | biblioteca-fulado
 `abstract`    | TextField(500) | Breve apresentação da Coleção | A coleção em 3,5 tweets.
 `fulltext`    | TextField      | Texto completo sobre a Coleção | Textão...
-`type`        | TIPO_COLECAO   | Vocabulário controlado | Arquivo, Coleção, Conjunto
-`doc_genre`   | GENERO_DOCUMENTAL   | Vocabulário controlado | Cartográfico, Iconográfico, Literário
-`dimension`   | JSONField      | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
+`description_level`| DescriptionLevel [1] | Nível de descrição da Coleção | 1 - Descrição Básica
+`type`        | CollectionType [1]   | Vocabulário controlado | Arquivo, Coleção, Conjunto
+`genre`       | CollectionGenre [0..\*]   | Vocabulário controlado | Cartográfico, Iconográfico, Literário
+`dimension`   | JSONField     | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
 `begin_date`  | DateField    | Data inicial do conteúdo da Coleção | 02/08/2018
 `end_date`    | DateField    | Data final do conteúdo da Coleção | 02/08/2018
 `itens_total`          | PositiveIntegerField  | Número total de itens na Coleção | 15000
 `itens_processed`      | PositiveIntegerField  | Número total de itens processados | 5000
 `itens_online`         | PositiveIntegerField  | Número total de itens disponíveis online | 500
-`access_condition`     | ACCESS_CONDITION  | Vocabulário controlado | Total, Parcial, Restrito
+`access_condition`     | AccessCondition [1]  | Vocabulário controlado | Total, Parcial, Restrito
 `access_local_status`  | NullBooleanField  | Verdadeiro ou falso | Total
 `access_local_path`    | URLField          | Vocabulário controlado | URL
 `access_online_status` | NullBooleanField  | Verdadeiro ou falso | Parcial
@@ -64,10 +63,13 @@ Nome do campo            | Tipo           | Descrição                | Exemplo
 `inventary_status`     | NullBooleanField  | Vocabulário controlado | URL
 `inventary_last_date`  | DateField         | Vocabulário controlado | URL
 `inventary_data`       | JSONField         | Quantificação preliminar do inventário | {"Fotografias": "1439", "Cadernos": "12"}
+`management_unit`      | ManagementUnit [1..\*] | Qual coordenação é responsável pela Coleção | Coord. de Fotografia
+`sets`                 | Set [0..\*]       | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
+`itens`                | Item [0..\*]      | Lista de itens que integram a coleção | Item 1, Item 2
 `other_data`           | JSONField         | Informação sem estrutura definida pelo modelo | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
 
 
-Um **Conjunto** (`Container`) é composto pelos seguintes atributos:
+###  Conjunto (`set`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
@@ -76,21 +78,80 @@ Field Name | Django Type Field  | Field Description  | Example
 `type`     | String  | Tipologia do conjunto |  Arquivo
 `title`    | String  | Título do conjunto |  Arquivo pessoal de Marcel Gautherot
 `abstract` | String  | Breve apresentação do conjunto |  Formado a partir da produção autoral do fotógrafo...
+`itens`    | Item [0..\*] | Lista de itens que integram a coleção | Item 1, Item 2
 
 
-
-Um **Item** é composto pelos seguintes atributos:
+###  Item (`item`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
-`uuid`| UUID   | Identificador único universal do Item |  123e4567-e89b-12d3-a456-426655440000
+`uuid` | UUID | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
+
+
+### DescriptionLevel [1]
+
+ID    | Name                    | Helptext     |
+------|-------------------------|--------------|
+0     | Controle inicial        | Conferência, identificação e localização da aquisição para estabelecimento de controle patrimonial. |
+1     | Descrição Básica        | Registro de informações de procedência, proveniência e contextualização. |
+2     | Descrição Intermediária | Identificação de informações para produção do arranjo, a partir da função primária e tipologia documental. Registro de informações de série, autoria, data de produção e caracterização formal. |
+3     | Descrição Avançada      | Descrição individual dos documentos. Registro de informações primárias ou atribuídas, em cruzamento com fontes externas. Documentação retrospectiva, reconstituição de usos e referências ao documento em seu contexto de produção, apresentação e circulação. Conjuntos de documentos podem ser descritos em lote. |
+4     | Pesquisa especializada  | Elaboração de argumento interpretativo e construção de conhecimento novo a partir da seleção e co-relação de documentos. Apresentação, mediação e interpretação para fins de difusão de conhecimento. Redação de legendas expandidas e textos de inéditos. |
+
+
+### CollectionType [1]
+
+ID  | Name         | Helptext     |
+----|--------------|--------------|
+1   | Coleção      | Conjuntos de __documentos reunidos intencionalmente__ por uma pessoa ou instituição |
+2   | Arquivo      | Conjuntos de __documentos produzidos e acumulados__ por uma pessoa ou instituição __no desempenho de suas atividades__ |
+3   | Biblioteca   | Conjuntos de __livros e publicações reunidos__ por uma pessoa ou instituição |
+4   | Conjunto     | Agrupamento documentos |
+
+
+### CollectionGenre [0..\*]
+
+ID  | Name           | Helptext             |
+----|----------------|----------------------|
+1   | Audiovisual    | Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais. |
+2   | Bibliográfico  | Livros, jornais, revistas, catálogos e brochuras. |
+3   | Cartográfico   | Mapas e plantas arquitetônicas. |
+4   | Fotográfico    | Fotografias em papel, slides, negativos, cromos e demais suportes fotográficos. |
+5   | Iconográfico   | Desenhos, gravuras, caricaturas, charges, cartazes e peças gráficas. |
+6   | Nato-digital   | Documentos originalmente gerados em computadores. |
+7   | Sonoro         | Discos, fitas, cds e álbums. |
+8   | Textual        | Cadernos, manuscritos, impressos e folheteria. |
+9   | Tridimensional | Objetos tridimensionais. |
+
+
+### AccessCondition [1]
+
+ID      | Access    | Name             | Helptext            |
+--------|-----------|------------------|---------------------|
+0       | Livre     | Acesso pleno     | Todos os documentos originais ou seus representantes digitais estão disponíveis para consulta.
+1       | Parcial   | Em processamento | Existem documentos em processamento técnico (inventário, identificação, ordenação, higienização, acondicionamento, digitalização ou restauro) ou em uso (empréstimo para exposições ou em consulta por outros pesquisadores).
+2       | Parcial   | Estado de conservação | Existem documentos cujo estado de conservação coloca em risco a estabilidade ou a própria existência dos mesmos.
+3       | Restrito  | Direito autoral  | Existem restrições ao acesso aos documentos por questões de direito autoral. O pesquisador pode solicitar acesso mediante autorização expressa do titular, herdeiro ou detentor dos referidos direitos.
+4       | Restrito  | Contratual       | Existem restrições ao acesso aos documentos por questões contratuais definidas por cláusulas especificadas no processo de aquisição. 
+5       | Restrito  | Segurança institucional | Existem restrições ao acesso aos documentos por questões de risco à seguraça operacional. Aplica-se exclusivamente a documentos do arquivo institucional.
+6       | Restrito  | Informação privada | Existem restrições ao acesso aos documentos por questões de privacidade envolvendo informações de cunho extritamente privado de terceiros.
+
+
+### ManagementUnit [1..\*]
+
+- Coordenação de Acervo
+- Coordenação de Bibliotecas
+- Coordenação de Cinema
+- Coordenação de Fotografia
+- Coordenação de Iconografia
+- Coordenação de Literatura
+- Coordenação de Música
+
+--------
 
 ## Exposição
 
-_Definir o que é `Exposição`, sob quais critérios._
-
 Uma Exposição pode ter diversas Edições:
-
 
 ```
 | -- Exposição
@@ -100,8 +161,7 @@ Uma Exposição pode ter diversas Edições:
     | -- Edição 1
 ```
 
-
-Uma **Exposição** `exhibition` é composta pelos seguintes atributos:
+###  Exposição (`exhibition`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
@@ -115,7 +175,7 @@ Field Name | Django Type Field  | Field Description  | Example
 `url`   | String  | Endereço web da Exposição do site da instituição | museu.edu/expo/conflitos
 `team`  | JSON    | Ficha técnica geral da Exposição, com a atribuição da equipe principal | {"Curadoria": "Heloisa Espada", "Assistente de Curadoria": "Tiê Higashi"}
 
-A itinerância da exposição é composta por **Edições**, que contém os seguintes atributos:
+###  Edições (`exhibition_edition`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
@@ -125,10 +185,9 @@ Field Name | Django Type Field  | Field Description  | Example
 `end_date`     | Data    | Data de encerramento da Edição, quando conhecida  | 02/08/2018
 `roles`        | JSON    | Ficha técnica específica da Edição, com a atribuição de toda equipe envolvida | {"Produção": "Equipe"; "Montagem": "Equipe"}
 
+--------
 
 ## Publicação
-
-_Definir o que é `Publicação`, sob quais critérios._
 
 - Diferença entre `Publicação` e folheteria:
   - Considerar que uma publicação é todo projeto editorial consolidado num produto comercial. Ex.: livro, catálogo de exposição, DVD, etc. Já a folheteria distribuída gratuítamente não será considerada uma publicação autônoma, mas um documento anexado a outra entidade.
@@ -151,10 +210,9 @@ Nome do campo      | Tipo   | Descrição  | Exemplo
 `type`         | String | Gênero da Pessoa (binário) | Homem
 `type`         | String | Gênero da Pessoa (binário) | Homem
 
+--------
 
 ## Evento
-
-_Definir o que é `Evento`, sob quais critérios._
 
 Nome do campo          | Tipo    | Descrição                | Exemplo
 -----------------------|---------|--------------------------|------------
@@ -169,10 +227,9 @@ Nome do campo          | Tipo    | Descrição                | Exemplo
 `abstract`       | String  | Breve apresentação do Evento | IMS Paulista
 `roles`          | JSON    | Ficha técnica específica do Evento | {"Palestrante": "Equipe", "Filmagem": "Equipe"}
 
+--------
 
 ## Pessoa
-
-_Definir o que é `Pessoa`, sob quais critérios._
 
 Nome do campo        | Tipo   | Descrição  | Exemplo
 ---------------------|--------|--------------------------|------------
@@ -191,12 +248,14 @@ Nome do campo        | Tipo   | Descrição  | Exemplo
 `url`         | String | Endereço web da Pessoa no site da instituição | museu.edu/pessoa/marc-ferrez
 `lod`         | JSON   | Dicionário de UIDs em projetos de Linked Open Data, como Virtual International Authority File (VIAF), Wikidata (WIKI), Union List of Artist Names (ULAN) ou Photographers’ Identities Catalog (PIC) | {"VIAF": "69111120", "WIKI": "Q3180571", "ULAN": "500037201", "PIC": "1758"}
 
-## Aquisição
+--------
+
+## Acquisition
 
 Nome do campo            | Tipo       | Descrição  | Exemplo
 -------------------------|------------|------------|------------
 `uuid`       | UUIDField  | ...        | ...
-`method`     | METODO_AQUISICAO | ...  | ...
+`method`     | AcquisitionMethod [1] | ...  | ...
 `source`     | Person 1-* | ...        | ...
 `dealer`     | Person 1-* | ...        | ...
 `begin_date` | DateField  | ...        | ...
@@ -204,6 +263,17 @@ Nome do campo            | Tipo       | Descrição  | Exemplo
 `abstract`   | TextField  | ...        | ...
 `other_data` | JSONField  | ...        | ...
 
+
+### AcquisitionMethod [1]
+
+ID   | Name           | Helptext     |
+-----|----------------|--------------|
+1    | Compra         | Transferência de propriedade com remuneração |
+2    | Doação         | Transferência de propriedade sem remuneração |
+3    | Comodato       | Empréstimo temporário com prazo determinado |
+4    | Transferência  | Mudança de unidade administrativa dentro da mesma instituição |
+
+--------
 
 ## Adopted References
 * Django Default Fields https://docs.djangoproject.com/en/2.0/ref/models/fields/
