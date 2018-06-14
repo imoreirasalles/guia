@@ -35,8 +35,8 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
 
 ###  Coleção (`collection`)
 
-Nome do campo            | Tipo           | Descrição                | Exemplo
--------------------------|----------------|--------------------------|------------
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
 `uuid`        | UUIDField      | Identificador único universal do objeto  |  123e4567-e89b-12d3-a456-426655440000
 `id`          | CharField(30)  | Identificador único atribuido manualmente pelo IMS   |  ABC123
 `id_old`      | JSONField      | Dicionário de códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
@@ -195,8 +195,8 @@ Field Name | Django Type Field  | Field Description  | Example
   - Uma `Publicação` _Catálogo da Exposição_ está relacionada a uma `Exposição`
   - Um `Evento` _Mostra de Cinema_ tem como documentação anexa um folder da sua programação
 
-Nome do campo      | Tipo   | Descrição  | Exemplo
--------------------|--------|--------------------------|------------
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
 `uuid`         | UUID   | Identificador único universal da Publicação |  123e4567-e89b-12d3-a456-426655440000
 `id`           | Número  | Identificador único numérico atribuído a cada Publicação para controle interno da instituição | 201803
 `title`        | String | Título completo da Publicação | Marc Ferrez
@@ -214,9 +214,9 @@ Nome do campo      | Tipo   | Descrição  | Exemplo
 
 ## Evento
 
-Nome do campo          | Tipo    | Descrição                | Exemplo
------------------------|---------|--------------------------|------------
-`uudi`           | UUID    | Identificador único universal do Evento |  0326-02
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`uuid`           | UUID    | Identificador único universal do Evento |  0326-02
 `id`             | Número  | Identificador único do Evento para controle interno da instituição |  0326-02
 `title`          | String  | Título do evento | Palestra do fulano de tal
 `slug`           | String  | Título intuitivo do evento | IMS Paulista
@@ -231,8 +231,8 @@ Nome do campo          | Tipo    | Descrição                | Exemplo
 
 ## Pessoa
 
-Nome do campo        | Tipo   | Descrição  | Exemplo
----------------------|--------|--------------------------|------------
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
 `uuid`        | UUID   | Identificador único universal da Pessoa no banco de dados da instituição |  123e4567-e89b-12d3-a456-426655440000
 `slug`        | String | Nome da pessoa para exibição pública | Marc Ferrez
 `name_first`  | String | Primeiro nome da Pessoa | Marc
@@ -252,8 +252,8 @@ Nome do campo        | Tipo   | Descrição  | Exemplo
 
 ## Acquisition
 
-Nome do campo            | Tipo       | Descrição  | Exemplo
--------------------------|------------|------------|------------
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
 `uuid`       | UUIDField  | ...        | ...
 `method`     | AcquisitionMethod [1] | ...  | ...
 `source`     | Person 1-* | ...        | ...
