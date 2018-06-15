@@ -43,17 +43,17 @@ Field Name | Django Type Field  | Field Description  | Example
 `title`       | CharField(200) | Título da Coleção | Biblioteca de Fulano de Tal
 `slug`        | SlugField      | Slug para URLs | biblioteca-fulado
 `abstract`    | TextField(500) | Breve apresentação da Coleção | A coleção em 3,5 tweets.
-`fulltext`    | TextField      | Texto completo sobre a Coleção | Textão...
-`description_level`| DescriptionLevel [1] | Nível de descrição da Coleção | 1 - Descrição Básica
-`type`        | CollectionType [1]   | Vocabulário controlado | Arquivo, Coleção, Conjunto
-`genre`       | CollectionGenre [0..\*]   | Vocabulário controlado | Cartográfico, Iconográfico, Literário
-`dimension`   | JSONField     | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
-`begin_date`  | DateField    | Data inicial do conteúdo da Coleção | 02/08/2018
-`end_date`    | DateField    | Data final do conteúdo da Coleção | 02/08/2018
+`fulltext`    | TextField      | Texto completo sobre a Coleção | Texto grande, com vários parágrafos.
+`description_level`| DescriptionLevel, **FK** [0..1] | Nível de descrição da Coleção | 1 - Descrição Básica
+`aggregation_type`        | AggregationType, **FK** [0..\*]       | Vocabulário controlado | Arquivo, Coleção, Conjunto
+`genre`       | CollectionGenre, **FK** [0..\*]      | Vocabulário controlado | Cartográfico, Iconográfico, Literário
+`dimension`   | JSONField  | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
+`date_start`  | DateField  | Data inicial do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date) | 02/08/2018
+`date_end`    | DateField  | Data final do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date)  | 02/08/2018
 `itens_total`          | PositiveIntegerField  | Número total de itens na Coleção | 15000
 `itens_processed`      | PositiveIntegerField  | Número total de itens processados | 5000
 `itens_online`         | PositiveIntegerField  | Número total de itens disponíveis online | 500
-`access_condition`     | AccessCondition [1]  | Vocabulário controlado | Total, Parcial, Restrito
+`access_condition`     | AccessCondition, **FK**   | Vocabulário controlado | Total, Parcial, Restrito
 `access_local_status`  | NullBooleanField  | Verdadeiro ou falso | Total
 `access_local_path`    | URLField          | Vocabulário controlado | URL
 `access_online_status` | NullBooleanField  | Verdadeiro ou falso | Parcial
@@ -64,8 +64,8 @@ Field Name | Django Type Field  | Field Description  | Example
 `inventary_last_date`  | DateField         | Vocabulário controlado | URL
 `inventary_data`       | JSONField         | Quantificação preliminar do inventário | {"Fotografias": "1439", "Cadernos": "12"}
 `management_unit`      | ManagementUnit [1..\*] | Qual coordenação é responsável pela Coleção | Coord. de Fotografia
-`sets`                 | Set [0..\*]       | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
-`itens`                | Item [0..\*]      | Lista de itens que integram a coleção | Item 1, Item 2
+`sets`                 | Set, **FK** [0..\*]       | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
+`items`                | Item, **FK** [0..\*]      | Lista de itens que integram a coleção | Item 1, Item 2
 `other_data`           | JSONField         | Informação sem estrutura definida pelo modelo | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
 
 
@@ -74,11 +74,11 @@ Field Name | Django Type Field  | Field Description  | Example
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
 `id`       | Número  | Identificador único numérico atribuído a cada Conjunto para controle interno da instituição |  001002
-`uuid` | UUID | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
+`uuid`     | UUID    | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
 `type`     | String  | Tipologia do conjunto |  Arquivo
 `title`    | String  | Título do conjunto |  Arquivo pessoal de Marcel Gautherot
 `abstract` | String  | Breve apresentação do conjunto |  Formado a partir da produção autoral do fotógrafo...
-`itens`    | Item [0..\*] | Lista de itens que integram a coleção | Item 1, Item 2
+`items`    | Item, **FK** [0..\*] | Lista de itens que integram a coleção | Item 1, Item 2
 
 
 ###  Item (`item`)
@@ -86,9 +86,10 @@ Field Name | Django Type Field  | Field Description  | Example
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
 `uuid` | UUID | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
+`name` | CharField(200), Null, Blank | nome do item.      | Foto Ligia Fagundes Telles em visita ao IMS
 
 
-### DescriptionLevel [1]
+### Nível de Descrição (`DescriptionLevel`)
 
 ID    | Name                    | Helptext     |
 ------|-------------------------|--------------|
@@ -99,7 +100,7 @@ ID    | Name                    | Helptext     |
 4     | Pesquisa especializada  | Elaboração de argumento interpretativo e construção de conhecimento novo a partir da seleção e co-relação de documentos. Apresentação, mediação e interpretação para fins de difusão de conhecimento. Redação de legendas expandidas e textos de inéditos. |
 
 
-### CollectionType [1]
+### Tipo de Agregação (`AggregationType`)
 
 ID  | Name         | Helptext     |
 ----|--------------|--------------|
@@ -109,7 +110,7 @@ ID  | Name         | Helptext     |
 4   | Conjunto     | Agrupamento documentos |
 
 
-### CollectionGenre [0..\*]
+### Generos do(s) Conteúdo(s) (`Genre`)
 
 ID  | Name           | Helptext             |
 ----|----------------|----------------------|
@@ -124,7 +125,7 @@ ID  | Name           | Helptext             |
 9   | Tridimensional | Objetos tridimensionais. |
 
 
-### AccessCondition [1]
+### Condições de Acesso `AccessCondition`
 
 ID      | Access    | Name             | Helptext            |
 --------|-----------|------------------|---------------------|
@@ -132,7 +133,7 @@ ID      | Access    | Name             | Helptext            |
 1       | Parcial   | Em processamento | Existem documentos em processamento técnico (inventário, identificação, ordenação, higienização, acondicionamento, digitalização ou restauro) ou em uso (empréstimo para exposições ou em consulta por outros pesquisadores).
 2       | Parcial   | Estado de conservação | Existem documentos cujo estado de conservação coloca em risco a estabilidade ou a própria existência dos mesmos.
 3       | Restrito  | Direito autoral  | Existem restrições ao acesso aos documentos por questões de direito autoral. O pesquisador pode solicitar acesso mediante autorização expressa do titular, herdeiro ou detentor dos referidos direitos.
-4       | Restrito  | Contratual       | Existem restrições ao acesso aos documentos por questões contratuais definidas por cláusulas especificadas no processo de aquisição. 
+4       | Restrito  | Contratual       | Existem restrições ao acesso aos documentos por questões contratuais definidas por cláusulas especificadas no processo de aquisição.
 5       | Restrito  | Segurança institucional | Existem restrições ao acesso aos documentos por questões de risco à seguraça operacional. Aplica-se exclusivamente a documentos do arquivo institucional.
 6       | Restrito  | Informação privada | Existem restrições ao acesso aos documentos por questões de privacidade envolvendo informações de cunho extritamente privado de terceiros.
 
