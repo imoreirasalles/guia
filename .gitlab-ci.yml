@@ -72,6 +72,7 @@ deploy to homolog:
   image: cdrx/rancher-gitlab-deploy
   script:
     - upgrade --environment IMS --stack guia-ims-dev --service backend --no-finish-upgrade --sidekicks
+    - upgrade --environment IMS --stack guia-ims-dev --service postgres --no-finish-upgrade
   only:
     - /master/
   environment: homolog
