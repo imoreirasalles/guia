@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django_admin_hstore_widget',
     # 3rd part apps
     'froala_editor',
+    'django_extensions',
     'raven.contrib.django.raven_compat',
     # My apps
     'core',
