@@ -25,6 +25,8 @@ COPY . /app
 
 RUN mkdir -p /app/static
 
+RUN python /app/manage.py collectstatic --noinput
+
 RUN chown -R django: /app
 
 USER django
