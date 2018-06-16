@@ -26,3 +26,9 @@ Werkzeug==0.14.1
 # Raven is the Sentry client
 # --------------------------
 raven==6.5.0
+
+
+# WSGI Handler
+# ------------------------------------------------
+gevent==1.2.2
+gunicorn~=19.7
