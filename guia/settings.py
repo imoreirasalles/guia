@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django_admin_hstore_widget',
     # 3rd part apps
     'froala_editor',
+    'raven.contrib.django.raven_compat',
     # My apps
     'core',
 ]
 
 MIDDLEWARE = [
+    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,3 +140,56 @@ STATICFILES_DIRS = [
 
 MEDIA_URL   = '/media/'
 MEDIA_ROOT  = '../media/'
+
+
+# Sentry Configuration
+if env('DJANGO_SENTRY_DSN', default=False):
+    SENTRY_DSN = env('DJANGO_SENTRY_DSN')
+    SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'root': {
+            'level': 'WARNING',
+            'handlers': ['sentry', ],
+        },
+        'formatters': {
+            'verbose': {
+                'format': '%(levelname)s %(asctime)s %(module)s '
+                        '%(process)d %(thread)d %(message)s'
+            },
+        },
+        'handlers': {
+            'sentry': {
+                'level': 'ERROR',
+                'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            }
+        },
+        'loggers': {
+            'django.db.backends': {
+                'level': 'ERROR',
+                'handlers': ['console', ],
+                'propagate': False,
+            },
+            'raven': {
+                'level': 'DEBUG',
+                'handlers': ['console', ],
+                'propagate': False,
+            },
+            'sentry.errors': {
+                'level': 'DEBUG',
+                'handlers': ['console', ],
+                'propagate': False,
+            },
+            'django.security.DisallowedHost': {
+                'level': 'ERROR',
+                'handlers': ['console', 'sentry', ],
+                'propagate': False,
+            },
+        },
+    }

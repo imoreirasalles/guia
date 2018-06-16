@@ -19,3 +19,6 @@ django-json-widget==0.1.1
 django-froala-editor==2.8.1.1
 
 django-environ~=0.4
+# Raven is the Sentry client
+# --------------------------
+raven==6.5.0
