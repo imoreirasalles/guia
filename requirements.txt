@@ -1,14 +1,11 @@
 # Django minimum version
-Django==2.0.5
+Django~=2.0
 
 # freeze is used to get used dependencies
 freeze==1.0.10
 
 # psycopg2 is used to postgresql connections
 psycopg2==2.7.4
-
-# This package protects your secrets
-python-decouple==3.1
 
 Pillow==5.1.0
 pytz==2018.3
@@ -17,3 +14,21 @@ six==1.11.0
 django-admin-hstore-widget==0.3.0
 django-admin-json-editor==0.1.5
 django-json-widget==0.1.1
+
+# WYSWYG Editor
+django-froala-editor==2.8.1.1
+
+django-environ~=0.4
+
+django-extensions~=2.0
+Werkzeug==0.14.1
+
+# Raven is the Sentry client
+# --------------------------
+raven==6.5.0
+
+
+# WSGI Handler
+# ------------------------------------------------
+gevent==1.2.2
+gunicorn~=19.7

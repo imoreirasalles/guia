@@ -1,7 +1,10 @@
 # coding: utf-8
 import os
-from decouple import config
+import environ
 
+
+# Load operating system environment variables and then prepare to use them
+env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,12 +14,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY', default="MySecret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = [config('URL')]
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'])
 
 
 # Application definition
@@ -28,14 +31,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Database postgres apps
     'django.contrib.postgres',
     'django_json_widget',
     'django_admin_json_editor',
     'django_admin_hstore_widget',
+    # 3rd part apps
+    'froala_editor',
+    'django_extensions',
+    'raven.contrib.django.raven_compat',
+    # My apps
     'core',
 ]
 
 MIDDLEWARE = [
+    'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,11 +89,10 @@ WSGI_APPLICATION = 'guia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': '',
+        'NAME': env.str('DB_NAME'),
+        'USER': env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASSWORD'),
+        'HOST': env.str('DB_HOST', default='postgres'),
     }
 }
 
@@ -132,3 +141,56 @@ STATICFILES_DIRS = [
 
 MEDIA_URL   = '/media/'
 MEDIA_ROOT  = '../media/'
+
+
+# Sentry Configuration
+if env('DJANGO_SENTRY_DSN', default=False):
+    SENTRY_DSN = env('DJANGO_SENTRY_DSN')
+    SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'root': {
+            'level': 'WARNING',
+            'handlers': ['sentry', ],
+        },
+        'formatters': {
+            'verbose': {
+                'format': '%(levelname)s %(asctime)s %(module)s '
+                        '%(process)d %(thread)d %(message)s'
+            },
+        },
+        'handlers': {
+            'sentry': {
+                'level': 'ERROR',
+                'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            }
+        },
+        'loggers': {
+            'django.db.backends': {
+                'level': 'ERROR',
+                'handlers': ['console', ],
+                'propagate': False,
+            },
+            'raven': {
+                'level': 'DEBUG',
+                'handlers': ['console', ],
+                'propagate': False,
+            },
+            'sentry.errors': {
+                'level': 'DEBUG',
+                'handlers': ['console', ],
+                'propagate': False,
+            },
+            'django.security.DisallowedHost': {
+                'level': 'ERROR',
+                'handlers': ['console', 'sentry', ],
+                'propagate': False,
+            },
+        },
+    }

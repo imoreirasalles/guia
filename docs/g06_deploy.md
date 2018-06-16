@@ -70,6 +70,7 @@ $ pip install django
 ##### .env
 Crie um arquivo .env na raiz da aplicação e preencha com as seguintes informações:
 ```
+URL=localhost
 DEBUG=True
 SECRET_KEY=YourSecretHere
 DB_NAME=YourDataBase
