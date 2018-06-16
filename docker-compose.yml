@@ -1,0 +1,34 @@
+version: '3.6'
+
+services:
+  redis:
+    image: redis:3.2
+    hostname: redis
+
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    environment:
+      - DB_NAME=django
+      - DB_USER=django
+      - DB_PASSWORD=django
+      - DEBUG=True
+    ports:
+      - "8000:8000"
+    command: /runserver.sh
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/local/postgres/Dockerfile
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=django
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=django
