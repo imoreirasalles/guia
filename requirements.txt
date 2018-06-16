@@ -1,5 +1,5 @@
 # Django minimum version
-Django==2.0.5
+Django~=2.0
 
 # freeze is used to get used dependencies
 freeze==1.0.10
