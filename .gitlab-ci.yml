@@ -40,7 +40,8 @@ build to production:
 #   stage: deploy
 #   image: cdrx/rancher-gitlab-deploy
 #   script:
-#     - upgrade --environment <env_name> --stack <stack_name> --service <service_name> --no-finish-upgrade --sidekicks
+#     - upgrade --environment IMS --stack guia-ims-prod --service backend --no-finish-upgrade --sidekicks
+#     - upgrade --environment IMS --stack guia-ims-dev --service postgres --no-finish-upgrade
 #   only:
 #     - tags
 #   environment: production
