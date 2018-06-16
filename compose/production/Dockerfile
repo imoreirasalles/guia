@@ -25,7 +25,9 @@ COPY . /app
 
 RUN mkdir -p /app/static
 
-RUN python /app/manage.py collectstatic --noinput
+# env.example must be used during build to provide a valid environment
+RUN export $(cat /app/env.example | grep -v ^# | xargs) && \
+    python /app/manage.py collectstatic --noinput
 
 RUN chown -R django: /app
 
