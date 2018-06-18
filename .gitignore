@@ -86,3 +86,6 @@ local_settings.py
 db.sqlite3
 
 media/
+
+### Postgres data ###
+db_data/
