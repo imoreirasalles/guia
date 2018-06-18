@@ -17,6 +17,9 @@ Para levantar um ambiente de desenvolvimento local do Guia IMS, basta [instalar 
 - `media` - arquivos enviados pelos usuários
 - `db_data` - dados de banco de dados do Postgres. Para apagar todos os dados do banco, basta deletar essa pasta
 
+#### Variáveis de ambiente
+Um exemplo funcional das variáveis de ambiente necessárias para rodar a aplicação é continuamente mantido no arquivo `env.example` para referência de desenvolvedores e operadores de infraestrutura.
+
 ## Enviroment Deploy
 > Exemplos construídos em torno de um servidor Debian 9 e/ou Ubuntu 16.04.
 
