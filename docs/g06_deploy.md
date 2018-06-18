@@ -7,6 +7,16 @@
 * PostgreSQL 9.6 >= (https://www.postgresql.org)
 
 
+## Enviroment Local
+### Docker
+Para levantar um ambiente de desenvolvimento local do Guia IMS, basta [instalar Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) e executar o seguinte comando na raiz do repositório:
+
+`docker-compose up`
+
+#### Diretórios estáticos locais (ignorados pelo Git)
+- `media` - arquivos enviados pelos usuários
+- `db_data` - dados de banco de dados do Postgres. Para apagar todos os dados do banco, basta deletar essa pasta
+
 ## Enviroment Deploy
 > Exemplos construídos em torno de um servidor Debian 9 e/ou Ubuntu 16.04.
 
