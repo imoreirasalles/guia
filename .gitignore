@@ -85,5 +85,7 @@ local_settings.py
 .env
 db.sqlite3
 
-static/
 media/
+
+### Postgres data ###
+db_data/
