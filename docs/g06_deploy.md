@@ -13,6 +13,8 @@ Para levantar um ambiente de desenvolvimento local do Guia IMS, basta [instalar 
 
 `docker-compose up`
 
+Para executar comandos dentro do container Django, rode `docker-compose exec django bash`. Ela vai te dar o shell interno do container, em que  você pode executar tarefas rotineiras como `python manage.py makemigrations` e `python manage.py migrate` (este último comando sempre é executado quando os containers se levantam, então não é necessário avisar outros desenvolvedores sobre a presença de novas migrações).
+
 #### Diretórios estáticos locais (ignorados pelo Git)
 - `media` - arquivos enviados pelos usuários
 - `db_data` - dados de banco de dados do Postgres. Para apagar todos os dados do banco, basta deletar essa pasta
