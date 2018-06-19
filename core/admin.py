@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django import forms
 from .models import *
+from mptt.models import MPTTModel, TreeForeignKey
 
 # Froala WYSWYG editor https://github.com/froala/django-froala-editor
 from froala_editor.widgets import FroalaEditor
@@ -28,20 +29,20 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 class CollectionAdminForm(forms.ModelForm):
-    id_old = HStoreFormField()
     abstract = forms.CharField(widget=FroalaEditor)
 
     class Meta:
        model = Collection
-       exclude = ()
+       fields = '__all__'
 
 
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
     form = CollectionAdminForm
-    formfield_overrides = {
-        fields.JSONField: {'widget': JSONEditorWidget},
-    }
+    # formfield_overrides = {
+    #     fields.JSONField: {'widget': JSONEditorWidget},
+    # }
+
 
 # @admin.register(Collection)
 # class Collection(admin.ModelAdmin):

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django_json_widget',
     'django_admin_json_editor',
     'django_admin_hstore_widget',
+    'jsonsuit.apps.JSONSuitConfig',
     # 3rd part apps
     'froala_editor',
     'django_extensions',

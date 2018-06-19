@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 from django.contrib.postgres.fields import HStoreField
 from django.contrib.postgres.fields import JSONField
+from mptt.models import MPTTModel, TreeForeignKey
 import uuid
 
 
