@@ -42,6 +42,13 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     # My apps
     'core',
+    'collection',
+    'event',
+    'exhibition',
+    'location',
+    'management',
+    'person',
+    'publication',
 ]
 
 MIDDLEWARE = [
