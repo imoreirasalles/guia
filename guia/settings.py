@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'raven.contrib.django.raven_compat',
     # My apps
-    'core',
     'collection',
     'event',
     'exhibition',
