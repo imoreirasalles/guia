@@ -35,12 +35,20 @@ INSTALLED_APPS = [
     'django_json_widget',
     'django_admin_json_editor',
     'django_admin_hstore_widget',
+    'jsonsuit.apps.JSONSuitConfig',
     # 3rd part apps
     'froala_editor',
     'django_extensions',
     'raven.contrib.django.raven_compat',
     # My apps
     'core',
+    'collection',
+    'event',
+    'exhibition',
+    'location',
+    'management',
+    'person',
+    'publication',
 ]
 
 MIDDLEWARE = [

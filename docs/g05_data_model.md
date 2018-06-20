@@ -35,38 +35,112 @@ Coleções são feitas por um ou mais Itens, que por sua vez são organizados em
 
 ###  Coleção (`collection`)
 
+Field Name  | Django Type Field | Field Description  | Example
+------------|-------------------|--------------------|------------
+`uuid`                          | UUIDField, **PK**, Unique, Sequential         | Identificador único universal do objeto  |  123e4567-e89b-12d3-a456-426655440000
+`created`                       | dateField, NotNull, default=now              | data de criação do registro | 01/01/2018
+`id`                            | CharField(32), Editable, Null, Blank          | Identificador único atribuido manualmente pelo IMS | ABC123
+`id_old`                        | JSONField, Null, Blank                        | Dicionário de códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
+`title`                         | CharField(256), Null, Blank                  | Título da Coleção | Biblioteca de Fulano de Tal
+`slug`                          | SlugField(128), Null, Blank                  | Slug para URLs | biblioteca-fulado
+`abstract`                      | TextField, Null, Blank                       | Breve apresentação da Coleção | A coleção em 3,5 tweets.
+`fulltext`                      | TextField, Null, Blank                       | Texto completo sobre a Coleção   | Texto grande, com vários parágrafos.
+`description_level`             | DescriptionLevel, **FK** [0..\*], Null, Blank | Nível de descrição da Coleção | 1 - Descrição Básica
+`aggregation_type`              | AggregationType, **FK** [0..1], Null, Blank  | Vocabulário controlado | Arquivo, Coleção, Conjunto
+`genre_tags`                    | Genre, **FK** [0..\*], Null, Blank            | Vocabulário controlado | Cartográfico, Iconográfico, Literário
+`dimension`                     | JSONField, Null, Blank                       | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
+`date_start`                    | DateField, Null, Blank                       | Data inicial do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date) | 02/08/2018
+`date_end`                      | DateField, Null, Blank                       | Data final do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date)  | 02/08/2018
+`thumbnail`                     | thumbnail **FK**[0..\*], Null, Blank          | imagens de demonstração associadas ao registro | / collection / 2018_01_30_ligia_fagundes_teles.jpg
+`author`                        | Person **FK**[0..\*], Null, Blank       | autoridades sobre a coleção.  | Ligia Fagundes Teles
+`set`                           | Set **FK**[0..\*], Null, Blank               | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
+`items`                         | Item, **FK** [0..\*], Null, Blank            | Lista de itens que integram a coleção | Item 1, Item 2
+`itens_total`                   | PositiveIntegerField, Null, Blank            | Número total de itens na Coleção | 15000
+`itens_processed`               | PositiveIntegerField, Null, Blank            | Número total de itens processados | 5000
+`itens_online`                  |  PositiveIntegerField, Null, Blank            | Número total de itens disponíveis online | 500
+`access_condition`              | AccessCondition, **FK** [0..1], Null, Blank   | Vocabulário controlado | Total, Parcial, Restrito
+`access_local_status`           | NullBooleanField, Null, Blank                | Verdadeiro ou falso | Sim
+`access_online_status`          | NullBooleanField, Null, Blank                 | Verdadeiro ou falso (sim ou não)  | Sim
+`access_link`             | URLField, , Null, Blank                            | Url de acesso ao material na internet | URL
+`location_generic`              | Location **FK**[0..1], Null, Blank           | Informação generica sobre a localização da coleção  | IMS Paulista
+`location_specific`             | CharField(128), Null, Blank                  | Informação específica sobre a localização da coleção  | IMS Paulista
+`inventary_status`              | NullBooleanField, Null, Blank                | Status do inventário da coleção | Sim
+`inventary_last_date`           | DateField, Null, Blank                       | Data do último inventário realizado | URL
+`inventary_data`                | JSONField                                    | Quantificação preliminar do inventário | {"Fotografias": "1439", "Cadernos": "12"}
+`management_unit`               | ManagementUnit **FK**[0..1], Null, Blank     | Qual coordenação é responsável pela Coleção | Coord. de Fotografia
+`sets`                          | Set, **FK** [0..\*], Null, Blank            | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
+`other_data`                    | JSONField                                    | Informação sem estrutura definida pelo modelo | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
+
+### Nível de Descrição (`DescriptionLevel`)
+
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
-`uuid`        | UUIDField      | Identificador único universal do objeto  |  123e4567-e89b-12d3-a456-426655440000
-`id`          | CharField(30)  | Identificador único atribuido manualmente pelo IMS   |  ABC123
-`id_old`      | JSONField      | Dicionário de códigos já utilizados para identificar a Coleção | {"Instituição 1": "ABC", "Instituição 2": "123"}
-`title`       | CharField(200) | Título da Coleção | Biblioteca de Fulano de Tal
-`slug`        | SlugField      | Slug para URLs    | biblioteca-fulado
-`abstract`    | TextField(500) | Breve apresentação da Coleção    | A coleção em 3,5 tweets.
-`fulltext`    | TextField      | Texto completo sobre a Coleção   | Texto grande, com vários parágrafos.
-`description_level`       | DescriptionLevel, **FK** [0..\*]      | Nível de descrição da Coleção | 1 - Descrição Básica
-`aggregation_type`        | AggregationType, **FK** [0..1]        | Vocabulário controlado | Arquivo, Coleção, Conjunto
-`genre_tags`              | CollectionGenre, **FK** [0..\*]       | Vocabulário controlado | Cartográfico, Iconográfico, Literário
-`dimension`   | JSONField  | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
-`date_start`  | DateField  | Data inicial do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date) | 02/08/2018
-`date_end`    | DateField  | Data final do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date)  | 02/08/2018
-`itens_total`          | PositiveIntegerField  | Número total de itens na Coleção | 15000
-`itens_processed`      | PositiveIntegerField  | Número total de itens processados | 5000
-`itens_online`         | PositiveIntegerField  | Número total de itens disponíveis online | 500
-`access_condition`     | AccessCondition, **FK**   | Vocabulário controlado | Total, Parcial, Restrito
-`access_local_status`  | NullBooleanField  | Verdadeiro ou falso | Total
-`access_local_link`    | URLField          |  | URL
-`access_online_status` | NullBooleanField  | Verdadeiro ou falso (sim ou não)  | Parcial
-`access_online_path`   | URLField          | Vocabulário controlado | URL
-`location_generic`     | CharField(100)    | Vocabulário controlado | URL
-`location_specific`    | CharField(100)    | Vocabulário controlado | URL
-`inventary_status`     | NullBooleanField  | Vocabulário controlado | URL
-`inventary_last_date`  | DateField         | Vocabulário controlado | URL
-`inventary_data`       | JSONField         | Quantificação preliminar do inventário | {"Fotografias": "1439", "Cadernos": "12"}
-`management_unit`      | ManagementUnit [1..\*] | Qual coordenação é responsável pela Coleção | Coord. de Fotografia
-`sets`                 | Set, **FK** [0..\*]       | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
-`items`                | Item, **FK** [0..\*]      | Lista de itens que integram a coleção | Item 1, Item 2
-`other_data`           | JSONField         | Informação sem estrutura definida pelo modelo | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
+`id`       | **PK**, Sequential | id único do nível de descrição | 001
+`created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
+`title`    | CharField(128), NotNull, Blank, título do nível de descrição | Controle inicial
+`helptext` | CharField(512)     | descrição do campo
+
+
+Exemplos de instâncias que vão constar neste modelo:
+
+ID    | Name                    | Description     |
+------|-------------------------|--------------|
+0     | Controle inicial        | Conferência, identificação e localização da aquisição para estabelecimento de controle patrimonial. |
+1     | Descrição Básica        | Registro de informações de procedência, proveniência e contextualização. |
+2     | Descrição Intermediária | Identificação de informações para produção do arranjo, a partir da função primária e tipologia documental. Registro de informações de série, autoria, data de produção e caracterização formal. |
+3     | Descrição Avançada      | Descrição individual dos documentos. Registro de informações primárias ou atribuídas, em cruzamento com fontes externas. Documentação retrospectiva, reconstituição de usos e referências ao documento em seu contexto de produção, apresentação e circulação. Conjuntos de documentos podem ser descritos em lote. |
+4     | Pesquisa especializada  | Elaboração de argumento interpretativo e construção de conhecimento novo a partir da seleção e co-relação de documentos. Apresentação, mediação e interpretação para fins de difusão de conhecimento. Redação de legendas expandidas e textos de inéditos. |
+
+
+### Tipo de Agregação (`AggregationType`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`id`       | **PK**, Sequential | id único do nível de descrição | 001
+`created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
+`title`      | CharField(128), NotNull, Blank, | Tipo de Agregação | Coleção
+`helptext`   | CharField(512)     | descrição do campo | Conjuntos de __documentos reunidos intencionalmente__ por uma pessoa ou instituição |
+
+Exemplos de instâncias que vão constar neste modelo:
+
+ID  | Title        | Description     |
+----|--------------|--------------|
+1   | Coleção      | Conjuntos de __documentos reunidos intencionalmente__ por uma pessoa ou instituição |
+2   | Arquivo      | Conjuntos de __documentos produzidos e acumulados__ por uma pessoa ou instituição __no desempenho de suas atividades__ |
+3   | Biblioteca   | Conjuntos de __livros e publicações reunidos__ por uma pessoa ou instituição |
+4   | Conjunto     | Agrupamento documentos |
+
+### Generos do(s) Conteúdo(s) (`GenreTags`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`id`       | **PK**, Sequential | id único do nível de descrição | 001
+`created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
+`title`      | CharField(128), NotNull, Blank, | Tipo de Agregação | Audiovisual
+`helptext`   | CharField(512)     | descrição do campo| Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais.|
+
+Exemplos de instâncias que vão constar neste modelo:
+
+ID  | Title          | Descriptio             |
+----|----------------|----------------------|
+1   | Audiovisual    | Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais. |
+2   | Bibliográfico  | Livros, jornais, revistas, catálogos e brochuras. |
+3   | Cartográfico   | Mapas e plantas arquitetônicas. |
+4   | Fotográfico    | Fotografias em papel, slides, negativos, cromos e demais suportes fotográficos. |
+5   | Iconográfico   | Desenhos, gravuras, caricaturas, charges, cartazes e peças gráficas. |
+6   | Nato-digital   | Documentos originalmente gerados em computadores. |
+7   | Sonoro         | Discos, fitas, cds e álbums. |
+8   | Textual        | Cadernos, manuscritos, impressos e folheteria. |
+9   | Tridimensional | Objetos tridimensionais. |
+
+### Galeria de apresentação (`thumbnail`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`uuid`     | UUIDField, **PK**, Unique, Sequential | Identificador único universal do objeto  | 123e4567-e89b-12d3-a456-426655440000
+`created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
+`title`    | CharField(128), NotNull, Blank, | título do registro | Foto Lígia Fagundes Teles
+`image`    | ImageField(upload_to='/model/date_now-namefile.extesion'), Null, Blank| campo de imagem | /collection/2018_01_30-ligia_fagundes_teles.jpg|
 
 
 ###  Conjunto (`set`)
@@ -87,49 +161,22 @@ Field Name | Django Type Field  | Field Description  | Example
 ###  Item (`item`)
 
 Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|------------
+-----------|--------------------|--------------------|----------
 `uuid`  | UUID | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
 `id`    | id ims
 `title` | CharField(200), Null, Blank | nome do item.     | Foto Ligia Fagundes Telles em visita ao IMS
 
 
-### Nível de Descrição (`DescriptionLevel`)
-
-ID    | Name                    | Helptext     |
-------|-------------------------|--------------|
-0     | Controle inicial        | Conferência, identificação e localização da aquisição para estabelecimento de controle patrimonial. |
-1     | Descrição Básica        | Registro de informações de procedência, proveniência e contextualização. |
-2     | Descrição Intermediária | Identificação de informações para produção do arranjo, a partir da função primária e tipologia documental. Registro de informações de série, autoria, data de produção e caracterização formal. |
-3     | Descrição Avançada      | Descrição individual dos documentos. Registro de informações primárias ou atribuídas, em cruzamento com fontes externas. Documentação retrospectiva, reconstituição de usos e referências ao documento em seu contexto de produção, apresentação e circulação. Conjuntos de documentos podem ser descritos em lote. |
-4     | Pesquisa especializada  | Elaboração de argumento interpretativo e construção de conhecimento novo a partir da seleção e co-relação de documentos. Apresentação, mediação e interpretação para fins de difusão de conhecimento. Redação de legendas expandidas e textos de inéditos. |
-
-
-### Tipo de Agregação (`AggregationType`)
-
-ID  | Name         | Helptext     |
-----|--------------|--------------|
-1   | Coleção      | Conjuntos de __documentos reunidos intencionalmente__ por uma pessoa ou instituição |
-2   | Arquivo      | Conjuntos de __documentos produzidos e acumulados__ por uma pessoa ou instituição __no desempenho de suas atividades__ |
-3   | Biblioteca   | Conjuntos de __livros e publicações reunidos__ por uma pessoa ou instituição |
-4   | Conjunto     | Agrupamento documentos |
-
-
-### Generos do(s) Conteúdo(s) (`GenreTags`)
-
-ID  | Name           | Helptext             |
-----|----------------|----------------------|
-1   | Audiovisual    | Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais. |
-2   | Bibliográfico  | Livros, jornais, revistas, catálogos e brochuras. |
-3   | Cartográfico   | Mapas e plantas arquitetônicas. |
-4   | Fotográfico    | Fotografias em papel, slides, negativos, cromos e demais suportes fotográficos. |
-5   | Iconográfico   | Desenhos, gravuras, caricaturas, charges, cartazes e peças gráficas. |
-6   | Nato-digital   | Documentos originalmente gerados em computadores. |
-7   | Sonoro         | Discos, fitas, cds e álbums. |
-8   | Textual        | Cadernos, manuscritos, impressos e folheteria. |
-9   | Tridimensional | Objetos tridimensionais. |
-
-
 ### Condições de Acesso (`AccessCondition`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|----------
+``|  |  |
+``|  |  |
+``|  |  |
+``|  |  |
+
+Exemplos de instâncias que vão constar neste modelo:
 
 ID      | Access    | title            | description            |
 --------|-----------|------------------|---------------------|
@@ -226,25 +273,36 @@ Field Name | Django Type Field  | Field Description  | Example
 
 --------
 
-## Evento (`events`)
+## Evento (`event`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
-`uuid`           | UUID    | Identificador único universal do Evento |  0326-02
-`id`             | Número  | Identificador único do Evento para controle interno da instituição |  0326-02
-`title`          | String  | Título do evento | Palestra do fulano de tal
-`slug`           | String  | Título intuitivo do evento | IMS Paulista
-`date_start`     | Data    | Data de início do Evento, quando conhecida | 02/05/2018
-`date_start`       | Data    | Data de fim do Evento, quando conhecida  | 02/08/2018
-`type`           | fk  | Tipo do Evento  | Palestra
-`location`          | fk  | Local de realização do Evento  | Museu de Arte
-`abstract`   | String  | Breve apresentação do Evento | IMS Paulista
-`full_text`  |
-`team`       | JSON    | Ficha técnica específica do Evento | {"Palestrante": "Equipe", "Filmagem": "Equipe"}
-`other_data` | json
---------
+`uuid`          | UUID    | Identificador único universal do Evento |  0326-02
+`id`            | Número  | Identificador único do Evento para controle interno da instituição |  0326-02
+`title`         | String  | Título do evento | Palestra do fulano de tal
+`slug`          | String  | Título intuitivo do evento | IMS Paulista
+`date_start`    | Data    | Data de início do Evento, quando conhecida | 02/05/2018
+`date_start`    | Data    | Data de fim do Evento, quando conhecida  | 02/08/2018
+`type`          | fk      | Tipo do Evento  | Palestra
+`location`      | fk      | Local de realização do Evento  | Museu de Arte
+`abstract`      | String  | Breve apresentação do Evento | IMS Paulista
+`full_text`     | String  | ... | ...
+`team`          | JSON    | Ficha técnica específica do Evento | {"Palestrante": "Equipe", "Filmagem": "Equipe"}
+`other_data`    | JSON    | Dados não estruturados      | ...
 
-### (`event_type`)
+
+## Tipo de Evento (`event_type`)
+
+ID   | Name          | Helptext     |
+-----|---------------|--------------|
+1    | Curso         | ... |
+2    | Palestra      | ... |
+3    | Show          | ... |
+4    | Lançamento    | ... |
+5    | Etc...        | ... |
+
+
+--------
 
 ## Pessoa (`person`)
 
@@ -295,6 +353,21 @@ ID   | Name           | Helptext     |
 4    | Transferência  | Mudança de unidade administrativa dentro da mesma instituição |
 
 --------
+
+## Procedimento (`procedure`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`uuid`       | UUID    | Identificador único universal do Procedimento | ...
+`id`         | Número  | Identificador único do Procedimento (human-readable) | ...
+`title`      | String  | Título do Procedimento | Aquisição de Coleção
+`slug`       | String  | Título intuitivo do evento | aquisicao-colecao
+`abstract`   | TextField  | Resumo do Procedimento      | ...
+`full text`  | TextField  | Descrição do Procedimento   | ...
+`other_data` | JSONField  | Dados não estruturados      | ...
+
+--------
+
 
 ## Adopted References
 * Django Default Fields https://docs.djangoproject.com/en/2.0/ref/models/fields/
