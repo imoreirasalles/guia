@@ -119,7 +119,7 @@ class Collection(models.Model):
     access_online_status = models.NullBooleanField(null=True, blank=True)
     access_link = models.URLField(null=True, blank=True)
     location_generic =
-    location_specific =
+    location_specific = models.CharField(max_length=256, null=False, blank=True)
     inventary_status =
     inventary_last_date =
     inventary_data =
