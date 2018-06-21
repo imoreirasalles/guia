@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib import admin
-from django.contrib.postgres.fields import HStoreField
 from django.contrib.postgres.fields import JSONField
 
 # Third part imports
@@ -8,6 +7,8 @@ import uuid
 
 # Project guia imports
 from person.models import *
+from management.models import *
+from location.models import *
 
 class DescriptionLevel(models.model):
     """Used to label collections according less or more description have an instance"""
@@ -106,17 +107,17 @@ class Collection(models.Model):
     date_start_caption = models.CharField(max_length=64, null=False, blank=True)
     date_end = models.DateTimeField(null=True, blank=True)
     date_end_caption = models.CharField(max_length=64, null=False, blank=True)
-    thumbnail = models.ForeignKey(Thumbnail, null=True, blank=True, on_delete=models.SET_NULL)
+    thumbnail = models.ManyToManyField(Thumbnail, null=True, blank=True, on_delete=models.SET_NULL)
     author = models.ManyToManyField(Person, null=True, blank=True, on_delete=models.SET_NULL)
     sets = models.ManyToManyField(Sets, null=True, blank=True, on_delete=models.SET_NULL)
     items = models.ManyToManyField(Item, null=True, blank=True, on_delete=models.SET_NULL)
-    items_total =
-    items_processed =
-    items_online =
-    access_condition =
-    access_local_status =
-    access_online_status =
-    access_link =
+    items_total = models.PositiveIntegerField(null=True, blank=True)
+    items_processed = models.PositiveIntegerField(null=True, blank=True)
+    items_online = models.PositiveIntegerField(null=True, blank=True)
+    access_condition = models.ForeignKey(AccessCondition, null=True, blank=True, on_delete=models.SET_NULL)
+    access_local_status = models.NullBooleanField(null=True, blank=True)
+    access_online_status = models.NullBooleanField(null=True, blank=True)
+    access_link = models.URLField(null=True, blank=True)
     location_generic =
     location_specific =
     inventary_status =
