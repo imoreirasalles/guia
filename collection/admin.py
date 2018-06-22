@@ -8,6 +8,13 @@ from froala_editor.widgets import FroalaEditor
 
 
 admin.site.register(Thumbnail)
+admin.site.register(DescriptionLevel)
+admin.site.register(AggregationType)
+admin.site.register(GenreTag)
+admin.site.register(Item)
+admin.site.register(Sets)
+admin.site.register(AccessCondition)
+
 
 class CollectionAdminForm(forms.ModelForm):
     abstract = forms.CharField(widget=FroalaEditor)
