@@ -32,11 +32,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Database postgres apps
     'django.contrib.postgres',
+    'django.contrib.gis',
+    # 3rd part apps
     'django_json_widget',
     'django_admin_json_editor',
-    'django_admin_hstore_widget',
-    'jsonsuit.apps.JSONSuitConfig',
-    # 3rd part apps
     'froala_editor',
     'django_extensions',
     'raven.contrib.django.raven_compat',
@@ -94,7 +93,7 @@ WSGI_APPLICATION = 'guia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': env.str('DB_NAME'),
         'USER': env.str('DB_USER'),
         'PASSWORD': env.str('DB_PASSWORD'),
