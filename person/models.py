@@ -1,8 +1,9 @@
 # Django core imports
 from django.db import models
-
 # Third part imports
 import uuid
+# Imports from guia project
+from collection.models import *
 
 
 class Person(models.Model):
