@@ -50,14 +50,16 @@ Field Name  | Django Type Field | Field Description  | Example
 `genre_tags`                    | Genre, **FK** [0..\*], Null, Blank            | Vocabulário controlado | Cartográfico, Iconográfico, Literário
 `dimension`                     | JSONField, Null, Blank                       | Quantificação preliminar da dimensão | {"Metros lineares": "200", "Envólucros": "500"}
 `date_start`                    | DateField, Null, Blank                       | Data inicial do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date) | 02/08/2018
+`date_start_caption`            | CharField(128), Null, Blank                  | Data inicial descrita em linguagem natural que aparecerá na ficha da coleção.  | 02/08/2018
 `date_end`                      | DateField, Null, Blank                       | Data final do conteúdo da Coleção. Esse campo não tem a pretensão de ser preciso, ele atuará na busca de informações (search by date)  | 02/08/2018
+`date_end_caption`              | CharField(128), Null, Blank                   | Data final descrita em linguagem natural que aparecerá na ficha da coleção. | 02/08/2018
 `thumbnail`                     | thumbnail **FK**[0..\*], Null, Blank          | imagens de demonstração associadas ao registro | / collection / 2018_01_30_ligia_fagundes_teles.jpg
 `author`                        | Person **FK**[0..\*], Null, Blank       | autoridades sobre a coleção.  | Ligia Fagundes Teles
-`set`                           | Set **FK**[0..\*], Null, Blank               | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
+`sets`                          | Set **FK**[0..\*], Null, Blank               | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
 `items`                         | Item, **FK** [0..\*], Null, Blank            | Lista de itens que integram a coleção | Item 1, Item 2
-`itens_total`                   | PositiveIntegerField, Null, Blank            | Número total de itens na Coleção | 15000
-`itens_processed`               | PositiveIntegerField, Null, Blank            | Número total de itens processados | 5000
-`itens_online`                  |  PositiveIntegerField, Null, Blank            | Número total de itens disponíveis online | 500
+`items_total`                   | PositiveIntegerField, Null, Blank            | Número total de itens na Coleção | 15000
+`items_processed`               | PositiveIntegerField, Null, Blank            | Número total de itens processados | 5000
+`items_online`                  |  PositiveIntegerField, Null, Blank            | Número total de itens disponíveis online | 500
 `access_condition`              | AccessCondition, **FK** [0..1], Null, Blank   | Vocabulário controlado | Total, Parcial, Restrito
 `access_local_status`           | NullBooleanField, Null, Blank                | Verdadeiro ou falso | Sim
 `access_online_status`          | NullBooleanField, Null, Blank                 | Verdadeiro ou falso (sim ou não)  | Sim
@@ -68,17 +70,16 @@ Field Name  | Django Type Field | Field Description  | Example
 `inventary_last_date`           | DateField, Null, Blank                       | Data do último inventário realizado | URL
 `inventary_data`                | JSONField                                    | Quantificação preliminar do inventário | {"Fotografias": "1439", "Cadernos": "12"}
 `management_unit`               | ManagementUnit **FK**[0..1], Null, Blank     | Qual coordenação é responsável pela Coleção | Coord. de Fotografia
-`sets`                          | Set, **FK** [0..\*], Null, Blank            | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
 `other_data`                    | JSONField                                    | Informação sem estrutura definida pelo modelo | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
 
 ### Nível de Descrição (`DescriptionLevel`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
-`id`       | **PK**, Sequential | id único do nível de descrição | 001
-`created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
-`title`    | CharField(128), NotNull, Blank, título do nível de descrição | Controle inicial
-`helptext` | CharField(512)     | descrição do campo
+`id`          | **PK**, Sequential | id único do nível de descrição | 001
+`created`     | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
+`title`       | CharField(128), Null, Blank | título do nível de descrição    | 0. Controle Inicial
+`description` | CharField(512),Null, Blank, | descrição do campo | Conferência, identificação e localização da aquisição para estabelecimento de controle patrimonial.
 
 
 Exemplos de instâncias que vão constar neste modelo:
@@ -99,7 +100,7 @@ Field Name | Django Type Field  | Field Description  | Example
 `id`       | **PK**, Sequential | id único do nível de descrição | 001
 `created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
 `title`      | CharField(128), NotNull, Blank, | Tipo de Agregação | Coleção
-`helptext`   | CharField(512)     | descrição do campo | Conjuntos de __documentos reunidos intencionalmente__ por uma pessoa ou instituição |
+`description`   | CharField(512)     | descrição do campo | Conjuntos de __documentos reunidos intencionalmente__ por uma pessoa ou instituição |
 
 Exemplos de instâncias que vão constar neste modelo:
 
@@ -117,7 +118,7 @@ Field Name | Django Type Field  | Field Description  | Example
 `id`       | **PK**, Sequential | id único do nível de descrição | 001
 `created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
 `title`      | CharField(128), NotNull, Blank, | Tipo de Agregação | Audiovisual
-`helptext`   | CharField(512)     | descrição do campo| Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais.|
+`description`   | CharField(512)     | descrição do campo| Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais.|
 
 Exemplos de instâncias que vão constar neste modelo:
 
@@ -143,42 +144,43 @@ Field Name | Django Type Field  | Field Description  | Example
 `image`    | ImageField(upload_to='/model/date_now-namefile.extesion'), Null, Blank| campo de imagem | /collection/2018_01_30-ligia_fagundes_teles.jpg|
 
 
-###  Conjunto (`set`)
+###  Conjunto (`sets`)*
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
-`id`       | Número  | Identificador único numérico atribuído a cada Conjunto para controle interno da instituição |  001002
-`uuid`     | UUID    | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
-`type`     | String  | Tipologia do conjunto |  Arquivo
-`title`    | String  | Título do conjunto |  Arquivo pessoal de Marcel Gautherot
-`abstract` | String  | Breve apresentação do conjunto |  Formado a partir da produção autoral do fotógrafo...
+`uuid`     | UUIDField, **PK**, Unique, Sequential                             | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
+`id`       | CharField(64), Unique, Null, Blank | Identificador único  atribuído a cada Conjunto para controle interno da instituição. Esse valor tem de ser editável |  001002
+`aggregation_type` | AggregationType **FK**[0..1], Null, Blank                  | Tipologia do conjunto |  Arquivo
+`title`    | CharField(128), Null, Blank                                       | Título do conjunto |  Arquivo pessoal de Marcel Gautherot
+`abstract` | TextField, Null, Blank | Breve apresentação do conjunto           |  Formado a partir da produção autoral do fotógrafo...
 `items`    | Item, **FK** [0..\*] | Lista de itens que integram a coleção | Item 1, Item 2
-`description_level`       | DescriptionLevel, **FK** [0..1] | Nível de descrição da Coleção | 1 - Descrição Básica
-`set_child`| [0..\n]
-`aggregation_type`| [0..1]
+`description_level` | DescriptionLevel, **FK** [0..1]                          | Nível de descrição da Coleção | 1 - Descrição Básica
+`sets_child`| Sets **FK**[0..\n], Null, Blank | conjuntos filhos deste conjunto | conjunto 1, conjunto 2
 
+
+* O nome `sets` deve ser utilizado para no plural para não conflitar com a palavra reservada `set`.
 
 ###  Item (`item`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|----------
-`uuid`  | UUID | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
-`id`    | id ims
-`title` | CharField(200), Null, Blank | nome do item.     | Foto Ligia Fagundes Telles em visita ao IMS
+`uuid`  | UUIDField, **PK**, Unique, Sequential  | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
+`id`    | CharField(64), Unique, Null, Blank | Identificador único  atribuído a cada Conjunto para controle interno da instituição. Esse valor tem de ser editável |  001002
+`title` | CharField(128), Null, Blank | nome do item. | Foto Ligia Fagundes Telles em visita ao IMS
 
 
 ### Condições de Acesso (`AccessCondition`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|----------
-``|  |  |
-``|  |  |
-``|  |  |
-``|  |  |
+`id`          | **PK**, Unique, Sequential  | Identificador de cada registro |
+`title_short` | CharField(64), Unique, Null, Blank | Identificador textual único da condição de acesso |  Livre
+`title_long`  | CharField(128), Null, Blank | Título longo da condição de acesso |  Acesso pleno
+`description`| TextField, Null, Blank | Descrição completa da condição de acesso | Todos os documentos originais ou seus representantes digitais estão disponíveis para consulta.
 
 Exemplos de instâncias que vão constar neste modelo:
 
-ID      | Access    | title            | description            |
+ID      | Access    | title            | description         |
 --------|-----------|------------------|---------------------|
 0       | Livre     | Acesso pleno     | Todos os documentos originais ou seus representantes digitais estão disponíveis para consulta.
 1       | Parcial   | Em processamento | Existem documentos em processamento técnico (inventário, identificação, ordenação, higienização, acondicionamento, digitalização ou restauro) ou em uso (empréstimo para exposições ou em consulta por outros pesquisadores).
@@ -191,13 +193,23 @@ ID      | Access    | title            | description            |
 
 ### Áreas de Gestão (`ManagementUnit`)
 
-- Coordenação de Acervo
-- Coordenação de Bibliotecas
-- Coordenação de Cinema
-- Coordenação de Fotografia
-- Coordenação de Iconografia
-- Coordenação de Literatura
-- Coordenação de Música
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|----------
+`id`       | **PK**, Unique, Sequential  | Identificador de cada registro | 001
+`title` | CharField(128), Null, Blank | Título da unidade de gerenciamento |  Coordenação de Acervos
+`description`| TextField, Null, Blank | Descrição completa da unidade de gerenciamento | A coordenação de Acervos tem o papel de...
+
+Exemplos de instâncias que vão constar neste modelo:
+
+ID | Title     | description    |
+---|-----------|----------------|
+01 | Coordenação de Acervo      | A coordenação de Acervos tem o papel de...
+02 | Coordenação de Bibliotecas |
+03 | Coordenação de Cinema      |
+04 | Coordenação de Fotografia  |
+05 | Coordenação de Iconografia |
+06 | Coordenação de Literatura  |
+07 | Coordenação de Música      |
 
 --------
 
@@ -244,8 +256,25 @@ Field Name | Django Type Field  | Field Description  | Example
 `date_end`     | Data    | Data de encerramento da Edição, quando conhecida  | 02/08/2018
 `team`         | JSON    | Ficha técnica específica da Edição, com a atribuição de toda equipe envolvida | {"Produção": "Equipe"; "Montagem": "Equipe"}
 
---------
+## Localização (`location`)
 
+Armazena informações sobre sedes e/ou locais onde ocorre armazenamento, exposição, exibição ou evento de qualquer outra atividade de natureza diversa vinculada a instituição.
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|---------
+`id`         | **PK**, Unique, Sequential  | Identificador de cada espaço | 001
+`title`      | CharField(128), Null, Blank | Nome do Espaço | IMS Paulista
+`street`     | CharField(128), Null, Blank | Logradouro do Espaço | Rua ...
+`number`     | CharField(32), Null, Blank | Número do Logradouro do Espaço | 32
+`complement` | CharField(128), Null, Blank | Complemento do endereço | Rua ...
+`neighborhood`| CharField(64), Null, Blank | Bairro | Consolação
+`state`      | CharField(64), Null, Blank | Estado | São Paulo
+`city`       | CharField(64), Null, Blank | Cidade | São Paulo
+`country`    | CharField(64), Null, Blank | País   | Brasil
+`postal_code`| CharField(32), Null, Blank | CEP    | 01200-000
+`lat_and_long`| PointField, Null, Blank   | Ponto geográfico de latitude e longitude | 85.3240, 27.7172,srid=4326
+
+--------
 ## Publicação (`publication`)
 
 - Diferença entre `Publicação` e folheteria:
@@ -371,12 +400,22 @@ Field Name | Django Type Field  | Field Description  | Example
 
 ## Adopted References
 * Django Default Fields https://docs.djangoproject.com/en/2.0/ref/models/fields/
-  * Hstore Field
-  * Hstore Widget - https://github.com/PokaInc/django-admin-hstore-widget
+* Django Geo Field https://docs.djangoproject.com/en/2.0/ref/contrib/gis/model-api/
+
 
 ## Declined References
-* Django Hash Field https://github.com/amcat/django-hash-field (It is not necessary, there is a native hash uuid field on django)
-* Django Hstore http://django-hstore.readthedocs.io/en/latest/ (Project with no suport any more. Take a look on issue 161. It was solved with native hstore django field and hstore widget)
+* Django Hash Field
+https://github.com/amcat/django-hash-field (It is not necessary, there is a native hash uuid field on django)
+
+* Django Hstore Third part
+http://django-hstore.readthedocs.io/en/latest/ (Project with no suport any more. Take a look on issue 161. It was solved with native hstore django field and hstore widget)
+
+* Django Hstore Native
+https://docs.djangoproject.com/en/2.0/ref/contrib/postgres/fields/#django.contrib.postgres.fields.HStoreField
+
+* Hstore Widget
+https://github.com/PokaInc/django-admin-hstore-widget
+
 * Django Json Field
 * Django Json Widget - https://github.com/jmrivas86/django-json-widget, https://pypi.org/project/django-json-widget (It could be useful on future, but at moment we are using hstore)
 * Django Pretty Json http://kevinmickey.github.io/django-prettyjson (Good for programmers and geeks, bad to all others)

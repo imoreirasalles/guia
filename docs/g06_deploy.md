@@ -31,13 +31,19 @@ Um exemplo funcional das variáveis de ambiente necessárias para rodar a aplica
 ```
 # apt-get install git
 ```
-##### 1.2. PostgreSQL
+##### 1.2. PostgreSQL e Postgis
 Recomendamos o postgreSQL, mas o django suporta outros bancos de dados relacionais.
 ```
-# apt install postgresql
+# apt install postgresql postgresql-contrib postgis postgresql-9.6-postgis-2.3 postgresql-9.6-postgis-2.3-scripts
 ```
 
-##### 1.3. Python3, PIP & virtualenv
+##### 1.3. GDAL
+
+```
+apt-get install python3-gdal
+```
+
+##### 1.4. Python3, PIP & virtualenv
 ```
 # apt update
 # apt install python3 build-essential python-dev gettext python-virtualenv
@@ -129,15 +135,16 @@ postgres# psql guia -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to guia;"
 postgres# psql guia -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to guia;"
 ```
 
-Para usar campos hstore, como super user você deve aplicar:
+Para usar campos postgis, como super user você deve aplicar:
 ```
 postgres@server$ psql
 postgres=# \c guia
-guia=# CREATE EXTENSION IF NOT EXISTS hstore;
+guia=# CREATE EXTENSION IF NOT EXISTS postgis;
 ```
 
 ##### 3.2. Django Database
 ```
+python3.5 manage.py makemigrations
 $ python3.5 manage.py migrate
 ```
 

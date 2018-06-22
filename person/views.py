@@ -1,3 +1,7 @@
+# core django imports
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+
+def person(request):
+    return render(request, 'person.html')
