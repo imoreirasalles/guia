@@ -40,13 +40,13 @@ Recomendamos o postgreSQL, mas o django suporta outros bancos de dados relaciona
 ##### 1.3. GDAL
 
 ```
-apt-get install python3-gdal
+apt-get install gdal-bin libgdal-dev libgdal-doc libgdal-grass python3-gdal
 ```
 
 ##### 1.4. Python3, PIP & virtualenv
 ```
 # apt update
-# apt install python3 build-essential python-dev gettext python-virtualenv
+# apt install python3 build-essential python3-dev gettext python-virtualenv gcc
 # echo "alias python=python3" >> ~/.bashrc
 ```
 verifique se possui o pip instalado:
