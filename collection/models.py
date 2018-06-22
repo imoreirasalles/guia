@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
+from django.contrib.gis.db import models
 
 # Third part imports
 import uuid
@@ -10,7 +11,8 @@ from person.models import *
 from management.models import *
 from location.models import *
 
-class DescriptionLevel(models.model):
+
+class DescriptionLevel(models.Model):
     """Used to label collections according less or more description have an instance"""
     created = models.DateTimeField(editable=False, auto_now_add=True)
     title = models.CharField(max_length=256, null=True, blank=True)
@@ -20,7 +22,7 @@ class DescriptionLevel(models.model):
         return self.title
 
 
-class AggregationType(models.model):
+class AggregationType(models.Model):
     """Used to label collections or Sets according type of Aggregation"""
     created = models.DateTimeField(editable=False, auto_now_add=True)
     title = models.CharField(max_length=256, null=True, blank=True)
@@ -30,7 +32,7 @@ class AggregationType(models.model):
         return self.title
 
 
-class GenreTags(models.model):
+class GenreTag(models.Model):
     """Used to label collections, Sets or Items according content genre type"""
     created = models.DateTimeField(editable=False, auto_now_add=True)
     title = models.CharField(max_length=256, null=True, blank=True)
@@ -51,6 +53,17 @@ class Thumbnail(models.Model):
         return self.title
 
 
+class Item(models.Model):
+    """Used to store archive items like photos, pictures, etc"""
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
+    id = models.CharField(max_length=64, null=True, blank=True, unique=True)
+    title = models.CharField(max_length=256, null=False, blank=True)
+    abstract = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Sets(models.Model):
     """Used to store an aggroupment of items"""
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
@@ -58,20 +71,9 @@ class Sets(models.Model):
     aggregation_type = models.ForeignKey(AggregationType, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=256, null=False, blank=True)
     abstract = models.TextField(null=True, blank=True)
-    items = models.ManyToManyField(Item, null=True, blank=True, on_delete=models.SET_NULL)
+    items = models.ManyToManyField(Item, blank=True)
     description_level = models.ForeignKey(DescriptionLevel, null=True, blank=True, on_delete=models.SET_NULL)
-    sets_child = models.ForeignKey(Sets, null=True, blank=True, on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return self.title
-
-
-class Item(models.Model):
-    """Used to store archive items like photos, pictures, etc"""
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
-    id = models.CharField(max_length=64, null=True, blank=True, unique=True)
-    title = models.CharField(max_length=256, null=False, blank=True)
-    abstract = models.TextField(null=True, blank=True)
+    sets_child = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.title
@@ -94,23 +96,23 @@ class Collection(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
     created = models.DateTimeField(editable=False, auto_now_add=True)
     id = models.CharField(max_length=64, null=True, blank=True, unique=True)
-    id_old = HStoreField(null=True, blank=True)
+    id_old = JSONField(null=True, blank=True)
     title = models.CharField(max_length=256, null=False, blank=True)
     slug = models.SlugField(max_length=256, unique=True, null=True, blank=True)
     abstract = models.TextField(null=True, blank=True)
     fulltext = models.TextField(null=True, blank=True)
     description_level = models.ForeignKey(DescriptionLevel, null=True, blank=True, on_delete=models.SET_NULL)
     aggregation_type = models.ForeignKey(AggregationType, null=True, blank=True, on_delete=models.SET_NULL)
-    genre_tags = models.ForeignKey(GenreTags, null=True, blank=True, on_delete=models.SET_NULL)
+    genre_tags = models.ForeignKey(GenreTag, null=True, blank=True, on_delete=models.SET_NULL)
     dimension = JSONField(null=True, blank=True)
     date_start = models.DateTimeField(null=True, blank=True)
     date_start_caption = models.CharField(max_length=64, null=False, blank=True)
     date_end = models.DateTimeField(null=True, blank=True)
     date_end_caption = models.CharField(max_length=64, null=False, blank=True)
-    thumbnail = models.ManyToManyField(Thumbnail, null=True, blank=True, on_delete=models.SET_NULL)
-    author = models.ManyToManyField(Person, null=True, blank=True, on_delete=models.SET_NULL)
-    sets = models.ManyToManyField(Sets, null=True, blank=True, on_delete=models.SET_NULL)
-    items = models.ManyToManyField(Item, null=True, blank=True, on_delete=models.SET_NULL)
+    thumbnail = models.ManyToManyField(Thumbnail, blank=True)
+    author = models.ManyToManyField(Person, blank=True)
+    sets = models.ManyToManyField(Sets, blank=True)
+    items = models.ManyToManyField(Item, blank=True)
     items_total = models.PositiveIntegerField(null=True, blank=True)
     items_processed = models.PositiveIntegerField(null=True, blank=True)
     items_online = models.PositiveIntegerField(null=True, blank=True)
@@ -118,12 +120,12 @@ class Collection(models.Model):
     access_local_status = models.NullBooleanField(null=True, blank=True)
     access_online_status = models.NullBooleanField(null=True, blank=True)
     access_link = models.URLField(null=True, blank=True)
-    location_generic =
+    location_generic = models.ManyToManyField(Location, blank=True)
     location_specific = models.CharField(max_length=256, null=False, blank=True)
-    inventary_status =
-    inventary_last_date =
-    inventary_data =
-    management_unit =
+    inventary_status = models.NullBooleanField(null=True, blank=True)
+    inventary_last_date = models.DateField(null=True, blank=True)
+    inventary_data = JSONField(null=True, blank=True)
+    management_unit = models.ManyToManyField(ManagementUnit, blank=True)
     other_data = JSONField(null=True, blank=True)
 
     def __str__(self):
