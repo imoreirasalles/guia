@@ -23,7 +23,7 @@
 
 ##### 1.3. GDAL
 
-    apt-get install -y gdal-bin libgdal-dev libgdal-doc libgdal-grass python3-gdal
+    apt install -y gdal-bin libgdal-dev libgdal-doc libgdal-grass python3-gdal
 
 ##### 1.4. Python3, PIP
 
@@ -52,7 +52,7 @@
 
 ##### 2.1.1. Requirements.txt
 
-    pip install -r requirements.txt -v
+    pip3 install -r requirements.txt -v
 
 ##### 2.2. Python-Decouple to set some settings for the project
 
