@@ -46,6 +46,7 @@
 
         <!-- block sidebar_user START -->
         {% block sidebar_user %}
+        {% if user.is_authenticated %}
         <div class="user">
           <div class="photo">
             <img src="{% static 'img/user_default.png' %}" />
@@ -53,36 +54,42 @@
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
               <span>
+                  {{ request.user.first_name }} {{ request.user.last_name }}
                 <b class="caret"></b>
-                User Name
               </span>
             </a>
-
             <div class="clearfix"></div>
             <div class="collapse" id="collapseExample">
               <ul class="nav">
                 <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">MP</span>
-                    <span class="sidebar-normal">My Profile</span>
+                  <a href="http://localhost:8000/admin/">
+                    <span class="sidebar-mini-icon">
+                      <i class="fas fa-columns"></i>
+                    </span>
+                    <span class="sidebar-normal">Painel</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">EP</span>
-                    <span class="sidebar-normal">Edit Profile</span>
+                  <a href="http://localhost:8000/admin/auth/user/">
+                    <span class="sidebar-mini-icon">
+                      <i class="far fa-user"></i>
+                    </span>
+                    <span class="sidebar-normal">Perfil</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">S</span>
-                    <span class="sidebar-normal">Settings</span>
+                  <a href="http://localhost:8000/admin/logout/">
+                    <span class="sidebar-mini-icon">
+                      <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    <span class="sidebar-normal">Logout</span>
                   </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+        {% endif %}
         {% endblock %}
         <!-- block sidebar_user END -->
 
