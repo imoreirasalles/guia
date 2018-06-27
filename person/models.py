@@ -22,3 +22,6 @@ class Person(models.Model):
 
     def __str__(self):
         return self.slug
+
+    class Meta:
+        verbose_name_plural = "Pessoas"
