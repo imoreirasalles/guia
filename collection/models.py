@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
-
+from django.urls import reverse
 # Third part imports
 import uuid
 
@@ -451,6 +451,9 @@ class Collection(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('collection_detail', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Coleção'
