@@ -21,6 +21,9 @@ class DescriptionLevel(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = "Niveis de Descrição"
+
 
 class AggregationType(models.Model):
     """Used to label collections or Sets according type of Aggregation"""
@@ -31,6 +34,9 @@ class AggregationType(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = "Tipos de Agregação"
+
 
 class GenreTag(models.Model):
     """Used to label collections, Sets or Items according content genre type"""
@@ -40,6 +46,9 @@ class GenreTag(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = "Tipologias de Gênero"
 
 
 class Thumbnail(models.Model):
@@ -52,6 +61,9 @@ class Thumbnail(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = "Imagens de apresentação"
+
 
 class Item(models.Model):
     """Used to store archive items like photos, pictures, etc"""
@@ -62,6 +74,9 @@ class Item(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = "Itens"
 
 
 class Sets(models.Model):
@@ -78,6 +93,9 @@ class Sets(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = "Conjuntos"
+
 
 class AccessCondition(models.Model):
     """Used to store access condition concerned of items, sets os collections"""
@@ -87,6 +105,9 @@ class AccessCondition(models.Model):
 
     def __str__(self):
         return self.title_short
+
+    class Meta:
+        verbose_name_plural = "Condições de Acesso"
 
 
 class Collection(models.Model):
@@ -130,3 +151,6 @@ class Collection(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = "Coleções"
