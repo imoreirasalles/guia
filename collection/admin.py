@@ -22,6 +22,15 @@ class CollectionAdminForm(forms.ModelForm):
     class Meta:
        model = Collection
        fields = '__all__'
+       labels = {
+        'abstract': ('Resumo')
+       }
+       help_texts = {
+        'abstract': ('Resumo')
+       }
+       verbose_name = {
+        'abstract': ('Resumo')
+       }
 
 
 @admin.register(Collection)
