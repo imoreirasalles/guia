@@ -26,4 +26,5 @@ class CollectionAdminForm(forms.ModelForm):
 
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
+    readonly_fields = ['created']
     form = CollectionAdminForm

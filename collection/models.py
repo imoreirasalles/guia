@@ -14,7 +14,7 @@ from location.models import *
 
 class DescriptionLevel(models.Model):
     """Used to label collections according less or more description have an instance"""
-    created = models.DateTimeField(editable=False, auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=256, null=True, blank=True)
     description = models.CharField(max_length=512, null=True, blank=True)
 
@@ -27,7 +27,7 @@ class DescriptionLevel(models.Model):
 
 class AggregationType(models.Model):
     """Used to label collections or Sets according type of Aggregation"""
-    created = models.DateTimeField(editable=False, auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=256, null=True, blank=True)
     description = models.CharField(max_length=512, null=True, blank=True)
 
@@ -40,7 +40,7 @@ class AggregationType(models.Model):
 
 class GenreTag(models.Model):
     """Used to label collections, Sets or Items according content genre type"""
-    created = models.DateTimeField(editable=False, auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=256, null=True, blank=True)
     description = models.CharField(max_length=512, null=True, blank=True)
 
@@ -54,7 +54,7 @@ class GenreTag(models.Model):
 class Thumbnail(models.Model):
     """Used to record thumbnail images of representative classes like collections, sets, items, Persons, Exhibitions, etc"""
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
-    created = models.DateTimeField(editable=False, auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=256, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
@@ -68,6 +68,7 @@ class Thumbnail(models.Model):
 class Item(models.Model):
     """Used to store archive items like photos, pictures, etc"""
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
     id = models.CharField(max_length=64, null=True, blank=True, unique=True)
     title = models.CharField(max_length=256, null=False, blank=True)
     abstract = models.TextField(null=True, blank=True)
@@ -82,6 +83,7 @@ class Item(models.Model):
 class Sets(models.Model):
     """Used to store an aggroupment of items"""
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
     id = models.CharField(max_length=64, null=True, blank=True, unique=True)
     aggregation_type = models.ForeignKey(AggregationType, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=256, null=False, blank=True)
@@ -99,6 +101,7 @@ class Sets(models.Model):
 
 class AccessCondition(models.Model):
     """Used to store access condition concerned of items, sets os collections"""
+    created = models.DateTimeField(auto_now_add=True)
     title_short = models.CharField(max_length=64, null=False, blank=True)
     title_long = models.CharField(max_length=128, null=False, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -115,7 +118,7 @@ class Collection(models.Model):
     Main class of collection
     """
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=32, editable=False, unique=True)
-    created = models.DateTimeField(editable=False, auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     id = models.CharField(max_length=64, null=True, blank=True, unique=True)
     id_old = JSONField(null=True, blank=True)
     title = models.CharField(max_length=256, null=False, blank=True)

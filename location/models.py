@@ -3,6 +3,7 @@ from django.contrib.gis.db import models
 
 class Location(models.Model):
     """store places addresses, and link places with art works, sets, collection, persons, etc"""
+    created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=128, null=False, blank=True)
     street = models.CharField(max_length=128, null=False, blank=True)
     number = models.CharField(max_length=32, null=False, blank=True)

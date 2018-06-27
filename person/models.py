@@ -11,7 +11,7 @@ class Person(models.Model):
     Person Class used to record info about partners, authors, organizations, etc
     """
     uuid = models.UUIDField(default=uuid.uuid4, max_length=32, editable=False, unique=True)
-    created = models.DateTimeField(editable=False, auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     nickname = models.CharField(max_length=128, null=True, blank=True)
     slug = models.SlugField(max_length=256, unique=True, null=True, blank=True)
     # thumbnail = models.ForeignKey(Thumbnail, null=True, blank=True,  on_delete=models.SET_NULL)
