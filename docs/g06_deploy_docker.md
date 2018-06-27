@@ -19,25 +19,26 @@ For Linux, you can use the convenience-script which can detect most Linux Distro
 
 This is the step-by-step from Docker:
 
-    $ curl -fsSL get.docker.com -o get-docker.sh
-    $ sudo sh get-docker.sh
+```
+$ curl -fsSL get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
 
-    <output truncated>
+<output truncated>
 
-    If you would like to use Docker as a non-root user, you should now consider
-    adding your user to the "docker" group with something like:
+If you would like to use Docker as a non-root user, you should now consider
+adding your user to the "docker" group with something like:
 
-      sudo usermod -aG docker your-user
+  sudo usermod -aG docker your-user
 
-    Remember to log out and back in for this to take effect!
+Remember to log out and back in for this to take effect!
 
-    WARNING: Adding a user to the "docker" group grants the ability to run
-             containers which can be used to obtain root privileges on the
-             docker host.
-             Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
-             for more information.
+WARNING: Adding a user to the "docker" group grants the ability to run containers which can be used to obtain root privileges on the docker host.
 
-#### Docker Compose
+Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
+for more information.
+```
+
+#### docker-compose
 You may also need to install to docker-compose which is used to run all the services and run the Django development server. To install go to their [Github repository](https://github.com/docker/compose/releases) and follow the documentation.
 
 After you have all set up run the following command on the project root:
@@ -54,6 +55,14 @@ If necessary, use the `build` option to remake a docker machine from scratch.
 
 ```
 docker-compose up --build
+```
+
+#### Docker inside
+
+If you need inside Access
+
+```
+docker-compose exec django bash
 ```
 
 ### Conclusion
