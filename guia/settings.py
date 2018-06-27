@@ -18,7 +18,7 @@ SECRET_KEY = env.str('SECRET_KEY', default="MySecret")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['0.0.0.0', 'localhost', '127.0.0.0'])
 
 
 # Application definition

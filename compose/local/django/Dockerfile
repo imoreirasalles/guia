@@ -2,6 +2,16 @@ FROM python:3.6
 LABEL mantainer "hacklab/ <contato@hacklab.com.br>"
 ENV PYTHONUNBUFFERED 1
 
+
+RUN apt-get update -y && apt-get install -y \
+    binutils \
+    libproj-dev \
+    gdal-bin \
+    libgdal-dev
+
+ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+ENV C_INCLUDE_PATH=/usr/include/gdal
+
 WORKDIR /app
 
 # Requirements have to be pulled and installed here, otherwise caching won't work

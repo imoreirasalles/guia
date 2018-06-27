@@ -7,6 +7,6 @@ from . import views
 
 
 urlpatterns = [
-    path('collection/', views.CollectionList.as_view(), name='collection'),
+    path('', views.CollectionList.as_view(), name='collection'),
     path('collection/<slug:slug>/', views.CollectionDetail.as_view(), name='collection_detail'),
 ]
