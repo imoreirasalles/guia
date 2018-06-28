@@ -7,13 +7,43 @@ from .models import *
 from froala_editor.widgets import FroalaEditor
 
 
-admin.site.register(Thumbnail)
-admin.site.register(DescriptionLevel)
-admin.site.register(AggregationType)
-admin.site.register(GenreTag)
-admin.site.register(Item)
-admin.site.register(Sets)
 admin.site.register(AccessCondition)
+
+
+@admin.register(DescriptionLevel)
+class DescriptionLevelAdmin(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('title', 'description')
+
+
+@admin.register(AggregationType)
+class AggregationTypeAdmin(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('title', 'description')
+
+
+@admin.register(GenreTag)
+class GenreTag(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('title', 'description')
+
+
+@admin.register(Thumbnail)
+class Thumbnail(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('title', 'image', 'uuid')
+
+
+@admin.register(Item)
+class Item(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('id', 'title', 'description', 'uuid')
+
+
+@admin.register(Sets)
+class Sets(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('id', 'title', 'abstract', 'description_level', 'uuid', 'sets_child')
 
 
 class CollectionAdminForm(forms.ModelForm):

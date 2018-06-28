@@ -15,6 +15,5 @@ class PersonAdminForm(forms.ModelForm):
 
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
-    # fields = ('name', 'title', 'view_birth_date')
     readonly_fields = ['created']
     form = PersonAdminForm
