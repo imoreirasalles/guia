@@ -8,7 +8,7 @@ Este modelo de dados está em construção, tendo como referência projetos como
 
 ```
 Coleção     (Collection)
-Conjunto    (Set)
+Conjunto    (Container)
 Item        (Item)
 Captura     (Capture)
 ```
@@ -55,7 +55,7 @@ Field Name  | Django Type Field | Field Description  | Example
 `date_end_caption`              | CharField(128), Null, Blank                   | Data final descrita em linguagem natural que aparecerá na ficha da coleção. | 02/08/2018
 `thumbnail`                     | thumbnail **FK**[0..\*], Null, Blank          | imagens de demonstração associadas ao registro | / collection / 2018_01_30_ligia_fagundes_teles.jpg
 `author`                        | Person **FK**[0..\*], Null, Blank       | autoridades sobre a coleção.  | Ligia Fagundes Teles
-`sets`                          | Set **FK**[0..\*], Null, Blank               | Lista de conjuntos que integram a coleção | Conjunto 1, Conjunto 2
+`containers`| Container **FK**[0..\n], Null, Blank | conjuntos | conjunto 1, conjunto 2
 `items`                         | Item, **FK** [0..\*], Null, Blank            | Lista de itens que integram a coleção | Item 1, Item 2
 `items_total`                   | PositiveIntegerField, Null, Blank            | Número total de itens na Coleção | 15000
 `items_processed`               | PositiveIntegerField, Null, Blank            | Número total de itens processados | 5000
@@ -134,7 +134,7 @@ ID  | Title          | Descriptio             |
 8   | Textual        | Cadernos, manuscritos, impressos e folheteria. |
 9   | Tridimensional | Objetos tridimensionais. |
 
-### Galeria de apresentação (`thumbnail`)
+### Galeria de apresentação (`Thumbnail`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
@@ -144,7 +144,7 @@ Field Name | Django Type Field  | Field Description  | Example
 `image`    | ImageField(upload_to='/model/date_now-namefile.extesion'), Null, Blank| campo de imagem | /collection/2018_01_30-ligia_fagundes_teles.jpg|
 
 
-###  Conjunto (`sets`)*
+###  Conjunto (`Container`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
@@ -155,18 +155,26 @@ Field Name | Django Type Field  | Field Description  | Example
 `abstract` | TextField, Null, Blank | Breve apresentação do conjunto           |  Formado a partir da produção autoral do fotógrafo...
 `items`    | Item, **FK** [0..\*] | Lista de itens que integram a coleção | Item 1, Item 2
 `description_level` | DescriptionLevel, **FK** [0..1]                          | Nível de descrição da Coleção | 1 - Descrição Básica
-`sets_child`| Sets **FK**[0..\n], Null, Blank | conjuntos filhos deste conjunto | conjunto 1, conjunto 2
+`containers`| Container **FK**[0..\n], Null, Blank | conjuntos filhos deste conjunto | conjunto 1, conjunto 2
 
 
 * O nome `sets` deve ser utilizado para no plural para não conflitar com a palavra reservada `set`.
 
-###  Item (`item`)
+###  Item (`Item`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|----------
 `uuid`  | UUIDField, **PK**, Unique, Sequential  | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
 `id`    | CharField(64), Unique, Null, Blank | Identificador único  atribuído a cada Conjunto para controle interno da instituição. Esse valor tem de ser editável |  001002
 `title` | CharField(128), Null, Blank | nome do item. | Foto Ligia Fagundes Telles em visita ao IMS
+`captures` | Capture **FK**[0..\n], Null, Blank | conjuntos filhos deste conjunto | conjunto 1, conjunto 2
+
+###  Captura (`Capture`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|----------
+`uuid`  | UUIDField, **PK**, Unique, Sequential  | Identificador único universal da captura |  123e4567-e89b-12d3-a456
+
 
 
 ### Condições de Acesso (`AccessCondition`)
