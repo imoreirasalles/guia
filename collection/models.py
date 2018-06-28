@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+
 # Third part imports
 import uuid
 
@@ -15,53 +17,35 @@ from location.models import *
 class DescriptionLevel(models.Model):
     """Used to label collections according less or more description have an instance"""
     created = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='Data de Criação')
+        auto_now_add=True)
     title = models.CharField(
         max_length=256,
         null=True,
-        blank=True,
-        help_text='Ex.: ',
-        verbose_name='Título')
+        blank=True)
     description = models.CharField(
         max_length=512,
         null=True,
-        blank=True,
-        help_text='Ex.: ',
-        verbose_name='Descrição')
+        blank=True)
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        verbose_name = 'Nível de Descrição'
-        verbose_name_plural = 'Niveis de Descrição'
 
 
 class AggregationType(models.Model):
     """Used to label collections or Sets according type of Aggregation"""
     created = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='Data do registro')
+        auto_now_add=True)
     title = models.CharField(
         max_length=256,
         null=True,
-        blank=True,
-        help_text='Ex.: ',
-        verbose_name='Título')
+        blank=True)
     description = models.CharField(
         max_length=512,
         null=True,
-        blank=True,
-        help_text='Ex.: ',
-        verbose_name='Descrição')
+        blank=True)
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        verbose_name = 'Tipo de Agregação'
-        verbose_name_plural = 'Tipos de Agregação'
 
 
 class GenreTag(models.Model):

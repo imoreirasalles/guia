@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django import forms
+from django.utils.translation import gettext_lazy as _
+
 # Project Guia imports
 from .models import *
 ## Third part imports ##
@@ -10,10 +12,47 @@ from froala_editor.widgets import FroalaEditor
 admin.site.register(AccessCondition)
 
 
+class DescriptionLevelAdminForm(forms.ModelForm):
+    class Meta:
+       model = DescriptionLevel
+       fields = '__all__'
+       verbose_name=_('Description Level')
+       verbose_name_plural=_('Description Levels')
+       labels = {
+        'created': _('Created in'),
+        'title': _('Title'),
+        'description': _('Description'),
+       }
+       help_texts = {
+        'created': _('Example of help text... '),
+        'title': _('Example of help text... '),
+        'description': _('Example of help text... '),
+       }
+
+
 @admin.register(DescriptionLevel)
 class DescriptionLevelAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'description')
+    form = DescriptionLevelAdminForm
+
+
+class AggregationTypeAdminForm(forms.ModelForm):
+    class Meta:
+       model = AggregationType
+       fields = '__all__'
+       verbose_name=_('Aggregation Type')
+       verbose_name_plural=_('Aggregations Type')
+       labels = {
+        'created': _('Created in'),
+        'title': _('Title'),
+        'description': _('Description'),
+       }
+       help_texts = {
+        'created': _('Example of help text... '),
+        'title': _('Example of help text... '),
+        'description': _('Example of help text... '),
+       }
 
 
 @admin.register(AggregationType)
@@ -47,20 +86,11 @@ class Sets(admin.ModelAdmin):
 
 
 class CollectionAdminForm(forms.ModelForm):
-    abstract = forms.CharField(widget=FroalaEditor)
+    abstract = forms.CharField(widget=FroalaEditor, label='Resumo')
 
     class Meta:
        model = Collection
        fields = '__all__'
-       labels = {
-        'abstract': ('Resumo')
-       }
-       help_texts = {
-        'abstract': ('Resumo')
-       }
-       verbose_name = {
-        'abstract': ('Resumo')
-       }
 
 
 @admin.register(Collection)

@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-28 22:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: collection/admin.py:19
+msgid "Description Level"
+msgstr "Nível de descrição"
+
+#: collection/admin.py:20
+msgid "Description Levels"
+msgstr "Níveis de Descrição"
+
+#: collection/admin.py:22 collection/admin.py:47
+msgid "Created in"
+msgstr "Criado em"
+
+#: collection/admin.py:23 collection/admin.py:48
+msgid "Title"
+msgstr "Título"
+
+#: collection/admin.py:24 collection/admin.py:49
+msgid "Description"
+msgstr "Descrição"
+
+#: collection/admin.py:27 collection/admin.py:28 collection/admin.py:29
+#: collection/admin.py:52 collection/admin.py:53 collection/admin.py:54
+msgid "Example of help text... "
+msgstr "Exemplo de mensagem de ajuda..."
+
+#: collection/admin.py:44
+msgid "Aggregation Type"
+msgstr "Tipo de Agregação"
+
+#: collection/admin.py:45
+msgid "Aggregations Type"
+msgstr "Tipos de Agregação"
+
+#: guia/settings.py:129
+msgid "Portuguese"
+msgstr "Português"
+
+#: guia/settings.py:130
+msgid "English"
+msgstr "Inglês"

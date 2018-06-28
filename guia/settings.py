@@ -49,10 +49,14 @@ INSTALLED_APPS = [
     'publication',
 ]
 
+# Imports
+from django.utils.translation import ugettext_lazy as _
+
 MIDDLEWARE = [
     'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -120,17 +124,23 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
+# Provide a lists of languages which your site supports.
+LANGUAGES = (
+    ('pt-br', _('Portuguese')),
+    ('en', _('English')),
+)
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'pt_BR'
+
+# Tell Django where the project's translation files should be.
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
