@@ -7,6 +7,18 @@ ENV PYTHONUNBUFFERED 1
 RUN groupadd -r -g 999 django \
     && useradd -r -u 999 -g django django
 
+RUN apt-get update -y && apt-get install -y \
+    binutils \
+    libproj-dev \
+    gdal-bin \
+    libgdal-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/*
+
+ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+ENV C_INCLUDE_PATH=/usr/include/gdal
+
+
 # Requirements have to be pulled and installed here, otherwise caching won't work
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
