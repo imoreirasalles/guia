@@ -144,26 +144,18 @@ msgid "institucional container human identifier"
 msgstr ""
 
 #: collection/models.py:199
-#, fuzzy
-#| msgid "Aggregation Type"
 msgid "container aggregation type"
 msgstr "Tipo de Agregação"
 
 #: collection/models.py:200 collection/models.py:336
-#, fuzzy
-#| msgid "Aggregation Type"
 msgid "aggregation type"
 msgstr "Tipo de Agregação"
 
 #: collection/models.py:205
-#, fuzzy
-#| msgid "ex.: the collection is a group of..."
 msgid "ex.: container of..."
 msgstr "ex.: uma coleção é um agrupamento de objetos..."
 
 #: collection/models.py:210
-#, fuzzy
-#| msgid "ex.: the collection is a group of..."
 msgid "ex.: this container is..."
 msgstr "ex.: uma coleção é um agrupamento de objetos..."
 
@@ -172,14 +164,10 @@ msgid "itens that composes the container"
 msgstr ""
 
 #: collection/models.py:222
-#, fuzzy
-#| msgid "the description of level type..."
 msgid "choose a description level to this container"
 msgstr "Nível de descrição"
 
 #: collection/models.py:223 collection/models.py:329
-#, fuzzy
-#| msgid "Description level"
 msgid "description level"
 msgstr "Nível de descrição"
 
@@ -248,8 +236,6 @@ msgid "slug"
 msgstr ""
 
 #: collection/models.py:316
-#, fuzzy
-#| msgid "ex.: the collection is a group of..."
 msgid "ex.: this collection is composed by..."
 msgstr "ex.: uma coleção é um agrupamento de objetos..."
 
@@ -340,8 +326,6 @@ msgid "total collection items"
 msgstr ""
 
 #: collection/models.py:395
-#, fuzzy
-#| msgid "items"
 msgid "total items"
 msgstr "itens"
 
