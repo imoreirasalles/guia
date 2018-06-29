@@ -1,3 +1,3 @@
 FROM  mdillon/postgis:9.6
 
-COPY compose/local/postgres/init.sh /docker-entrypoint-initdb.d/init.sh
+COPY compose/production/postgres/init.sh /docker-entrypoint-initdb.d/init.sh
