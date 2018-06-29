@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-28 22:10+0000\n"
+"POT-Creation-Date: 2018-06-29 22:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,38 +18,440 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: collection/admin.py:19
-msgid "Description Level"
+#: collection/models.py:21 collection/models.py:48 collection/models.py:75
+#: collection/models.py:106 collection/models.py:110 collection/models.py:140
+#: collection/models.py:144 collection/models.py:181 collection/models.py:185
+#: collection/models.py:244 collection/models.py:282 collection/models.py:286
+msgid "auto set field"
+msgstr "campo de preenchimento automático"
+
+#: collection/models.py:22 collection/models.py:76 collection/models.py:111
+#: collection/models.py:145 collection/models.py:186 collection/models.py:245
+#: collection/models.py:287
+msgid "created in"
+msgstr "Criado em"
+
+#: collection/models.py:27
+msgid "ex.: basic - 0"
+msgstr "ex.: nível básico - 0"
+
+#: collection/models.py:28 collection/models.py:55 collection/models.py:82
+#: collection/models.py:117 collection/models.py:158 collection/models.py:163
+#: collection/models.py:206 collection/models.py:257 collection/models.py:305
+msgid "title"
+msgstr "Título"
+
+#: collection/models.py:33
+msgid "the description of level type..."
 msgstr "Nível de descrição"
 
-#: collection/admin.py:20
-msgid "Description Levels"
+#: collection/models.py:34 collection/models.py:61 collection/models.py:211
+#: collection/models.py:262
+msgid "description"
+msgstr "Descrição"
+
+#: collection/models.py:40
+msgid "Description level"
+msgstr "Nível de descrição"
+
+#: collection/models.py:41
+msgid "Description levels"
 msgstr "Níveis de Descrição"
 
-#: collection/admin.py:22 collection/admin.py:47
+#: collection/models.py:49
 msgid "Created in"
 msgstr "Criado em"
 
-#: collection/admin.py:23 collection/admin.py:48
-msgid "Title"
-msgstr "Título"
+#: collection/models.py:54
+msgid "ex.: collection, archive, etc"
+msgstr "ex.: coleção, arquivos, etc."
 
-#: collection/admin.py:24 collection/admin.py:49
-msgid "Description"
-msgstr "Descrição"
+#: collection/models.py:60
+msgid "ex.: the collection is a group of..."
+msgstr "ex.: uma coleção é um agrupamento de objetos..."
 
-#: collection/admin.py:27 collection/admin.py:28 collection/admin.py:29
-#: collection/admin.py:52 collection/admin.py:53 collection/admin.py:54
-msgid "Example of help text... "
-msgstr "Exemplo de mensagem de ajuda..."
-
-#: collection/admin.py:44
+#: collection/models.py:67
 msgid "Aggregation Type"
 msgstr "Tipo de Agregação"
 
-#: collection/admin.py:45
+#: collection/models.py:68
 msgid "Aggregations Type"
 msgstr "Tipos de Agregação"
+
+#: collection/models.py:81
+msgid "ex.: photo, picture, draw, etc"
+msgstr "Ex.: Fotografia, pintura, desenho, etc"
+
+#: collection/models.py:94
+msgid "genre tag"
+msgstr "tipologia de gênero"
+
+#: collection/models.py:95 collection/models.py:343
+msgid "genre tags"
+msgstr "tipologias de gênero"
+
+#: collection/models.py:107 collection/models.py:141 collection/models.py:182
+#: collection/models.py:283
+msgid "universally unique identifier"
+msgstr ""
+
+#: collection/models.py:116
+msgid "ex.: image title, like \"the photographer resting\" "
+msgstr ""
+
+#: collection/models.py:121
+msgid "ex.: image file"
+msgstr ""
+
+#: collection/models.py:122
+msgid "image"
+msgstr ""
+
+#: collection/models.py:128
+msgid "thumbnail"
+msgstr "imagem de apresentação"
+
+#: collection/models.py:129 collection/models.py:375
+msgid "thumbnails"
+msgstr "imagens de apresentação"
+
+#: collection/models.py:151
+msgid "institucional human identifier"
+msgstr ""
+
+#: collection/models.py:152 collection/models.py:193 collection/models.py:294
+msgid "id"
+msgstr ""
+
+#: collection/models.py:157
+msgid "ex.: Salgado Negative - 001"
+msgstr ""
+
+#: collection/models.py:162
+msgid "ex.: gelatin negative of the first photo..."
+msgstr ""
+
+#: collection/models.py:169
+msgid "item"
+msgstr "item"
+
+#: collection/models.py:170 collection/models.py:216 collection/models.py:390
+msgid "items"
+msgstr "itens"
+
+#: collection/models.py:192
+msgid "institucional container human identifier"
+msgstr ""
+
+#: collection/models.py:199
+#, fuzzy
+#| msgid "Aggregation Type"
+msgid "container aggregation type"
+msgstr "Tipo de Agregação"
+
+#: collection/models.py:200 collection/models.py:336
+#, fuzzy
+#| msgid "Aggregation Type"
+msgid "aggregation type"
+msgstr "Tipo de Agregação"
+
+#: collection/models.py:205
+#, fuzzy
+#| msgid "ex.: the collection is a group of..."
+msgid "ex.: container of..."
+msgstr "ex.: uma coleção é um agrupamento de objetos..."
+
+#: collection/models.py:210
+#, fuzzy
+#| msgid "ex.: the collection is a group of..."
+msgid "ex.: this container is..."
+msgstr "ex.: uma coleção é um agrupamento de objetos..."
+
+#: collection/models.py:215
+msgid "itens that composes the container"
+msgstr ""
+
+#: collection/models.py:222
+#, fuzzy
+#| msgid "the description of level type..."
+msgid "choose a description level to this container"
+msgstr "Nível de descrição"
+
+#: collection/models.py:223 collection/models.py:329
+#, fuzzy
+#| msgid "Description level"
+msgid "description level"
+msgstr "Nível de descrição"
+
+#: collection/models.py:229
+msgid "choose child containers to aggregate to this one"
+msgstr ""
+
+#: collection/models.py:230
+msgid "child containers"
+msgstr ""
+
+#: collection/models.py:236
+msgid "container"
+msgstr ""
+
+#: collection/models.py:237 collection/models.py:385
+msgid "containers"
+msgstr ""
+
+#: collection/models.py:250
+msgid "ex.: Full Free, Partial, Retricted"
+msgstr ""
+
+#: collection/models.py:251
+msgid "access"
+msgstr ""
+
+#: collection/models.py:256
+msgid "ex.: Partial - copyright"
+msgstr ""
+
+#: collection/models.py:261
+msgid "ex.: Some documents here have copyright..."
+msgstr ""
+
+#: collection/models.py:268 collection/models.py:412
+msgid "access condition"
+msgstr ""
+
+#: collection/models.py:269
+msgid "access conditions"
+msgstr ""
+
+#: collection/models.py:293
+msgid "institucional collection human identifier"
+msgstr ""
+
+#: collection/models.py:298
+msgid "legacy identifiers"
+msgstr ""
+
+#: collection/models.py:299
+msgid "old ids"
+msgstr ""
+
+#: collection/models.py:304
+msgid "the complete photo collection of Sebastião Salgado"
+msgstr ""
+
+#: collection/models.py:311
+msgid "ex.: complete-collection-sebastiao-salgado"
+msgstr ""
+
+#: collection/models.py:312
+msgid "slug"
+msgstr ""
+
+#: collection/models.py:316
+#, fuzzy
+#| msgid "ex.: the collection is a group of..."
+msgid "ex.: this collection is composed by..."
+msgstr "ex.: uma coleção é um agrupamento de objetos..."
+
+#: collection/models.py:317
+msgid "abstract"
+msgstr ""
+
+#: collection/models.py:321
+msgid "ex.: All itens in this collection..."
+msgstr ""
+
+#: collection/models.py:322
+msgid "full text"
+msgstr ""
+
+#: collection/models.py:328 collection/models.py:335
+msgid "choose an option"
+msgstr ""
+
+#: collection/models.py:342
+msgid "choose one or more options"
+msgstr ""
+
+#: collection/models.py:347
+msgid "feed with information about dimensions"
+msgstr ""
+
+#: collection/models.py:348
+msgid "dimensions"
+msgstr ""
+
+#: collection/models.py:352
+msgid "choose a start date"
+msgstr ""
+
+#: collection/models.py:353
+msgid "initial date"
+msgstr ""
+
+#: collection/models.py:358
+msgid "choose a start date caption"
+msgstr ""
+
+#: collection/models.py:359
+msgid "initial date caption"
+msgstr ""
+
+#: collection/models.py:363
+msgid "choose an final date"
+msgstr ""
+
+#: collection/models.py:364
+msgid "final date"
+msgstr ""
+
+#: collection/models.py:369
+msgid "choose a final date caption"
+msgstr ""
+
+#: collection/models.py:370
+msgid "final date caption"
+msgstr ""
+
+#: collection/models.py:374
+msgid "choose some introduction and representative images"
+msgstr ""
+
+#: collection/models.py:379
+msgid "choose some collection's authors"
+msgstr ""
+
+#: collection/models.py:380
+msgid "authors"
+msgstr ""
+
+#: collection/models.py:384
+msgid "choose containers that compose the collection"
+msgstr ""
+
+#: collection/models.py:389
+msgid ""
+"choose some items that compose this collection. ATTENTION: You can create a "
+"container and aggregate items there"
+msgstr ""
+
+#: collection/models.py:394
+msgid "total collection items"
+msgstr ""
+
+#: collection/models.py:395
+#, fuzzy
+#| msgid "items"
+msgid "total items"
+msgstr "itens"
+
+#: collection/models.py:399
+msgid "total processed items"
+msgstr ""
+
+#: collection/models.py:400
+msgid "processed items"
+msgstr ""
+
+#: collection/models.py:404
+msgid "total online collection items"
+msgstr ""
+
+#: collection/models.py:405
+msgid "online items"
+msgstr ""
+
+#: collection/models.py:411
+msgid "choose the more appropriate access condition to this collection"
+msgstr ""
+
+#: collection/models.py:416
+msgid "local access status"
+msgstr ""
+
+#: collection/models.py:417
+msgid "is there any local access to the collection?"
+msgstr ""
+
+#: collection/models.py:421
+msgid "is there any online access to the collection?"
+msgstr ""
+
+#: collection/models.py:422
+msgid "online access status"
+msgstr ""
+
+#: collection/models.py:426
+msgid "do you have some online link access to this collection?"
+msgstr ""
+
+#: collection/models.py:427
+msgid "access link"
+msgstr ""
+
+#: collection/models.py:431
+msgid "what is the generic location to the collection?"
+msgstr ""
+
+#: collection/models.py:432
+msgid "generic location"
+msgstr ""
+
+#: collection/models.py:437
+msgid "what is the specific location to this collection?"
+msgstr ""
+
+#: collection/models.py:438
+msgid "specific location"
+msgstr ""
+
+#: collection/models.py:442
+msgid "is there any inventary to this collection?"
+msgstr ""
+
+#: collection/models.py:443
+msgid "inventary status"
+msgstr ""
+
+#: collection/models.py:447
+msgid "what is the inventary last date?"
+msgstr ""
+
+#: collection/models.py:448
+msgid "inventary last date"
+msgstr ""
+
+#: collection/models.py:452
+msgid "several data about the inventary"
+msgstr ""
+
+#: collection/models.py:453
+msgid "inventary data"
+msgstr ""
+
+#: collection/models.py:457
+msgid "what is the management unit concerning to this collection?"
+msgstr ""
+
+#: collection/models.py:458
+msgid "management unit"
+msgstr ""
+
+#: collection/models.py:462
+msgid "other unstructured data of this collection"
+msgstr ""
+
+#: collection/models.py:463
+msgid "other data"
+msgstr ""
+
+#: collection/models.py:475
+msgid "collection"
+msgstr ""
+
+#: collection/models.py:476
+msgid "collections"
+msgstr ""
 
 #: guia/settings.py:129
 msgid "Portuguese"
