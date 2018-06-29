@@ -7,7 +7,9 @@ RUN apt-get update -y && apt-get install -y \
     binutils \
     libproj-dev \
     gdal-bin \
-    libgdal-dev
+    libgdal-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/*
 
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
