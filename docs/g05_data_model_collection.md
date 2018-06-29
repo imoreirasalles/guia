@@ -158,8 +158,6 @@ Field Name | Django Type Field  | Field Description  | Example
 `containers`| Container **FK**[0..\n], Null, Blank | conjuntos filhos deste conjunto | conjunto 1, conjunto 2
 
 
-* O nome `sets` deve ser utilizado para no plural para não conflitar com a palavra reservada `set`.
-
 ###  Item (`Item`)
 
 Field Name | Django Type Field  | Field Description  | Example
@@ -174,8 +172,6 @@ Field Name | Django Type Field  | Field Description  | Example
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|----------
 `uuid`  | UUIDField, **PK**, Unique, Sequential  | Identificador único universal da captura |  123e4567-e89b-12d3-a456
-
-
 
 ### Condições de Acesso (`AccessCondition`)
 
@@ -198,169 +194,6 @@ ID      | Access    | title            | description         |
 5       | Restrito  | Segurança institucional | Existem restrições ao acesso aos documentos por questões de risco à seguraça operacional. Aplica-se exclusivamente a documentos do arquivo institucional.
 6       | Restrito  | Informação privada | Existem restrições ao acesso aos documentos por questões de privacidade envolvendo informações de cunho extritamente privado de terceiros.
 
-
-### Áreas de Gestão (`ManagementUnit`)
-
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|----------
-`id`       | **PK**, Unique, Sequential  | Identificador de cada registro | 001
-`title` | CharField(128), Null, Blank | Título da unidade de gerenciamento |  Coordenação de Acervos
-`description`| TextField, Null, Blank | Descrição completa da unidade de gerenciamento | A coordenação de Acervos tem o papel de...
-
-Exemplos de instâncias que vão constar neste modelo:
-
-ID | Title     | description    |
----|-----------|----------------|
-01 | Coordenação de Acervo      | A coordenação de Acervos tem o papel de...
-02 | Coordenação de Bibliotecas |
-03 | Coordenação de Cinema      |
-04 | Coordenação de Fotografia  |
-05 | Coordenação de Iconografia |
-06 | Coordenação de Literatura  |
-07 | Coordenação de Música      |
-
---------
-
-## Exposição
-
-Uma Exposição pode ter diversas Edições:
-
-```
-| -- Exposição
-    | -- Edição 1
-    | -- Edição 2
-| -- Exposição
-    | -- Edição 1
-```
-
-###  Exposição (`exhibition`)
-
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|------------
-`uuid`        | UUID    | Identificador único universal da Exposição |     123e4567-e89b-12d3-a456-426655440000
-`id`          | CharField(64), upppercase, obrigatorio  | Identificador único numérico atribuído a cada Exposição para controle interno da instituição | 0326
-`title`       | String  | Título completo da Exposição | Conflitos: fotografia e violência política no Brasil
-`slug`        | String  | Apelido curto e intuitivo para construção de atalhos e URLs  | Conflitos
-`abstract`    | String  | Breve resumo da Exposição escrito em Markdown | A exposição procura contradizer a imagem do Brasil como país pacífico e oferece um olhar sobre a história nacional que colabora...
-`date_start`  | Data    | Data da primeira abertura da Exposição | 25/11/2017
-`date_end`    | Data    | Data do último encerramento da Exposição  | 25/02/2018
-`location`    | FK  | Local de realização da Edição | IMS Paulista
-`url`         | String  | Endereço web da Exposição do site da instituição | museu.edu/expo/conflitos
-`team`        | JSON    | Ficha técnica geral da Exposição, com a atribuição da equipe principal | {"Curadoria": "Heloisa Espada", "Assistente de Curadoria": "Tiê Higashi"}
-`edition`     | FK
-`catalog`     | publication, FK [0..\*]
-`publication` | publication, FK [0..\*]
-
-###  Edições (`exhibition_edition`)
-
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|------------
-`uuid`         | UUID    | Identificador único universal da Exposição |     123e4567-e89b-12d3-a456-426655440000
-`id`           | Número  | Identificador único da Edição composto com ExhibitionNumber |  0326-02
-`èxhibition`   | FK, exhibition
-`title`        | CharField
-`location`     | FK  | Local de realização da Edição | IMS Paulista
-`date_start`   | Data    | Data de abertura da Edição, quando conhecida | 02/05/2018
-`date_end`     | Data    | Data de encerramento da Edição, quando conhecida  | 02/08/2018
-`team`         | JSON    | Ficha técnica específica da Edição, com a atribuição de toda equipe envolvida | {"Produção": "Equipe"; "Montagem": "Equipe"}
-
-## Localização (`location`)
-
-Armazena informações sobre sedes e/ou locais onde ocorre armazenamento, exposição, exibição ou evento de qualquer outra atividade de natureza diversa vinculada a instituição.
-
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|---------
-`id`         | **PK**, Unique, Sequential  | Identificador de cada espaço | 001
-`title`      | CharField(128), Null, Blank | Nome do Espaço | IMS Paulista
-`street`     | CharField(128), Null, Blank | Logradouro do Espaço | Rua ...
-`number`     | CharField(32), Null, Blank | Número do Logradouro do Espaço | 32
-`complement` | CharField(128), Null, Blank | Complemento do endereço | Rua ...
-`neighborhood`| CharField(64), Null, Blank | Bairro | Consolação
-`state`      | CharField(64), Null, Blank | Estado | São Paulo
-`city`       | CharField(64), Null, Blank | Cidade | São Paulo
-`country`    | CharField(64), Null, Blank | País   | Brasil
-`postal_code`| CharField(32), Null, Blank | CEP    | 01200-000
-`lat_and_long`| PointField, Null, Blank   | Ponto geográfico de latitude e longitude | 85.3240, 27.7172,srid=4326
-
---------
-## Publicação (`publication`)
-
-- Diferença entre `Publicação` e folheteria:
-  - Considerar que uma publicação é todo projeto editorial consolidado num produto comercial. Ex.: livro, catálogo de exposição, DVD, etc. Já a folheteria distribuída gratuítamente não será considerada uma publicação autônoma, mas um documento anexado a outra entidade.
-- **Exemplos**
-  - Uma `Publicação` _Catálogo da Exposição_ está relacionada a uma `Exposição`
-  - Um `Evento` _Mostra de Cinema_ tem como documentação anexa um folder da sua programação
-
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|------------
-`uuid`         | UUID      | Identificador único universal da Publicação |  123e4567-e89b-12d3-a456-426655440000
-`id`           | Número    | Identificador único numérico atribuído a cada Publicação para controle interno da instituição | 201803
-`title`        | String    | Título completo da Publicação | Marc Ferrez
-`slug`         | String    | Título curto da Publicação | Marc Ferrez
-`abstract`     | String    | Breve resumo da Publicação escrito em Markdown | A exposição procura contradizer a imagem do Brasil como país pacífico e oferece um olhar sobre a história nacional que colabora...
-`full_text`    | CharField
-`author`       | Author, **FK**[0..\*]  |
-`date_release` | Date   | Data de publicação | 02/08/2014
-`publisher`    | Person, **FK**[0..\*]   | Nome da editora | Companhia das Letras
-`dimension`    | JSON   | Dimensão da publicação em centímetros | {"largura": "10", "altura": "10", "prof": "10"}
-`pages`        | number | quando tiver pages exibir, senão não exibir
-`type`         | fk |  | Homem
-`òther_data`
-
-
---------
-
-## Evento (`event`)
-
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|------------
-`uuid`          | UUID    | Identificador único universal do Evento |  0326-02
-`id`            | Número  | Identificador único do Evento para controle interno da instituição |  0326-02
-`title`         | String  | Título do evento | Palestra do fulano de tal
-`slug`          | String  | Título intuitivo do evento | IMS Paulista
-`date_start`    | Data    | Data de início do Evento, quando conhecida | 02/05/2018
-`date_start`    | Data    | Data de fim do Evento, quando conhecida  | 02/08/2018
-`type`          | fk      | Tipo do Evento  | Palestra
-`location`      | fk      | Local de realização do Evento  | Museu de Arte
-`abstract`      | String  | Breve apresentação do Evento | IMS Paulista
-`full_text`     | String  | ... | ...
-`team`          | JSON    | Ficha técnica específica do Evento | {"Palestrante": "Equipe", "Filmagem": "Equipe"}
-`other_data`    | JSON    | Dados não estruturados      | ...
-
-
-## Tipo de Evento (`event_type`)
-
-ID   | Name          | Helptext     |
------|---------------|--------------|
-1    | Curso         | ... |
-2    | Palestra      | ... |
-3    | Show          | ... |
-4    | Lançamento    | ... |
-5    | Etc...        | ... |
-
-
---------
-
-## Pessoa (`person`)
-
-Field Name | Django Type Field  | Field Description  | Example
------------|--------------------|--------------------|------------
-`uuid`        | UUID   | Identificador único universal da Pessoa no banco de dados da instituição |  123e4567-e89b-12d3-a456-426655440000
-`id`          | id    
-`person_type` |
-`title`         |
-`title_index`   | title de citações
-`slug`          | String | Nome da pessoa para exibição pública | Marc Ferrez
-`date_start`    | Date   | Data de nascimento da pessoa | 07/12/1843
-`date_end`      | Date   | Data de morte da pessoa | 12/01/1923
-`gender`        | String | Gênero da Pessoa (binário) | Homem
-`nation_origin` | String | País de atuação, frequentemente distinto do país de origem | Brasileiro
-`nation_main`   | String | País de atuação, frequentemente distinto do país de origem | Brasileiro
-`activity_main` | FK | Principal papel profissional de atuação  | Fotógrafo
-`abstract`      | String | Biografia curta da Pessoa | Principal fotógrafo brasileiro do século XIX, dono de uma obra que se equipara à dos maiores nomes da fotografia em todo o mundo, Marc Ferrez é o mais significativo fotógrafo do período...
-`full_text`     | String | Biografia completa da Pessoa | Principal fotógrafo brasileiro do século XIX, dono de uma obra que se equipara à dos maiores nomes da fotografia em todo o mundo, Marc Ferrez é o mais significativo fotógrafo do período... ...
-`url`           | String | Endereço web da Pessoa no site da instituição | museu.edu/pessoa/marc-ferrez
-`lod`           | JSON   | Linked open Data Dicionário de UIDs em projetos de Linked Open Data, como Virtual International Authority File (VIAF), Wikidata (WIKI), Union List of Artist Names (ULAN) ou Photographers’ Identities Catalog (PIC) | {"VIAF": "69111120", "WIKI": "Q3180571", "ULAN": "500037201", "PIC": "1758"}
 
 --------
 
@@ -402,34 +235,3 @@ Field Name | Django Type Field  | Field Description  | Example
 `abstract`   | TextField  | Resumo do Procedimento      | ...
 `full text`  | TextField  | Descrição do Procedimento   | ...
 `other_data` | JSONField  | Dados não estruturados      | ...
-
---------
-
-
-## Adopted References
-* Django Default Fields https://docs.djangoproject.com/en/2.0/ref/models/fields/
-* Django Geo Field https://docs.djangoproject.com/en/2.0/ref/contrib/gis/model-api/
-
-
-## Declined References
-* Django Hash Field
-https://github.com/amcat/django-hash-field (It is not necessary, there is a native hash uuid field on django)
-
-* Django Hstore Third part
-http://django-hstore.readthedocs.io/en/latest/ (Project with no suport any more. Take a look on issue 161. It was solved with native hstore django field and hstore widget)
-
-* Django Hstore Native
-https://docs.djangoproject.com/en/2.0/ref/contrib/postgres/fields/#django.contrib.postgres.fields.HStoreField
-
-* Hstore Widget
-https://github.com/PokaInc/django-admin-hstore-widget
-
-* Django Json Field
-* Django Json Widget - https://github.com/jmrivas86/django-json-widget, https://pypi.org/project/django-json-widget (It could be useful on future, but at moment we are using hstore)
-* Django Pretty Json http://kevinmickey.github.io/django-prettyjson (Good for programmers and geeks, bad to all others)
-
-
-Experimentar:
-https://github.com/tooreht/django-jsonsuit
-https://github.com/mbraak/django-mptt-admin
-https://github.com/mbi/django-rosetta
