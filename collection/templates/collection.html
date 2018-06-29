@@ -137,7 +137,11 @@
     {% block content_row_card100percent %}
 
       {% for collection in collection_list %}
+      {% if collection.slug %}
+        <a href="{{  collection.get_absolute_url_slug }}">{{ collection.title }}</a><br>
+      {% else %}
         <a href="{{ collection.get_absolute_url }}">{{ collection.title }}</a><br>
+      {% endif %}
       {% empty %}
       <p>Nenhuma coleção no momento!</p>
       {% endfor %}

@@ -437,7 +437,9 @@ class Collection(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('collection_detail', kwargs={'slug': self.slug})
+        return reverse('collection_detail', kwargs={'pk': self.uuid})
+    def get_absolute_url_slug(self):
+        return reverse('collection_detail_slug', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Coleção'
