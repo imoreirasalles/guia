@@ -5,8 +5,7 @@ from django.utils.translation import gettext_lazy as _
 # Project Guia imports
 from .models import *
 ## Third part imports ##
-# Froala WYSWYG editor https://github.com/froala/django-froala-editor
-from froala_editor.widgets import FroalaEditor
+from ckeditor.widgets import CKEditorWidget
 
 
 admin.site.register(AccessCondition)
@@ -49,7 +48,8 @@ class Sets(admin.ModelAdmin):
 
 
 class CollectionAdminForm(forms.ModelForm):
-    abstract = forms.CharField(widget=FroalaEditor, label='Resumo')
+    abstract = forms.CharField(widget=CKEditorWidget(), label='Resumo')
+    fulltext = forms.CharField(widget=CKEditorWidget(), label='Descrição Completa')
 
     class Meta:
        model = Collection

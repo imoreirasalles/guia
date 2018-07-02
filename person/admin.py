@@ -4,13 +4,12 @@ from django import forms
 # Project Guia imports
 from .models import *
 ## Third part imports ##
-# Froala WYSWYG editor https://github.com/froala/django-froala-editor
-from froala_editor.widgets import FroalaEditor
+from ckeditor.widgets import CKEditorWidget
 
 
 class PersonAdminForm(forms.ModelForm):
-    abstract = forms.CharField(widget=FroalaEditor)
-    full_text = forms.CharField(widget=FroalaEditor)
+    abstract = forms.CharField()
+    full_text = forms.CharField()
 
 
 @admin.register(Person)
