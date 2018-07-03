@@ -41,10 +41,10 @@ class Item(admin.ModelAdmin):
     list_display = ('id', 'title', 'description', 'uuid')
 
 
-@admin.register(Sets)
-class Sets(admin.ModelAdmin):
+@admin.register(Container)
+class Container(admin.ModelAdmin):
     readonly_fields = ['created']
-    list_display = ('id', 'title', 'description', 'description_level', 'uuid', 'sets_child')
+    list_display = ('id', 'title', 'description', 'description_level', 'uuid', 'container_child')
 
 
 class CollectionAdminForm(forms.ModelForm):
