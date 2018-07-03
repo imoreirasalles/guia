@@ -48,7 +48,6 @@ class Sets(admin.ModelAdmin):
 
 
 class CollectionAdminForm(forms.ModelForm):
-    abstract = forms.CharField(widget=CKEditorWidget(), label='Resumo')
     fulltext = forms.CharField(widget=CKEditorWidget(), label='Descrição Completa')
 
     class Meta:

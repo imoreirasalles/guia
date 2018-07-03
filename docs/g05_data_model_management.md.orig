@@ -23,6 +23,7 @@ ID | Title     | description    |
 
 --------
 
+<<<<<<< HEAD
 ## Aquisição (`acquisition`)
 
 Field Name | Django Type Field  | Field Description  | Example
@@ -38,12 +39,33 @@ Field Name | Django Type Field  | Field Description  | Example
 `abstract`   | TextField  | parágrafo de resumo sobre a aquisição | "esta aquisição entrou para o acervo ims em..."
 `full_text`  | TextField  | parágrafo de descrição completa sobre a aquisição | "realizada em 01/05/2016, esta aquisição..."
 `other_data` | JSONField  | Dados não estruturados sobre a aquisição  | numero de peças: 500, fotos: 350, etc
+=======
+### Aquisição (`acquisition`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`uuid`       | UUIDField  | ...        | ...
+`title`      |
+`method`     | AcquisitionMethod, FK | ...  | ...
+`source`     | Person 1-* | ...        | ...
+`dealer`     | Person, fk 1-* | quem negociou o ativo   | ...
+`date_start` | DateField  | ...        | ...
+`date_end`   | DateField  | usado em comodato        | ...
+`abstract`   | TextField  | ...        | ...
+`full_text`  |
+`other_data` | JSONField  | ...        | ...
+>>>>>>> b3c8d3117ef567343e044297d0875fe3284c4e4f
 
 
 ### AcquisitionMethod
 
+<<<<<<< HEAD
 ID   | title          | description     |
 -----|----------------|-----------------|
+=======
+ID   | Name           | Helptext     |
+-----|----------------|--------------|
+>>>>>>> b3c8d3117ef567343e044297d0875fe3284c4e4f
 1    | Compra         | Transferência de propriedade com remuneração |
 2    | Doação         | Transferência de propriedade sem remuneração |
 3    | Comodato       | Empréstimo temporário com prazo determinado |
@@ -51,7 +73,11 @@ ID   | title          | description     |
 
 --------
 
+<<<<<<< HEAD
 ## Procedimento (`procedure`)
+=======
+### Procedimento (`procedure`)
+>>>>>>> b3c8d3117ef567343e044297d0875fe3284c4e4f
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
@@ -60,6 +86,11 @@ Field Name | Django Type Field  | Field Description  | Example
 `title`      | String  | Título do Procedimento | Aquisição de Coleção
 `slug`       | String  | Título intuitivo do evento | aquisicao-colecao
 `abstract`   | TextField  | Resumo do Procedimento      | ...
+<<<<<<< HEAD
 `full text`  | TextField  | Descrição do Procedimento   | ...
 `other_data` | JSONField  | Dados não estruturados      | ...
+=======
+`full_text`  | TextField  | Descrição do Procedimento   | ...
+`other_data` | JSONField  | Dados não estruturados      | ...
 
+>>>>>>> b3c8d3117ef567343e044297d0875fe3284c4e4f
