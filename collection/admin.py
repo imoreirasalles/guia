@@ -44,7 +44,7 @@ class Item(admin.ModelAdmin):
 @admin.register(Container)
 class Container(admin.ModelAdmin):
     readonly_fields = ['created']
-    list_display = ('id', 'title', 'description', 'description_level', 'uuid', 'container_child')
+    list_display = ('id', 'title', 'description', 'description_level', 'uuid')
 
 
 class CollectionAdminForm(forms.ModelForm):

@@ -221,11 +221,9 @@ class Container(models.Model):
         on_delete=models.SET_NULL,
         help_text=_('Choose a description level to this container'),
         verbose_name=_('Description level'))
-    container_child = models.ForeignKey(
+    container_child = models.ManyToManyField(
         'self',
-        null=True,
         blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('Choose child containers to aggregate to this one'),
         verbose_name=_('Child containers'))
 
