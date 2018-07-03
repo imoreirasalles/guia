@@ -89,3 +89,6 @@ media/
 
 ### Postgres data ###
 db_data/
+
+## Static Files
+staticfiles/
