@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     # 3rd part apps
     'django_json_widget',
     'django_admin_json_editor',
-    'froala_editor',
+    'ckeditor',
     'django_extensions',
     'raven.contrib.django.raven_compat',
     # My apps
@@ -162,6 +162,7 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
 
 MEDIA_URL   = '/media/'
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
