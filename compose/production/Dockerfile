@@ -12,6 +12,8 @@ RUN apt-get update -y && apt-get install -y \
     libproj-dev \
     gdal-bin \
     libgdal-dev \
+    gettext \
+    libgettextpo-dev \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/*
 
@@ -39,7 +41,8 @@ RUN mkdir -p /app/staticfiles
 
 # env.example must be used during build to provide a valid environment
 RUN export $(cat /app/env.example | grep -v ^# | xargs) && \
-    python /app/manage.py collectstatic --noinput
+    python /app/manage.py collectstatic --noinput &&\
+    python /app/manage.py compilemessages --locale=pt_BR
 
 RUN chown -R django: /app
 
