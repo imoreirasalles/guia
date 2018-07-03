@@ -208,6 +208,9 @@ ID      | Access    | title            | description         |
 4       | Restrito  | Contratual       | Existem restrições ao acesso aos documentos por questões contratuais definidas por cláusulas especificadas no processo de aquisição.
 5       | Restrito  | Segurança institucional | Existem restrições ao acesso aos documentos por questões de risco à seguraça operacional. Aplica-se exclusivamente a documentos do arquivo institucional.
 6       | Restrito  | Informação privada | Existem restrições ao acesso aos documentos por questões de privacidade envolvendo informações de cunho extritamente privado de terceiros.
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> b3c8d3117ef567343e044297d0875fe3284c4e4f

@@ -315,7 +315,7 @@ class Collection(models.Model):
         blank=True,
         help_text=_('Ex.: This collection is composed by...'),
         verbose_name=_('Abstract'))
-    fulltext = models.TextField(
+    full_text = models.TextField(
         null=True,
         blank=True,
         help_text=_('Ex.: All itens in this collection...'),

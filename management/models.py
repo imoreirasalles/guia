@@ -103,7 +103,7 @@ class Acquisition(models.Model):
         blank=True,
         help_text=_('Ex.: this acquisition is composed by...'),
         verbose_name=_('Abstract'))
-    fulltext = models.TextField(
+    full_text = models.TextField(
         null=True,
         blank=True,
         help_text=_('Ex.: All itens in this acquisition...'),
