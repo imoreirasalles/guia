@@ -586,7 +586,7 @@ msgstr "Defina a(s) pessoa(s) que são fontes dessa aquisição"
 
 #: management/models.py:84
 msgid "Source"
-msgstr "Fontes"
+msgstr "Proveniência"
 
 #: management/models.py:89
 msgid "Choose people who traded this asset"
@@ -594,7 +594,7 @@ msgstr "Defina a(s) pessoa(s) intermediaram a negociação desses ativos"
 
 #: management/models.py:90
 msgid "Dealer"
-msgstr "Negociador"
+msgstr "Mediador"
 
 #: management/models.py:99
 msgid "Choose an final date - special for lending"
