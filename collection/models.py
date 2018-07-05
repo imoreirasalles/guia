@@ -131,10 +131,6 @@ class Thumbnail(models.Model):
 
 class Capture(models.Model):
     """Store captures of items"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
     uuid = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -143,6 +139,10 @@ class Capture(models.Model):
         unique=True,
         help_text=_('This is an auto set field'),
         verbose_name=_('Universal Unique Identifier'))
+    created = models.DateTimeField(
+        auto_now_add=True,
+        help_text=_('Auto set field'),
+        verbose_name=_('Created in'))
     title = models.CharField(
         max_length=256,
         null=True,
@@ -187,7 +187,7 @@ class Item(models.Model):
         max_length=256,
         null=False,
         blank=True,
-        help_text=_('ex.: Salgado Negative - 001'),
+        help_text=_('Ex.: Salgado Negative - 001'),
         verbose_name=_('Title'))
     description = models.TextField(
         null=True,
