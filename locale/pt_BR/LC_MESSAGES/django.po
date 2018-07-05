@@ -334,7 +334,7 @@ msgstr "Data Final"
 
 #: collection/models.py:405
 msgid "Choose a final date caption"
-msgstr "Escolha LEGENDA para a DATA FINAL da última obra dessa coleção."
+msgstr "Escolha uma LEGENDA para a DATA FINAL da última obra dessa coleção."
 
 #: collection/models.py:406
 msgid "Final date caption"
@@ -610,7 +610,7 @@ msgstr "Mediador"
 
 #: management/models.py:99
 msgid "Choose an final date - special for lending"
-msgstr "Escolha LEGENDA para a DATA FINAL da última obra dessa coleção."
+msgstr "Escolha uma LEGENDA para a DATA FINAL da última obra dessa coleção."
 
 #: management/models.py:100
 msgid "Final Date"
