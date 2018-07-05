@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-05 17:15+0000\n"
+"POT-Creation-Date: 2018-07-05 20:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -551,6 +551,18 @@ msgstr "Português"
 #: guia/settings.py:130
 msgid "English"
 msgstr "Inglês"
+
+#: guia/urls.py:23
+msgid "My Project"
+msgstr "Guia IMS"
+
+#: guia/urls.py:26
+msgid "Input and Admin Data"
+msgstr "Área de Entrada e Administração de Dados"
+
+#: guia/urls.py:29
+msgid "Admin Panel"
+msgstr "Painel Administrativo"
 
 #: management/models.py:22
 msgid "Title of Management Unit"
