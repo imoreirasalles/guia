@@ -24,25 +24,31 @@ class AggregationTypeAdmin(admin.ModelAdmin):
 
 
 @admin.register(GenreTag)
-class GenreTag(admin.ModelAdmin):
+class GenreTagAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'description')
 
 
 @admin.register(Thumbnail)
-class Thumbnail(admin.ModelAdmin):
+class ThumbnailAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'image', 'uuid')
 
 
+@admin.register(Capture)
+class CaptureAdmin(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('title', 'thumbnail')
+
+
 @admin.register(Item)
-class Item(admin.ModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description', 'uuid')
 
 
 @admin.register(Container)
-class Container(admin.ModelAdmin):
+class ContainerAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description', 'description_level', 'uuid')
 

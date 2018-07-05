@@ -129,6 +129,39 @@ class Thumbnail(models.Model):
         verbose_name_plural = _('Thumbnails')
 
 
+class Capture(models.Model):
+    """Store captures of items"""
+    created = models.DateTimeField(
+        auto_now_add=True,
+        help_text=_('Auto set field'),
+        verbose_name=_('Created in'))
+    uuid = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        max_length=32,
+        editable=False,
+        unique=True,
+        help_text=_('This is an auto set field'),
+        verbose_name=_('Universal Unique Identifier'))
+    title = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+        help_text=_('Ex.: The capture title'),
+        verbose_name=_('Title'))
+    thumbnail = models.ForeignKey(
+        Thumbnail,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=_('Choose the image whish represents this capture'),
+        verbose_name=_('Thumbnails'))
+
+    class Meta:
+        verbose_name = _('Capture')
+        verbose_name_plural = _('Captures')
+
+
 class Item(models.Model):
     """Used to store archive items like photos, pictures, etc"""
     uuid = models.UUIDField(
@@ -161,6 +194,11 @@ class Item(models.Model):
         blank=True,
         help_text=_('Ex.: Gelatin negative of the first photo...'),
         verbose_name=_('Title'))
+    capture = models.ManyToManyField(
+        Capture,
+        blank=True,
+        help_text=_('Capture(s) taked from this item.'),
+        verbose_name=_('Capture(s)'))
 
     def __str__(self):
         return self.title
