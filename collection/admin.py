@@ -45,14 +45,14 @@ class CaptureAdmin(admin.ModelAdmin):
 class ItemAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description', 'uuid')
-    filter_horizontal = ('capture')
+    filter_horizontal = ('capture',)
 
 
 @admin.register(Container)
 class ContainerAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description', 'description_level', 'uuid')
-    filter_horizontal = ('items', 'container_child', )
+    filter_horizontal = ('items', 'container_child')
 
 
 class CollectionAdminForm(forms.ModelForm):
