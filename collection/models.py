@@ -297,7 +297,7 @@ class Collection(models.Model):
         verbose_name=_('Old IDs'))
     title = models.CharField(
         max_length=256,
-        null=False,
+        null=True,
         blank=True,
         help_text=_('Ex.: The complete photo collection of Sebastião Salgado.'),
         verbose_name=_('Title'))
@@ -432,7 +432,7 @@ class Collection(models.Model):
         verbose_name=_('Generic Location'))
     location_specific = models.CharField(
         max_length=256,
-        null=False,
+        null=True,
         blank=True,
         help_text=_('What is the specific location to this collection?'),
         verbose_name=_('Specific Location'))
