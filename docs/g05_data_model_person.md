@@ -7,6 +7,9 @@ Field Name | Django Type Field  | Field Description  | Example
 `person_type` |
 `title`         |
 `title_index`   | title de citações
+`is_staff`      | NullBooleanField, Null, Blank | campo boleano que identifica se uma pessoa é ou não parte do staff ampliado da organização | yes
+`is_partner`    | NullBooleanField, Null, Blank | campo boleano que identifica se uma pessoa é ou não parceiro da intituição | yes
+`is_feature`    | NullBooleanField, Null, Blank | campo boleano que identifica se uma pessoa é artista, fotografo, etc | yes
 `slug`          | String | Nome da pessoa para exibição pública | Marc Ferrez
 `date_start`    | Date   | Data de nascimento da pessoa | 07/12/1843
 `date_end`      | Date   | Data de morte da pessoa | 12/01/1923

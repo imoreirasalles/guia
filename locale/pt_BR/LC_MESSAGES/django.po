@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-05 17:15+0000\n"
+"POT-Creation-Date: 2018-07-05 20:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,7 +334,7 @@ msgstr "Data Final"
 
 #: collection/models.py:405
 msgid "Choose a final date caption"
-msgstr "Escolha LEGENDA para a DATA FINAL da última obra dessa coleção."
+msgstr "Escolha uma LEGENDA para a DATA FINAL da última obra dessa coleção."
 
 #: collection/models.py:406
 msgid "Final date caption"
@@ -552,6 +552,18 @@ msgstr "Português"
 msgid "English"
 msgstr "Inglês"
 
+#: guia/urls.py:23
+msgid "My Project"
+msgstr "Guia IMS"
+
+#: guia/urls.py:26
+msgid "Input and Admin Data"
+msgstr "Área de Entrada e Administração de Dados"
+
+#: guia/urls.py:29
+msgid "Admin Panel"
+msgstr "Painel Administrativo"
+
 #: management/models.py:22
 msgid "Title of Management Unit"
 msgstr "Unidades de Gestão"
@@ -586,7 +598,7 @@ msgstr "Defina a(s) pessoa(s) que são fontes dessa aquisição"
 
 #: management/models.py:84
 msgid "Source"
-msgstr "Fontes"
+msgstr "Proveniência"
 
 #: management/models.py:89
 msgid "Choose people who traded this asset"
@@ -594,11 +606,11 @@ msgstr "Defina a(s) pessoa(s) intermediaram a negociação desses ativos"
 
 #: management/models.py:90
 msgid "Dealer"
-msgstr "Negociador"
+msgstr "Mediador"
 
 #: management/models.py:99
 msgid "Choose an final date - special for lending"
-msgstr "Escolha LEGENDA para a DATA FINAL da última obra dessa coleção."
+msgstr "Escolha uma LEGENDA para a DATA FINAL da última obra dessa coleção."
 
 #: management/models.py:100
 msgid "Final Date"

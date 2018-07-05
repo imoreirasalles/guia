@@ -414,11 +414,9 @@ class Collection(models.Model):
         blank=True,
         help_text=_("Choose some collection's authors"),
         verbose_name=_('Authors'))
-    container = models.ForeignKey(
+    container = models.ManyToManyField(
         Container,
-        null=True,
         blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('Choose containers that compose the collection'),
         verbose_name=_('Containers'))
     items = models.ManyToManyField(
@@ -489,9 +487,11 @@ class Collection(models.Model):
         blank=True,
         help_text=_('Several data about the inventary'),
         verbose_name=_('Inventary Data'))
-    management_unit = models.ManyToManyField(
+    management_unit = models.ForeignKey(
         ManagementUnit,
+        null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_('What is the management unit concerning to this collection?'),
         verbose_name=_('Management Unit'))
     other_data = JSONField(

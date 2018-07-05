@@ -3,6 +3,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.utils.translation import gettext_lazy as _
+
 # project guia imports
 from . import views
 
@@ -15,3 +17,13 @@ urlpatterns = [
     path('publication/', views.publication, name='publication'),
     path('person/', include('person.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# default: "Django Administration"
+admin.site.site_header = _('My Project')
+
+# default: "Site administration"
+admin.site.index_title = _('Input and Admin Data')
+
+# default: "Django site admin"
+admin.site.site_title = _('Admin Panel')

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.gis.db import models
 
+
 class Location(models.Model):
     """store places addresses, and link places with art works, sets, collection, persons, etc"""
     created = models.DateTimeField(auto_now_add=True)
