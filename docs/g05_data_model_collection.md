@@ -83,6 +83,7 @@ Field Name  | Django Type Field | Field Description  | Example
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
 `uuid`     | UUIDField, **PK**, Unique, Sequential                             | Identificador único universal do Conjunto |  123e4567-e89b-12d3-a456
+`created`                       | dateField, NotNull, default=now              | data de criação do registro | 01/01/2018
 `id`       | CharField(64), Unique, Null, Blank | Identificador único  atribuído a cada Conjunto para controle interno da instituição. Esse valor tem de ser editável |  001002
 `aggregation_type` | AggregationType **FK**[0..1], Null, Blank                  | Tipologia do conjunto |  Arquivo
 `title`    | CharField(128), Null, Blank                                       | Título do conjunto |  Arquivo pessoal de Marcel Gautherot
@@ -106,13 +107,17 @@ Field Name | Django Type Field  | Field Description  | Example
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|----------
-`uuid`  | UUIDField, **PK**, Unique, Sequential  | Identificador único universal da captura |  123e4567-e89b-12d3-a456
+`created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
+`uuid`     | UUIDField, **PK**, Unique, Sequential  | Identificador único universal da captura |  123e4567-e89b-12d3-a456
+`title`    | CharField(128), NotNull, Blank, | Título da captura | Cópia scaneada...
+`thumbnail` | Thumbnail **FK**, null, blank | campo de imagem | /collection/2018_01_30-ligia_fagundes_teles.jpg|
 
 
 ### Galeria de apresentação (`Thumbnail`)
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
+`created`     | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
 `uuid`     | UUIDField, **PK**, Unique, Sequential | Identificador único universal do objeto  | 123e4567-e89b-12d3-a456-426655440000
 `created`  | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
 `title`    | CharField(128), NotNull, Blank, | título do registro | Foto Lígia Fagundes Teles
@@ -125,8 +130,8 @@ Field Name | Django Type Field  | Field Description  | Example
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
-`id`          | **PK**, Sequential | id único do nível de descrição | 001
 `created`     | dateField, NotNull, default=now | data de criação do registro | 01/01/2018
+`id`          | **PK**, Sequential | id único do nível de descrição | 001
 `title`       | CharField(128), Null, Blank | título do nível de descrição    | 0. Controle Inicial
 `description` | CharField(512),Null, Blank, | descrição do campo | Conferência, identificação e localização da aquisição para estabelecimento de controle patrimonial.
 
@@ -208,6 +213,3 @@ ID      | Access    | title            | description         |
 4       | Restrito  | Contratual       | Existem restrições ao acesso aos documentos por questões contratuais definidas por cláusulas especificadas no processo de aquisição.
 5       | Restrito  | Segurança institucional | Existem restrições ao acesso aos documentos por questões de risco à seguraça operacional. Aplica-se exclusivamente a documentos do arquivo institucional.
 6       | Restrito  | Informação privada | Existem restrições ao acesso aos documentos por questões de privacidade envolvendo informações de cunho extritamente privado de terceiros.
-
-
-

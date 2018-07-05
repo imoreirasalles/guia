@@ -13,18 +13,18 @@ class ManagementUnit(models.Model):
     """Used to store unit of institutional management"""
     created = models.DateTimeField(
         auto_now_add=True,
-        help_text=_('Auto set field.'),
+        help_text=_('Auto set field'),
         verbose_name=_('Created in'))
     title = models.CharField(
         max_length=256,
         null=False,
         blank=True,
-        help_text=_('Title of Management Unit.'),
+        help_text=_('Title of Management Unit'),
         verbose_name=_('Title'))
     description = models.TextField(
         null=True,
         blank=True,
-        help_text=_('The description of Management Unit.'),
+        help_text=_('The description of Management Unit'),
         verbose_name=_('Description'))
 
     def __str__(self):

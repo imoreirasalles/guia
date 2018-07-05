@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-05 15:59+0000\n"
+"POT-Creation-Date: 2018-07-05 17:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: collection/models.py:21 collection/models.py:48 collection/models.py:75
-#: collection/models.py:136 collection/models.py:280 management/models.py:60
+#: collection/models.py:144 collection/models.py:280 event/models.py:17
+#: event/models.py:52 management/models.py:16 management/models.py:60
 #: management/models.py:64
 msgid "Auto set field"
 msgstr "Campo de Preenchimento Automático"
 
 #: collection/models.py:22 collection/models.py:49 collection/models.py:76
-#: collection/models.py:111 collection/models.py:137 collection/models.py:178
+#: collection/models.py:111 collection/models.py:145 collection/models.py:178
 #: collection/models.py:224 collection/models.py:281 collection/models.py:323
-#: management/models.py:17 management/models.py:65
+#: event/models.py:18 event/models.py:53 management/models.py:17
+#: management/models.py:65
 msgid "Created in"
 msgstr "Criado em"
 
@@ -38,7 +40,8 @@ msgstr "Ex.: Nível Básico - 0"
 #: collection/models.py:28 collection/models.py:55 collection/models.py:82
 #: collection/models.py:117 collection/models.py:151 collection/models.py:191
 #: collection/models.py:196 collection/models.py:244 collection/models.py:293
-#: collection/models.py:341 management/models.py:23 management/models.py:71
+#: collection/models.py:341 event/models.py:24 event/models.py:66
+#: management/models.py:23 management/models.py:71
 msgid "Title"
 msgstr "Título"
 
@@ -47,7 +50,8 @@ msgid "The description of level type..."
 msgstr "A descrição do Nível de descrição"
 
 #: collection/models.py:34 collection/models.py:61 collection/models.py:88
-#: collection/models.py:249 collection/models.py:298 management/models.py:28
+#: collection/models.py:249 collection/models.py:298 event/models.py:30
+#: management/models.py:28
 msgid "Description"
 msgstr "Descrição"
 
@@ -94,14 +98,16 @@ msgstr "Gênero Documental"
 msgid "Genre Tags"
 msgstr "Gêneros Documentais"
 
-#: collection/models.py:106 collection/models.py:110 collection/models.py:144
+#: collection/models.py:106 collection/models.py:110 collection/models.py:140
 #: collection/models.py:173 collection/models.py:177 collection/models.py:219
 #: collection/models.py:223 collection/models.py:318 collection/models.py:322
+#: event/models.py:48
 msgid "This is an auto set field"
 msgstr "Campo de Preenchimento Automático"
 
-#: collection/models.py:107 collection/models.py:145 collection/models.py:174
-#: collection/models.py:220 collection/models.py:319 management/models.py:61
+#: collection/models.py:107 collection/models.py:141 collection/models.py:174
+#: collection/models.py:220 collection/models.py:319 event/models.py:49
+#: management/models.py:61
 msgid "Universal Unique Identifier"
 msgstr "Identificador Único Universal"
 
@@ -141,16 +147,17 @@ msgstr "Captura"
 msgid "Captures"
 msgstr "Capturas"
 
-#: collection/models.py:184
+#: collection/models.py:184 event/models.py:59
 msgid "Institucional Human Identifier"
 msgstr "Idenficador Institucional"
 
 #: collection/models.py:185 collection/models.py:231 collection/models.py:330
+#: event/models.py:60
 msgid "ID"
 msgstr "ID"
 
 #: collection/models.py:190
-msgid "ex.: Salgado Negative - 001"
+msgid "Ex.: Salgado Negative - 001"
 msgstr "Ex.: Negativo Segastião Salgado - 001"
 
 #: collection/models.py:195
@@ -159,11 +166,11 @@ msgstr "Ex.: Negativo de gelatina da primeira foto..."
 
 #: collection/models.py:200
 msgid "Capture(s) taked from this item."
-msgstr ""
+msgstr "Capturas do item"
 
 #: collection/models.py:201
 msgid "Capture(s)"
-msgstr ""
+msgstr "Captura(s)"
 
 #: collection/models.py:207
 msgid "Item"
@@ -257,7 +264,7 @@ msgstr "A coleção completa de fotos do fotógrafo Sebastião Salgado."
 msgid "Ex.: complete-collection-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
-#: collection/models.py:348
+#: collection/models.py:348 event/models.py:73
 msgid "Slug"
 msgstr "Slug (apelido)"
 
@@ -265,7 +272,7 @@ msgstr "Slug (apelido)"
 msgid "Ex.: This collection is composed by..."
 msgstr "Ex.: Essa coleção é composta por..."
 
-#: collection/models.py:353 management/models.py:105
+#: collection/models.py:353 event/models.py:102 management/models.py:105
 msgid "Abstract"
 msgstr "Resumo"
 
@@ -273,7 +280,7 @@ msgstr "Resumo"
 msgid "Ex.: All itens in this collection..."
 msgstr "ex.: todos os itens dessa coleção..."
 
-#: collection/models.py:358 management/models.py:110
+#: collection/models.py:358 event/models.py:107 management/models.py:110
 msgid "Full Text"
 msgstr "Descrição completa"
 
@@ -297,13 +304,13 @@ msgstr "Alimente com informações sobre as dimensões do agrupamento. "
 msgid "Dimensions"
 msgstr "Dimensões"
 
-#: collection/models.py:388 management/models.py:94
+#: collection/models.py:388 event/models.py:77 management/models.py:94
 msgid "Choose a start date"
 msgstr ""
 "Escolha uma data inicial que representa a data de composição da primeira "
 "obra presente nessa coleção."
 
-#: collection/models.py:389 management/models.py:95
+#: collection/models.py:389 event/models.py:78 management/models.py:95
 msgid "Initial Date"
 msgstr "Data Inicial"
 
@@ -315,13 +322,13 @@ msgstr "Escolha LEGENDA para a DATA INICIAL da primeira obra dessa coleção"
 msgid "Initial date caption"
 msgstr "Data Inicial por extenso"
 
-#: collection/models.py:399
+#: collection/models.py:399 event/models.py:82
 msgid "Choose an final date"
 msgstr ""
 "Escolha uma data final que representa a data de composição da última obra "
 "dessa coleção"
 
-#: collection/models.py:400
+#: collection/models.py:400 event/models.py:83
 msgid "Final date"
 msgstr "Data Final"
 
@@ -457,11 +464,11 @@ msgstr "Qual é a Unidade de Gestão responsável pela coleção?"
 msgid "Management Unit"
 msgstr "Unidades de Gestão"
 
-#: collection/models.py:500 management/models.py:114
+#: collection/models.py:500 event/models.py:116 management/models.py:114
 msgid "Other unstructured data of this collection"
 msgstr "Outros dados não estruturados sobre a coleção"
 
-#: collection/models.py:501 management/models.py:115
+#: collection/models.py:501 event/models.py:117 management/models.py:115
 msgid "Other Data"
 msgstr "Outros dados"
 
@@ -473,6 +480,70 @@ msgstr "Coleção"
 msgid "Collections"
 msgstr "Coleções"
 
+#: event/models.py:23
+msgid "Ex.: course, workshop, show, launching"
+msgstr "Ex.: curso, palestra, show, lançamento..."
+
+#: event/models.py:29
+msgid "Ex.: A course is a formative event... "
+msgstr "Ex.: Um curso é um evento formativo que..."
+
+#: event/models.py:36
+msgid "Event Type"
+msgstr "Tipo de Evento"
+
+#: event/models.py:37
+msgid "Events Type"
+msgstr "Tipos de Evento"
+
+#: event/models.py:65
+msgid "Ex.: Launch of new publication..."
+msgstr "Ex.: Lançamento de uma nova publicação"
+
+#: event/models.py:72
+msgid "Ex.: lauch-new-publication"
+msgstr "Ex.: lancamento-nova-publicacao"
+
+#: event/models.py:89
+msgid "Choose the an appropriate type to this one"
+msgstr "Escolha a classificação de acesso mais apropriada para coleção."
+
+#: event/models.py:90
+msgid "Type"
+msgstr "Tipo"
+
+#: event/models.py:96
+msgid "Choose the location where this event occurs"
+msgstr "Escolha a localização onde esse evento ocorre"
+
+#: event/models.py:97
+msgid "Location"
+msgstr "Localização"
+
+#: event/models.py:101
+msgid "Ex.: This event was performed by..."
+msgstr "Ex.: Essa evento foi realizado por..."
+
+#: event/models.py:106
+msgid "Ex.: The course was..."
+msgstr "Ex.: O curso foi..."
+
+#: event/models.py:111
+msgid "Feed with information about team that worked on this"
+msgstr "Alimente com informações sobre as dimensões do agrupamento. "
+
+#: event/models.py:112
+msgid "Team"
+msgstr "Time"
+
+#: event/models.py:123
+msgid "Event"
+msgstr "Evento"
+
+#: event/models.py:124
+msgid "Events"
+msgstr "Eventos"
+
 #: guia/settings.py:129
 msgid "Portuguese"
 msgstr "Português"
@@ -481,16 +552,12 @@ msgstr "Português"
 msgid "English"
 msgstr "Inglês"
 
-#: management/models.py:16
-msgid "Auto set field."
-msgstr "Campo de Preenchimento Automático"
-
 #: management/models.py:22
-msgid "Title of Management Unit."
+msgid "Title of Management Unit"
 msgstr "Unidades de Gestão"
 
 #: management/models.py:27
-msgid "The description of Management Unit."
+msgid "The description of Management Unit"
 msgstr "A descrição das unidades de gerenciamento"
 
 #: management/models.py:35
