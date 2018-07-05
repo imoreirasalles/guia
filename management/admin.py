@@ -17,3 +17,5 @@ class AcquisitionMethodAdmin(admin.ModelAdmin):
 class AcquisitionAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('uuid', 'title', 'method', 'date_start', 'date_end')
+    search_fields = ('uuid', 'title')
+    filter_horizontal = ('source', 'dealer', )
