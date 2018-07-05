@@ -1,7 +1,9 @@
-## New Model Routine
+## New Model Cicle
 
-0. Get the model.py file into an being app
-1. Create the main class
+#### 0. Go the `model.py` file into an being app
+
+#### 1. Create the main class
+
 1.1 Apply docstring, string default function, verbose_name and verbose_name_plural
 
 ```
@@ -26,7 +28,7 @@ class MyModelName(models.Model):
 from django.utils.translation import gettext_lazy as _
 ```
 
-2. Create and apply migrations
+#### 2. Create and apply migrations
 
 With you env active, for example:
 
@@ -35,7 +37,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-3. Register the new model into django panel (admin.py)
+#### 3. Register the new model into django panel (admin.py)
 
 Very short simple way:
 
@@ -54,7 +56,7 @@ class MyModelNameAdmin(admin.ModelAdmin):
   list_display = ('field1', 'field2')
 ```
 
-4. Make translations
+#### 4. Make translations
 
 4.1 First, make up and get new terms
 
