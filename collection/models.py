@@ -42,7 +42,7 @@ class DescriptionLevel(models.Model):
 
 
 class AggregationType(models.Model):
-    """Used to label collections or Sets according type of Aggregation"""
+    """Used to label collections or containers according type of Aggregation"""
     created = models.DateTimeField(
         auto_now_add=True,
         help_text=_('Auto set field'),
@@ -69,7 +69,7 @@ class AggregationType(models.Model):
 
 
 class GenreTag(models.Model):
-    """Used to label collections, Sets or Items according content genre type"""
+    """Used to label collections, containers or Items according content genre type"""
     created = models.DateTimeField(
         auto_now_add=True,
         help_text=_('Auto set field'),
@@ -96,7 +96,7 @@ class GenreTag(models.Model):
 
 
 class Thumbnail(models.Model):
-    """Used to record thumbnail images of representative classes like collections, sets, items, Persons, Exhibitions, etc"""
+    """Used to record thumbnail images of representative classes like collections, containers, items, Persons, Exhibitions, etc"""
     uuid = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -127,6 +127,39 @@ class Thumbnail(models.Model):
     class Meta:
         verbose_name = _('Thumbnail')
         verbose_name_plural = _('Thumbnails')
+
+
+class Capture(models.Model):
+    """Store captures of items"""
+    created = models.DateTimeField(
+        auto_now_add=True,
+        help_text=_('Auto set field'),
+        verbose_name=_('Created in'))
+    uuid = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        max_length=32,
+        editable=False,
+        unique=True,
+        help_text=_('This is an auto set field'),
+        verbose_name=_('Universal Unique Identifier'))
+    title = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+        help_text=_('Ex.: The capture title'),
+        verbose_name=_('Title'))
+    thumbnail = models.ForeignKey(
+        Thumbnail,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=_('Choose the image whish represents this capture'),
+        verbose_name=_('Thumbnails'))
+
+    class Meta:
+        verbose_name = _('Capture')
+        verbose_name_plural = _('Captures')
 
 
 class Item(models.Model):
@@ -161,6 +194,11 @@ class Item(models.Model):
         blank=True,
         help_text=_('Ex.: Gelatin negative of the first photo...'),
         verbose_name=_('Title'))
+    capture = models.ManyToManyField(
+        Capture,
+        blank=True,
+        help_text=_('Capture(s) taked from this item.'),
+        verbose_name=_('Capture(s)'))
 
     def __str__(self):
         return self.title
@@ -170,7 +208,7 @@ class Item(models.Model):
         verbose_name_plural = _('Items')
 
 
-class Sets(models.Model):
+class Container(models.Model):
     """Used to store an aggroupment of items"""
     uuid = models.UUIDField(
         primary_key=True,
@@ -221,11 +259,9 @@ class Sets(models.Model):
         on_delete=models.SET_NULL,
         help_text=_('Choose a description level to this container'),
         verbose_name=_('Description level'))
-    sets_child = models.ForeignKey(
+    container_child = models.ManyToManyField(
         'self',
-        null=True,
         blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('Choose child containers to aggregate to this one'),
         verbose_name=_('Child containers'))
 
@@ -238,7 +274,7 @@ class Sets(models.Model):
 
 
 class AccessCondition(models.Model):
-    """Used to store access condition concerned of items, sets os collections"""
+    """Used to store access condition concerned of captures, items, containers and collections"""
     created = models.DateTimeField(
         auto_now_add=True,
         help_text=_('Auto set field'),
@@ -299,7 +335,7 @@ class Collection(models.Model):
         verbose_name=_('Old IDs'))
     title = models.CharField(
         max_length=256,
-        null=False,
+        null=True,
         blank=True,
         help_text=_('Ex.: The complete photo collection of Sebastião Salgado.'),
         verbose_name=_('Title'))
@@ -378,9 +414,11 @@ class Collection(models.Model):
         blank=True,
         help_text=_("Choose some collection's authors"),
         verbose_name=_('Authors'))
-    sets = models.ManyToManyField(
-        Sets,
+    container = models.ForeignKey(
+        Container,
+        null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_('Choose containers that compose the collection'),
         verbose_name=_('Containers'))
     items = models.ManyToManyField(
@@ -432,7 +470,7 @@ class Collection(models.Model):
         verbose_name=_('Generic Location'))
     location_specific = models.CharField(
         max_length=256,
-        null=False,
+        null=True,
         blank=True,
         help_text=_('What is the specific location to this collection?'),
         verbose_name=_('Specific Location'))

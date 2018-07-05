@@ -8,6 +8,7 @@ RUN apt-get update -y && apt-get install -y \
     binutils \
     libproj-dev \
     gdal-bin \
+    gettext \
     libgdal-dev \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/*
