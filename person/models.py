@@ -17,11 +17,11 @@ class Person(models.Model):
     # thumbnail = models.ForeignKey(Thumbnail, null=True, blank=True,  on_delete=models.SET_NULL)
     abstract = models.TextField(null=True, blank=True)
     full_text = models.TextField(null=True, blank=True)
-    date_start = models.DateTimeField(null=True, blank=True)
-    date_end = models.DateTimeField(null=True, blank=True)
+    date_start = models.DateField(null=True, blank=True)
+    date_end = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return self.slug
+        return self.nickname
 
     class Meta:
         verbose_name_plural = "Pessoas"
