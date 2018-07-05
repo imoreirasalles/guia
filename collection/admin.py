@@ -48,7 +48,9 @@ class Container(admin.ModelAdmin):
 
 
 class CollectionAdminForm(forms.ModelForm):
-    fulltext = forms.CharField(widget=CKEditorWidget(), label='Descrição Completa')
+    full_text = forms.CharField(
+        widget=CKEditorWidget(),
+        label='Descrição Completa')
 
     class Meta:
        model = Collection
@@ -58,4 +60,6 @@ class CollectionAdminForm(forms.ModelForm):
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
+    list_display = ('id', 'title', 'aggregation_type', 'date_start', 'date_end', 'items_total')
+    search_fields = ['uuid', 'id', 'id_old', 'title', 'author__nickname']
     form = CollectionAdminForm
