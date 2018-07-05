@@ -6,6 +6,9 @@
 -   Django 2.0 >= (<https://www.djangoproject.com>)
     -   Django Rest Framework 3.0 >= (<http://www.django-rest-framework.org>)
 -   PostgreSQL 9.6 >= (<https://www.postgresql.org>)
+- Docker
+- Docker-compose
+
 
 ## Local Dev. Enviroment
 
