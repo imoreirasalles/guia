@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-05 20:28+0000\n"
+"POT-Creation-Date: 2018-07-09 14:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,7 +176,7 @@ msgstr "Captura(s)"
 msgid "Item"
 msgstr "Item"
 
-#: collection/models.py:208 collection/models.py:254 collection/models.py:428
+#: collection/models.py:208 collection/models.py:254 collection/models.py:426
 msgid "Items"
 msgstr "Itens"
 
@@ -216,7 +216,7 @@ msgstr "Conjunto(s) Filho(s)"
 msgid "Container"
 msgstr "Conjunto"
 
-#: collection/models.py:273 collection/models.py:423
+#: collection/models.py:273 collection/models.py:421
 msgid "Containers"
 msgstr "Conjuntos"
 
@@ -236,7 +236,7 @@ msgstr "Ex.: Parcial - possui direitos autorais reservados."
 msgid "Ex.: Some documents here have copyright..."
 msgstr "Ex.: Alguns documentos aqui tem direitos autorais reservados..."
 
-#: collection/models.py:304 collection/models.py:450
+#: collection/models.py:304 collection/models.py:448
 msgid "Access Condition"
 msgstr "Condição de Acesso"
 
@@ -352,11 +352,11 @@ msgstr "Escolha os/as autores/as da Coleção"
 msgid "Authors"
 msgstr "Autore(s)"
 
-#: collection/models.py:422
+#: collection/models.py:420
 msgid "Choose containers that compose the collection"
 msgstr "Escolha os conjuntos que compõem a coleção"
 
-#: collection/models.py:427
+#: collection/models.py:425
 msgid ""
 "Choose some items that compose this collection. ATTENTION: You can create a "
 "container and aggregate items there"
@@ -364,95 +364,95 @@ msgstr ""
 "Escolha o(s) Item(ns) que compõe(m) essa coleção. ATENÇÃO: você também pode "
 "criar um CONJUNTO e associar itens a este antes de montar uma coleção."
 
-#: collection/models.py:432
+#: collection/models.py:430
 msgid "Total collection items"
 msgstr "Total de itens da Coleção"
 
-#: collection/models.py:433
+#: collection/models.py:431
 msgid "Total Items"
 msgstr "Total de Itens"
 
-#: collection/models.py:437
+#: collection/models.py:435
 msgid "Total processed items"
 msgstr "Total de Itens Processados"
 
-#: collection/models.py:438
+#: collection/models.py:436
 msgid "Processed Items"
 msgstr "Itens processados"
 
-#: collection/models.py:442
+#: collection/models.py:440
 msgid "Total online collection items"
 msgstr "Total de itens on line"
 
-#: collection/models.py:443
+#: collection/models.py:441
 msgid "Online Items"
 msgstr "Itens online"
 
-#: collection/models.py:449
+#: collection/models.py:447
 msgid "Choose the more appropriate access condition to this collection"
 msgstr "Escolha a classificação de acesso mais apropriada para coleção."
 
-#: collection/models.py:454
+#: collection/models.py:452
 msgid "Is there any local access to the collection?"
 msgstr "Há acesso local a coleção?"
 
-#: collection/models.py:455
+#: collection/models.py:453
 msgid "Local Access Status"
 msgstr "Status do Acesso Local"
 
-#: collection/models.py:459
+#: collection/models.py:457
 msgid "Is there any online access to the collection?"
 msgstr "Há algum intem online da coleção?"
 
-#: collection/models.py:460
+#: collection/models.py:458
 msgid "Online Access Status"
 msgstr "Status do Acesso online"
 
-#: collection/models.py:464
+#: collection/models.py:462
 msgid "Do you have some online link access to this collection?"
 msgstr "Possui algum link de acesso online dessa coleção?"
 
-#: collection/models.py:465
+#: collection/models.py:463
 msgid "Access Link"
 msgstr "Link de Acesso"
 
-#: collection/models.py:469
+#: collection/models.py:467
 msgid "What is the generic location to the collection?"
 msgstr "Qual a localização genérica dessa coleção? (sede)"
 
-#: collection/models.py:470
+#: collection/models.py:468
 msgid "Generic Location"
 msgstr "Localização genérica"
 
-#: collection/models.py:475
+#: collection/models.py:473
 msgid "What is the specific location to this collection?"
 msgstr "Qual localização específica da coleção?"
 
-#: collection/models.py:476
+#: collection/models.py:474
 msgid "Specific Location"
 msgstr "Localização Específica"
 
-#: collection/models.py:480
+#: collection/models.py:478
 msgid "Is there any inventary to this collection?"
 msgstr "Há algum inventário dessa coleção?"
 
-#: collection/models.py:481
+#: collection/models.py:479
 msgid "Inventary Status"
 msgstr "Status de Inventário"
 
-#: collection/models.py:485
+#: collection/models.py:483
 msgid "What is the inventary last date?"
 msgstr "Qual a última data do inventário?"
 
-#: collection/models.py:486
+#: collection/models.py:484
 msgid "Inventary Last Date"
 msgstr "Última Data de Inventário"
 
-#: collection/models.py:490
+#: collection/models.py:488
 msgid "Several data about the inventary"
 msgstr "Dados diversos sobre o inventário"
 
-#: collection/models.py:491
+#: collection/models.py:489
 msgid "Inventary Data"
 msgstr "Dados de inventário"
 
