@@ -6,8 +6,8 @@ from django.utils.translation import gettext_lazy as _
 # Third part imports
 import uuid
 
-# Project guia imports
-from location.models import *
+# Project Apps Imports
+from django.apps import apps
 
 
 class EventType(models.Model):
@@ -89,7 +89,7 @@ class Event(models.Model):
         help_text=_('Choose the an appropriate type to this one'),
         verbose_name=_('Type'))
     location = models.ForeignKey(
-        Location,
+        'location.Location',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,

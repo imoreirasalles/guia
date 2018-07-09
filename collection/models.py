@@ -8,10 +8,8 @@ from django.utils.translation import gettext_lazy as _
 # Third part imports
 import uuid
 
-# Project guia imports
-from person.models import *
-from management.models import *
-from location.models import *
+# Project Apps Imports
+from django.apps import apps
 
 
 class DescriptionLevel(models.Model):
@@ -238,7 +236,7 @@ class Container(models.Model):
         verbose_name=_('Aggregation Type'))
     title = models.CharField(
         max_length=256,
-        null=False,
+        null=True,
         blank=True,
         help_text=_('Ex.: Container of...'),
         verbose_name=_('Title'))
@@ -410,7 +408,7 @@ class Collection(models.Model):
         help_text=_('Choose some introduction and representative images'),
         verbose_name=_('Thumbnails'))
     author = models.ManyToManyField(
-        Person,
+        'person.Person',
         blank=True,
         help_text=_("Choose some collection's authors"),
         verbose_name=_('Authors'))
@@ -462,7 +460,7 @@ class Collection(models.Model):
         help_text=_('Do you have some online link access to this collection?'),
         verbose_name=_('Access Link'))
     location_generic = models.ManyToManyField(
-        Location,
+        'location.Location',
         blank=True,
         help_text=_('What is the generic location to the collection?'),
         verbose_name=_('Generic Location'))
@@ -488,7 +486,7 @@ class Collection(models.Model):
         help_text=_('Several data about the inventary'),
         verbose_name=_('Inventary Data'))
     management_unit = models.ForeignKey(
-        ManagementUnit,
+        'management.ManagementUnit',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,

@@ -6,8 +6,9 @@ from django.utils.translation import gettext_lazy as _
 # Third part imports
 import uuid
 
-# Project guia imports
-from person.models import *
+# Project Apps Imports
+from django.apps import apps
+
 
 class ManagementUnit(models.Model):
     """Used to store unit of institutional management"""
@@ -77,13 +78,13 @@ class Acquisition(models.Model):
         help_text=_('Choose an Option'),
         verbose_name=_('Aquisition Method'))
     source = models.ManyToManyField(
-        Person,
+        'person.Person',
         related_name='personSource',
         blank=True,
         help_text=_('Choose people who have been source to this acquisition'),
         verbose_name=_('Source'))
     dealer = models.ManyToManyField(
-        Person,
+        'person.Person',
         related_name='personDealer',
         blank=True,
         help_text=_('Choose people who traded this asset'),
