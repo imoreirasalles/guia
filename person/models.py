@@ -47,7 +47,7 @@ class Person(models.Model):
         blank=True,
         help_text=_('Ex.: Mr. Louis-Jacques-Mandé Daguerre'),
         verbose_name=_('Title'))
-    title_idex = models.CharField(
+    title_index = models.CharField(
         max_length=256,
         null=True,
         blank=True,

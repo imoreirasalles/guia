@@ -57,6 +57,7 @@ class ContainerAdmin(admin.ModelAdmin):
 
 class CollectionAdminForm(forms.ModelForm):
     full_text = forms.CharField(
+        required=False,
         widget=CKEditorWidget(),
         label='Descrição Completa')
 
