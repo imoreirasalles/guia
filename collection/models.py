@@ -332,9 +332,8 @@ class Collection(models.Model):
         help_text=_('Legacy Identifiers'),
         verbose_name=_('Old IDs'))
     title = models.CharField(
+        default=_('No title collection'),
         max_length=256,
-        null=True,
-        blank=True,
         help_text=_('Ex.: The complete photo collection of Sebastião Salgado.'),
         verbose_name=_('Title'))
     slug = models.SlugField(

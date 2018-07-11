@@ -70,7 +70,7 @@ class CollectionAdminForm(forms.ModelForm):
 class CollectionAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_filter = ('aggregation_type', 'genre_tags', 'author', 'access_condition', 'access_local_status', 'access_online_status', 'location_generic', 'inventary_status', 'inventary_last_date', 'management_unit', 'date_start', 'date_end')
-    list_display = ('id', 'title', 'aggregation_type', 'date_start', 'date_end', 'items_total')
+    list_display = ('id', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
     search_fields = ['uuid', 'id', 'id_old', 'title', 'author__nickname']
     filter_horizontal = ('thumbnail', 'author', 'container', 'items', 'location_generic')
     form = CollectionAdminForm
