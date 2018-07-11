@@ -7,6 +7,12 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 
 
+@admin.register(PublicationType)
+class PublicationTypeAdmin(admin.ModelAdmin):
+    readonly_fields = ['created']
+    list_display = ('id', 'title', 'description')
+
+
 class PublicationAdminForm(forms.ModelForm):
     full_text = forms.CharField(
         required=False,

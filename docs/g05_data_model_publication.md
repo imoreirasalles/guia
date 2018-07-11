@@ -19,5 +19,14 @@ Field Name | Django Type Field  | Field Description  | Example
 `publisher`    | Person, **FK**[0..\*]   | Nome da editora | Companhia das Letras
 `dimension`    | JSON   | Dimensão da publicação em centímetros | {"largura": "10", "altura": "10", "prof": "10"}
 `pages`        | number | quando tiver pages exibir, senão não exibir
-`type`         | fk |  | Homem
-`other_data`
+`type`         | **FK**[0..1] | Livro | Cadernos de Literatura
+`other_data`   | JSONField   | Informação sem estrutura definida. | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
+
+
+###  Tipo de publicação (`PublicationType`)
+
+Field Name | Django Type Field  | Field Description  | Example
+-----------|--------------------|--------------------|------------
+`created`  | DateTimeField, NotNull, default=now      | Data de criação do registro | 01/01/2018
+`title`    | CharField(128), Null, Blank  | Título do tipo | Livro
+`description` | TextField, Null, Blank | Breve descrição do tipo
