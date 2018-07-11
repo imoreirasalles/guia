@@ -34,7 +34,17 @@ class MyModelName(models.Model):
     """My docstring explaning what this class do"""
     field1 = typeField(condition1, condition2),
     field2 = typeField(condition1, condition2),
-    field3 = ForeignKey('otherApp.ModelName', conditions),
+    field31 = ForeignKey(
+      'otherApp.ModelName',
+      related_name='otherApp1',
+      conditions1='value',
+      condition2='value'),
+    field32 = ForeignKey(
+        'otherApp.ModelName',
+        related_name='otherApp1',
+        conditions1='value',
+        condition2='value'),
+
     field4 = ManyToManyField('otherApp.ModelName', condition2),
 
         def __str__(self):
@@ -44,6 +54,11 @@ class MyModelName(models.Model):
             verbose_name = _('My Verbose Name')
             verbose_name_plural = _('My Plural Verbose Name')
 ```
+
+> **Important Tips**
+> if you want use 2 same 'otherApp' ForeignKey data in a model, add diferent related values to both (related_name='value')
+
+
 Ref.: https://docs.djangoproject.com/en/2.0/ref/applications/#module-django.apps
 
 1.2 Dont forget the translation engine at the top of imports, if necessary
