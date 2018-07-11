@@ -14,9 +14,21 @@ class EventTypeAdmin(admin.ModelAdmin):
     search_fields = ['id', 'created', 'title', 'description']
 
 
+class EventAdminForm(forms.ModelForm):
+    full_text = forms.CharField(
+        required=False,
+        widget=CKEditorWidget(),
+        label=_('Full Description'))
+
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
     list_filter = ('type', 'location', 'date_start', 'date_end')
     list_display = ('id', 'created', 'title', 'date_start', 'date_end', 'type', 'location')
     search_fields = ['id', 'created', 'title', 'date_start', 'date_end', 'type__title', 'location__title']
+    form = EventAdminForm
