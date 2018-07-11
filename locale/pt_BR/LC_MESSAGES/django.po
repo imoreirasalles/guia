@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-11 13:52+0000\n"
+"POT-Creation-Date: 2018-07-11 16:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "Campo de Preenchimento Automático"
 #: collection/models.py:109 collection/models.py:143 collection/models.py:176
 #: collection/models.py:222 collection/models.py:279 collection/models.py:321
 #: event/models.py:18 event/models.py:53 management/models.py:18
-#: management/models.py:66 person/models.py:30
+#: management/models.py:66 person/models.py:30 publication/models.py:28
 msgid "Created in"
 msgstr "Criado em"
 
@@ -42,6 +42,7 @@ msgstr "Ex.: Nível Básico - 0"
 #: collection/models.py:194 collection/models.py:242 collection/models.py:291
 #: collection/models.py:338 event/models.py:24 event/models.py:66
 #: management/models.py:24 management/models.py:72 person/models.py:49
+#: publication/models.py:40
 msgid "Title"
 msgstr "Título"
 
@@ -102,12 +103,13 @@ msgstr "Gêneros Documentais"
 #: collection/models.py:171 collection/models.py:175 collection/models.py:217
 #: collection/models.py:221 collection/models.py:316 collection/models.py:320
 #: event/models.py:48 person/models.py:25 person/models.py:29
+#: publication/models.py:23 publication/models.py:27
 msgid "This is an auto set field"
 msgstr "Campo de Preenchimento Automático"
 
 #: collection/models.py:105 collection/models.py:139 collection/models.py:172
 #: collection/models.py:218 collection/models.py:317 event/models.py:49
-#: management/models.py:62 person/models.py:26
+#: management/models.py:62 person/models.py:26 publication/models.py:24
 msgid "Universal Unique Identifier"
 msgstr "Identificador Único Universal"
 
@@ -153,7 +155,7 @@ msgid "Institucional Human Identifier"
 msgstr "Idenficador Institucional"
 
 #: collection/models.py:183 collection/models.py:229 collection/models.py:328
-#: event/models.py:60 person/models.py:37
+#: event/models.py:60 person/models.py:37 publication/models.py:35
 msgid "ID"
 msgstr "ID"
 
@@ -245,7 +247,7 @@ msgstr "Condição de Acesso"
 msgid "Access Conditions"
 msgstr "Condições de Acesso"
 
-#: collection/models.py:327
+#: collection/models.py:327 publication/models.py:34
 msgid "Institucional Collection Human Identifier"
 msgstr "Identificador Institucional de Coleções"
 
@@ -261,7 +263,7 @@ msgstr "IDs antigos"
 msgid "No title collection"
 msgstr "Coleção sem título"
 
-#: collection/models.py:337
+#: collection/models.py:337 publication/models.py:39
 msgid "Ex.: The complete photo collection of Sebastião Salgado."
 msgstr "A coleção completa de fotos do fotógrafo Sebastião Salgado."
 
@@ -270,6 +272,7 @@ msgid "Ex.: complete-collection-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
 #: collection/models.py:345 event/models.py:73 person/models.py:84
+#: publication/models.py:47
 msgid "Slug"
 msgstr "Slug (apelido)"
 
@@ -278,7 +281,7 @@ msgid "Ex.: This collection is composed by..."
 msgstr "Ex.: Essa coleção é composta por..."
 
 #: collection/models.py:350 event/models.py:102 management/models.py:106
-#: person/models.py:94
+#: person/models.py:94 publication/models.py:52
 msgid "Abstract"
 msgstr "Resumo"
 
@@ -287,7 +290,7 @@ msgid "Ex.: All itens in this collection..."
 msgstr "ex.: todos os itens dessa coleção..."
 
 #: collection/models.py:355 event/models.py:107 management/models.py:111
-#: person/models.py:99
+#: person/models.py:99 publication/models.py:57
 msgid "Full Text"
 msgstr "Descrição completa"
 
@@ -353,11 +356,11 @@ msgstr "Data Final por extenso"
 msgid "Choose some introduction and representative images"
 msgstr "Escolha algumas imagens representativas"
 
-#: collection/models.py:412
+#: collection/models.py:412 publication/models.py:62 publication/models.py:73
 msgid "Choose some collection's authors"
 msgstr "Escolha os/as autores/as da Coleção"
 
-#: collection/models.py:413
+#: collection/models.py:413 publication/models.py:63 publication/models.py:74
 msgid "Authors"
 msgstr "Autore(s)"
 
@@ -489,6 +492,10 @@ msgstr "Coleção"
 msgid "Collections"
 msgstr "Coleções"
 
+#: event/admin.py:21 publication/admin.py:14
+msgid "Full Description"
+msgstr "Descrição Completa"
+
 #: event/models.py:23
 msgid "Ex.: course, workshop, show, launching"
 msgstr "Ex.: curso, palestra, show, lançamento..."
@@ -553,11 +560,11 @@ msgstr "Evento"
 msgid "Events"
 msgstr "Eventos"
 
-#: guia/settings.py:129
+#: guia/settings.py:127
 msgid "Portuguese"
 msgstr "Português"
 
-#: guia/settings.py:130
+#: guia/settings.py:128
 msgid "English"
 msgstr "Inglês"
 
@@ -724,3 +731,35 @@ msgstr "Pessoa"
 #: person/models.py:126
 msgid "People"
 msgstr "Pessoas"
+
+#: publication/models.py:37
+msgid "No title publication"
+msgstr "Publicação sem título"
+
+#: publication/models.py:46
+msgid "Ex.: book-sebastiao-salgado"
+msgstr "Usado em URLs e links. Ex.: livro-sebastiao-salgado"
+
+#: publication/models.py:51
+msgid "Ex.: This publication is composed by..."
+msgstr "Ex.: Essa publicação é composta por..."
+
+#: publication/models.py:56
+msgid "Ex.: The book serie is..."
+msgstr "Ex.: Este livro faz parte da série..."
+
+#: publication/models.py:67
+msgid "Choose the released date"
+msgstr "Qual é a data de publicação?"
+
+#: publication/models.py:68
+msgid "Released Date"
+msgstr "Data de publicação"
+
+#: publication/models.py:80
+msgid "Publication"
+msgstr "Publicação"
+
+#: publication/models.py:81
+msgid "Publications"
+msgstr "Publicações"
