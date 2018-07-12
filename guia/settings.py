@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_extensions',
     'raven.contrib.django.raven_compat',
+    'reversion',
     # My apps
     'collection',
     'digitalassetsmanagement',

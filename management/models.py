@@ -5,11 +5,12 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import uuid
-
+import reversion
 # Project Apps Imports
 from django.apps import apps
 
 
+@reversion.register()
 class ManagementUnit(models.Model):
     """Used to store unit of institutional management"""
     created = models.DateTimeField(
@@ -36,6 +37,7 @@ class ManagementUnit(models.Model):
         verbose_name_plural = _('Management Units')
 
 
+@reversion.register()
 class AcquisitionMethod(models.Model):
     """docstring for AquisitionMethod"""
     created = models.DateTimeField(
@@ -61,6 +63,7 @@ class AcquisitionMethod(models.Model):
         verbose_name_plural = _('Acquisition Methods')
 
 
+@reversion.register()
 class Acquisition(models.Model):
     """Used to store diferent acquisitions"""
     uuid = models.UUIDField(

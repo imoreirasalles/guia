@@ -7,11 +7,12 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import uuid
-
+import reversion
 # Project Apps Imports
 from django.apps import apps
 
 
+@reversion.register()
 class PublicationType(models.Model):
     """Used to label type of publications"""
     created = models.DateTimeField(
@@ -37,6 +38,7 @@ class PublicationType(models.Model):
         verbose_name_plural=_('Publication Types')
 
 
+@reversion.register()
 class Publication(models.Model):
     """To store data about publications"""
     uuid = models.UUIDField(

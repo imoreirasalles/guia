@@ -5,11 +5,12 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import uuid
-
+import reversion
 # Project Apps Imports
 from django.apps import apps
 
 
+@reversion.register()
 class EventType(models.Model):
     """Used to label events according type"""
     created = models.DateTimeField(
@@ -37,6 +38,7 @@ class EventType(models.Model):
         verbose_name_plural=_('Events Type')
 
 
+@reversion.register()
 class Event(models.Model):
     """Used to archive events promoted by the institution"""
     uuid = models.UUIDField(

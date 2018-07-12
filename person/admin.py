@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
+from reversion.admin import VersionAdmin
 
 
 PERSON_TYPES = (
@@ -41,7 +42,7 @@ class PersonAdminForm(forms.ModelForm):
 
 
 @admin.register(Person)
-class PersonAdmin(admin.ModelAdmin):
+class PersonAdmin(VersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_filter = ('person_type', 'is_staff', 'is_partner', 'is_feature', 'gender', 'date_start', 'date_end')
     list_display = ('uuid', 'id', 'person_type', 'title', 'gender')

@@ -7,10 +7,11 @@ from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
+from reversion.admin import VersionAdmin
 
 
 @admin.register(EventType)
-class EventTypeAdmin(admin.ModelAdmin):
+class EventTypeAdmin(VersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'created', 'title', 'description')
     search_fields = ['id', 'created', 'title', 'description']
@@ -37,7 +38,7 @@ class EventAdminForm(forms.ModelForm):
 
 
 @admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(VersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_filter = ('type', 'location', 'date_start', 'date_end')
     list_display = ('id', 'created', 'title', 'date_start', 'date_end', 'type', 'location')

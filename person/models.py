@@ -7,11 +7,12 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 # Third part imports
 import uuid
-
+import reversion
 # Project guia imports
 from django.apps import apps
 
 
+@reversion.register()
 class Person(models.Model):
     """
     Person Class used to record info about partners, authors, organizations, etc

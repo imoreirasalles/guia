@@ -7,11 +7,13 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import uuid
+import reversion
 
 # Project Apps Imports
 from django.apps import apps
 
 
+@reversion.register()
 class Thumbnail(models.Model):
     """Used to record thumbnail images of representative classes like collections, containers, items, Persons, Exhibitions, etc"""
     uuid = models.UUIDField(
@@ -46,6 +48,7 @@ class Thumbnail(models.Model):
         verbose_name_plural = _('Thumbnails')
 
 
+@reversion.register()
 class Capture(models.Model):
     """Store captures of items"""
     uuid = models.UUIDField(
@@ -79,6 +82,7 @@ class Capture(models.Model):
         verbose_name_plural = _('Captures')
 
 
+@reversion.register()
 class Item(models.Model):
     """Used to store archive items like photos, pictures, etc"""
     uuid = models.UUIDField(

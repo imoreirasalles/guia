@@ -7,11 +7,13 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import uuid
+import reversion
 
 # Project Apps Imports
 from django.apps import apps
 
 
+@reversion.register()
 class Exhibition(models.Model):
     """To store Exhibition data"""
     uuid = models.UUIDField(
@@ -92,6 +94,7 @@ class Exhibition(models.Model):
         verbose_name_plural=_('Exhibitions')
 
 
+@reversion.register()
 class ExhibitionEdition(models.Model):
     """Used to label editions of Exhibitions"""
     uuid = models.UUIDField(

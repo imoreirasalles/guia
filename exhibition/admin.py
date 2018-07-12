@@ -7,6 +7,7 @@ from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
+from reversion.admin import VersionAdmin
 
 
 class ExhibitionAdminForm(forms.ModelForm):
@@ -25,7 +26,7 @@ class ExhibitionAdminForm(forms.ModelForm):
 
 
 @admin.register(Exhibition)
-class ExhibitionAdmin(admin.ModelAdmin):
+class ExhibitionAdmin(VersionAdmin, admin.ModelAdmin):
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('title', 'location', 'date_start', 'date_end', 'link')
     search_fields = ['uuid', 'title', 'date_start', 'date_end', 'team']
@@ -37,7 +38,7 @@ class ExhibitionEditionAdminForm(forms.ModelForm):
     full_text = forms.CharField(
         required=False,
         widget=CKEditorWidget(),
-        label=_('Full Text'))    
+        label=_('Full Text'))
     team = forms.CharField(
         required=False,
         widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
@@ -49,7 +50,7 @@ class ExhibitionEditionAdminForm(forms.ModelForm):
 
 
 @admin.register(ExhibitionEdition)
-class ExhibitionEditionAdmin(admin.ModelAdmin):
+class ExhibitionEditionAdmin(VersionAdmin, admin.ModelAdmin):
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('title', 'location', 'date_start', 'date_end')
     search_fields = ['uuid', 'title', 'date_start', 'date_end', 'team']

@@ -7,11 +7,13 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import uuid
+import reversion
 
 # Project Apps Imports
 from django.apps import apps
 
 
+@reversion.register()
 class Container(models.Model):
     """Used to store an aggroupment of items"""
     uuid = models.UUIDField(
@@ -42,8 +44,6 @@ class Container(models.Model):
         verbose_name=_('Aggregation Type'))
     title = models.CharField(
         max_length=256,
-        null=True,
-        blank=True,
         help_text=_('Ex.: Container of...'),
         verbose_name=_('Title'))
     description = models.TextField(
@@ -77,6 +77,7 @@ class Container(models.Model):
         verbose_name_plural = _('Containers')
 
 
+@reversion.register()
 class Collection(models.Model):
     """
     Main class of collection

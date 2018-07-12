@@ -7,11 +7,12 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import uuid
-
+import reversion
 # Project Apps Imports
 from django.apps import apps
 
 
+@reversion.register()
 class DescriptionLevel(models.Model):
     """Used to label collections according less or more description have an instance"""
     created = models.DateTimeField(
@@ -39,6 +40,7 @@ class DescriptionLevel(models.Model):
         verbose_name_plural=_('Description levels')
 
 
+@reversion.register()
 class AggregationType(models.Model):
     """Used to label collections or containers according type of Aggregation"""
     created = models.DateTimeField(
@@ -66,6 +68,7 @@ class AggregationType(models.Model):
         verbose_name_plural=_('Aggregations Type')
 
 
+@reversion.register()
 class GenreTag(models.Model):
     """Used to label collections, containers or Items according content genre type"""
     created = models.DateTimeField(
@@ -93,6 +96,7 @@ class GenreTag(models.Model):
         verbose_name_plural = _('Genre Tags')
 
 
+@reversion.register()
 class AccessCondition(models.Model):
     """Used to store access condition concerned of captures, items, containers and collections"""
     created = models.DateTimeField(
