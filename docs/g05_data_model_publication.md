@@ -27,6 +27,6 @@ Field Name | Django Type Field  | Field Description  | Example
 
 Field Name | Django Type Field  | Field Description  | Example
 -----------|--------------------|--------------------|------------
-`created`  | DateTimeField, NotNull, default=now      | Data de criação do registro | 01/01/2018
+`created`  | DateTimeField, NotNull, default=now     | Data de criação do registro | 01/01/2018
 `title`    | CharField(128), Null, Blank  | Título do tipo | Livro
 `description` | TextField, Null, Blank | Breve descrição do tipo

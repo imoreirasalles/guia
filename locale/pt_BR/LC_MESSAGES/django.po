@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-11 16:51+0000\n"
+"POT-Creation-Date: 2018-07-12 13:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: collection/models.py:19 collection/models.py:46 collection/models.py:73
 #: collection/models.py:142 collection/models.py:278 event/models.py:17
 #: event/models.py:52 management/models.py:17 management/models.py:61
-#: management/models.py:65
+#: management/models.py:65 publication/models.py:19
 msgid "Auto set field"
 msgstr "Campo de Preenchimento Automático"
 
@@ -29,7 +29,8 @@ msgstr "Campo de Preenchimento Automático"
 #: collection/models.py:109 collection/models.py:143 collection/models.py:176
 #: collection/models.py:222 collection/models.py:279 collection/models.py:321
 #: event/models.py:18 event/models.py:53 management/models.py:18
-#: management/models.py:66 person/models.py:30 publication/models.py:28
+#: management/models.py:66 person/models.py:30 publication/models.py:20
+#: publication/models.py:53
 msgid "Created in"
 msgstr "Criado em"
 
@@ -41,8 +42,9 @@ msgstr "Ex.: Nível Básico - 0"
 #: collection/models.py:115 collection/models.py:149 collection/models.py:189
 #: collection/models.py:194 collection/models.py:242 collection/models.py:291
 #: collection/models.py:338 event/models.py:24 event/models.py:66
-#: management/models.py:24 management/models.py:72 person/models.py:49
-#: publication/models.py:40
+#: exhibition/models.py:30 exhibition/models.py:123 management/models.py:24
+#: management/models.py:72 person/models.py:49 publication/models.py:24
+#: publication/models.py:65
 msgid "Title"
 msgstr "Título"
 
@@ -52,7 +54,7 @@ msgstr "A descrição do Nível de descrição"
 
 #: collection/models.py:32 collection/models.py:59 collection/models.py:86
 #: collection/models.py:247 collection/models.py:296 event/models.py:30
-#: management/models.py:29
+#: exhibition/models.py:129 management/models.py:29 publication/models.py:30
 msgid "Description"
 msgstr "Descrição"
 
@@ -102,14 +104,16 @@ msgstr "Gêneros Documentais"
 #: collection/models.py:104 collection/models.py:108 collection/models.py:138
 #: collection/models.py:171 collection/models.py:175 collection/models.py:217
 #: collection/models.py:221 collection/models.py:316 collection/models.py:320
-#: event/models.py:48 person/models.py:25 person/models.py:29
-#: publication/models.py:23 publication/models.py:27
+#: event/models.py:48 exhibition/models.py:23 exhibition/models.py:104
+#: person/models.py:25 person/models.py:29 publication/models.py:48
+#: publication/models.py:52
 msgid "This is an auto set field"
 msgstr "Campo de Preenchimento Automático"
 
 #: collection/models.py:105 collection/models.py:139 collection/models.py:172
 #: collection/models.py:218 collection/models.py:317 event/models.py:49
-#: management/models.py:62 person/models.py:26 publication/models.py:24
+#: exhibition/models.py:24 exhibition/models.py:105 management/models.py:62
+#: person/models.py:26 publication/models.py:49
 msgid "Universal Unique Identifier"
 msgstr "Identificador Único Universal"
 
@@ -155,7 +159,8 @@ msgid "Institucional Human Identifier"
 msgstr "Idenficador Institucional"
 
 #: collection/models.py:183 collection/models.py:229 collection/models.py:328
-#: event/models.py:60 person/models.py:37 publication/models.py:35
+#: event/models.py:60 exhibition/models.py:112 person/models.py:37
+#: publication/models.py:60
 msgid "ID"
 msgstr "ID"
 
@@ -247,7 +252,7 @@ msgstr "Condição de Acesso"
 msgid "Access Conditions"
 msgstr "Condições de Acesso"
 
-#: collection/models.py:327 publication/models.py:34
+#: collection/models.py:327 publication/models.py:59
 msgid "Institucional Collection Human Identifier"
 msgstr "Identificador Institucional de Coleções"
 
@@ -263,7 +268,7 @@ msgstr "IDs antigos"
 msgid "No title collection"
 msgstr "Coleção sem título"
 
-#: collection/models.py:337 publication/models.py:39
+#: collection/models.py:337 publication/models.py:64
 msgid "Ex.: The complete photo collection of Sebastião Salgado."
 msgstr "A coleção completa de fotos do fotógrafo Sebastião Salgado."
 
@@ -271,8 +276,8 @@ msgstr "A coleção completa de fotos do fotógrafo Sebastião Salgado."
 msgid "Ex.: complete-collection-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
-#: collection/models.py:345 event/models.py:73 person/models.py:84
-#: publication/models.py:47
+#: collection/models.py:345 event/models.py:73 exhibition/models.py:37
+#: person/models.py:84 publication/models.py:72
 msgid "Slug"
 msgstr "Slug (apelido)"
 
@@ -280,17 +285,17 @@ msgstr "Slug (apelido)"
 msgid "Ex.: This collection is composed by..."
 msgstr "Ex.: Essa coleção é composta por..."
 
-#: collection/models.py:350 event/models.py:102 management/models.py:106
-#: person/models.py:94 publication/models.py:52
+#: collection/models.py:350 event/models.py:102 exhibition/models.py:42
+#: management/models.py:106 person/models.py:94 publication/models.py:84
 msgid "Abstract"
 msgstr "Resumo"
 
-#: collection/models.py:354
+#: collection/models.py:354 exhibition/models.py:46
 msgid "Ex.: All itens in this collection..."
 msgstr "ex.: todos os itens dessa coleção..."
 
-#: collection/models.py:355 event/models.py:107 management/models.py:111
-#: person/models.py:99 publication/models.py:57
+#: collection/models.py:355 event/models.py:107 exhibition/models.py:47
+#: management/models.py:111 person/models.py:99 publication/models.py:89
 msgid "Full Text"
 msgstr "Descrição completa"
 
@@ -306,23 +311,23 @@ msgstr "Nível de descrição"
 msgid "Choose one or more options"
 msgstr "Escolha uma ou mais opções"
 
-#: collection/models.py:380
+#: collection/models.py:380 publication/models.py:110
 msgid "Feed with information about dimensions"
 msgstr "Alimente com informações sobre as dimensões do agrupamento. "
 
-#: collection/models.py:381
+#: collection/models.py:381 publication/models.py:111
 msgid "Dimensions"
 msgstr "Dimensões"
 
-#: collection/models.py:385 event/models.py:77 management/models.py:95
-#: person/models.py:103
+#: collection/models.py:385 event/models.py:77 exhibition/models.py:51
+#: exhibition/models.py:140 management/models.py:95 person/models.py:103
 msgid "Choose a start date"
 msgstr ""
 "Escolha uma data inicial que representa a data de composição da primeira "
 "obra presente nessa coleção."
 
-#: collection/models.py:386 event/models.py:78 management/models.py:96
-#: person/models.py:104
+#: collection/models.py:386 event/models.py:78 exhibition/models.py:52
+#: exhibition/models.py:141 management/models.py:96 person/models.py:104
 msgid "Initial Date"
 msgstr "Data Inicial"
 
@@ -334,13 +339,15 @@ msgstr "Escolha LEGENDA para a DATA INICIAL da primeira obra dessa coleção"
 msgid "Initial date caption"
 msgstr "Data Inicial por extenso"
 
-#: collection/models.py:396 event/models.py:82 person/models.py:108
+#: collection/models.py:396 event/models.py:82 exhibition/models.py:56
+#: exhibition/models.py:145 person/models.py:108
 msgid "Choose an final date"
 msgstr ""
 "Escolha uma data final que representa a data de composição da última obra "
 "dessa coleção"
 
-#: collection/models.py:397 event/models.py:83 person/models.py:109
+#: collection/models.py:397 event/models.py:83 exhibition/models.py:57
+#: exhibition/models.py:146 person/models.py:109
 msgid "Final date"
 msgstr "Data Final"
 
@@ -356,11 +363,11 @@ msgstr "Data Final por extenso"
 msgid "Choose some introduction and representative images"
 msgstr "Escolha algumas imagens representativas"
 
-#: collection/models.py:412 publication/models.py:62 publication/models.py:73
+#: collection/models.py:412 publication/models.py:94 publication/models.py:105
 msgid "Choose some collection's authors"
 msgstr "Escolha os/as autores/as da Coleção"
 
-#: collection/models.py:413 publication/models.py:63 publication/models.py:74
+#: collection/models.py:413 publication/models.py:95 publication/models.py:106
 msgid "Authors"
 msgstr "Autore(s)"
 
@@ -428,71 +435,72 @@ msgstr "Possui algum link de acesso online dessa coleção?"
 msgid "Access Link"
 msgstr "Link de Acesso"
 
-#: collection/models.py:464
+#: collection/models.py:466
 msgid "What is the generic location to the collection?"
 msgstr "Qual a localização genérica dessa coleção? (sede)"
 
-#: collection/models.py:465
+#: collection/models.py:467
 msgid "Generic Location"
 msgstr "Localização genérica"
 
-#: collection/models.py:470
+#: collection/models.py:472
 msgid "What is the specific location to this collection?"
 msgstr "Qual localização específica da coleção?"
 
-#: collection/models.py:471
+#: collection/models.py:473
 msgid "Specific Location"
 msgstr "Localização Específica"
 
-#: collection/models.py:475
+#: collection/models.py:477
 msgid "Is there any inventary to this collection?"
 msgstr "Há algum inventário dessa coleção?"
 
-#: collection/models.py:476
+#: collection/models.py:478
 msgid "Inventary Status"
 msgstr "Status de Inventário"
 
-#: collection/models.py:480
+#: collection/models.py:482
 msgid "What is the inventary last date?"
 msgstr "Qual a última data do inventário?"
 
-#: collection/models.py:481
+#: collection/models.py:483
 msgid "Inventary Last Date"
 msgstr "Última Data de Inventário"
 
-#: collection/models.py:485
+#: collection/models.py:487
 msgid "Several data about the inventary"
 msgstr "Dados diversos sobre o inventário"
 
-#: collection/models.py:486
+#: collection/models.py:488
 msgid "Inventary Data"
 msgstr "Dados de inventário"
 
-#: collection/models.py:492
+#: collection/models.py:494
 msgid "What is the management unit concerning to this collection?"
 msgstr "Qual é a Unidade de Gestão responsável pela coleção?"
 
-#: collection/models.py:493 management/models.py:35
+#: collection/models.py:495 management/models.py:35
 msgid "Management Unit"
 msgstr "Unidades de Gestão"
 
-#: collection/models.py:497 event/models.py:116 management/models.py:115
+#: collection/models.py:499 event/models.py:116 management/models.py:115
 msgid "Other unstructured data of this collection"
 msgstr "Outros dados não estruturados sobre a coleção"
 
-#: collection/models.py:498 event/models.py:117 management/models.py:116
+#: collection/models.py:500 event/models.py:117 management/models.py:116
+#: publication/models.py:121
 msgid "Other Data"
 msgstr "Outros dados"
 
-#: collection/models.py:510
+#: collection/models.py:512
 msgid "Collection"
 msgstr "Coleção"
 
-#: collection/models.py:511
+#: collection/models.py:513
 msgid "Collections"
 msgstr "Coleções"
 
-#: event/admin.py:21 publication/admin.py:14
+#: event/admin.py:21 exhibition/admin.py:14 publication/admin.py:20
 msgid "Full Description"
 msgstr "Descrição Completa"
 
@@ -524,7 +532,7 @@ msgstr "Ex.: lancamento-nova-publicacao"
 msgid "Choose the an appropriate type to this one"
 msgstr "Escolha a classificação de acesso mais apropriada para coleção."
 
-#: event/models.py:90
+#: event/models.py:90 publication/models.py:79
 msgid "Type"
 msgstr "Tipo"
 
@@ -532,7 +540,7 @@ msgstr "Tipo"
 msgid "Choose the location where this event occurs"
 msgstr "Escolha a localização onde esse evento ocorre"
 
-#: event/models.py:97
+#: event/models.py:97 exhibition/models.py:64 exhibition/models.py:136
 msgid "Location"
 msgstr "Localização"
 
@@ -548,7 +556,7 @@ msgstr "Ex.: O curso foi..."
 msgid "Feed with information about team that worked on this"
 msgstr "Alimente com informações sobre as dimensões do agrupamento. "
 
-#: event/models.py:112
+#: event/models.py:112 exhibition/models.py:74 exhibition/models.py:151
 msgid "Team"
 msgstr "Time"
 
@@ -559,6 +567,90 @@ msgstr "Evento"
 #: event/models.py:124
 msgid "Events"
 msgstr "Eventos"
+
+#: exhibition/models.py:29
+msgid "Ex.: Sebastião Salgado - first images"
+msgstr "Ex.: Rio Primeiras Imagens"
+
+#: exhibition/models.py:36
+msgid "Ex.: exhibition-sebastiao-salgado-first-images"
+msgstr "Usado em URLs e links. Ex.: rio-primeiras-imagens"
+
+#: exhibition/models.py:41
+msgid "Ex.: This exhibition is composed by..."
+msgstr "Ex.: Essa exposição é composta por..."
+
+#: exhibition/models.py:63
+msgid "What is the exhibition edition location?"
+msgstr "Qual é a localização da exposição?"
+
+#: exhibition/models.py:68
+msgid "Do you have some online link to this edition?"
+msgstr "Possui algum link de acesso online dessa edição?"
+
+#: exhibition/models.py:69
+msgid "Link"
+msgstr "Link"
+
+#: exhibition/models.py:73
+msgid "Infos about the exhibition team"
+msgstr "Informações sobre a equipe que atuou na exposição?"
+
+#: exhibition/models.py:79
+msgid "Is there an catalog about the exhibition?"
+msgstr "Há algum catálogo sobre a exposição?"
+
+#: exhibition/models.py:80
+msgid "Catalog(s)"
+msgstr "Catálogo(s)"
+
+#: exhibition/models.py:85
+msgid "Is there any other publications about the exhibition?"
+msgstr "Há alguma outra publicação sobre a exposição?"
+
+#: exhibition/models.py:86
+msgid "Publication(s)"
+msgstr "Publicaçõe(s)"
+
+#: exhibition/models.py:92 exhibition/models.py:119
+msgid "Exhibition"
+msgstr "Exposição"
+
+#: exhibition/models.py:93
+msgid "Exhibitions"
+msgstr "Aquisições"
+
+#: exhibition/models.py:111
+msgid "Institucional Exhibition Edition Human Identifier"
+msgstr "Identificador Institucional das Exposições"
+
+#: exhibition/models.py:118
+msgid "The main Exhibition source from this edition"
+msgstr "A exposição inicial de origem dessa edição"
+
+#: exhibition/models.py:122
+msgid "Ex.: Summer photo protests - 1st edition"
+msgstr "Ex.: Conflitos - primeira edição"
+
+#: exhibition/models.py:128
+msgid "Ex.: This first edition is..."
+msgstr "Ex.: Essa é a primeira edição..."
+
+#: exhibition/models.py:135
+msgid "What is the location where occurs this exhibition edition?"
+msgstr "Qual localização onde ocorre a edição dessa exposição?"
+
+#: exhibition/models.py:150
+msgid "Infos about the edition team"
+msgstr "Informações sobre a equipe desta edição"
+
+#: exhibition/models.py:157
+msgid "Edition"
+msgstr "Edição"
+
+#: exhibition/models.py:158
+msgid "Editions"
+msgstr "Edições"
 
 #: guia/settings.py:127
 msgid "Portuguese"
@@ -732,34 +824,66 @@ msgstr "Pessoa"
 msgid "People"
 msgstr "Pessoas"
 
+#: publication/models.py:23
+msgid "Ex.: book"
+msgstr "Ex.: Livro"
+
+#: publication/models.py:29
+msgid "Ex.: A book is..."
+msgstr "Ex.: Este livro faz parte da série..."
+
+#: publication/models.py:36
+msgid "Publication Type"
+msgstr "Tipo de Publicação"
+
 #: publication/models.py:37
+msgid "Publication Types"
+msgstr "Tipos de Publicações"
+
+#: publication/models.py:62
 msgid "No title publication"
 msgstr "Publicação sem título"
 
-#: publication/models.py:46
+#: publication/models.py:71
 msgid "Ex.: book-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: livro-sebastiao-salgado"
 
-#: publication/models.py:51
+#: publication/models.py:78
+msgid "Choose the more appropriate type to means this publication"
+msgstr "Escolha a classificação de acesso mais apropriada para coleção."
+
+#: publication/models.py:83
 msgid "Ex.: This publication is composed by..."
 msgstr "Ex.: Essa publicação é composta por..."
 
-#: publication/models.py:56
+#: publication/models.py:88
 msgid "Ex.: The book serie is..."
 msgstr "Ex.: Este livro faz parte da série..."
 
-#: publication/models.py:67
+#: publication/models.py:99
 msgid "Choose the released date"
 msgstr "Qual é a data de publicação?"
 
-#: publication/models.py:68
+#: publication/models.py:100
 msgid "Released Date"
 msgstr "Data de publicação"
 
-#: publication/models.py:80
+#: publication/models.py:115
+msgid "Total number of pages"
+msgstr "Número total de páginas"
+
+#: publication/models.py:116
+msgid "Number of pages"
+msgstr "Número de páginas"
+
+#: publication/models.py:120
+msgid "Other unstructured data of this publication"
+msgstr "Outros dados não estruturados sobre a coleção"
+
+#: publication/models.py:127
 msgid "Publication"
 msgstr "Publicação"
 
-#: publication/models.py:81
+#: publication/models.py:128
 msgid "Publications"
 msgstr "Publicações"
