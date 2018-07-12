@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-12 18:05+0000\n"
+"POT-Creation-Date: 2018-07-12 21:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,12 +24,13 @@ msgstr "IDs antigos"
 
 #: collection/admin.py:47 collection/models.py:242 event/models.py:107
 #: exhibition/admin.py:40 exhibition/models.py:46 exhibition/models.py:127
-#: management/admin.py:28 management/models.py:122 person/models.py:99
-#: publication/models.py:89
+#: management/admin.py:28 management/models.py:122 person/admin.py:28
+#: person/models.py:100 publication/models.py:89
 msgid "Full Text"
 msgstr "Descrição Completa"
 
-#: collection/admin.py:51 collection/models.py:268 publication/models.py:111
+#: collection/admin.py:51 collection/models.py:268 publication/admin.py:26
+#: publication/models.py:111
 msgid "Dimensions"
 msgstr "Dimensões"
 
@@ -38,6 +39,7 @@ msgid "Inventary Data"
 msgstr "Dados de inventário"
 
 #: collection/admin.py:59 event/admin.py:31 management/admin.py:32
+#: publication/admin.py:30
 msgid "Other Unstructured Data"
 msgstr "Outros Dados não Estruturados"
 
@@ -93,7 +95,7 @@ msgid "Thumbnail"
 msgstr "Imagem de Apresentação"
 
 #: collection/models.py:46 collection/models.py:75 collection/models.py:295
-#: person/models.py:89
+#: person/models.py:90
 msgid "Thumbnails"
 msgstr "Imagens de Apresentação"
 
@@ -229,7 +231,7 @@ msgid "Ex.: complete-collection-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
 #: collection/models.py:232 event/models.py:73 exhibition/models.py:36
-#: person/models.py:84 publication/models.py:72
+#: person/models.py:85 publication/models.py:72
 msgid "Slug"
 msgstr "Slug (apelido)"
 
@@ -238,7 +240,7 @@ msgid "Ex.: This collection is composed by..."
 msgstr "Ex.: Essa coleção é composta por..."
 
 #: collection/models.py:237 event/models.py:102 exhibition/models.py:41
-#: management/models.py:117 person/models.py:94 publication/models.py:84
+#: management/models.py:117 person/models.py:95 publication/models.py:84
 msgid "Abstract"
 msgstr "Resumo"
 
@@ -267,14 +269,14 @@ msgid "Feed with information about dimensions"
 msgstr "Alimente com informações sobre as dimensões do agrupamento. "
 
 #: collection/models.py:272 event/models.py:77 exhibition/models.py:50
-#: exhibition/models.py:138 management/models.py:106 person/models.py:103
+#: exhibition/models.py:138 management/models.py:106 person/models.py:104
 msgid "Choose a start date"
 msgstr ""
 "Escolha uma data inicial que representa a data de composição da primeira "
 "obra presente nessa coleção."
 
 #: collection/models.py:273 event/models.py:78 exhibition/models.py:51
-#: exhibition/models.py:139 management/models.py:107 person/models.py:104
+#: exhibition/models.py:139 management/models.py:107 person/models.py:105
 msgid "Initial Date"
 msgstr "Data Inicial"
 
@@ -287,14 +289,14 @@ msgid "Initial date caption"
 msgstr "Data Inicial por extenso"
 
 #: collection/models.py:283 event/models.py:82 exhibition/models.py:55
-#: exhibition/models.py:143 person/models.py:108
+#: exhibition/models.py:143 person/models.py:109
 msgid "Choose an final date"
 msgstr ""
 "Escolha uma data final que representa a data de composição da última obra "
 "dessa coleção"
 
 #: collection/models.py:284 event/models.py:83 exhibition/models.py:56
-#: exhibition/models.py:144 person/models.py:109
+#: exhibition/models.py:144 person/models.py:110
 msgid "Final date"
 msgstr "Data Final"
 
@@ -306,7 +308,7 @@ msgstr "Escolha uma LEGENDA para a DATA FINAL da última obra dessa coleção."
 msgid "Final date caption"
 msgstr "Data Final por extenso"
 
-#: collection/models.py:294 person/models.py:88
+#: collection/models.py:294 person/models.py:89
 msgid "Choose some introduction and representative images"
 msgstr "Escolha algumas imagens representativas"
 
@@ -447,7 +449,7 @@ msgstr "Coleção"
 msgid "Collections"
 msgstr "Coleções"
 
-#: event/admin.py:23 exhibition/admin.py:16 publication/admin.py:20
+#: event/admin.py:23 exhibition/admin.py:16 publication/admin.py:22
 msgid "Full Description"
 msgstr "Descrição Completa"
 
@@ -771,6 +773,18 @@ msgstr "Aquisição"
 msgid "Acquisitions"
 msgstr "Aquisições"
 
+#: person/admin.py:14
+msgid "Individual"
+msgstr "Física"
+
+#: person/admin.py:15
+msgid "Juridical"
+msgstr "Juridica"
+
+#: person/admin.py:40 person/models.py:120
+msgid "Linked Open Data Dictionary"
+msgstr "Dicionário de Dados Abertos Linkáveis"
+
 #: person/models.py:42
 msgid "Choose the more appropriate option"
 msgstr "Escolha a classificação de acesso mais apropriada para coleção."
@@ -811,47 +825,43 @@ msgstr "Parceiro"
 msgid "This is a featured person?"
 msgstr "Essa pessoa é uma autoridade/autoria?"
 
-#: person/models.py:74
+#: person/models.py:75
 msgid "Biological sex gender"
 msgstr "Ex.: Masculino / Feminino"
 
-#: person/models.py:75
+#: person/models.py:76
 msgid "Gender"
 msgstr "Gênero"
 
-#: person/models.py:83
+#: person/models.py:84
 msgid "Ex.: the-photographer-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
-#: person/models.py:93
+#: person/models.py:94
 msgid "Ex.: This person is..."
 msgstr "Ex.: Essa pessoa é..."
 
-#: person/models.py:98
+#: person/models.py:99
 msgid "Ex.: The photographer..."
 msgstr "Ex.: O fotógrafo..."
 
-#: person/models.py:113
+#: person/models.py:114
 msgid "Representative URL about this person"
 msgstr "URL Representativa sobre essa pessoa"
 
-#: person/models.py:114
+#: person/models.py:115
 msgid "URL"
 msgstr "URL"
 
-#: person/models.py:118
+#: person/models.py:119
 msgid "Ex.: VIAF, ULAN, Wiki Data, etc"
 msgstr "Ex.: VIAF, ULAN, Wiki Data, etc"
 
-#: person/models.py:119
-msgid "Linked Open Data Dictionary"
-msgstr "Dicionário de Dados Abertos Linkáveis"
-
-#: person/models.py:125
+#: person/models.py:126
 msgid "Person"
 msgstr "Pessoa"
 
-#: person/models.py:126
+#: person/models.py:127
 msgid "People"
 msgstr "Pessoas"
 
@@ -918,12 +928,3 @@ msgstr "Publicação"
 #: publication/models.py:128
 msgid "Publications"
 msgstr "Publicações"
-
-#~ msgid "Ex.: This first edition is..."
-#~ msgstr "Ex.: Essa é a primeira edição..."
-
-#~ msgid "Edition"
-#~ msgstr "Edição"
-
-#~ msgid "Editions"
-#~ msgstr "Edições"

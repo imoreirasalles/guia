@@ -3,8 +3,10 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 # Project Guia imports
 from .models import *
+from django.conf import settings
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
+from django_admin_json_editor import JSONEditorWidget
 
 
 @admin.register(PublicationType)
@@ -18,6 +20,14 @@ class PublicationAdminForm(forms.ModelForm):
         required=False,
         widget=CKEditorWidget(),
         label=_('Full Description'))
+    dimension = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Dimensions'))
+    other_data = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Other Unstructured Data'))
 
     class Meta:
         model = Publication

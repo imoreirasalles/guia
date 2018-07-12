@@ -68,7 +68,8 @@ class Person(models.Model):
         blank=True,
         help_text=_('This is a featured person?'),
         verbose_name=_('Staff Member'))
-    gender = models.NullBooleanField(
+    gender = models.CharField(
+        max_length=1,
         null=True,
         blank=True,
         help_text=_('Biological sex gender'),
