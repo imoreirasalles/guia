@@ -458,9 +458,11 @@ class Collection(models.Model):
         blank=True,
         help_text=_('Do you have some online link access to this collection?'),
         verbose_name=_('Access Link'))
-    location_generic = models.ManyToManyField(
+    location_generic = models.ForeignKey(
         'location.Location',
+        null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_('What is the generic location to the collection?'),
         verbose_name=_('Generic Location'))
     location_specific = models.CharField(
