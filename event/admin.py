@@ -1,10 +1,12 @@
 from django.contrib import admin
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 # Project Guia imports
 from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
+from django_admin_json_editor import JSONEditorWidget
 
 
 @admin.register(EventType)
@@ -19,6 +21,15 @@ class EventAdminForm(forms.ModelForm):
         required=False,
         widget=CKEditorWidget(),
         label=_('Full Description'))
+    team = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Team'))
+    other_data = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Other Unstructured Data')
+    )
 
     class Meta:
         model = Event

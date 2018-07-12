@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 # Project Guia imports
 from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
+from django_admin_json_editor import JSONEditorWidget
 
 
 @admin.register(Thumbnail)
@@ -35,10 +37,26 @@ class ContainerAdmin(admin.ModelAdmin):
 
 
 class CollectionAdminForm(forms.ModelForm):
+    id_old = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Old IDs'))
     full_text = forms.CharField(
         required=False,
         widget=CKEditorWidget(),
-        label='Descrição Completa')
+        label=_('Full Text'))
+    dimensions = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Dimensions'))
+    inventary_data = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Inventary Data'))
+    other_data = forms.CharField(
+        required=False,
+        widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
+        label=_('Other Unstructured Data'))
 
     class Meta:
        model = Collection

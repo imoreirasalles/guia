@@ -40,16 +40,11 @@ Sistema construído com **Django**: ver modelagem de `Ontology` e `Relation`
 
 * https://github.com/archesproject/arches/blob/master/arches/app/models/models.py
 
-&nbsp;
-
 ### ArqAdmin
 
 Ferramenta administrativa desenvolvida pelo Arquivo Histórico Municipal de São Paulo
 
 * https://github.com/ahmsp
-
-&nbsp;
-
 
 ### NYC Archaeological Repository
 
@@ -57,7 +52,7 @@ Exibição de variantes da mesma imagem
 
 * http://archaeology.cityofnewyork.us/collection/search/van-cortlandt-mansion-199132-blue-transfer-serving-bowl
 
-&nbsp;
+
 
 ### Library of Congress
 

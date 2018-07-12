@@ -38,9 +38,20 @@ class ManagementUnit(models.Model):
 
 class AcquisitionMethod(models.Model):
     """docstring for AquisitionMethod"""
-    created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=128, null=False, blank=True)
-    description = models.TextField(null=True, blank=True)
+    created = models.DateTimeField(
+        auto_now_add=True,
+        )
+    title = models.CharField(
+        max_length=128,
+        null=False,
+        blank=True,
+        help_text=_('Type of acquisition method'),
+        verbose_name=_('Title'))
+    description = models.TextField(
+        null=True,
+        blank=True,
+        help_text=_('The description of acquisition method'),
+        verbose_name=_('Description'))
 
     def __str__(self):
         return self.title

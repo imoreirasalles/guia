@@ -24,8 +24,7 @@ class Exhibition(models.Model):
         verbose_name=_('Universal Unique Identifier'))
     title = models.CharField(
         max_length=256,
-        null=True,
-        blank=True,
+        default='',
         help_text=_('Ex.: Sebastião Salgado - first images'),
         verbose_name=_('Title'))
     slug = models.SlugField(
@@ -43,7 +42,7 @@ class Exhibition(models.Model):
     full_text = models.TextField(
         null=True,
         blank=True,
-        help_text=_('Ex.: All itens in this collection...'),
+        help_text=_('Ex.: This exhibition is about...'),
         verbose_name=_('Full Text'))
     date_start = models.DateField(
         null=True,
@@ -116,17 +115,16 @@ class ExhibitionEdition(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         help_text=_('The main Exhibition source from this edition'),
-        verbose_name=_('Exhibition'))
+        verbose_name=_('Original Exhibition'))
     title = models.CharField(
         max_length=256,
         help_text=_('Ex.: Summer photo protests - 1st edition'),
         verbose_name=_('Title'))
-    description = models.CharField(
-        max_length=512,
+    full_text = models.TextField(
         null=True,
         blank=True,
-        help_text=_('Ex.: This first edition is...'),
-        verbose_name=_('Description'))
+        help_text=_('Ex.: This exhibition is about...'),
+        verbose_name=_('Full Text'))
     location = models.ForeignKey(
         'location.Location',
         null=True,
@@ -154,5 +152,5 @@ class ExhibitionEdition(models.Model):
         return self.title
 
     class Meta:
-        verbose_name=_('Edition')
-        verbose_name_plural=_('Editions')
+        verbose_name=_('Exhibition Edition')
+        verbose_name_plural=_('Exhibition Editions')

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.gis.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Location(models.Model):
@@ -20,4 +21,4 @@ class Location(models.Model):
         return self.title
 
     class Meta:
-        verbose_name_plural = "Locais"
+        verbose_name_plural = _('Places')
