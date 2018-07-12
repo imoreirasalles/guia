@@ -10,25 +10,6 @@ from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 
 
-@admin.register(Thumbnail)
-class ThumbnailAdmin(admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('title', 'image', 'uuid')
-
-
-@admin.register(Capture)
-class CaptureAdmin(admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('title', 'thumbnail')
-
-
-@admin.register(Item)
-class ItemAdmin(admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('id', 'title', 'description', 'uuid')
-    filter_horizontal = ('capture',)
-
-
 @admin.register(Container)
 class ContainerAdmin(admin.ModelAdmin):
     readonly_fields = ['created']

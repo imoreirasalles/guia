@@ -84,7 +84,7 @@ class Person(models.Model):
         help_text=_('Ex.: the-photographer-sebastiao-salgado'),
         verbose_name=_('Slug'))
     thumbnail = models.ManyToManyField(
-        'collection.Thumbnail',
+        'digitalassetsmanagement.Thumbnail',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
         verbose_name=_('Thumbnails'))

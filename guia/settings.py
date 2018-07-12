@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     # My apps
     'collection',
+    'digitalassetsmanagement',
     'event',
     'exhibition',
     'glossary',
