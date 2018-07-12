@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'collection',
     'event',
     'exhibition',
+    'glossary',
     'location',
     'management',
     'person',

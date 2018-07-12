@@ -8,27 +8,6 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 
 
-admin.site.register(AccessCondition)
-
-
-@admin.register(DescriptionLevel)
-class DescriptionLevelAdmin(admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('title', 'description')
-
-
-@admin.register(AggregationType)
-class AggregationTypeAdmin(admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('title', 'description')
-
-
-@admin.register(GenreTag)
-class GenreTagAdmin(admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('title', 'description')
-
-
 @admin.register(Thumbnail)
 class ThumbnailAdmin(admin.ModelAdmin):
     readonly_fields = ['created']
