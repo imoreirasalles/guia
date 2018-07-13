@@ -1,26 +1,21 @@
-from django.db import models
-from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
+from django.contrib.gis.db import models
+from guia.models import Base
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
-import uuid
 import reversion
+
 # Project Apps Imports
 from django.apps import apps
 
 
 @reversion.register()
-class EventType(models.Model):
+class EventType(Base):
     """Used to label events according type"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
     title = models.CharField(
         max_length=256,
-        null=True,
-        blank=True,
         help_text=_('Ex.: course, workshop, show, launching'),
         verbose_name=_('Title'))
     description = models.CharField(
@@ -39,31 +34,17 @@ class EventType(models.Model):
 
 
 @reversion.register()
-class Event(models.Model):
+class Event(Base):
     """Used to archive events promoted by the institution"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    id = models.CharField(
+    id_human = models.CharField(
         max_length=64,
         null=True,
         blank=True,
         unique=True,
-        help_text=_('Institucional Human Identifier'),
-        verbose_name=_('ID'))
+        help_text=_('Institucional Identifier'),
+        verbose_name=_('Institucional ID'))
     title = models.CharField(
         max_length=256,
-        null=False,
-        blank=True,
         help_text=_('Ex.: Launch of new publication...'),
         verbose_name=_('Title'))
     slug = models.SlugField(

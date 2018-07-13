@@ -1,12 +1,10 @@
-from django.db import models
-from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
+from guia.models import Base
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
-import uuid
 import reversion
 
 # Project Apps Imports
@@ -14,16 +12,15 @@ from django.apps import apps
 
 
 @reversion.register()
-class Exhibition(models.Model):
+class Exhibition(Base):
     """To store Exhibition data"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
+    id_human = models.CharField(
+        max_length=64,
+        null=True,
+        blank=True,
         unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
+        help_text=_('Institucional Identifier'),
+        verbose_name=_('Institucional ID'))
     title = models.CharField(
         max_length=256,
         default='',
@@ -95,23 +92,15 @@ class Exhibition(models.Model):
 
 
 @reversion.register()
-class ExhibitionEdition(models.Model):
+class ExhibitionEdition(Base):
     """Used to label editions of Exhibitions"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    id = models.CharField(
+    id_human = models.CharField(
         max_length=64,
         null=True,
         blank=True,
         unique=True,
-        help_text=_('Institucional Exhibition Edition Human Identifier'),
-        verbose_name=_('ID'))
+        help_text=_('Institucional Identifier'),
+        verbose_name=_('Institucional ID'))
     exhibition = models.ForeignKey(
         Exhibition,
         null=True,

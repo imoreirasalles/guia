@@ -12,9 +12,8 @@ from reversion_compare.admin import CompareVersionAdmin
 
 @admin.register(EventType)
 class EventTypeAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('id', 'created', 'title', 'description')
-    search_fields = ['id', 'created', 'title', 'description']
+    list_display = ('id_auto_series', 'title', 'description')
+    search_fields = ['__all__']
 
 
 class EventAdminForm(forms.ModelForm):
@@ -39,8 +38,7 @@ class EventAdminForm(forms.ModelForm):
 
 @admin.register(Event)
 class EventAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
     list_filter = ('type', 'location', 'date_start', 'date_end')
-    list_display = ('id', 'created', 'title', 'date_start', 'date_end', 'type', 'location')
-    search_fields = ['id', 'created', 'title', 'date_start', 'date_end', 'type__title', 'location__title']
+    list_display = ('id_auto_series', 'title', 'date_start', 'date_end', 'type', 'location')
+    search_fields = ['__all__']
     form = EventAdminForm

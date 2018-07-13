@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 # Project Guia imports
 from .models import *
-from django.conf import settings
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
@@ -12,8 +12,8 @@ from reversion_compare.admin import CompareVersionAdmin
 
 @admin.register(PublicationType)
 class PublicationTypeAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('id', 'title', 'description')
+    list_display = ('id_auto_series', 'title', 'description')
+    search_fields = ['__all__']
 
 
 class PublicationAdminForm(forms.ModelForm):
@@ -37,7 +37,7 @@ class PublicationAdminForm(forms.ModelForm):
 
 @admin.register(Publication)
 class PublicationAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('id', 'title', 'date_released')
+    list_display = ('id_auto_series', 'uuid', 'title', 'date_released')
+    search_fields = ['__all__']
     filter_horizontal = ('author', 'publisher')
     form = PublicationAdminForm

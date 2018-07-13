@@ -117,3 +117,6 @@ msgstr "Minha Etiqueta"
 ```
 django-admin compilemessages --locale=pt_BR
 ```
+
+
+

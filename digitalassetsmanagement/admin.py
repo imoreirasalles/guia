@@ -13,18 +13,18 @@ from reversion_compare.admin import CompareVersionAdmin
 
 @admin.register(Thumbnail)
 class ThumbnailAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('title', 'image', 'uuid')
+    list_display = ('id_auto_series', 'uuid', 'title', 'image')
+    search_fields = ['__all__']
 
 
 @admin.register(Capture)
 class CaptureAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('title', 'thumbnail')
+    list_display = ('id_auto_series', 'uuid', 'title', 'thumbnail')
+    search_fields = ['__all__']
 
 
 @admin.register(Item)
 class ItemAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('id', 'title', 'description', 'uuid')
+    list_display = ('id_auto_series', 'uuid', 'title', 'description')
+    search_fields = ['__all__']
     filter_horizontal = ('capture',)

@@ -28,8 +28,8 @@ class ExhibitionAdminForm(forms.ModelForm):
 @admin.register(Exhibition)
 class ExhibitionAdmin(CompareVersionAdmin, admin.ModelAdmin):
     list_filter = ('location', 'date_start', 'date_end')
-    list_display = ('title', 'location', 'date_start', 'date_end', 'link')
-    search_fields = ['uuid', 'title', 'date_start', 'date_end', 'team']
+    list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end', 'link')
+    search_fields = ['id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'team']
     filter_horizontal = ('catalog', 'publication')
     form = ExhibitionAdminForm
 
@@ -52,6 +52,6 @@ class ExhibitionEditionAdminForm(forms.ModelForm):
 @admin.register(ExhibitionEdition)
 class ExhibitionEditionAdmin(CompareVersionAdmin, admin.ModelAdmin):
     list_filter = ('location', 'date_start', 'date_end')
-    list_display = ('title', 'location', 'date_start', 'date_end')
-    search_fields = ['uuid', 'title', 'date_start', 'date_end', 'team']
+    list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end')
+    search_fields = ['id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'team']
     form = ExhibitionEditionAdminForm

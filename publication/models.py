@@ -1,24 +1,19 @@
-from django.db import models
-from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
+from guia.models import Base
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
-import uuid
 import reversion
+
 # Project Apps Imports
 from django.apps import apps
 
 
 @reversion.register()
-class PublicationType(models.Model):
+class PublicationType(Base):
     """Used to label type of publications"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
     title = models.CharField(
         max_length=256,
         help_text=_('Ex.: book'),
@@ -39,27 +34,15 @@ class PublicationType(models.Model):
 
 
 @reversion.register()
-class Publication(models.Model):
+class Publication(Base):
     """To store data about publications"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Created in'))
-    id = models.CharField(
+    id_human = models.CharField(
         max_length=64,
         null=True,
         blank=True,
         unique=True,
-        help_text=_('Institucional Collection Human Identifier'),
-        verbose_name=_('ID'))
+        help_text=_('Institucional Identifier'),
+        verbose_name=_('Institucional ID'))
     title = models.CharField(
         default=_('No title publication'),
         max_length=256,

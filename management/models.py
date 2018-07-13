@@ -1,26 +1,21 @@
-from django.db import models
-from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
+from django.contrib.gis.db import models
+from guia.models import Base
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
-import uuid
 import reversion
+
 # Project Apps Imports
 from django.apps import apps
 
 
 @reversion.register()
-class ManagementUnit(models.Model):
+class ManagementUnit(Base):
     """Used to store unit of institutional management"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
     title = models.CharField(
         max_length=256,
-        null=False,
-        blank=True,
         help_text=_('Title of Management Unit'),
         verbose_name=_('Title'))
     description = models.TextField(
@@ -38,15 +33,10 @@ class ManagementUnit(models.Model):
 
 
 @reversion.register()
-class AcquisitionMethod(models.Model):
+class AcquisitionMethod(Base):
     """docstring for AquisitionMethod"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        )
     title = models.CharField(
         max_length=128,
-        null=False,
-        blank=True,
         help_text=_('Type of acquisition method'),
         verbose_name=_('Title'))
     description = models.TextField(
@@ -64,24 +54,10 @@ class AcquisitionMethod(models.Model):
 
 
 @reversion.register()
-class Acquisition(models.Model):
+class Acquisition(Base):
     """Used to store diferent acquisitions"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
     title = models.CharField(
         max_length=256,
-        null=True,
-        blank=True,
         help_text=_('Ex.: Aquisition from The Photographer...'),
         verbose_name=_('Title'))
     method = models.ForeignKey(

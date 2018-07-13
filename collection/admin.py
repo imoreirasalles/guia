@@ -13,10 +13,10 @@ from reversion_compare.admin import CompareVersionAdmin
 
 @admin.register(Container)
 class ContainerAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
-    list_display = ('id', 'title', 'description', 'description_level', 'uuid')
+    list_display = ('id_auto_series', 'id_human', 'uuid', 'title', 'description', 'description_level',)
     filter_horizontal = ('items', 'container_child')
-
+    search_fields = ['__all__']
+    
 
 class CollectionAdminForm(forms.ModelForm):
     id_old = forms.CharField(
@@ -47,9 +47,8 @@ class CollectionAdminForm(forms.ModelForm):
 
 @admin.register(Collection)
 class CollectionAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
     list_filter = ('aggregation_type', 'genre_tags', 'author', 'access_condition', 'access_local_status', 'access_online_status', 'location_generic', 'inventary_status', 'inventary_last_date', 'management_unit', 'date_start', 'date_end')
-    list_display = ('id', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
-    search_fields = ['uuid', 'id', 'id_old', 'title', 'author__nickname']
+    list_display = ('id_auto_series', 'uuid', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
+    search_fields = ['__all__']
     filter_horizontal = ('thumbnail', 'author', 'container', 'items')
     form = CollectionAdminForm

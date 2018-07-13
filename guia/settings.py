@@ -143,7 +143,7 @@ LANGUAGES = (
     ('en', _('English')),
 )
 
-LANGUAGE_CODE = 'pt_BR'
+LANGUAGE_CODE = 'pt-br'
 
 # Tell Django where the project's translation files should be.
 LOCALE_PATHS = (

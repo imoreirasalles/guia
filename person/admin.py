@@ -1,10 +1,9 @@
-# Core django imports
 from django.contrib import admin
 from django import forms
-# Project Guia imports
-from .models import *
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+# Project Guia imports
+from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
@@ -17,8 +16,8 @@ PERSON_TYPES = (
 )
 
 GENDER = (
-    ('m', 'Male'),
-    ('f', 'Female')
+    ('m', _('Male')),
+    ('f', _('Female'))
 )
 
 
@@ -43,9 +42,8 @@ class PersonAdminForm(forms.ModelForm):
 
 @admin.register(Person)
 class PersonAdmin(CompareVersionAdmin, admin.ModelAdmin):
-    readonly_fields = ['created']
     list_filter = ('person_type', 'is_staff', 'is_partner', 'is_feature', 'gender', 'date_start', 'date_end')
-    list_display = ('uuid', 'id', 'person_type', 'title', 'gender')
-    search_fields = ('uuid', 'title')
+    list_display = ('id_auto_series', 'uuid', 'person_type', 'title', 'gender')
+    search_fields = ['__all__']
     filter_horizontal = ('thumbnail',)
     form = PersonAdminForm
