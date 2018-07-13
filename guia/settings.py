@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'raven.contrib.django.raven_compat',
     'reversion',
+    'reversion_compare',
     # My apps
     'collection',
     'digitalassetsmanagement',
@@ -103,6 +104,9 @@ DATA_SCHEMA = {
         },
     },
 }
+
+# Add reversion models to admin interface:
+ADD_REVERSION_ADMIN=True
 
 DATABASES = {
     'default': {

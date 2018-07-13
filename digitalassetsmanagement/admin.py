@@ -8,23 +8,23 @@ from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
-from reversion.admin import VersionAdmin
+from reversion_compare.admin import CompareVersionAdmin
 
 
 @admin.register(Thumbnail)
-class ThumbnailAdmin(VersionAdmin, admin.ModelAdmin):
+class ThumbnailAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'image', 'uuid')
 
 
 @admin.register(Capture)
-class CaptureAdmin(VersionAdmin, admin.ModelAdmin):
+class CaptureAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'thumbnail')
 
 
 @admin.register(Item)
-class ItemAdmin(VersionAdmin, admin.ModelAdmin):
+class ItemAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description', 'uuid')
     filter_horizontal = ('capture',)

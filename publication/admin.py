@@ -7,11 +7,11 @@ from django.conf import settings
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
-from reversion.admin import VersionAdmin
+from reversion_compare.admin import CompareVersionAdmin
 
 
 @admin.register(PublicationType)
-class PublicationTypeAdmin(VersionAdmin, admin.ModelAdmin):
+class PublicationTypeAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description')
 
@@ -36,7 +36,7 @@ class PublicationAdminForm(forms.ModelForm):
 
 
 @admin.register(Publication)
-class PublicationAdmin(VersionAdmin, admin.ModelAdmin):
+class PublicationAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'date_released')
     filter_horizontal = ('author', 'publisher')

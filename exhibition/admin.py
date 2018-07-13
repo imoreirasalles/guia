@@ -7,7 +7,7 @@ from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
-from reversion.admin import VersionAdmin
+from reversion_compare.admin import CompareVersionAdmin
 
 
 class ExhibitionAdminForm(forms.ModelForm):
@@ -26,7 +26,7 @@ class ExhibitionAdminForm(forms.ModelForm):
 
 
 @admin.register(Exhibition)
-class ExhibitionAdmin(VersionAdmin, admin.ModelAdmin):
+class ExhibitionAdmin(CompareVersionAdmin, admin.ModelAdmin):
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('title', 'location', 'date_start', 'date_end', 'link')
     search_fields = ['uuid', 'title', 'date_start', 'date_end', 'team']
@@ -50,7 +50,7 @@ class ExhibitionEditionAdminForm(forms.ModelForm):
 
 
 @admin.register(ExhibitionEdition)
-class ExhibitionEditionAdmin(VersionAdmin, admin.ModelAdmin):
+class ExhibitionEditionAdmin(CompareVersionAdmin, admin.ModelAdmin):
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('title', 'location', 'date_start', 'date_end')
     search_fields = ['uuid', 'title', 'date_start', 'date_end', 'team']

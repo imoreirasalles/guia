@@ -7,17 +7,17 @@ from django.utils.translation import gettext_lazy as _
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
-from reversion.admin import VersionAdmin
+from reversion_compare.admin import CompareVersionAdmin
 
 
 @admin.register(ManagementUnit)
-class ManagementUnitAdmin(VersionAdmin, admin.ModelAdmin):
+class ManagementUnitAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description')
 
 
 @admin.register(AcquisitionMethod)
-class AcquisitionMethodAdmin(VersionAdmin, admin.ModelAdmin):
+class AcquisitionMethodAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description')
 
@@ -38,7 +38,7 @@ class AcquisitionAdminForm(forms.ModelForm):
 
 
 @admin.register(Acquisition)
-class AcquisitionAdmin(VersionAdmin, admin.ModelAdmin):
+class AcquisitionAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_filter = ('method', 'date_start', 'date_end')
     list_display = ('uuid', 'title', 'method', 'date_start', 'date_end')

@@ -8,11 +8,11 @@ from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
-from reversion.admin import VersionAdmin
+from reversion_compare.admin import CompareVersionAdmin
 
 
 @admin.register(Container)
-class ContainerAdmin(VersionAdmin, admin.ModelAdmin):
+class ContainerAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('id', 'title', 'description', 'description_level', 'uuid')
     filter_horizontal = ('items', 'container_child')
@@ -46,7 +46,7 @@ class CollectionAdminForm(forms.ModelForm):
 
 
 @admin.register(Collection)
-class CollectionAdmin(VersionAdmin, admin.ModelAdmin):
+class CollectionAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_filter = ('aggregation_type', 'genre_tags', 'author', 'access_condition', 'access_local_status', 'access_online_status', 'location_generic', 'inventary_status', 'inventary_last_date', 'management_unit', 'date_start', 'date_end')
     list_display = ('id', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')

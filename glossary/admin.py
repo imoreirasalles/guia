@@ -6,27 +6,27 @@ from django.utils.translation import gettext_lazy as _
 from .models import *
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
-from reversion.admin import VersionAdmin
+from reversion_compare.admin import CompareVersionAdmin
 
 
 @admin.register(AccessCondition)
-class AccessConditionAdmin(VersionAdmin, admin.ModelAdmin):
+class AccessConditionAdmin(CompareVersionAdmin, admin.ModelAdmin):
     list_display = ('title_short', 'title_long', 'description')
 
 
 @admin.register(DescriptionLevel)
-class DescriptionLevelAdmin(VersionAdmin, admin.ModelAdmin):
+class DescriptionLevelAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'description')
 
 
 @admin.register(AggregationType)
-class AggregationTypeAdmin(VersionAdmin, admin.ModelAdmin):
+class AggregationTypeAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'description')
 
 
 @admin.register(GenreTag)
-class GenreTagAdmin(VersionAdmin, admin.ModelAdmin):
+class GenreTagAdmin(CompareVersionAdmin, admin.ModelAdmin):
     readonly_fields = ['created']
     list_display = ('title', 'description')

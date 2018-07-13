@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .models import *
-from reversion.admin import VersionAdmin
+from reversion_compare.admin import CompareVersionAdmin
 
 
 @admin.register(Location)
-class LocationAdmin(VersionAdmin, admin.ModelAdmin):
+class LocationAdmin(CompareVersionAdmin, admin.ModelAdmin):
     list_filter = ('country', 'state', 'city')
     list_display = ('id', 'title', 'country', 'state', 'city')
     search_fields = ['id', 'title', 'country', 'state', 'city', 'neighborhood', 'street', 'postal_code']
