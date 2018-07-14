@@ -1,6 +1,7 @@
 from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _
 
 
 class ManagementConfig(AppConfig):
     name = 'management'
-    verbose_name = 'Gestão do Acervo'
+    verbose_name = _('Management App')
