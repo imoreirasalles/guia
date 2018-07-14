@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.gis',
     # 3rd part apps
+    'admin_reorder',
     'django_json_widget',
     'django_admin_json_editor',
     'ckeditor',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'guia.urls'
@@ -192,6 +194,33 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+## From Django Model Admin Reorder https://github.com/mishbahr/django-modeladmin-reorder
+
+ADMIN_REORDER = (
+    {'app': 'auth',
+    'models': ('auth.User', 'auth.Group')},
+    {'app': 'collection',
+    'label': 'Guia IMS',
+    'models': ('collection.Collection',
+                'exhibition.Exhibition',
+                'publication.Publication',
+                'event.Event',
+                'person.Person',)},
+    {'app': 'management',
+    'label': 'Gestão do Acervo',
+    'models': ('management.ManagementUnit',
+                {'model': 'location.Location', 'label': 'Locais de Guarda'},
+                'management.Acquisition',
+                'management.Procedure')},
+    {'app': 'glossary',
+    'label': 'Glossário',
+    'models': ('glossary.AggregationType',
+                'glossary.AccessCondition',
+                'glossary.DescriptionLevel',
+                'glossary.GenreTag')},
+)
+
 
 # Sentry Configuration
 if env('DJANGO_SENTRY_DSN', default=False):

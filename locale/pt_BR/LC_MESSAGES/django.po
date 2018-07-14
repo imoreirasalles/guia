@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-14 14:35+0000\n"
+"POT-Creation-Date: 2018-07-14 21:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felipe Cabral <felipehistory at gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,8 @@ msgstr "IDs antigos"
 
 #: collection/admin.py:29 collection/models.py:104 event/models.py:90
 #: exhibition/admin.py:41 exhibition/models.py:45 exhibition/models.py:119
-#: management/admin.py:29 management/models.py:101 person/admin.py:28
-#: person/models.py:86 publication/models.py:74
+#: management/admin.py:35 management/models.py:58 management/models.py:139
+#: person/admin.py:28 person/models.py:86 publication/models.py:74
 msgid "Full Text"
 msgstr "Descrição Completa"
 
@@ -32,7 +32,7 @@ msgstr "Dimensões"
 msgid "Inventary Data"
 msgstr "Dados de inventário"
 
-#: collection/admin.py:41 event/admin.py:31 management/admin.py:33
+#: collection/admin.py:41 event/admin.py:31 management/admin.py:39
 #: publication/admin.py:31
 msgid "Other Unstructured Data"
 msgstr "Outros Dados não Estruturados"
@@ -73,8 +73,8 @@ msgstr "Ex.: Um conjunto de..."
 #: exhibition/models.py:28 exhibition/models.py:114 glossary/models.py:20
 #: glossary/models.py:42 glossary/models.py:64 glossary/models.py:92
 #: location/models.py:20 management/models.py:20 management/models.py:41
-#: management/models.py:62 person/models.py:35 publication/models.py:20
-#: publication/models.py:50
+#: management/models.py:79 management/models.py:100 person/models.py:35
+#: publication/models.py:20 publication/models.py:50
 msgid "Title"
 msgstr "Título"
 
@@ -85,7 +85,7 @@ msgstr "Ex.: Uma coleção é um agrupamento de objetos..."
 #: collection/models.py:39 digitalassetsmanagement/models.py:83
 #: event/models.py:26 glossary/models.py:26 glossary/models.py:48
 #: glossary/models.py:70 glossary/models.py:97 management/models.py:25
-#: management/models.py:46 publication/models.py:26
+#: management/models.py:84 publication/models.py:26
 msgid "Description"
 msgstr "Descrição"
 
@@ -139,7 +139,7 @@ msgid "Ex.: complete-collection-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
 #: collection/models.py:94 event/models.py:56 exhibition/models.py:35
-#: person/models.py:71 publication/models.py:57
+#: management/models.py:48 person/models.py:71 publication/models.py:57
 msgid "Slug"
 msgstr "Slug (apelido)"
 
@@ -148,7 +148,8 @@ msgid "Ex.: This collection is composed by..."
 msgstr "Ex.: Essa coleção é composta por..."
 
 #: collection/models.py:99 event/models.py:85 exhibition/models.py:40
-#: management/models.py:96 person/models.py:81 publication/models.py:69
+#: management/models.py:53 management/models.py:134 person/models.py:81
+#: publication/models.py:69
 msgid "Abstract"
 msgstr "Resumo"
 
@@ -156,7 +157,7 @@ msgstr "Resumo"
 msgid "Ex.: All itens in this collection..."
 msgstr "ex.: todos os itens dessa coleção..."
 
-#: collection/models.py:110 collection/models.py:117 management/models.py:68
+#: collection/models.py:110 collection/models.py:117 management/models.py:106
 msgid "Choose an Option"
 msgstr "Escolha uma opção"
 
@@ -177,14 +178,14 @@ msgid "Feed with information about dimensions"
 msgstr "Alimente com informações sobre as dimensões do agrupamento. "
 
 #: collection/models.py:134 event/models.py:60 exhibition/models.py:49
-#: exhibition/models.py:130 management/models.py:85 person/models.py:90
+#: exhibition/models.py:130 management/models.py:123 person/models.py:90
 msgid "Choose a start date"
 msgstr ""
 "Escolha uma data inicial que representa a data de composição da primeira "
 "obra presente nessa coleção."
 
 #: collection/models.py:135 event/models.py:61 exhibition/models.py:50
-#: exhibition/models.py:131 management/models.py:86 person/models.py:91
+#: exhibition/models.py:131 management/models.py:124 person/models.py:91
 msgid "Initial Date"
 msgstr "Data Inicial"
 
@@ -343,14 +344,15 @@ msgstr "Qual é a Unidade de Gestão responsável pela coleção?"
 
 #: collection/models.py:244 management/models.py:31
 msgid "Management Unit"
-msgstr "Unidades de Gestão"
+msgstr "Coordenação"
 
-#: collection/models.py:248 event/models.py:99 management/models.py:105
+#: collection/models.py:248 event/models.py:99 management/models.py:62
+#: management/models.py:143
 msgid "Other unstructured data of this collection"
 msgstr "Outros dados não estruturados sobre a coleção"
 
-#: collection/models.py:249 event/models.py:100 management/models.py:106
-#: publication/models.py:106
+#: collection/models.py:249 event/models.py:100 management/models.py:63
+#: management/models.py:144 publication/models.py:106
 msgid "Other Data"
 msgstr "Outros dados"
 
@@ -658,19 +660,19 @@ msgstr "Campo de Preenchimento Automático"
 msgid "Universal Unique Identifier"
 msgstr "Identificador Único Universal"
 
-#: guia/settings.py:96
+#: guia/settings.py:98
 msgid "key"
 msgstr "Chave"
 
-#: guia/settings.py:101
+#: guia/settings.py:103
 msgid "value"
 msgstr "Valor"
 
-#: guia/settings.py:142
+#: guia/settings.py:144
 msgid "Portuguese"
 msgstr "Português"
 
-#: guia/settings.py:143
+#: guia/settings.py:145
 msgid "English"
 msgstr "Inglês"
 
@@ -780,7 +782,7 @@ msgstr "App Gestão"
 
 #: management/models.py:19
 msgid "Title of Management Unit"
-msgstr "Unidades de Gestão"
+msgstr "Título da Coordenação"
 
 #: management/models.py:24
 msgid "The description of Management Unit"
@@ -788,69 +790,85 @@ msgstr "A descrição das unidades de gerenciamento"
 
 #: management/models.py:32
 msgid "Management Units"
-msgstr "Unidades de Gestão"
+msgstr "Coordenações"
 
 #: management/models.py:40
-msgid "Type of acquisition method"
-msgstr "Método de Aquisição"
+msgid "Title of Procedure"
+msgstr "Título do Procedimento"
 
-#: management/models.py:45
-msgid "The description of acquisition method"
-msgstr "A descrição do método de aquisição"
+#: management/models.py:47
+msgid "Ex.: procedure-sell-collection-001"
+msgstr ""
 
-#: management/models.py:52
-msgid "Acquisition Method"
-msgstr "Método de Aquisição"
-
-#: management/models.py:53
-msgid "Acquisition Methods"
-msgstr "Métodos de Aquisição"
-
-#: management/models.py:61
-msgid "Ex.: Aquisition from The Photographer..."
-msgstr "Ex.: Aquisição do fotógrafo..."
-
-#: management/models.py:69
-msgid "Aquisition Method"
-msgstr "Método de Aquisição"
-
-#: management/models.py:74
-msgid "Choose people who have been source to this acquisition"
-msgstr "Defina a(s) pessoa(s) que são fontes dessa aquisição"
-
-#: management/models.py:75
-msgid "Source"
-msgstr "Proveniência"
-
-#: management/models.py:80
-msgid "Choose people who traded this asset"
-msgstr "Defina a(s) pessoa(s) intermediaram a negociação desses ativos"
-
-#: management/models.py:81
-msgid "Dealer"
-msgstr "Mediador"
-
-#: management/models.py:90
-msgid "Choose an final date - special for lending"
-msgstr "Escolha uma LEGENDA para a DATA FINAL da última obra dessa coleção."
-
-#: management/models.py:91
-msgid "Final Date"
-msgstr "Data Final"
-
-#: management/models.py:95
+#: management/models.py:52 management/models.py:133
 msgid "Ex.: this acquisition is composed by..."
 msgstr "Ex.: Uma coleção é um agrupamento de objetos..."
 
-#: management/models.py:100
+#: management/models.py:57 management/models.py:138
 msgid "Ex.: All itens in this acquisition..."
 msgstr "Ex.: Todos os itens dessa coleção..."
 
+#: management/models.py:69
+msgid "Procedure"
+msgstr "Procedimento"
+
+#: management/models.py:70
+msgid "Procedures"
+msgstr "Procedimentos"
+
+#: management/models.py:78
+msgid "Type of acquisition method"
+msgstr "Método de Aquisição"
+
+#: management/models.py:83
+msgid "The description of acquisition method"
+msgstr "A descrição do método de aquisição"
+
+#: management/models.py:90
+msgid "Acquisition Method"
+msgstr "Método de Aquisição"
+
+#: management/models.py:91
+msgid "Acquisition Methods"
+msgstr "Métodos de Aquisição"
+
+#: management/models.py:99
+msgid "Ex.: Aquisition from The Photographer..."
+msgstr "Ex.: Aquisição do fotógrafo..."
+
+#: management/models.py:107
+msgid "Aquisition Method"
+msgstr "Método de Aquisição"
+
 #: management/models.py:112
+msgid "Choose people who have been source to this acquisition"
+msgstr "Defina a(s) pessoa(s) que são fontes dessa aquisição"
+
+#: management/models.py:113
+msgid "Source"
+msgstr "Proveniência"
+
+#: management/models.py:118
+msgid "Choose people who traded this asset"
+msgstr "Defina a(s) pessoa(s) intermediaram a negociação desses ativos"
+
+#: management/models.py:119
+msgid "Dealer"
+msgstr "Mediador"
+
+#: management/models.py:128
+msgid "Choose an final date - special for lending"
+msgstr "Escolha uma LEGENDA para a DATA FINAL da última obra dessa coleção."
+
+#: management/models.py:129
+msgid "Final Date"
+msgstr "Data Final"
+
+#: management/models.py:150
 msgid "Acquisition"
 msgstr "Aquisição"
 
-#: management/models.py:113
+#: management/models.py:151
 msgid "Acquisitions"
 msgstr "Aquisições"
 
@@ -864,11 +882,11 @@ msgstr "Juridica"
 
 #: person/admin.py:19
 msgid "Male"
-msgstr ""
+msgstr "Masculino"
 
 #: person/admin.py:20
 msgid "Female"
-msgstr ""
+msgstr "Feminino"
 
 #: person/admin.py:40 person/models.py:106
 msgid "Linked Open Data Dictionary"
