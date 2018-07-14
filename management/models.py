@@ -33,6 +33,44 @@ class ManagementUnit(Base):
 
 
 @reversion.register()
+class Procedure(Base):
+    """Used to store unit of institutional management"""
+    title = models.CharField(
+        max_length=256,
+        help_text=_('Title of Procedure'),
+        verbose_name=_('Title'))
+    slug = models.SlugField(
+        max_length=256,
+        unique=True,
+        null=True,
+        blank=True,
+        help_text=_('Ex.: procedure-sell-collection-001'),
+        verbose_name=_('Slug'))
+    abstract = models.TextField(
+        null=True,
+        blank=True,
+        help_text=_('Ex.: this acquisition is composed by...'),
+        verbose_name=_('Abstract'))
+    full_text = models.TextField(
+        null=True,
+        blank=True,
+        help_text=_('Ex.: All itens in this acquisition...'),
+        verbose_name=_('Full Text'))
+    other_data = JSONField(
+        null=True,
+        blank=True,
+        help_text=_('Other unstructured data of this collection'),
+        verbose_name=_('Other Data'))
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name=_('Procedure')
+        verbose_name_plural = _('Procedures')
+
+
+@reversion.register()
 class AcquisitionMethod(Base):
     """docstring for AquisitionMethod"""
     title = models.CharField(

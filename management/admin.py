@@ -16,6 +16,12 @@ class ManagementUnitAdmin(CompareVersionAdmin, admin.ModelAdmin):
     search_fields = ['__all__']
 
 
+@admin.register(Procedure)
+class ProcedureAdmin(CompareVersionAdmin, admin.ModelAdmin):
+    list_display = ('id_auto_series', 'title', 'slug')
+    search_fields = ['__all__']
+
+
 @admin.register(AcquisitionMethod)
 class AcquisitionMethodAdmin(CompareVersionAdmin, admin.ModelAdmin):
     list_display = ('id_auto_series', 'title', 'description')
