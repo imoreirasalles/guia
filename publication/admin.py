@@ -8,10 +8,19 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+
+class PublicationTypeResource(resources.ModelResource):
+
+    class Meta:
+        model = PublicationType
 
 
 @admin.register(PublicationType)
-class PublicationTypeAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class PublicationTypeAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = PublicationTypeResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
 
@@ -35,8 +44,15 @@ class PublicationAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class PublicationResource(resources.ModelResource):
+
+    class Meta:
+        model = Publication
+
+
 @admin.register(Publication)
-class PublicationAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class PublicationAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = PublicationResource
     list_display = ('id_auto_series', 'uuid', 'title', 'date_released')
     search_fields = ['__all__']
     filter_horizontal = ('author', 'publisher')

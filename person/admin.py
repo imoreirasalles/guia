@@ -8,6 +8,8 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 
 PERSON_TYPES = (
@@ -40,8 +42,15 @@ class PersonAdminForm(forms.ModelForm):
         label=_('Linked Open Data Dictionary'))
 
 
+class PersonResource(resources.ModelResource):
+
+    class Meta:
+        model = Person
+
+
 @admin.register(Person)
-class PersonAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class PersonAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = PersonResource
     list_filter = ('person_type', 'is_staff', 'is_partner', 'is_feature', 'gender', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'person_type', 'title', 'gender')
     search_fields = ['__all__']

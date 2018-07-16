@@ -9,22 +9,45 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+
+class ThumbnailResource(resources.ModelResource):
+
+    class Meta:
+        model = Thumbnail
 
 
 @admin.register(Thumbnail)
-class ThumbnailAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class ThumbnailAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = ThumbnailResource
     list_display = ('id_auto_series', 'uuid', 'title', 'image')
     search_fields = ['__all__']
 
 
+class CaptureResource(resources.ModelResource):
+
+    class Meta:
+        model = Capture
+
+
 @admin.register(Capture)
-class CaptureAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class CaptureAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = CaptureResource
     list_display = ('id_auto_series', 'uuid', 'title', 'thumbnail')
     search_fields = ['__all__']
 
 
+class ItemResource(resources.ModelResource):
+
+    class Meta:
+        model = Item
+
+
 @admin.register(Item)
-class ItemAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class ItemAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = ItemResource
     list_display = ('id_auto_series', 'uuid', 'title', 'description')
     search_fields = ['__all__']
     filter_horizontal = ('capture',)

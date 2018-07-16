@@ -8,6 +8,14 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+
+class ExhibitionResource(resources.ModelResource):
+
+    class Meta:
+        model = Exhibition
 
 
 class ExhibitionAdminForm(forms.ModelForm):
@@ -26,7 +34,8 @@ class ExhibitionAdminForm(forms.ModelForm):
 
 
 @admin.register(Exhibition)
-class ExhibitionAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class ExhibitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = ExhibitionResource
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end', 'link')
     search_fields = ['id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'team']
@@ -49,8 +58,15 @@ class ExhibitionEditionAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class ExhibitionEditionResource(resources.ModelResource):
+
+    class Meta:
+        model = ExhibitionEdition
+
+
 @admin.register(ExhibitionEdition)
-class ExhibitionEditionAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class ExhibitionEditionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = ExhibitionEditionResource
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end')
     search_fields = ['id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'team']

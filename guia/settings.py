@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'raven.contrib.django.raven_compat',
     'reversion',
     'reversion_compare',
+    'import_export',
     # My apps
     'collection',
     'digitalassetsmanagement',
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
+    'reversion.middleware.RevisionMiddleware',
 ]
 
 ROOT_URLCONF = 'guia.urls'
@@ -109,6 +111,7 @@ DATA_SCHEMA = {
 
 # Add reversion models to admin interface:
 ADD_REVERSION_ADMIN=True
+
 
 DATABASES = {
     'default': {
@@ -195,6 +198,9 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+# From Django Import / Export apps
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
 ## From Django Model Admin Reorder https://github.com/mishbahr/django-modeladmin-reorder
 
 ADMIN_REORDER = (
@@ -203,6 +209,12 @@ ADMIN_REORDER = (
     {'app': 'collection',
     'label': 'Guia IMS',
     'models': ('collection.Collection',
+                {'model': 'collection.Container',
+                'label': '> Conjuntos'},
+                {'model': 'digitalassetsmanagement.Item',
+                'label': '> Itens'},
+                {'model': 'digitalassetsmanagement.Capture',
+                'label': '> Capturas'},
                 'exhibition.Exhibition',
                 'publication.Publication',
                 'event.Event',

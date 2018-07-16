@@ -9,14 +9,29 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+
+class ContainerResource(resources.ModelResource):
+
+    class Meta:
+        model = Container
 
 
 @admin.register(Container)
-class ContainerAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class ContainerAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = ContainerResource
     list_display = ('id_auto_series', 'id_human', 'uuid', 'title', 'description', 'description_level',)
     filter_horizontal = ('items', 'container_child')
     search_fields = ['__all__']
-    
+
+
+class CollectionResource(resources.ModelResource):
+
+    class Meta:
+        model = Collection
+
 
 class CollectionAdminForm(forms.ModelForm):
     id_old = forms.CharField(
@@ -46,7 +61,8 @@ class CollectionAdminForm(forms.ModelForm):
 
 
 @admin.register(Collection)
-class CollectionAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = CollectionResource
     list_filter = ('aggregation_type', 'genre_tags', 'author', 'access_condition', 'access_local_status', 'access_online_status', 'location_generic', 'inventary_status', 'inventary_last_date', 'management_unit', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
     search_fields = ['__all__']

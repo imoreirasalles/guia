@@ -8,10 +8,19 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+
+class EventTypeResource(resources.ModelResource):
+
+    class Meta:
+        model = EventType
 
 
 @admin.register(EventType)
-class EventTypeAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class EventTypeAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = EventTypeResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
 
@@ -36,8 +45,15 @@ class EventAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
+class EventResource(resources.ModelResource):
+
+    class Meta:
+        model = Event
+
+
 @admin.register(Event)
-class EventAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class EventAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = EventResource
     list_filter = ('type', 'location', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'title', 'date_start', 'date_end', 'type', 'location')
     search_fields = ['__all__']

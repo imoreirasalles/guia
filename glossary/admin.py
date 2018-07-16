@@ -8,27 +8,57 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+
+class AccessConditionResource(resources.ModelResource):
+
+    class Meta:
+        model = AccessCondition
 
 
 @admin.register(AccessCondition)
-class AccessConditionAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class AccessConditionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = AccessConditionResource
     list_display = ('id_auto_series', 'title_short', 'title_long', 'description')
     search_fields = ['__all__']
 
 
+class DescriptionLevelResource(resources.ModelResource):
+
+    class Meta:
+        model = DescriptionLevel
+
+
 @admin.register(DescriptionLevel)
-class DescriptionLevelAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class DescriptionLevelAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = DescriptionLevelResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
+
+
+class AggregationTypeResource(resources.ModelResource):
+
+    class Meta:
+        model = AggregationType
 
 
 @admin.register(AggregationType)
-class AggregationTypeAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class AggregationTypeAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = AggregationTypeResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
 
 
+class GenreTagResource(resources.ModelResource):
+
+    class Meta:
+        model = GenreTag
+
+
 @admin.register(GenreTag)
-class GenreTagAdmin(CompareVersionAdmin, admin.ModelAdmin):
+class GenreTagAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = GenreTagResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
