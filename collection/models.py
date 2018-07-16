@@ -252,10 +252,10 @@ class Collection(Base):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('collection_detail', kwargs={'pk': self.uuid})
-
-    def get_absolute_url_slug(self):
-        return reverse('collection_detail_slug', kwargs={'slug': self.slug})
+        if self.slug != None:
+            return reverse('collection_detail_slug', kwargs={'slug': self.slug})
+        else:
+            return reverse('collection_detail', kwargs={'pk': self.id_auto_series})
 
     class Meta:
         verbose_name = _('Collection')
