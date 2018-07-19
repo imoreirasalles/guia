@@ -20,8 +20,9 @@ class AccessConditionResource(resources.ModelResource):
 
 @admin.register(AccessCondition)
 class AccessConditionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = AccessConditionResource
-    list_display = ('id_auto_series', 'title_short', 'title_long', 'description')
+    list_display = ('id_auto_series', 'title', 'title_long', 'description')
     search_fields = ['__all__']
 
 
@@ -33,6 +34,7 @@ class DescriptionLevelResource(resources.ModelResource):
 
 @admin.register(DescriptionLevel)
 class DescriptionLevelAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = DescriptionLevelResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
@@ -46,6 +48,7 @@ class AggregationTypeResource(resources.ModelResource):
 
 @admin.register(AggregationType)
 class AggregationTypeAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = AggregationTypeResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
@@ -59,6 +62,7 @@ class GenreTagResource(resources.ModelResource):
 
 @admin.register(GenreTag)
 class GenreTagAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = GenreTagResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']

@@ -14,10 +14,6 @@ from django.apps import apps
 @reversion.register()
 class EventType(Base):
     """Used to label events according type"""
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: course, workshop, show, launching'),
-        verbose_name=_('Title'))
     description = models.CharField(
         max_length=512,
         null=True,
@@ -43,17 +39,6 @@ class Event(Base):
         unique=True,
         help_text=_('Institucional Identifier'),
         verbose_name=_('Institucional ID'))
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: Launch of new publication...'),
-        verbose_name=_('Title'))
-    slug = models.SlugField(
-        max_length=256,
-        unique=True,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: lauch-new-publication'),
-        verbose_name=_('Slug'))
     date_start = models.DateField(
         null=True,
         blank=True,

@@ -14,10 +14,6 @@ from django.apps import apps
 @reversion.register()
 class DescriptionLevel(Base):
     """Used to label collections according less or more description have an instance"""
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: basic - 0'),
-        verbose_name=_('Title'))
     description = models.CharField(
         max_length=512,
         null=True,
@@ -36,10 +32,6 @@ class DescriptionLevel(Base):
 @reversion.register()
 class AggregationType(Base):
     """Used to label collections or containers according type of Aggregation"""
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: collection, archive, etc'),
-        verbose_name=_('Title'))
     description = models.CharField(
         max_length=512,
         null=True,
@@ -58,10 +50,6 @@ class AggregationType(Base):
 @reversion.register()
 class GenreTag(Base):
     """Used to label collections, containers or Items according content genre type"""
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: photo, picture, draw, etc'),
-        verbose_name=_('Title'))
     description = models.CharField(
         max_length=512,
         null=True,
@@ -80,10 +68,6 @@ class GenreTag(Base):
 @reversion.register()
 class AccessCondition(Base):
     """Used to store access condition concerned of captures, items, containers and collections"""
-    title_short = models.CharField(
-        max_length=64,
-        help_text=_('Ex.: Full Free, Partial, Retricted, etc.'),
-        verbose_name=_('Access'))
     title_long = models.CharField(
         max_length=128,
         null=False,
@@ -97,7 +81,7 @@ class AccessCondition(Base):
         verbose_name=_('Description'))
 
     def __str__(self):
-        return self.title_short
+        return self.title
 
     class Meta:
         verbose_name = _('Access Condition')

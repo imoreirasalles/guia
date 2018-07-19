@@ -43,18 +43,6 @@ class Publication(Base):
         unique=True,
         help_text=_('Institucional Identifier'),
         verbose_name=_('Institucional ID'))
-    title = models.CharField(
-        default=_('No title publication'),
-        max_length=256,
-        help_text=_('Ex.: The complete photo collection of Sebastião Salgado.'),
-        verbose_name=_('Title'))
-    slug = models.SlugField(
-        max_length=256,
-        unique=True,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: book-sebastiao-salgado'),
-        verbose_name=_('Slug'))
     type = models.ForeignKey(
         PublicationType,
         null=True,

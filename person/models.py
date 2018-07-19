@@ -29,10 +29,6 @@ class Person(Base):
         blank=True,
         help_text=_('Choose the more appropriate option'),
         verbose_name=_('Person Type'))
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: Mr. Louis-Jacques-Mandé Daguerre'),
-        verbose_name=_('Title'))
     title_index = models.CharField(
         max_length=256,
         null=True,
@@ -62,13 +58,6 @@ class Person(Base):
         verbose_name=_('Gender'))
     # nation_origin =
     # nation_main =
-    slug = models.SlugField(
-        max_length=256,
-        unique=True,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: the-photographer-sebastiao-salgado'),
-        verbose_name=_('Slug'))
     thumbnail = models.ManyToManyField(
         'digitalassetsmanagement.Thumbnail',
         blank=True,

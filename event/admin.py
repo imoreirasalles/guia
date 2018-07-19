@@ -20,6 +20,7 @@ class EventTypeResource(resources.ModelResource):
 
 @admin.register(EventType)
 class EventTypeAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = EventTypeResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
@@ -53,6 +54,7 @@ class EventResource(resources.ModelResource):
 
 @admin.register(Event)
 class EventAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = EventResource
     list_filter = ('type', 'location', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'title', 'date_start', 'date_end', 'type', 'location')

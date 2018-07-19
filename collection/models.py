@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Third part imports
 import reversion
-
+from reversion.models import *
 # Project Apps Imports
 from django.apps import apps
 
@@ -28,10 +28,6 @@ class Container(Base):
         on_delete=models.SET_NULL,
         help_text=_('Container Aggregation Type'),
         verbose_name=_('Aggregation Type'))
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: Container of...'),
-        verbose_name=_('Title'))
     description = models.TextField(
         null=True,
         blank=True,
@@ -58,6 +54,15 @@ class Container(Base):
     def __str__(self):
         return self.title
 
+    def get_date_created(self):
+        return Version.objects.get_for_object(self).order_by("id").first().revision.date_created
+
+    def get_absolute_url(self):
+        if self.slug != None:
+            return reverse('container_detail_slug', kwargs={'slug': self.slug})
+        else:
+            return reverse('container_detail', kwargs={'pk': self.id_auto_series})
+
     class Meta:
         verbose_name = _('Container')
         verbose_name_plural = _('Containers')
@@ -80,18 +85,6 @@ class Collection(Base):
         blank=True,
         help_text=_('Legacy Identifiers'),
         verbose_name=_('Old IDs'))
-    title = models.CharField(
-        default=_('No title collection'),
-        max_length=256,
-        help_text=_('Ex.: The complete photo collection of Sebastião Salgado.'),
-        verbose_name=_('Title'))
-    slug = models.SlugField(
-        max_length=256,
-        unique=True,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: complete-collection-sebastiao-salgado'),
-        verbose_name=_('Slug'))
     abstract = models.TextField(
         null=True,
         blank=True,

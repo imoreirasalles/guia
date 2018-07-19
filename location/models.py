@@ -14,10 +14,6 @@ from django.apps import apps
 @reversion.register()
 class Location(Base):
     """store places addresses, and link places with art works, sets, collection, persons, etc"""
-    title = models.CharField(
-        max_length=128,
-        help_text=_('Ex.: Title of place - House of Photographer Smith'),
-        verbose_name=_('Title'))
     street = models.CharField(
         max_length=128,
         null=True,

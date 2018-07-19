@@ -21,6 +21,7 @@ class ThumbnailResource(resources.ModelResource):
 
 @admin.register(Thumbnail)
 class ThumbnailAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = ThumbnailResource
     list_display = ('id_auto_series', 'uuid', 'title', 'image')
     search_fields = ['__all__']
@@ -34,6 +35,7 @@ class CaptureResource(resources.ModelResource):
 
 @admin.register(Capture)
 class CaptureAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = CaptureResource
     list_display = ('id_auto_series', 'uuid', 'title', 'thumbnail')
     search_fields = ['__all__']
@@ -47,6 +49,7 @@ class ItemResource(resources.ModelResource):
 
 @admin.register(Item)
 class ItemAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = ItemResource
     list_display = ('id_auto_series', 'uuid', 'title', 'description')
     search_fields = ['__all__']

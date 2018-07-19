@@ -39,13 +39,6 @@ class Procedure(Base):
         max_length=256,
         help_text=_('Title of Procedure'),
         verbose_name=_('Title'))
-    slug = models.SlugField(
-        max_length=256,
-        unique=True,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: procedure-sell-collection-001'),
-        verbose_name=_('Slug'))
     abstract = models.TextField(
         null=True,
         blank=True,

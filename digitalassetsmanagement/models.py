@@ -15,12 +15,6 @@ from django.apps import apps
 @reversion.register()
 class Thumbnail(Base):
     """Used to record thumbnail images of representative classes like collections, containers, items, Persons, Exhibitions, etc"""
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: Image title, like "the photographer resting" '),
-        verbose_name=_('Title'))
     image = models.ImageField(
         help_text=_('The Image File'),
         verbose_name=_('Image'))
@@ -38,12 +32,6 @@ class Thumbnail(Base):
 @reversion.register()
 class Capture(Base):
     """Store captures of items"""
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: The capture title'),
-        verbose_name=_('Title'))
     thumbnail = models.ForeignKey(
         Thumbnail,
         null=True,
@@ -72,10 +60,6 @@ class Item(Base):
         unique=True,
         help_text=_('Institucional Identifier'),
         verbose_name=_('Institucional ID'))
-    title = models.CharField(
-        max_length=256,
-        help_text=_('Ex.: Salgado Negative - 001'),
-        verbose_name=_('Title'))
     description = models.TextField(
         null=True,
         blank=True,

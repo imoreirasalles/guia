@@ -20,6 +20,7 @@ class ManagementUnitResource(resources.ModelResource):
 
 @admin.register(ManagementUnit)
 class ManagementUnitAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = ManagementUnitResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
@@ -33,6 +34,7 @@ class ProcedureResource(resources.ModelResource):
 
 @admin.register(Procedure)
 class ProcedureAdmin(CompareVersionAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = ProcedureResource
     list_display = ('id_auto_series', 'title', 'slug')
     search_fields = ['__all__']
@@ -46,6 +48,7 @@ class AcquisitionMethodResource(resources.ModelResource):
 
 @admin.register(AcquisitionMethod)
 class AcquisitionMethodAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = AcquisitionMethodResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
@@ -74,6 +77,7 @@ class AcquisitionResource(resources.ModelResource):
 
 @admin.register(Acquisition)
 class AcquisitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('id_auto_series', 'slug',)
     resource_class = AcquisitionResource
     list_filter = ('method', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'title', 'method', 'date_start', 'date_end')
