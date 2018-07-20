@@ -42,30 +42,12 @@ class Base(models.Model):
 
     def save(self, *args, **kwargs):
         if self.id_auto_series == None:
-            slug_auto = slugify( self.title + ' ' + str(uuid.uuid4()) )
-        else:
-            slug_auto = slugify( str(self.id_auto_series) + '_' + self.title)
+            super(Base, self).save(*args, **kwargs)
 
+        slug_auto = slugify( str(self.id_auto_series) + '_' + self.title)
         self.slug = slug_auto
         super(Base, self).save(*args, **kwargs)
 
 
     class Meta:
         abstract = True
-
-
-
-    # def save(self, *args, **kwargs):
-    #     slug_auto = slugify( str(self.id_auto_series) + self.title)
-    #     self.slug = slug_auto
-    #     test = False
-    #     while test == False:
-    #         try:
-    #             super(Base, self).save(*args, **kwargs)
-    #         except IntegrityError:
-    #             slug_auto = slugify( '01_' + str(self.id_auto_series) + self.title)
-    #             self.slug = slug_auto
-    #             super(Base, self).save(*args, **kwargs)
-    #         else:
-    #             test = True
-    #             super(Base, self).save(*args, **kwargs)
