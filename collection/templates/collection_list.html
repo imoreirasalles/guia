@@ -145,11 +145,12 @@
           </div>
           <div class="card-body">
             <table class="table table-hover">
+
               <thead class="text-warning">
                 <tr>
-                  <th>ID</th>
-                  <th>Área Responsável</th>
-                  <th>Título</th>
+                  <th><a href="?order_by=id_human">ID<a></th>
+                  <th><a href="?order_by=management_unit">Área Responsável</a></th>
+                  <th><a href="?order_by=title">Título</a></th>
                   <th>Data Baliza</th>
                   <th>Nível de Descrição</th>
                   <th>Status de Processamento</th>
@@ -161,16 +162,21 @@
               <tbody>
                 {% for collection in collection_list %}
                 <tr>
-                  <td><a href="{{ collection.get_absolute_url }}">{{collection.id_human }}</a></td>
-                  <td>{{collection.management_unit }}</td>
-                  <td><a href="{{ collection.get_absolute_url }}">{{collection.title}}</a></td>
-                  <td>{{collection.date_start}} - {{collection.end}}</td>
-                  <td>{{collection.description_level}}</td>
+                  <td><a href="{{ collection.get_absolute_url }}">
+                    {{collection.id_human|default_if_none:"-"  }}</a></td>
+                  <td>{{collection.management_unit|default_if_none:"-"  }}</td>
+                  <td><a href="{{ collection.get_absolute_url }}">
+                    {{collection.title|default_if_none:"-" }}</a></td>
+                  <td>{{collection.date_start|default_if_none:'-'|date:'Y' }} -
+                    {{collection.date_end|default_if_none:'-'|date:'Y' }}</td>
+                  <td>{{collection.description_level|default_if_none:"-" }}</td>
                   <td>status</td>
-                  <td>{{collection.access_condition}}</td>
-                  <td>{{collection.access_local_status}}</td>
-                  <td>{{collection.access_online_status}}</td>
+                  <td>{{collection.access_condition|default_if_none:"-"}}</td>
+                  <td>{{collection.access_local_status|default_if_none:"-"}}</td>
+                  <td>{{collection.access_online_status|default_if_none:"-"}}</td>
                 </tr>
+                {% empty %}
+                <p>Não há nenhum registro cadastrado!</p>
                 {% endfor %}
               </tbody>
             </table>
