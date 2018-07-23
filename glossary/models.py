@@ -73,7 +73,7 @@ class AccessCondition(Base):
         null=False,
         blank=True,
         help_text=_('Ex.: Partial - copyright.'),
-        verbose_name=_('Title'))
+        verbose_name=_('Condition'))
     description = models.TextField(
         null=True,
         blank=True,
@@ -81,7 +81,8 @@ class AccessCondition(Base):
         verbose_name=_('Description'))
 
     def __str__(self):
-        return self.title
+        AccessCondition_str = self.title + ' : ' + self.title_long
+        return AccessCondition_str
 
     class Meta:
         verbose_name = _('Access Condition')

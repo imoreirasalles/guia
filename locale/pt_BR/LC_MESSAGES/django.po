@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-23 17:04+0000\n"
+"POT-Creation-Date: 2018-07-23 17:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felipe Cabral <felipehistory at gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,7 +233,7 @@ msgstr "Itens online"
 msgid "Choose the more appropriate access condition to this collection"
 msgstr "Escolha a classificação de acesso mais apropriada para coleção."
 
-#: collection/models.py:182 glossary/models.py:87
+#: collection/models.py:182 glossary/models.py:88
 msgid "Access Condition"
 msgstr "Condição de Acesso"
 
@@ -539,17 +539,15 @@ msgstr "Gênero Documental"
 msgid "Ex.: Partial - copyright."
 msgstr "Ex.: Parcial - possui direitos autorais reservados."
 
-#: glossary/models.py:76 guia/models.py:34 management/models.py:20
-#: management/models.py:41 management/models.py:72 management/models.py:93
-#: publication/models.py:20
-msgid "Title"
-msgstr "Título"
+#: glossary/models.py:76
+msgid "Condition"
+msgstr "Condição"
 
 #: glossary/models.py:80
 msgid "Ex.: Some documents here have copyright..."
 msgstr "Ex.: Alguns documentos aqui tem direitos autorais reservados..."
 
-#: glossary/models.py:88
+#: glossary/models.py:89
 msgid "Access Conditions"
 msgstr "Condições de Acesso"
 
@@ -576,6 +574,11 @@ msgstr " "
 #: guia/models.py:33
 msgid "Ex.: The title of this record"
 msgstr "Ex.: Título do registro"
+
+#: guia/models.py:34 management/models.py:20 management/models.py:41
+#: management/models.py:72 management/models.py:93 publication/models.py:20
+msgid "Title"
+msgstr "Título"
 
 #: guia/models.py:40
 msgid "Ex.: complete-collection-sebastiao-salgado"
