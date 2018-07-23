@@ -13,37 +13,22 @@ from django.apps import apps
 
 
 @reversion.register()
-class Thumbnail(Base):
-    """Used to record thumbnail images of representative classes like collections, containers, items, Persons, Exhibitions, etc"""
-    image = models.ImageField(
-        help_text=_('The Image File'),
-        verbose_name=_('Image'))
-
-    def __str__(self):
-        id_str = 'ID [' + str(self.id_auto_series) + '] '
-        image_file_str = 'IMG [' + str(self.image) + ']'
-        return (id_str + "  " + image_file_str)
-
-    class Meta:
-        verbose_name = _('Thumbnail')
-        verbose_name_plural = _('Thumbnails')
-
-
-@reversion.register()
 class Capture(Base):
-    """Store captures of items"""
-    thumbnail = models.ForeignKey(
-        Thumbnail,
+    """Used to record capture images of items. Faced in representative classes like collections, containers, items, Persons, Exhibitions, etc"""
+    image = models.ImageField(
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('Choose the image whish represents this capture'),
-        verbose_name=_('Thumbnails'))
+        verbose_name=_('Capture'))
 
     def __str__(self):
-        id_str = 'ID [' + str(self.id_auto_series) + '] '
-        image_file_str = 'IMG [' + str(self.thumbnail) + ']'
-        return (id_str + "  " + image_file_str)
+        if self.image != None:
+            Capture_file_str = 'IMG [' + str(self.image) + ']'
+        else:
+            self.image = _('No file image')
+            Capture_file_str = 'IMG [' + str(self.image) + ']'
+        Capture_id_str = 'ID [' + str(self.id_auto_series) + '] '
+        return (Capture_id_str + "  " + Capture_file_str)
 
     class Meta:
         verbose_name = _('Capture')

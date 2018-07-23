@@ -13,20 +13,6 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 
-class ThumbnailResource(resources.ModelResource):
-
-    class Meta:
-        model = Thumbnail
-
-
-@admin.register(Thumbnail)
-class ThumbnailAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
-    resource_class = ThumbnailResource
-    list_display = ('id_auto_series', 'uuid', 'title', 'image')
-    search_fields = ['__all__']
-
-
 class CaptureResource(resources.ModelResource):
 
     class Meta:
@@ -37,7 +23,7 @@ class CaptureResource(resources.ModelResource):
 class CaptureAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('id_auto_series', 'slug',)
     resource_class = CaptureResource
-    list_display = ('id_auto_series', 'uuid', 'title', 'thumbnail')
+    list_display = ('id_auto_series', 'uuid', 'title', 'image')
     search_fields = ['__all__']
 
 

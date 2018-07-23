@@ -58,11 +58,11 @@ class Person(Base):
         verbose_name=_('Gender'))
     # nation_origin =
     # nation_main =
-    thumbnail = models.ManyToManyField(
-        'digitalassetsmanagement.Thumbnail',
+    capture = models.ManyToManyField(
+        'digitalassetsmanagement.Capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Thumbnails'))
+        verbose_name=_('Captures'))
     abstract = models.TextField(
         null=True,
         blank=True,

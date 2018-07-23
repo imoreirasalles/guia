@@ -147,11 +147,11 @@ class Collection(Base):
         blank=True,
         help_text=_('Choose a final date caption'),
         verbose_name=_('Final date caption'))
-    thumbnail = models.ManyToManyField(
-        'digitalassetsmanagement.Thumbnail',
+    capture = models.ManyToManyField(
+        'digitalassetsmanagement.capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Thumbnails'))
+        verbose_name=_('Capture'))
     author = models.ManyToManyField(
         'person.Person',
         blank=True,

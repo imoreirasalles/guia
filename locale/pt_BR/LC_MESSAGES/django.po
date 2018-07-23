@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-23 18:46+0000\n"
+"POT-Creation-Date: 2018-07-23 18:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felipe Cabral <felipehistory at gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,14 +42,14 @@ msgid "Collection App"
 msgstr "App Coleções"
 
 #: collection/models.py:22 collection/models.py:85
-#: digitalassetsmanagement/models.py:61 event/models.py:40
+#: digitalassetsmanagement/models.py:42 event/models.py:40
 #: exhibition/models.py:22 exhibition/models.py:90 person/models.py:24
 #: publication/models.py:44
 msgid "Institucional Identifier"
 msgstr "Idenficador Institucional"
 
 #: collection/models.py:23 collection/models.py:86
-#: digitalassetsmanagement/models.py:62 event/models.py:41
+#: digitalassetsmanagement/models.py:43 event/models.py:41
 #: exhibition/models.py:23 exhibition/models.py:91 person/models.py:25
 #: publication/models.py:45
 msgid "Institucional ID"
@@ -67,7 +67,7 @@ msgstr "Tipo de Agregação"
 msgid "Ex.: This container is..."
 msgstr "Ex.: Uma coleção é um agrupamento de objetos..."
 
-#: collection/models.py:35 digitalassetsmanagement/models.py:67
+#: collection/models.py:35 digitalassetsmanagement/models.py:48
 #: event/models.py:22 glossary/models.py:22 glossary/models.py:40
 #: glossary/models.py:58 glossary/models.py:81 management/models.py:25
 #: management/models.py:77 publication/models.py:26
@@ -78,7 +78,7 @@ msgstr "Descrição"
 msgid "Itens that composes the container"
 msgstr "Itens que compõe o conjunto"
 
-#: collection/models.py:40 digitalassetsmanagement/models.py:79
+#: collection/models.py:40 digitalassetsmanagement/models.py:60
 msgid "Items"
 msgstr "Itens"
 
@@ -192,10 +192,10 @@ msgstr "Data Final por extenso"
 msgid "Choose some introduction and representative images"
 msgstr "Escolha algumas imagens representativas"
 
-#: collection/models.py:154 digitalassetsmanagement/models.py:29
-#: digitalassetsmanagement/models.py:41 person/models.py:65
-msgid "Thumbnails"
-msgstr "Imagens de Apresentação"
+#: collection/models.py:154 digitalassetsmanagement/models.py:22
+#: digitalassetsmanagement/models.py:30
+msgid "Capture"
+msgstr "Captura"
 
 #: collection/models.py:158 publication/models.py:67 publication/models.py:78
 msgid "Choose some collection's authors"
@@ -331,43 +331,27 @@ msgstr "Coleções"
 msgid "Digital Assets Management App"
 msgstr "App Gestão de Ativos Digitais"
 
-#: digitalassetsmanagement/models.py:19
-msgid "The Image File"
-msgstr "O arquivo da imagem"
-
-#: digitalassetsmanagement/models.py:20
-msgid "Image"
-msgstr "Imagem"
-
-#: digitalassetsmanagement/models.py:28
-msgid "Thumbnail"
-msgstr "Imagem de Apresentação"
-
-#: digitalassetsmanagement/models.py:40
+#: digitalassetsmanagement/models.py:21
 msgid "Choose the image whish represents this capture"
 msgstr "Escolha a imagem que representa essa captura"
 
-#: digitalassetsmanagement/models.py:49
-msgid "Capture"
-msgstr "Captura"
-
-#: digitalassetsmanagement/models.py:50
+#: digitalassetsmanagement/models.py:31 person/models.py:65
 msgid "Captures"
 msgstr "Capturas"
 
-#: digitalassetsmanagement/models.py:66
+#: digitalassetsmanagement/models.py:47
 msgid "Ex.: Gelatin negative of the first photo..."
 msgstr "Ex.: Negativo de gelatina da primeira foto..."
 
-#: digitalassetsmanagement/models.py:71
+#: digitalassetsmanagement/models.py:52
 msgid "Capture(s) taked from this item."
 msgstr "Capturas do item"
 
-#: digitalassetsmanagement/models.py:72
+#: digitalassetsmanagement/models.py:53
 msgid "Capture(s)"
 msgstr "Captura(s)"
 
-#: digitalassetsmanagement/models.py:78
+#: digitalassetsmanagement/models.py:59
 msgid "Item"
 msgstr "Item"
 
@@ -552,8 +536,6 @@ msgid "Ex.: Some documents here have copyright..."
 msgstr "Ex.: Alguns documentos aqui tem direitos autorais reservados..."
 
 #: glossary/models.py:87
-#, fuzzy
-#| msgid "Condition"
 msgid ": No condition"
 msgstr "Nenhuma condição encontrada"
 
