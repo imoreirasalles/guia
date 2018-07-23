@@ -66,7 +66,7 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAd
     readonly_fields = ('id_auto_series', 'slug',)
     resource_class = CollectionResource
     list_filter = ('management_unit', 'aggregation_type', 'description_level', 'access_condition', 'genre_tags')
-    list_display = ('id_auto_series', 'uuid', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
+    list_display = ('id_human', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
     search_fields = ['__all__']
     filter_horizontal = ('capture', 'author', 'container')
     form = CollectionAdminForm
