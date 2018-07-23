@@ -49,7 +49,7 @@ class Person(Base):
         null=True,
         blank=True,
         help_text=_('This is a featured person?'),
-        verbose_name=_('Staff Member'))
+        verbose_name=_('Authority Member'))
     gender = models.CharField(
         max_length=1,
         null=True,
