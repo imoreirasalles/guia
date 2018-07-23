@@ -52,7 +52,11 @@ class Container(Base):
         verbose_name=_('Child containers'))
 
     def __str__(self):
-        return self.title
+        if self.aggregation_type != None:
+            Container_str = self.aggregation_type + ' : ' + self.title
+        else:
+            Container_str = _('No type : ') + self.title
+        return Container_str
 
     def get_date_created(self):
         return Version.objects.get_for_object(self).order_by("id").first().revision.date_created

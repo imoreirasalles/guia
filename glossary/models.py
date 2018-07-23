@@ -81,7 +81,10 @@ class AccessCondition(Base):
         verbose_name=_('Description'))
 
     def __str__(self):
-        AccessCondition_str = self.title + ' : ' + self.title_long
+        if self.title_long != None:
+            AccessCondition_str = self.title + ' : ' + self.title_long
+        else:
+            AccessCondition_str = self.title + _(': No condition')
         return AccessCondition_str
 
     class Meta:
