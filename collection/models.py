@@ -158,11 +158,6 @@ class Collection(Base):
         blank=True,
         help_text=_('Choose containers that compose the collection'),
         verbose_name=_('Containers'))
-    items = models.ManyToManyField(
-        'digitalassetsmanagement.Item',
-        blank=True,
-        help_text=_('Choose some items that compose this collection. ATTENTION: You can create a container and aggregate items there'),
-        verbose_name=_('Items'))
     items_total = models.PositiveIntegerField(
         null=True,
         blank=True,
