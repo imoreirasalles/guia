@@ -1,27 +1,19 @@
-from django.db import models
-from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
+from django.contrib.gis.db import models
+from guia.models import Base
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
-import uuid
+import reversion
 
-# Project guia imports
-from location.models import *
+# Project Apps Imports
+from django.apps import apps
 
 
-class EventType(models.Model):
+@reversion.register()
+class EventType(Base):
     """Used to label events according type"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: course, workshop, show, launching'),
-        verbose_name=_('Title'))
     description = models.CharField(
         max_length=512,
         null=True,
@@ -37,40 +29,16 @@ class EventType(models.Model):
         verbose_name_plural=_('Events Type')
 
 
-class Event(models.Model):
+@reversion.register()
+class Event(Base):
     """Used to archive events promoted by the institution"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    id = models.CharField(
+    id_human = models.CharField(
         max_length=64,
         null=True,
         blank=True,
         unique=True,
-        help_text=_('Institucional Human Identifier'),
-        verbose_name=_('ID'))
-    title = models.CharField(
-        max_length=256,
-        null=False,
-        blank=True,
-        help_text=_('Ex.: Launch of new publication...'),
-        verbose_name=_('Title'))
-    slug = models.SlugField(
-        max_length=256,
-        unique=True,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: lauch-new-publication'),
-        verbose_name=_('Slug'))
+        help_text=_('Institucional Identifier'),
+        verbose_name=_('Institucional ID'))
     date_start = models.DateField(
         null=True,
         blank=True,
@@ -89,7 +57,7 @@ class Event(models.Model):
         help_text=_('Choose the an appropriate type to this one'),
         verbose_name=_('Type'))
     location = models.ForeignKey(
-        Location,
+        'location.Location',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,

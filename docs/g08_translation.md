@@ -25,7 +25,7 @@ LANGUAGE_CODE = 'en'
 ### 3. Make Translation Files and Compile Messages
 
 ```
-django-admin makemessages --locale=pt_BR
+django-admin makemessages -a --locale=pt_BR
 django-admin compilemessages --locale=pt_BR
 ```
 

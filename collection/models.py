@@ -1,259 +1,45 @@
-from django.db import models
-from django.contrib import admin
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
+from guia.models import Base
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
-import uuid
-
-# Project guia imports
-from person.models import *
-from management.models import *
-from location.models import *
+import reversion
+from reversion.models import *
+# Project Apps Imports
+from django.apps import apps
 
 
-class DescriptionLevel(models.Model):
-    """Used to label collections according less or more description have an instance"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: basic - 0'),
-        verbose_name=_('Title'))
-    description = models.CharField(
-        max_length=512,
-        null=True,
-        blank=True,
-        help_text=_('The description of level type...'),
-        verbose_name=_('Description'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name=_('Description level')
-        verbose_name_plural=_('Description levels')
-
-
-class AggregationType(models.Model):
-    """Used to label collections or containers according type of Aggregation"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: collection, archive, etc'),
-        verbose_name=_('Title'))
-    description = models.CharField(
-        max_length=512,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: the collection is a group of...'),
-        verbose_name=_('Description'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name=_('Aggregation Type')
-        verbose_name_plural=_('Aggregations Type')
-
-
-class GenreTag(models.Model):
-    """Used to label collections, containers or Items according content genre type"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: photo, picture, draw, etc'),
-        verbose_name=_('Title'))
-    description = models.CharField(
-        max_length=512,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: A photo is all kind part or entire piece of an image produced by a camera.'),
-        verbose_name=_('Description'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('Genre Tag')
-        verbose_name_plural = _('Genre Tags')
-
-
-class Thumbnail(models.Model):
-    """Used to record thumbnail images of representative classes like collections, containers, items, Persons, Exhibitions, etc"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Created in'))
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: Image title, like "the photographer resting" '),
-        verbose_name=_('Title'))
-    image = models.ImageField(
-        null=True,
-        blank=True,
-        help_text=_('The Image File'),
-        verbose_name=_('Image'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('Thumbnail')
-        verbose_name_plural = _('Thumbnails')
-
-
-class Capture(models.Model):
-    """Store captures of items"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: The capture title'),
-        verbose_name=_('Title'))
-    thumbnail = models.ForeignKey(
-        Thumbnail,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        help_text=_('Choose the image whish represents this capture'),
-        verbose_name=_('Thumbnails'))
-
-    class Meta:
-        verbose_name = _('Capture')
-        verbose_name_plural = _('Captures')
-
-
-class Item(models.Model):
-    """Used to store archive items like photos, pictures, etc"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Created in'))
-    id = models.CharField(
-        max_length=64,
-        null=True,
-        blank=True,
-        unique=True,
-        help_text=_('Institucional Human Identifier'),
-        verbose_name=_('ID'))
-    title = models.CharField(
-        max_length=256,
-        null=False,
-        blank=True,
-        help_text=_('Ex.: Salgado Negative - 001'),
-        verbose_name=_('Title'))
-    description = models.TextField(
-        null=True,
-        blank=True,
-        help_text=_('Ex.: Gelatin negative of the first photo...'),
-        verbose_name=_('Title'))
-    capture = models.ManyToManyField(
-        Capture,
-        blank=True,
-        help_text=_('Capture(s) taked from this item.'),
-        verbose_name=_('Capture(s)'))
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('Item')
-        verbose_name_plural = _('Items')
-
-
-class Container(models.Model):
+@reversion.register()
+class Container(Base):
     """Used to store an aggroupment of items"""
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Created in'))
-    id = models.CharField(
+    id_human = models.CharField(
         max_length=64,
         null=True,
         blank=True,
         unique=True,
-        help_text=_('Institucional Container Human Identifier'),
-        verbose_name=_('ID'))
+        help_text=_('Institucional Identifier'),
+        verbose_name=_('Institucional ID'))
     aggregation_type = models.ForeignKey(
-        AggregationType,
+        'glossary.AggregationType',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         help_text=_('Container Aggregation Type'),
         verbose_name=_('Aggregation Type'))
-    title = models.CharField(
-        max_length=256,
-        null=False,
-        blank=True,
-        help_text=_('Ex.: Container of...'),
-        verbose_name=_('Title'))
     description = models.TextField(
         null=True,
         blank=True,
         help_text=_('Ex.: This container is...'),
         verbose_name=_('Description'))
     items = models.ManyToManyField(
-        Item,
+        'digitalassetsmanagement.Item',
         blank=True,
         help_text=_('Itens that composes the container'),
         verbose_name=_('Items'))
     description_level = models.ForeignKey(
-        DescriptionLevel,
+        'glossary.DescriptionLevel',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -266,86 +52,43 @@ class Container(models.Model):
         verbose_name=_('Child containers'))
 
     def __str__(self):
-        return self.title
+        if self.aggregation_type != None:
+            Container_str = str(self.aggregation_type) + str(': ') + str(self.title)
+        else:
+            Container_str = _('No type: ') + self.title
+        return Container_str
+
+    def get_date_created(self):
+        return Version.objects.get_for_object(self).order_by("id").first().revision.date_created
+
+    def get_absolute_url(self):
+        if self.slug != None:
+            return reverse('container_detail_slug', kwargs={'slug': self.slug})
+        else:
+            return reverse('container_detail', kwargs={'pk': self.id_auto_series})
 
     class Meta:
         verbose_name = _('Container')
         verbose_name_plural = _('Containers')
 
 
-class AccessCondition(models.Model):
-    """Used to store access condition concerned of captures, items, containers and collections"""
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('Auto set field'),
-        verbose_name=_('Created in'))
-    title_short = models.CharField(
-        max_length=64,
-        null=False,
-        blank=True,
-        help_text=_('Ex.: Full Free, Partial, Retricted, etc.'),
-        verbose_name=_('Access'))
-    title_long = models.CharField(
-        max_length=128,
-        null=False,
-        blank=True,
-        help_text=_('Ex.: Partial - copyright.'),
-        verbose_name=_('Title'))
-    description = models.TextField(
-        null=True,
-        blank=True,
-        help_text=_('Ex.: Some documents here have copyright...'),
-        verbose_name=_('Description'))
-
-    def __str__(self):
-        return self.title_short
-
-    class Meta:
-        verbose_name = _('Access Condition')
-        verbose_name_plural = _('Access Conditions')
-
-
-class Collection(models.Model):
+@reversion.register()
+class Collection(Base):
     """
     Main class of collection
     """
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        max_length=32,
-        editable=False,
-        unique=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Universal Unique Identifier'))
-    created = models.DateTimeField(
-        auto_now_add=True,
-        help_text=_('This is an auto set field'),
-        verbose_name=_('Created in'))
-    id = models.CharField(
+    id_human = models.CharField(
         max_length=64,
         null=True,
         blank=True,
         unique=True,
-        help_text=_('Institucional Collection Human Identifier'),
-        verbose_name=_('ID'))
+        help_text=_('Institucional Identifier'),
+        verbose_name=_('Institucional ID'))
     id_old = JSONField(
         null=True,
         blank=True,
         help_text=_('Legacy Identifiers'),
         verbose_name=_('Old IDs'))
-    title = models.CharField(
-        max_length=256,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: The complete photo collection of Sebastião Salgado.'),
-        verbose_name=_('Title'))
-    slug = models.SlugField(
-        max_length=256,
-        unique=True,
-        null=True,
-        blank=True,
-        help_text=_('Ex.: complete-collection-sebastiao-salgado'),
-        verbose_name=_('Slug'))
     abstract = models.TextField(
         null=True,
         blank=True,
@@ -357,21 +100,21 @@ class Collection(models.Model):
         help_text=_('Ex.: All itens in this collection...'),
         verbose_name=_('Full Text'))
     description_level = models.ForeignKey(
-        DescriptionLevel,
+        'glossary.DescriptionLevel',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         help_text=_('Choose an Option'),
         verbose_name=_('Description Level'))
     aggregation_type = models.ForeignKey(
-        AggregationType,
+        'glossary.AggregationType',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         help_text=_('Choose an Option'),
         verbose_name=_('Aggregation Type'))
     genre_tags = models.ForeignKey(
-        GenreTag,
+        'glossary.GenreTag',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -404,13 +147,14 @@ class Collection(models.Model):
         blank=True,
         help_text=_('Choose a final date caption'),
         verbose_name=_('Final date caption'))
-    thumbnail = models.ManyToManyField(
-        Thumbnail,
+    capture = models.ManyToManyField(
+        'digitalassetsmanagement.capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Thumbnails'))
+        verbose_name=_('Capture'))
     author = models.ManyToManyField(
-        Person,
+        'person.Person',
+        related_name='collection_author',
         blank=True,
         help_text=_("Choose some collection's authors"),
         verbose_name=_('Authors'))
@@ -419,11 +163,6 @@ class Collection(models.Model):
         blank=True,
         help_text=_('Choose containers that compose the collection'),
         verbose_name=_('Containers'))
-    items = models.ManyToManyField(
-        Item,
-        blank=True,
-        help_text=_('Choose some items that compose this collection. ATTENTION: You can create a container and aggregate items there'),
-        verbose_name=_('Items'))
     items_total = models.PositiveIntegerField(
         null=True,
         blank=True,
@@ -440,7 +179,7 @@ class Collection(models.Model):
         help_text=_('Total online collection items'),
         verbose_name=_('Online Items'))
     access_condition = models.ForeignKey(
-        AccessCondition,
+        'glossary.AccessCondition',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -461,9 +200,11 @@ class Collection(models.Model):
         blank=True,
         help_text=_('Do you have some online link access to this collection?'),
         verbose_name=_('Access Link'))
-    location_generic = models.ManyToManyField(
-        Location,
+    location_generic = models.ForeignKey(
+        'location.Location',
+        null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_('What is the generic location to the collection?'),
         verbose_name=_('Generic Location'))
     location_specific = models.CharField(
@@ -488,7 +229,7 @@ class Collection(models.Model):
         help_text=_('Several data about the inventary'),
         verbose_name=_('Inventary Data'))
     management_unit = models.ForeignKey(
-        ManagementUnit,
+        'management.ManagementUnit',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -504,10 +245,10 @@ class Collection(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('collection_detail', kwargs={'pk': self.uuid})
-
-    def get_absolute_url_slug(self):
-        return reverse('collection_detail_slug', kwargs={'slug': self.slug})
+        if self.slug != None:
+            return reverse('collection_detail_slug', kwargs={'slug': self.slug})
+        else:
+            return reverse('collection_detail', kwargs={'pk': self.id_auto_series})
 
     class Meta:
         verbose_name = _('Collection')

@@ -21,8 +21,6 @@ DEBUG = env.bool('DEBUG', default=True)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['0.0.0.0', 'localhost', '127.0.0.0'])
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -34,15 +32,21 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.gis',
     # 3rd part apps
+    'admin_reorder',
     'django_json_widget',
     'django_admin_json_editor',
     'ckeditor',
     'django_extensions',
     'raven.contrib.django.raven_compat',
+    'reversion',
+    'reversion_compare',
+    'import_export',
     # My apps
     'collection',
+    'digitalassetsmanagement',
     'event',
     'exhibition',
+    'glossary',
     'location',
     'management',
     'person',
@@ -62,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
+    'reversion.middleware.RevisionMiddleware',
 ]
 
 ROOT_URLCONF = 'guia.urls'
@@ -85,15 +91,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'guia.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+### From Json Admin Widget
+DATA_SCHEMA = {
+    'type': 'object',
+    'title': 'Data',
+    'properties': {
+        'text': {
+            'title': _('key'),
+            'type': 'string',
+            'format': 'input',
+        },
+        'status': {
+            'title': _('value'),
+            'type': 'string',
+            'format': 'input',
+        },
+    },
+}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+# Add reversion models to admin interface:
+ADD_REVERSION_ADMIN=True
+
 
 DATABASES = {
     'default': {
@@ -130,7 +148,7 @@ LANGUAGES = (
     ('en', _('English')),
 )
 
-LANGUAGE_CODE = 'pt_BR'
+LANGUAGE_CODE = 'pt-br'
 
 # Tell Django where the project's translation files should be.
 LOCALE_PATHS = (
@@ -166,6 +184,51 @@ STATICFILES_FINDERS = [
 
 MEDIA_URL   = '/media/'
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+
+# Ckeditor configuration
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat']
+        ]
+    }
+}
+
+# From Django Import / Export apps
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+## From Django Model Admin Reorder https://github.com/mishbahr/django-modeladmin-reorder
+
+ADMIN_REORDER = (
+    {'app': 'auth',
+    'models': ('auth.User', 'auth.Group')},
+    {'app': 'collection',
+    'label': 'Guia IMS',
+    'models': ('collection.Collection',
+                'exhibition.Exhibition',
+                'publication.Publication',
+                'event.Event',
+                'person.Person',)},
+    {'app': 'digitalassetsmanagement',
+    'label': 'Digital Assets Management',
+    'models': ('digitalassetsmanagement.Item',)},
+    {'app': 'management',
+    'label': 'Gestão do Acervo',
+    'models': ('management.ManagementUnit',
+                {'model': 'location.Location', 'label': 'Locais de Guarda'},
+                'management.Acquisition',
+                'management.Procedure')},
+    {'app': 'glossary',
+    'label': 'Glossário',
+    'models': ('glossary.AggregationType',
+                'glossary.AccessCondition',
+                'glossary.DescriptionLevel',
+                'glossary.GenreTag')},
+)
 
 
 # Sentry Configuration

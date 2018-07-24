@@ -2,10 +2,9 @@
 
 # Requirements
 
--   Python 3.5 >= (<https://www.python.org>)
--   Django 2.0 >= (<https://www.djangoproject.com>)
-    -   Django Rest Framework 3.0 >= (<http://www.django-rest-framework.org>)
--   PostgreSQL 9.6 >= (<https://www.postgresql.org>)
+- Python 3.5 >= (<https://www.python.org>)
+- PostgreSQL 9.6 >= (<https://www.postgresql.org>)
+- Postgis
 - Docker
 - Docker-compose
 
