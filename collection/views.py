@@ -16,13 +16,14 @@ class CollectionList(ListView):
     paginate_by = 10
     context_object_name = "collection_list"
     template_name = "collection_list.html"
-    ordering = ['id_human', 'management_unit', 'title']
+
+    def get_ordering(self):
+        return self.request.GET.get('order_by', 'title')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
-
 
 
 class CollectionDetail(DetailView):
