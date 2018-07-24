@@ -18,7 +18,6 @@ Field Name | Django Type Field  | Field Description  | Example
 `date_release` | Date   | Data de publicação | 02/08/2014
 `publisher`    | Person, **FK**[0..\*]   | Nome da editora | Companhia das Letras
 `dimension`    | JSON   | Dimensão da publicação em centímetros | {"largura": "10", "altura": "10", "prof": "10"}
-`pages`        | number | quando tiver pages exibir, senão não exibir
 `type`         | **FK**[0..1] | Livro | Cadernos de Literatura
 `other_data`   | JSONField   | Informação sem estrutura definida. | {"Notas do bisneto do doador de segundo grau": "Lorem ipsum"}
 
