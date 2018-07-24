@@ -75,6 +75,7 @@ Field Name  | Django Type Field | Field Description  | Example
 `access_online_url`             | URLField, Null, Blank                   | Url de acesso ao material na internet | URL
 `full_text`                     | TextField, Null, Blank                  | Texto completo sobre a Coleção   | Texto grande, com vários parágrafos.
 `containers`                    | Container **FK**[0..\n], Null, Blank   | Conjuntos | Conjunto1, Conjunto2, etc..
+`containers_order`              | JSONField                              | Ordenamento e hierarquia entre conjuntos | {"Conjunto A": "{"Conjunto B"}"
 `related_persons`               | Person **FK**[0..\*], Null, Blank      | Pessoas relacionadas  | Ligia Fagundes Teles
 `related_exhibitions`           | Exhibition **FK**[0..\*], Null, Blank  | Exposições relacionadas | Retrospectiva Ligia
 `related_publications`          | Publication **FK**[0..\*], Null, Blank | Publicações relacionadas | Caderno de Literatura
@@ -89,8 +90,7 @@ Field Name | Django Type Field  | Field Description  | Example
 `uuid`     | UUIDField, **PK**, Unique, Sequential | Identificador único universal |  123e4567-e89b-12d3-a456
 `created`  | DateTimeField, NotNull, default=now   | data de criação do registro | 01/01/2018
 `id`       | CharField(64), Unique, Null, Blank    | Código atribuído ao Conjunto para controle interno da instituição. Esse valor tem de ser editável |  001002
-`collection_mother` | Collection **FK**[0..1], NotNull    | Coleção mãe desse Conjunto  | Coleção Gilberto Ferrez
-`container_mother`  | Container **FK**[0..1], Null, Blank | Conjunto mãe desse Conjunto | Arquivo Marc Ferrez
+`collection_parent` | Collection **FK**[0..1], NotNull    | Coleção mãe desse Conjunto  | Coleção Gilberto Ferrez
 `aggregation_type`  | AggregationType **FK**[0..1], Null, Blank      | Tipologia do conjunto |  Conjunto
 `title`             | CharField(128), Null, Blank                    | Título do conjunto | Panoramas do Rio de Janeiro
 `description_level` | DescriptionLevel, **FK** [0..1]                | Nível de descrição | 1 - Descrição Básica
