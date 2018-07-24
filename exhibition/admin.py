@@ -35,7 +35,7 @@ class ExhibitionAdminForm(forms.ModelForm):
 
 @admin.register(Exhibition)
 class ExhibitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = ExhibitionResource
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end', 'link')
@@ -67,7 +67,7 @@ class ExhibitionEditionResource(resources.ModelResource):
 
 @admin.register(ExhibitionEdition)
 class ExhibitionEditionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = ExhibitionEditionResource
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end')

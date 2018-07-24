@@ -21,7 +21,7 @@ class ContainerResource(resources.ModelResource):
 
 @admin.register(Container)
 class ContainerAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = ContainerResource
     list_display = ('get_date_created', 'id_auto_series', 'id_human', 'uuid', 'title', 'description', 'description_level',)
     filter_horizontal = ('items', 'container_child')

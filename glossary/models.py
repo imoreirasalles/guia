@@ -82,7 +82,7 @@ class AccessCondition(Base):
 
     def __str__(self):
         if self.title_long != None:
-            AccessCondition_str = self.title + ' : ' + self.title_long
+            AccessCondition_str = str(self.title) + str(': ') + str(self.title_long)
         else:
             AccessCondition_str = self.title + _(': No condition')
         return AccessCondition_str

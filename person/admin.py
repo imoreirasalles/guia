@@ -50,7 +50,7 @@ class PersonResource(resources.ModelResource):
 
 @admin.register(Person)
 class PersonAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = PersonResource
     list_filter = ('person_type', 'is_staff', 'is_partner', 'is_feature', 'gender', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'person_type', 'title', 'gender')

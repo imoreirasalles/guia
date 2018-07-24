@@ -13,7 +13,7 @@ class LocationResource(resources.ModelResource):
 
 @admin.register(Location)
 class LocationAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = LocationResource
     list_filter = ('country', 'state', 'city')
     list_display = ('id_auto_series', 'title', 'country', 'state', 'city', 'street')

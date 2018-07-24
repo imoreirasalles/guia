@@ -6,6 +6,7 @@ from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.db import IntegrityError
 from django.shortcuts import render_to_response
+from datetime import datetime
 # Third part imports
 import uuid
 
@@ -20,6 +21,10 @@ class Base(models.Model):
         editable=False,
         help_text=_('Auto Increment ID'),
         verbose_name=_('ID'))
+    created = models.DateTimeField(
+        default=datetime.now,
+        help_text=_('Auto set field'),
+        verbose_name=_('Created in'))
     uuid = models.UUIDField(
         default=uuid.uuid4,
         max_length=32,

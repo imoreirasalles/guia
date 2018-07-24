@@ -20,7 +20,7 @@ class PublicationTypeResource(resources.ModelResource):
 
 @admin.register(PublicationType)
 class PublicationTypeAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = PublicationTypeResource
     list_display = ('id_auto_series', 'title', 'description')
     search_fields = ['__all__']
@@ -53,7 +53,7 @@ class PublicationResource(resources.ModelResource):
 
 @admin.register(Publication)
 class PublicationAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = PublicationResource
     list_display = ('id_auto_series', 'uuid', 'title', 'date_released')
     search_fields = ['__all__']
