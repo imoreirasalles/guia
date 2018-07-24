@@ -53,7 +53,7 @@ class Container(Base):
 
     def __str__(self):
         if self.aggregation_type != None:
-            Container_str = self.aggregation_type + ': ' + self.title
+            Container_str = str(self.aggregation_type) + str(': ') + str(self.title)
         else:
             Container_str = _('No type: ') + self.title
         return Container_str
