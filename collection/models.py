@@ -53,9 +53,9 @@ class Container(Base):
 
     def __str__(self):
         if self.aggregation_type != None:
-            Container_str = self.aggregation_type + ' : ' + self.title
+            Container_str = self.aggregation_type + ': ' + self.title
         else:
-            Container_str = _('No type : ') + self.title
+            Container_str = _('No type: ') + self.title
         return Container_str
 
     def get_date_created(self):
@@ -154,6 +154,7 @@ class Collection(Base):
         verbose_name=_('Capture'))
     author = models.ManyToManyField(
         'person.Person',
+        related_name='collection_author',
         blank=True,
         help_text=_("Choose some collection's authors"),
         verbose_name=_('Authors'))
