@@ -64,7 +64,7 @@ class Publication(Base):
         'person.Person',
         related_name='personAuthor',
         blank=True,
-        help_text=_("Choose some collection's authors"),
+        help_text=_("Choose some Author(s)"),
         verbose_name=_('Authors'))
     date_released = models.DateField(
         null=True,
@@ -75,18 +75,13 @@ class Publication(Base):
         'person.Person',
         related_name='personPublisher',
         blank=True,
-        help_text=_("Choose some collection's authors"),
-        verbose_name=_('Authors'))
+        help_text=_("Choose some Publisher"),
+        verbose_name=_('Publisher(s)'))
     dimension = JSONField(
         null=True,
         blank=True,
         help_text=_('Feed with information about dimensions'),
         verbose_name=_('Dimensions'))
-    pages = models.PositiveIntegerField(
-        null=True,
-        blank=True,
-        help_text=_('Total number of pages'),
-        verbose_name=_('Number of pages'))
     other_data = JSONField(
         null=True,
         blank=True,

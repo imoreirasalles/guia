@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-24 17:25+0000\n"
+"POT-Creation-Date: 2018-07-24 21:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felipe Cabral <felipehistory at gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Descrição Completa"
 msgid "Dimensions"
 msgstr "Dimensões"
 
-#: collection/admin.py:53 collection/models.py:229
+#: collection/admin.py:53 collection/models.py:230
 msgid "Inventary Data"
 msgstr "Dados de inventário"
 
@@ -99,14 +99,14 @@ msgid "Child containers"
 msgstr "Conjunto(s) Filho(s)"
 
 #: collection/models.py:58
-msgid "No type : "
+msgid "No type: "
 msgstr "Sem tipo : "
 
 #: collection/models.py:71
 msgid "Container"
 msgstr "Conjunto"
 
-#: collection/models.py:72 collection/models.py:164
+#: collection/models.py:72 collection/models.py:165
 msgid "Containers"
 msgstr "Conjuntos"
 
@@ -197,133 +197,133 @@ msgstr "Escolha algumas imagens representativas"
 msgid "Capture"
 msgstr "Captura"
 
-#: collection/models.py:158 publication/models.py:67 publication/models.py:78
+#: collection/models.py:159
 msgid "Choose some collection's authors"
 msgstr "Escolha os/as autores/as da Coleção"
 
-#: collection/models.py:159 publication/models.py:68 publication/models.py:79
+#: collection/models.py:160 publication/models.py:68
 msgid "Authors"
 msgstr "Autore(s)"
 
-#: collection/models.py:163
+#: collection/models.py:164
 msgid "Choose containers that compose the collection"
 msgstr "Escolha os conjuntos que compõem a coleção"
 
-#: collection/models.py:168
+#: collection/models.py:169
 msgid "Total collection items"
 msgstr "Total de itens da Coleção"
 
-#: collection/models.py:169
+#: collection/models.py:170
 msgid "Total Items"
 msgstr "Total de Itens"
 
-#: collection/models.py:173
+#: collection/models.py:174
 msgid "Total processed items"
 msgstr "Total de Itens Processados"
 
-#: collection/models.py:174
+#: collection/models.py:175
 msgid "Processed Items"
 msgstr "Itens processados"
 
-#: collection/models.py:178
+#: collection/models.py:179
 msgid "Total online collection items"
 msgstr "Total de itens on line"
 
-#: collection/models.py:179
+#: collection/models.py:180
 msgid "Online Items"
 msgstr "Itens online"
 
-#: collection/models.py:185
+#: collection/models.py:186
 msgid "Choose the more appropriate access condition to this collection"
 msgstr "Escolha a classificação de acesso mais apropriada para coleção."
 
-#: collection/models.py:186 glossary/models.py:91
+#: collection/models.py:187 glossary/models.py:91
 msgid "Access Condition"
 msgstr "Condição de Acesso"
 
-#: collection/models.py:190
+#: collection/models.py:191
 msgid "Is there any local access to the collection?"
 msgstr "Há acesso local a coleção?"
 
-#: collection/models.py:191
+#: collection/models.py:192
 msgid "Local Access Status"
 msgstr "Status do Acesso Local"
 
-#: collection/models.py:195
+#: collection/models.py:196
 msgid "Is there any online access to the collection?"
 msgstr "Há algum intem online da coleção?"
 
-#: collection/models.py:196
+#: collection/models.py:197
 msgid "Online Access Status"
 msgstr "Status do Acesso online"
 
-#: collection/models.py:200
+#: collection/models.py:201
 msgid "Do you have some online link access to this collection?"
 msgstr "Possui algum link de acesso online dessa coleção?"
 
-#: collection/models.py:201
+#: collection/models.py:202
 msgid "Access Link"
 msgstr "Link de Acesso"
 
-#: collection/models.py:207
+#: collection/models.py:208
 msgid "What is the generic location to the collection?"
 msgstr "Qual a localização genérica dessa coleção? (sede)"
 
-#: collection/models.py:208
+#: collection/models.py:209
 msgid "Generic Location"
 msgstr "Localização genérica"
 
-#: collection/models.py:213
+#: collection/models.py:214
 msgid "What is the specific location to this collection?"
 msgstr "Qual localização específica da coleção?"
 
-#: collection/models.py:214
+#: collection/models.py:215
 msgid "Specific Location"
 msgstr "Localização Específica"
 
-#: collection/models.py:218
+#: collection/models.py:219
 msgid "Is there any inventary to this collection?"
 msgstr "Há algum inventário dessa coleção?"
 
-#: collection/models.py:219
+#: collection/models.py:220
 msgid "Inventary Status"
 msgstr "Status de Inventário"
 
-#: collection/models.py:223
+#: collection/models.py:224
 msgid "What is the inventary last date?"
 msgstr "Qual a última data do inventário?"
 
-#: collection/models.py:224
+#: collection/models.py:225
 msgid "Inventary Last Date"
 msgstr "Última Data de Inventário"
 
-#: collection/models.py:228
+#: collection/models.py:229
 msgid "Several data about the inventary"
 msgstr "Dados diversos sobre o inventário"
 
-#: collection/models.py:235
+#: collection/models.py:236
 msgid "What is the management unit concerning to this collection?"
 msgstr "Qual é a Unidade de Gestão responsável pela coleção?"
 
-#: collection/models.py:236 management/models.py:31
+#: collection/models.py:237 management/models.py:31
 msgid "Management Unit"
 msgstr "Coordenação"
 
-#: collection/models.py:240 event/models.py:84 management/models.py:55
+#: collection/models.py:241 event/models.py:84 management/models.py:55
 #: management/models.py:136
 msgid "Other unstructured data of this collection"
 msgstr "Outros dados não estruturados sobre a coleção"
 
-#: collection/models.py:241 event/models.py:85 management/models.py:56
-#: management/models.py:137 publication/models.py:94
+#: collection/models.py:242 event/models.py:85 management/models.py:56
+#: management/models.py:137 publication/models.py:89
 msgid "Other Data"
 msgstr "Outros dados"
 
-#: collection/models.py:253
+#: collection/models.py:254
 msgid "Collection"
 msgstr "Coleção"
 
-#: collection/models.py:254
+#: collection/models.py:255
 msgid "Collections"
 msgstr "Coleções"
 
@@ -547,40 +547,48 @@ msgstr "Nenhuma condição encontrada"
 msgid "Access Conditions"
 msgstr "Condições de Acesso"
 
-#: guia/models.py:21
+#: guia/models.py:22
 msgid "Auto Increment ID"
 msgstr "ID auto incremental"
 
-#: guia/models.py:22
+#: guia/models.py:23
 msgid "ID"
 msgstr "ID"
 
-#: guia/models.py:28
+#: guia/models.py:26
+msgid "Auto set field"
+msgstr "Campo de Preenchimento Automático"
+
+#: guia/models.py:27
+msgid "Created in"
+msgstr "Criado em"
+
+#: guia/models.py:33
 msgid "This is an auto set field"
 msgstr "Campo de Preenchimento Automático"
 
-#: guia/models.py:29
+#: guia/models.py:34
 msgid "Universal Unique Identifier"
 msgstr "Identificador Único Universal"
 
-#: guia/models.py:31
+#: guia/models.py:36
 msgid " "
 msgstr " "
 
-#: guia/models.py:33
+#: guia/models.py:38
 msgid "Ex.: The title of this record"
 msgstr "Ex.: Título do registro"
 
-#: guia/models.py:34 management/models.py:20 management/models.py:41
+#: guia/models.py:39 management/models.py:20 management/models.py:41
 #: management/models.py:72 management/models.py:93 publication/models.py:20
 msgid "Title"
 msgstr "Título"
 
-#: guia/models.py:40
+#: guia/models.py:45
 msgid "Ex.: complete-collection-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
-#: guia/models.py:41
+#: guia/models.py:46
 msgid "Slug"
 msgstr "Slug (apelido)"
 
@@ -920,6 +928,10 @@ msgstr "Ex.: Essa publicação é composta por..."
 msgid "Ex.: The book serie is..."
 msgstr "Ex.: Este livro faz parte da série..."
 
+#: publication/models.py:67
+msgid "Choose some Author(s)"
+msgstr "Escolha os/as autores/as do registro"
+
 #: publication/models.py:72
 msgid "Choose the released date"
 msgstr "Qual é a data de publicação?"
@@ -928,23 +940,23 @@ msgstr "Qual é a data de publicação?"
 msgid "Released Date"
 msgstr "Data de publicação"
 
+#: publication/models.py:78
+msgid "Choose some Publisher"
+msgstr "Escolha os/as editores/as deste registro"
+
+#: publication/models.py:79
+msgid "Publisher(s)"
+msgstr "Publicador(es) - editora"
+
 #: publication/models.py:88
-msgid "Total number of pages"
-msgstr "Número total de páginas"
-
-#: publication/models.py:89
-msgid "Number of pages"
-msgstr "Número de páginas"
-
-#: publication/models.py:93
 msgid "Other unstructured data of this publication"
 msgstr "Outros dados não estruturados sobre a coleção"
 
-#: publication/models.py:100
+#: publication/models.py:95
 msgid "Publication"
 msgstr "Publicação"
 
-#: publication/models.py:101
+#: publication/models.py:96
 msgid "Publications"
 msgstr "Publicações"
 
