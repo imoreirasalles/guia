@@ -56,8 +56,9 @@ class CollectionAdminForm(forms.ModelForm):
         widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
         label=_('Other Unstructured Data'))
 
-    # def get_queryset(self):
-    #     return Collection.objects.filter(author=True)
+    def get_queryset(self):
+        return Collection.objects.filter(author__is=True)
+
     class Meta:
        model = Collection
        fields = '__all__'

@@ -13,10 +13,10 @@ from .models import *
 
 class CollectionList(ListView):
     model = Collection
-    paginate_by = 10
+    paginate_by = 15
     context_object_name = "collection_list"
     template_name = "collection_list.html"
-    ordering = ['id_human', 'management_unit', 'title']
+    ordering = ['id_human']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
