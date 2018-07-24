@@ -25,7 +25,7 @@ class ContainerAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdm
     resource_class = ContainerResource
     list_display = ('get_date_created', 'id_auto_series', 'id_human', 'uuid', 'title', 'description', 'description_level',)
     filter_horizontal = ('items', 'container_child')
-    search_fields = ['__all__']
+    search_fields = ['id_human', 'aggregation_type__title', 'description', 'items__title', 'description_level__title', 'container_child__title']
 
 
 class CollectionResource(resources.ModelResource):
@@ -66,10 +66,10 @@ class CollectionAdminForm(forms.ModelForm):
 
 @admin.register(Collection)
 class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('id_auto_series', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = CollectionResource
     list_filter = ('management_unit', 'aggregation_type', 'description_level', 'access_condition', 'genre_tags')
     list_display = ('id_human', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
-    search_fields = ['__all__']
+    search_fields = ['id_human', 'id_old', 'abstract', 'full_text', 'description_level__title', 'aggregation_type__title', 'genre_tags__title', 'dimensions', 'date_start', 'date_start_caption', 'date_end', 'date_end_caption', 'capture__title', 'author__title', 'container__title', 'access_condition__title', 'location_generic__title', 'management_unit__title', 'other_data', ]
     filter_horizontal = ('capture', 'author', 'container')
     form = CollectionAdminForm
