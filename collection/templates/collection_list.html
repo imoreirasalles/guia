@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load collection_filters %}
 
 <!-- block title_page START -->
 {% block title_page %}
@@ -120,6 +121,50 @@
   <div class="content">
     <!-- content_row_card25percent START -->
     {% block content_row_card25percent %}
+     <div class ="row">
+        <div class="col-md-3">
+          <div class ="card">
+            <div class="card-header">
+              <div class="card-text">
+                <h3 class="card-title">Filtro</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class ="card">
+            <div class="card-header">
+              <div class="card-text">
+                <h5 class="card-title">Nível de Descrição</h5>
+                <select class="form-control form-control-sm">
+                  {% for collection in collection_list %}
+                    <option>{{collection.description_level}}</option>
+                  {% empty %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class ="card">
+            <div class="card-header">
+              <div class="card-text">
+                <h3 class="card-title">Filtro</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class ="card">
+            <div class="card-header">
+              <div class="card-text">
+                <h3 class="card-title">Filtro</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     {% endblock %}
     <!-- content_row_card25percent END -->
 
@@ -135,11 +180,10 @@
 
     <!-- content_row_card100percent START -->
     {% block content_row_card100percent %}
-
         <div class="card">
           <div class="card-header">
             <div class="card-text">
-              <h4 class="card-title">Todas as Coleções</h4>
+              <h4 class="card-title">Coleções</h4>
               <p class="card-category">Clique na coleção para ver detalhes das informações</p>
             </div>
           </div>
@@ -148,15 +192,15 @@
 
               <thead class="text-warning">
                 <tr>
-                  <th><a href="?order_by=id_human">ID<a></th>
-                  <th><a href="?order_by=management_unit">Área Responsável</a></th>
-                  <th><a href="?order_by=title">Título</a></th>
-                  <th><a href="?order_by=date_start">Data Baliza</a></th>
-                  <th><a href="?order_by=description_level">Nível de Descrição</a></th>
-                  <th><a href="?order_by=">Status de Processamento</a></th>
-                  <th><a href="?order_by=access_condition">Condição de Acesso</a></th>
-                  <th><a href="?order_by=access_local_status">Presencial</a></th>
-                  <th><a href="?order_by=access_online_status">Online</a></th>
+                  <th><a href="?order_by=id_human&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">ID<a></th>
+                  <th><a href="?order_by=management_unit&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Área Responsável</a></th>
+                  <th><a href="?order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a></th>
+                  <th><a href="?order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a></th>
+                  <th><a href="?order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a></th>
+                  <th>Status de Processamento</th>
+                  <th><a href="?order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a></th>
+                  <th><a href="?order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a></th>
+                  <th><a href="?order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a></th>
                 </tr>
               </thead>
               <tbody>
@@ -170,7 +214,16 @@
                   <td>{{collection.date_start|default_if_none:'-'|date:'Y' }} -
                     {{collection.date_end|default_if_none:'-'|date:'Y' }}</td>
                   <td>{{collection.description_level|default_if_none:"-" }}</td>
-                  <td>status</td>
+                  <td>
+                    <div class="progress">
+                      {% with collection.items_online|percent:collection.items_total as online %}
+                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{online}}%" aria-valuenow="{{online}}" aria-valuemin="0" aria-valuemax="100"></div>
+                      {% endwith %}
+                      {% with collection.items_processed|subtract:collection.items_online|percent:collection.items_total|default_if_none:'0' as processed %}
+                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{processed}}%" aria-valuenow="{{processed}}" aria-valuemin="0" aria-valuemax="100"></div>
+                      {% endwith %}
+                   </div>
+                  </td>
                   <td>{{collection.access_condition|default_if_none:"-"}}</td>
                   <td>{{collection.access_local_status|default_if_none:"-"}}</td>
                   <td>{{collection.access_online_status|default_if_none:"-"}}</td>

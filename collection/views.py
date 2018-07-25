@@ -11,6 +11,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import *
 
 
+
 class CollectionList(ListView):
     model = Collection
     paginate_by = 10
@@ -18,11 +19,17 @@ class CollectionList(ListView):
     template_name = "collection_list.html"
 
     def get_ordering(self):
-        return self.request.GET.get('order_by', 'title')
+        self.order = self.request.GET.get('order', 'asc')
+        selected_ordering = self.request.GET.get('order_by', 'title')
+        if self.order == "desc":
+            selected_ordering = "-" + selected_ordering
+        return selected_ordering
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
+        context['current_order'] = self.get_ordering()
+        context['order'] = self.order
         return context
 
 
