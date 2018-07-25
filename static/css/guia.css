@@ -33,6 +33,19 @@ font-size: 1.6rem;
 padding: 10px;
 }
 
+ul.object-tools{
+  margin-top: -53px;
+  margin-right: 5px;
+}
+a.historylink, a.viewsitelink {
+  margin-top: 11px;
+  margin-right: 7px;
+}
+
+a.historylink:hover, a.viewsitelink:hover {
+  background-color: #6e7d84;
+}
+
 .aligned label {
   padding: 4px 10px 0 10px;
 }
