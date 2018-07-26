@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-24 21:34+0000\n"
+"POT-Creation-Date: 2018-07-25 20:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Felipe Cabral <felipehistory at gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,42 @@ msgstr "Dados de inventário"
 msgid "Other Unstructured Data"
 msgstr "Outros Dados não Estruturados"
 
+#: collection/admin.py:76
+msgid "Indentification"
+msgstr "Identificação"
+
+#: collection/admin.py:85
+msgid "Basic Infos"
+msgstr "Informações Básicas"
+
+#: collection/admin.py:93
+msgid "Location and Dimensions"
+msgstr "Localização e Dimensões"
+
+#: collection/admin.py:98
+msgid "Inventory and Patrimony"
+msgstr "Inventário e Patrimonio"
+
+#: collection/admin.py:103
+msgid "Access"
+msgstr "Acesso"
+
+#: collection/admin.py:108
+msgid "Processed Status"
+msgstr "Status de Processamento"
+
+#: collection/admin.py:113 collection/models.py:35
+#: digitalassetsmanagement/models.py:52 event/models.py:22
+#: glossary/models.py:22 glossary/models.py:40 glossary/models.py:58
+#: glossary/models.py:81 management/models.py:25 management/models.py:77
+#: publication/models.py:26
+msgid "Description"
+msgstr "Descrição"
+
+#: collection/admin.py:116
+msgid "Other Infos"
+msgstr "Outras Informações"
+
 #: collection/apps.py:7
 msgid "Collection App"
 msgstr "App Coleções"
@@ -66,13 +102,6 @@ msgstr "Tipo de Agregação"
 #: collection/models.py:34
 msgid "Ex.: This container is..."
 msgstr "Ex.: Uma coleção é um agrupamento de objetos..."
-
-#: collection/models.py:35 digitalassetsmanagement/models.py:52
-#: event/models.py:22 glossary/models.py:22 glossary/models.py:40
-#: glossary/models.py:58 glossary/models.py:81 management/models.py:25
-#: management/models.py:77 publication/models.py:26
-msgid "Description"
-msgstr "Descrição"
 
 #: collection/models.py:39
 msgid "Itens that composes the container"
