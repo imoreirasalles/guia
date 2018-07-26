@@ -23,7 +23,7 @@ div#content.colM h1, h1{
   font-size: 21px;
   padding: 6px;
   color: #4e4e4e;
-  background-color: #c1c1c1;
+  background-color: #d4d4d4;
 }
 
 .module h2, .module caption, .inline-group h2{
@@ -59,9 +59,9 @@ label {
 /* fixes */
 
 div.field-box.field-id_old{
-  width: 40%;
+  width: 470px;
 }
 
-div.field-box.field-uuid, div.field-box.field-id_human, div.field-box.field-management_unit, div.field-box.field-title, div.field-box.field-date_start, div.field-box.field-date_end, div.field-box.field-access_condition  {
-  width: 600px;
+div.field-box.field-uuid, div.field-box.field-id_human, div.field-box.field-management_unit, div.field-box.field-title, div.field-box.field-date_start, div.field-box.field-date_end, div.field-box.field-access_condition {
+  width: 500px;
 }

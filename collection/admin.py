@@ -73,49 +73,47 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAd
     search_fields = ['id_human', 'id_old', 'abstract', 'full_text', 'description_level__title', 'aggregation_type__title', 'genre_tags__title', 'dimensions', 'date_start', 'date_start_caption', 'date_end', 'date_end_caption', 'capture__title', 'author__title', 'container__title', 'access_condition__title', 'location_generic__title', 'management_unit__title', 'other_data', ]
     filter_horizontal = ('capture', 'author', 'container')
     fieldsets = (
-        (_('Indentification'), {
-        'classes': ('wide','id_old_fix'),
-        'fields': ( ('uuid', 'created'),
-                    ('id_human', 'id_old'),
-                    ('management_unit', 'aggregation_type'),
-                    ('title', 'slug'),
-                    ('capture'),
-        ),}
-        ),
-        (_('Basic Infos'), {
-        'fields': ( ('date_start', 'date_start_caption'),
-                    ('date_end', 'date_end_caption'),
-                    ('access_condition', 'description_level'),
-                    ('genre_tags'),
-                    ('abstract'),
-        ),}
-        ),
-        (_('Location and Dimensions'), {
-        'fields': ( ('location_generic', 'location_specific'),
-                    ('dimensions'),
-        ),}
-        ),
-        (_('Inventory and Patrimony'), {
-        'fields': ( ('inventary_status', 'inventary_last_date'),
-                    ('inventary_data'),
-        ),}
-        ),
-        (_('Access'), {
-        'fields': ( ('access_local_status', ),
-                    ('access_online_status', 'access_link'),
-        ),}
-        ),
-        (_('Processed Status'), {
-        'fields': ( ('items_total', 'items_processed', 'items_online'),
-        ),}
-        ),
-
-        (_('Description'), {
-        'fields': ('full_text', 'container'),}
-        ),
-        (_('Other Infos'), {
-        'fields': ('other_data',),
-        }),
+                (_('Indentification'),
+                    {'fields':  (
+                        ('uuid', 'created'),
+                        ('id_human', 'id_old'),
+                        ('management_unit', 'aggregation_type'),
+                        ('title', 'slug'),
+                        ('capture')),
+                    }),
+                (_('Basic Infos'),
+                    {'fields': (
+                        ('date_start', 'date_start_caption'),
+                        ('date_end', 'date_end_caption'),
+                        ('access_condition', 'description_level'),
+                        ('genre_tags'),
+                        ('abstract')),
+                    }),
+                (_('Location and Dimensions'),
+                    {'fields': (
+                        ('location_generic', 'location_specific'),
+                        ('dimensions')),
+                    }),
+                (_('Inventory and Patrimony'),
+                    {'fields': (
+                        ('inventary_status', 'inventary_last_date'),
+                        ('inventary_data')),
+                    }),
+                (_('Access'),
+                    {'fields': (
+                        ('access_local_status', ),
+                        ('access_online_status', 'access_link')),
+                    }),
+                (_('Processed Status'),
+                    {'fields': (
+                        ('items_total', 'items_processed', 'items_online')),
+                    }),
+                (_('Description'),
+                    {'fields': ('full_text', 'container'),
+                    }),
+                (_('Other Infos'),
+                    {'fields': ('other_data',),
+                    }),
     )
     form = CollectionAdminForm
     class Media:
