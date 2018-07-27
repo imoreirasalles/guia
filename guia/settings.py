@@ -198,9 +198,6 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-# From Django Import / Export apps
-IMPORT_EXPORT_USE_TRANSACTIONS = True
-
 ## From Django Model Admin Reorder https://github.com/mishbahr/django-modeladmin-reorder
 
 ADMIN_REORDER = (

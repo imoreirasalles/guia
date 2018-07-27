@@ -33,11 +33,12 @@ class Base(models.Model):
         help_text=_('This is an auto set field'),
         verbose_name=_('Universal Unique Identifier'))
     title = models.CharField(
-        default=_(' '),
+        default=None,
         max_length=256,
         help_text=_('Ex.: The title of this record'),
         verbose_name=_('Title'))
     slug = models.SlugField(
+        default=None,
         max_length=256,
         unique=True,
         null=True,
