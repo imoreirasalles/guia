@@ -54,6 +54,5 @@ class Base(models.Model):
         self.slug = slug_auto
         super(Base, self).save(*args, **kwargs)
 
-
     class Meta:
         abstract = True

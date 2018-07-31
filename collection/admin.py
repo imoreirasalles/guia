@@ -20,8 +20,9 @@ class ContainerResource(resources.ModelResource):
         model = Container
         fields = ('uuid', 'title', 'id_human', 'aggregation_type', 'description', 'description_level')
         skip_unchanged = True
-        report_skipped = True
+        report_skipped = False
         import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(Container)
