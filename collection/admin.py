@@ -4,6 +4,7 @@ from django.conf import settings
 
 # Project Guia imports
 from .models import *
+from person.models import Person
 ## Third part imports ##
 from django.utils.translation import ugettext_lazy
 from ckeditor.widgets import CKEditorWidget
@@ -104,6 +105,7 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
                         ('date_start', 'date_start_caption'),
                         ('date_end', 'date_end_caption'),
                         ('access_condition', 'description_level'),
+                        ('author'),
                         ('genre_tags'),
                         ('abstract')),
                     }),
@@ -138,3 +140,8 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
         css = {
              'all': ('css/guia.css',)
         }
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'author':
+            kwargs["queryset"] = Person.objects.filter(is_feature=True)
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
