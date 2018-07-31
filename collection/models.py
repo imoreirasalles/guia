@@ -116,11 +116,9 @@ class Collection(Base):
         on_delete=models.SET_NULL,
         help_text=_('Choose an Option'),
         verbose_name=_('Aggregation Type'))
-    genre_tags = models.ForeignKey(
+    genre_tags = models.ManyToManyField(
         'glossary.GenreTag',
-        null=True,
         blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('Choose one or more options'),
         verbose_name=_('Genre Tags'))
     dimensions = JSONField(
