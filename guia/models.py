@@ -33,11 +33,12 @@ class Base(models.Model):
         help_text=_('This is an auto set field'),
         verbose_name=_('Universal Unique Identifier'))
     title = models.CharField(
-        default=_(' '),
+        default=None,
         max_length=256,
         help_text=_('Ex.: The title of this record'),
         verbose_name=_('Title'))
     slug = models.SlugField(
+        default=None,
         max_length=256,
         unique=True,
         null=True,
@@ -52,7 +53,6 @@ class Base(models.Model):
         slug_auto = slugify( str(self.id_auto_series) + '_' + self.title)
         self.slug = slug_auto
         super(Base, self).save(*args, **kwargs)
-
 
     class Meta:
         abstract = True

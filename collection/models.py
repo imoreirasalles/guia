@@ -15,6 +15,7 @@ from django.apps import apps
 class Container(Base):
     """Used to store an aggroupment of items"""
     id_human = models.CharField(
+        default=None,
         max_length=64,
         null=True,
         blank=True,
@@ -78,6 +79,7 @@ class Collection(Base):
     Main class of collection
     """
     id_human = models.CharField(
+        default=None,
         max_length=64,
         null=True,
         blank=True,
@@ -85,6 +87,7 @@ class Collection(Base):
         help_text=_('Institucional Identifier'),
         verbose_name=_('Institucional ID'))
     id_old = JSONField(
+        default=None,
         null=True,
         blank=True,
         help_text=_('Legacy Identifiers'),
@@ -113,11 +116,9 @@ class Collection(Base):
         on_delete=models.SET_NULL,
         help_text=_('Choose an Option'),
         verbose_name=_('Aggregation Type'))
-    genre_tags = models.ForeignKey(
+    genre_tags = models.ManyToManyField(
         'glossary.GenreTag',
-        null=True,
         blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('Choose one or more options'),
         verbose_name=_('Genre Tags'))
     dimensions = JSONField(
@@ -242,7 +243,10 @@ class Collection(Base):
         verbose_name=_('Other Data'))
 
     def __str__(self):
-        return self.title
+        if self.title == None:
+            return str(self.uuid)
+        else:
+            return self.title
 
     def get_absolute_url(self):
         if self.slug != None:

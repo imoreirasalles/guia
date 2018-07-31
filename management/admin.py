@@ -3,7 +3,8 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 # Project Guia imports
-from .models import *
+from . models import *
+from person.models import Person
 ## Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
@@ -76,7 +77,7 @@ class AcquisitionResource(resources.ModelResource):
 
 
 @admin.register(Acquisition)
-class AcquisitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+class AcquisitionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
     readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = AcquisitionResource
     list_filter = ('method', 'date_start', 'date_end')
@@ -84,3 +85,10 @@ class AcquisitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelA
     search_fields = ['__all__']
     filter_horizontal = ('source', 'dealer', )
     form = AcquisitionAdminForm
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'source':
+            kwargs["queryset"] = Person.objects.filter(is_feature=True)
+        if db_field.name == 'dealer':
+            kwargs["queryset"] = Person.objects.filter(is_staff=True)
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
