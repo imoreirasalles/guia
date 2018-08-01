@@ -1,0 +1,53 @@
+[
+  {
+    "model": "location.location",
+    "pk": 1,
+    "fields": {
+      "title": "IMS Poços",
+      "slug": "location_1_ims-pocos",
+      "street": "",
+      "number": "",
+      "complement": "",
+      "neighborhood": "",
+      "state": "Minas Gerais",
+      "city": "Poços de Caldas",
+      "country": "Brasil",
+      "postal_code": "",
+      "lat_and_long": null
+    }
+  },
+  {
+    "model": "location.location",
+    "pk": 2,
+    "fields": {
+      "title": "IMS Paulista",
+      "slug": "location_2_ims-paulista",
+      "street": "",
+      "number": "",
+      "complement": "",
+      "neighborhood": "",
+      "state": "São Paulo",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "postal_code": "",
+      "lat_and_long": null
+    }
+  },
+  {
+    "model": "location.location",
+    "pk": 3,
+    "fields": {
+      "title": "IMS Gávea",
+      "slug": "location_3_ims-gavea",
+      "street": "",
+      "number": "",
+      "complement": "",
+      "neighborhood": "",
+      "state": "Rio de Janeiro",
+      "city": "Rio de Janeiro",
+      "country": "Brasil",
+      "postal_code": "",
+      "lat_and_long": null
+    }
+  }
+]
