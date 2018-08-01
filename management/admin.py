@@ -17,6 +17,11 @@ class ManagementUnitResource(resources.ModelResource):
 
     class Meta:
         model = ManagementUnit
+        fields = ('uuid', 'title', 'description')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(ManagementUnit)
