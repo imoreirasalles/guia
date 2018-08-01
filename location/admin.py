@@ -9,6 +9,11 @@ class LocationResource(resources.ModelResource):
 
     class Meta:
         model = Location
+        fields = ('uuid', 'title', 'street', 'number', 'complement', 'neighborhood', 'state', 'city', 'country', 'postal_code', 'lat_and_long')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(Location)
