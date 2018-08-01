@@ -1,0 +1,83 @@
+[
+  {
+    "model": "glossary.genretag",
+    "pk": 9,
+    "fields": {
+      "title": "Tridimensional",
+      "slug": "genretag_9_tridimensional",
+      "description": "Objetos tridimensionais."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 8,
+    "fields": {
+      "title": "Textual",
+      "slug": "genretag_8_textual",
+      "description": "Cadernos, manuscritos, impressos e folheteria."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 7,
+    "fields": {
+      "title": "Sonoro",
+      "slug": "genretag_7_sonoro",
+      "description": "Discos, fitas, cds e álbums."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 6,
+    "fields": {
+      "title": "Nato-digital",
+      "slug": "genretag_6_nato-digital",
+      "description": "Documentos originalmente gerados em computadores."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 5,
+    "fields": {
+      "title": "Iconográfico",
+      "slug": "genretag_5_iconografico",
+      "description": "Desenhos, gravuras, caricaturas, charges, cartazes e peças gráficas."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 4,
+    "fields": {
+      "title": "Fotográfico",
+      "slug": "genretag_4_fotografico",
+      "description": "Fotografias em papel, slides, negativos, cromos e demais suportes fotográficos."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 3,
+    "fields": {
+      "title": "Cartográfico",
+      "slug": "genretag_3_cartografico",
+      "description": "Mapas e plantas arquitetônicas."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 2,
+    "fields": {
+      "title": "Bibliográfico",
+      "slug": "genretag_2_bibliografico",
+      "description": "Livros, jornais, revistas, catálogos e brochuras."
+    }
+  },
+  {
+    "model": "glossary.genretag",
+    "pk": 1,
+    "fields": {
+      "title": "Audiovisual",
+      "slug": "genretag_1_audiovisual",
+      "description": "Filmes cinematográficos, fitas magnéticas, vídeo digital e demais suportes audiovisuais."
+    }
+  }
+]

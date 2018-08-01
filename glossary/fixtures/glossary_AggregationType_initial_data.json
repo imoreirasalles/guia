@@ -1,0 +1,35 @@
+[
+  {"model": "glossary.aggregationtype",
+    "pk": 1,
+    "fields": {
+      "title": "Conjunto",
+      "slug": "1_conjunto",
+      "description": "Agrupamento documentos"
+      }
+    },
+  {"model": "glossary.aggregationtype",
+    "pk": 2,
+    "fields": {
+      "title": "Biblioteca",
+      "slug": "2_biblioteca",
+      "description": "Conjuntos de livros e publica\u00e7\u00f5es reunidos por uma pessoa ou institui\u00e7\u00e3o"
+      }
+    }, {"model": "glossary.aggregationtype",
+      "pk": 3,
+      "fields": {
+        "title": "Arquivo",
+        "slug":
+        "3_arquivo",
+        "description":
+        "Conjuntos de documentos produzidos e acumulados por uma pessoa ou institui\u00e7\u00e3o no desempenho de suas atividadesConjuntos de documentos produzidos e acumulados por uma pessoa ou institui\u00e7\u00e3o no desempenho de suas atividades"
+        }
+      },
+    {"model": "glossary.aggregationtype",
+      "pk": 4,
+      "fields": {
+        "title": "Cole\u00e7\u00e3o",
+        "slug": "4_colecao",
+        "description": "Conjuntos de documentos reunidos intencionalmente por uma pessoa ou institui\u00e7\u00e3o"
+        }
+      }
+]
