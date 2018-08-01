@@ -16,6 +16,11 @@ class AccessConditionResource(resources.ModelResource):
 
     class Meta:
         model = AccessCondition
+        fields = ('uuid', 'title', 'title_long', 'description')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(AccessCondition)
@@ -30,6 +35,11 @@ class DescriptionLevelResource(resources.ModelResource):
 
     class Meta:
         model = DescriptionLevel
+        fields = ('uuid', 'title', 'description')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(DescriptionLevel)
@@ -44,7 +54,12 @@ class AggregationTypeResource(resources.ModelResource):
 
     class Meta:
         model = AggregationType
-
+        fields = ('uuid', 'title', 'description')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
+        
 
 @admin.register(AggregationType)
 class AggregationTypeAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
@@ -58,6 +73,11 @@ class GenreTagResource(resources.ModelResource):
 
     class Meta:
         model = GenreTag
+        fields = ('uuid', 'title', 'description')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(GenreTag)
