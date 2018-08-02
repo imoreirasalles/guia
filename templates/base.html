@@ -2,32 +2,34 @@
 
 <!DOCTYPE html>
 <html lang=”pt-br”>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/icon_instituto_moreira_salles.png' %}">
-    <link rel="icon" type="image/png" href="{% static 'img/favicon_instituto_moreira_salles.png' %}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!-- block title_page START -->
-    <title>
-      {% block title_page %}
-      {% endblock %}
-    </title>
-    <!-- block title_page END -->
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/icon_instituto_moreira_salles.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'img/favicon_instituto_moreira_salles.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!-- block title_page START -->
+  <title>
+    {% block title_page %} {% endblock %}
+  </title>
+  <!-- block title_page END -->
 
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="{% static 'css/fontawesome-all.min.css' %}" rel="stylesheet">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
-    <!-- CSS Files -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/paper-dashboard.css' %}" rel="stylesheet" />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="{% static 'css/fontawesome-all.min.css' %}" rel="stylesheet">
 
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
-  </head>
+  <!-- CSS Files -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/paper-dashboard.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/django_frontend_guia.css' %}" rel="stylesheet" />
+
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <!-- <link href="{% static 'demo/demo.css' %}" rel="stylesheet" /> -->
+</head>
+
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
@@ -45,8 +47,7 @@
       <div class="sidebar-wrapper">
 
         <!-- block sidebar_user START -->
-        {% block sidebar_user %}
-        {% if user.is_authenticated %}
+        {% block sidebar_user %} {% if user.is_authenticated %}
         <div class="user">
           <div class="photo">
             <img src="{% static 'img/user_default.png' %}" />
@@ -89,8 +90,7 @@
             </div>
           </div>
         </div>
-        {% endif %}
-        {% endblock %}
+        {% endif %} {% endblock %}
         <!-- block sidebar_user END -->
 
         <!-- block sidebar_menu START -->
@@ -318,7 +318,8 @@
             </a>
           </li>
         </ul>
-        {% endblock %} <!-- block sidebar_menu END -->
+        {% endblock %}
+        <!-- block sidebar_menu END -->
       </div>
     </div>
 
@@ -990,8 +991,32 @@
 
 
       {% block footer %}
-      <footer class="footer footer-black  footer-white ">
+      <footer class="footer footer-back">
         <div class="container-fluid">
+          <div class="row">
+            <h3 class="footer-title">
+              Instituto Moreira Salles
+            </h3>
+          </div>
+          <div class="container footer-front">
+            <div class="row">
+              <div class="col-sm-6 col-lg-2">
+                <p>Rio de Janeiro</p>
+              </div>
+              <div class="col-sm-6 col-lg-2">
+                <p>São Paulo</p>
+              </div>
+              <div class="col-sm-6 col-lg-2">
+                <p>Poços de Caldas</p>
+              </div>
+              <div class="col-sm-6 col-lg-2">
+
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                One of three columns
+              </div>
+            </div>
+          </div>
           <div class="row">
             <nav class="footer-nav">
               <ul>
