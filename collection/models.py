@@ -2,6 +2,7 @@ from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
 from guia.models import Base
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
@@ -53,7 +54,9 @@ class Container(Base):
         verbose_name=_('Child containers'))
 
     def __str__(self):
-        if self.aggregation_type != None:
+        if self.title == None:
+            Container_str = str(self.uuid)
+        elif self.aggregation_type != None:
             Container_str = str(self.aggregation_type) + str(': ') + str(self.title)
         else:
             Container_str = _('No type: ') + self.title
@@ -67,6 +70,20 @@ class Container(Base):
             return reverse('container_detail_slug', kwargs={'slug': self.slug})
         else:
             return reverse('container_detail', kwargs={'pk': self.id_auto_series})
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series == None:
+            super(Container, self).save(*args, **kwargs)
+        if self.aggregation_type == None:
+            aggregation_type_str = "[no-aggregation]"
+        else:
+            aggregation_type_str = self.aggregation_type
+
+        slug_auto = slugify(str(aggregation_type_str) + '-' +
+                            str(self.id_auto_series) + '-' +
+                            self.title)
+        self.slug = slug_auto
+        super(Container, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('Container')
@@ -244,15 +261,37 @@ class Collection(Base):
 
     def __str__(self):
         if self.title == None:
-            return str(self.uuid)
+            collection_str = str(self.uuid)
+        elif self.aggregation_type != None:
+            collection_str = str(self.aggregation_type) + str(': ') + str(self.title)
         else:
-            return self.title
+            collection_str = _('No type: ') + self.title
+        return collection_str
 
     def get_absolute_url(self):
         if self.slug != None:
             return reverse('collection_detail_slug', kwargs={'slug': self.slug})
         else:
             return reverse('collection_detail', kwargs={'pk': self.id_auto_series})
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series == None:
+            super(Collection, self).save(*args, **kwargs)
+        if self.aggregation_type == None:
+            aggregation_type_str = "[no-aggregation]"
+        else:
+            aggregation_type_str = self.aggregation_type
+        if self.title == None:
+            title_str = "[no-title]"
+        else:
+            title_str = self.title
+
+
+        slug_auto = slugify(str(self.id_auto_series) + '-' +
+                            str(aggregation_type_str) + '-' +
+                            str(title_str))
+        self.slug = slug_auto
+        super(Collection, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = _('Collection')
