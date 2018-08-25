@@ -24,7 +24,7 @@
   <!-- CSS Files -->
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
   <link href="{% static 'css/paper-dashboard.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/guia.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/guia_frontend.css' %}" rel="stylesheet" />
 
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <!-- <link href="{% static 'demo/demo.css' %}" rel="stylesheet" /> -->
@@ -997,58 +997,7 @@
 
 
       {% block footer %}
-      <footer class="footer footer-back">
-        <div class="container-fluid">
-          <div class="row">
-            <h3 class="footer-title">
-              Instituto Moreira Salles
-            </h3>
-          </div>
-          <div class="container footer-front">
-            <div class="row">
-              <div class="col-sm-6 col-lg-2">
-                <p>Rio de Janeiro</p>
-              </div>
-              <div class="col-sm-6 col-lg-2">
-                <p>São Paulo</p>
-              </div>
-              <div class="col-sm-6 col-lg-2">
-                <p>Poços de Caldas</p>
-              </div>
-              <div class="col-sm-6 col-lg-2">
-
-              </div>
-              <div class="col-sm-6 col-lg-4">
-                One of three columns
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li>
-                  <a href="https://ims.com.br/politica-de-privacidade/" target="_blank">Política de Privacidade</a>
-                </li>
-              </ul>
-            </nav>
-            <div class="credits ml-auto">
-              <span class="copyright">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>, disponível em
-                <a href="https://github.com/buccalon/guia" target="_blank">
-                <i class="fab fa-github-square"></i>
-                </a>
-                por
-                <a href="https://ims.com.br" target="_blank">
-                IMS
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
+        {% include 'footer.html' %}
       {% endblock %}
 
     </div>
