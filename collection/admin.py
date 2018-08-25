@@ -138,7 +138,7 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
     form = CollectionAdminForm
     class Media:
         css = {
-             'all': ('css/django_admin_guia.css',)
+             'all': ('css/guia_admin.css',)
         }
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):

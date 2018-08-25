@@ -1,9 +1,14 @@
 .sidebar .logo a.logo-mini, .off-canvas-sidebar .logo a.logo-mini{
   margin-left: 0px;
   width: 60px;
+  text-align: center;
 }
 
 .sidebar .logo .simple-text, .off-canvas-sidebar .logo .simple-text {
+  padding: 0px;
+}
+
+.main-panel > .content {
   padding: 0px;
 }
 
