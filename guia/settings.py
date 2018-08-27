@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'event',
     'exhibition',
     'glossary',
+    'home',
     'location',
     'management',
     'person',
@@ -210,7 +211,7 @@ CKEDITOR_CONFIGS = {
 
 ADMIN_REORDER = (
     {'app': 'auth',
-    'models': ('auth.User', 'auth.Group')},
+    'models': ('auth.User', 'auth.Group', 'home.Post')},
     {'app': 'collection',
     'label': 'Guia IMS',
     'models': ('collection.Collection',
