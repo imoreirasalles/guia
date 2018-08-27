@@ -1,27 +1,26 @@
-function mouseoutDisplayShow(id) {
-  document.getElementById(id).style.display = "block";
-}
-function mouseoverDisplayNone(id) {
-  document.getElementById(id).style.display = "none";
+function mouseoutDisplayShow() {
+  document.getElementById('logo-small1').style.display = "block";
 }
 
-sidebar_mini_active = true;
+function mouseoverDisplayNone() {
+  document.getElementById('logo-small1').style.display = "none";
+}
 
-function navbarExpand() {
-  if (sidebar_mini_active == true;){
-    console.log('true');
-    sidebar_mini_active = false;
-  }else{
-    console.log('false');
-    sidebar_mini_active = true;
+var sidebar_status = Boolean(false);
+
+function sidebarButton(){
+  if (sidebar_status == false) {
+    $('body').removeClass('sidebar-mini');
+    document.getElementById('logo-small1').style.display = "none";
+    document.getElementById('logo-small2').style.display = "none";
+    console.log("ok none");
+    sidebar_status = true;
+  } else {
+    $('body').addClass('sidebar-mini');
+    document.getElementById("logo-small1").style.display = "block";
+    document.getElementById("logo-small2").style.display = "block";
+    console.log("ok block");
+    sidebar_status = false;
   }
 
 }
-// function mouseClikOutDisplayShow(id) {
-//   document.getElementsByTagName(body).classList.add("logo-small");
-//   document.getElementById("logo-small").style.display = "block";
-// }
-// function mouseClickOverDisplayNone(id) {
-//   document.getElementsByTagName(body).removeClass("logo-small");
-//   document.getElementById("logo-small").style.display = "none";
-// }

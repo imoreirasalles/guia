@@ -21,7 +21,7 @@ fixedTop = false;
 
 navbar_initialized = false;
 backgroundOrange = false;
-sidebar_mini_active = false;
+// sidebar_mini_active = false;
 toggle_initialized = false;
 
 seq = 0, delays = 80, durations = 500;
@@ -206,29 +206,29 @@ paperDashboard = {
     }
   },
 
-  initMinimizeSidebar: function() {
-    $('#minimizeSidebar').click(function() {
-      var $btn = $(this);
-
-      if (paperDashboard.misc.sidebar_mini_active == true) {
-        $('body').removeClass('sidebar-mini');
-        paperDashboard.misc.sidebar_mini_active = false;
-      } else {
-        $('body').addClass('sidebar-mini');
-        paperDashboard.misc.sidebar_mini_active = true;
-      }
-
-      // we simulate the window Resize so the charts will get updated in realtime.
-      var simulateWindowResize = setInterval(function() {
-        window.dispatchEvent(new Event('resize'));
-      }, 180);
-
-      // we stop the simulation of Window Resize after the animations are completed
-      setTimeout(function() {
-        clearInterval(simulateWindowResize);
-      }, 1000);
-    });
-  },
+  // initMinimizeSidebar: function() {
+  //   $('#minimizeSidebar').click(function() {
+  //     var $btn = $(this);
+  //
+  //     if (paperDashboard.misc.sidebar_mini_active == true) {
+  //       $('body').removeClass('sidebar-mini');
+  //       paperDashboard.misc.sidebar_mini_active = false;
+  //     } else {
+  //       $('body').addClass('sidebar-mini');
+  //       paperDashboard.misc.sidebar_mini_active = true;
+  //     }
+  //
+  //     // we simulate the window Resize so the charts will get updated in realtime.
+  //     var simulateWindowResize = setInterval(function() {
+  //       window.dispatchEvent(new Event('resize'));
+  //     }, 180);
+  //
+  //     // we stop the simulation of Window Resize after the animations are completed
+  //     setTimeout(function() {
+  //       clearInterval(simulateWindowResize);
+  //     }, 1000);
+  //   });
+  // },
 
   startAnimationForLineChart: function(chart) {
 
