@@ -2,6 +2,7 @@ from guia.models import Base
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
@@ -30,6 +31,15 @@ class Capture(Base):
         Capture_id_str = 'ID [' + str(self.id_auto_series) + '] '
         return (Capture_id_str + "  " + Capture_file_str)
 
+    def save(self, *args, **kwargs):
+        if self.id_auto_series == None:
+            super(Capture, self).save(*args, **kwargs)
+
+        slug_auto = slugify(str(self.id_auto_series) + '-image-' + self.title)
+
+        self.slug = slug_auto
+        super(Capture, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = _('Capture')
         verbose_name_plural = _('Captures')
@@ -57,7 +67,33 @@ class Item(Base):
         verbose_name=_('Capture(s)'))
 
     def __str__(self):
-        return self.title
+        if self.title == None:
+            item_str = str(self.uuid)
+        else:
+            item_str = (str(self.id_auto_series) + ': ' + self.title)
+        return item_str
+
+    def save(self, *args, **kwargs):
+        if self.title == None:
+            item_title_str = '[no title]'
+        else:
+            item_title_str = self.title
+        if self.id_auto_series == None:
+            super(Item, self).save(*args, **kwargs)
+            item_id_str = str(self.id_auto_series)
+        else:
+            item_id_str = str(self.id_auto_series)
+        if self.id_human == None:
+            item_id_human_str = ' '
+        else:
+            item_id_human_str = str(self.id_human)
+
+        slug_auto = slugify(item_id_str + '-item-' +
+                            item_id_human_str + '-' +
+                            item_title_str)
+        self.slug = slug_auto
+        super(Item, self).save(*args, **kwargs)
+
 
     class Meta:
         verbose_name = _('Item')

@@ -11,7 +11,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('base/', views.base, name='base'),
-    path('', views.home, name='home'),
+    path('', include('home.urls')),
     path('collection/', include('collection.urls')),
     path('exhibition/', views.exhibition, name='exhibition'),
     path('publication/', views.publication, name='publication'),

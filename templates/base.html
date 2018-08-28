@@ -2,45 +2,58 @@
 
 <!DOCTYPE html>
 <html lang=”pt-br”>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/icon_instituto_moreira_salles.png' %}">
-    <link rel="icon" type="image/png" href="{% static 'img/favicon_instituto_moreira_salles.png' %}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!-- block title_page START -->
-    <title>
-      {% block title_page %}
-      {% endblock %}
-    </title>
-    <!-- block title_page END -->
+{% block head %}
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/icon_instituto_moreira_salles.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'img/favicon_instituto_moreira_salles.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!-- block title_page START -->
+  <title>
+    {% block title_page %} {% endblock %}
+  </title>
+  <!-- block title_page END -->
 
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="{% static 'css/fontawesome-all.min.css' %}" rel="stylesheet">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
-    <!-- CSS Files -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/paper-dashboard.css' %}" rel="stylesheet" />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="{% static 'css/fontawesome-all.min.css' %}" rel="stylesheet">
 
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
-  </head>
-<body class="">
+  <!-- CSS Files -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/paper-dashboard.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/guia_frontend.css' %}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <!-- <link href="{% static 'demo/demo.css' %}" rel="stylesheet" /> -->
+
+</head>
+{% endblock %}
+
+{% block body %}
+<body class="sidebar-mini">
   <div class="wrapper ">
-    <div class="sidebar" data-color="white" data-active-color="danger">
+    <div class="sidebar" data-color="white" data-active-color="danger" onMouseOver="mouseoverDisplayNone()" onMouseOut="mouseoutDisplayShow()">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
+
+    {% block logo %}
       <div class="logo">
+        <a href="{% url 'home' %}" id="logo-small1" style="display: block" class="simple-text logo-mini">
+          <div class="logo-image-small" id="logo-small2">
+            <img src="{% static 'img/ims_guia_logo_128x128.png' %}">
+          </div>
+        </a>
         <a href="{% url 'home' %}" class="simple-text logo-normal">
           <div class="logo-image-big text-center">
-            <img src="{% static 'img/ims_guia_logo.png' %}">
+            <img src="{% static 'img/ims_guia_logo_115x30.png' %}">
           </div>
         </a>
       </div>
+    {% endblock %}
 
       <div class="sidebar-wrapper">
 
@@ -318,7 +331,8 @@
             </a>
           </li>
         </ul>
-        {% endblock %} <!-- block sidebar_menu END -->
+        {% endblock %}
+        <!-- block sidebar_menu END -->
       </div>
     </div>
 
@@ -330,7 +344,8 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-minimize">
-              <button id="minimizeSidebar" class="btn btn-icon btn-round">
+              <button onclick="sidebarButton()" type='button' id="minimizeSidebar" class="btn btn-icon btn-round">
+
                 <i class="nc-icon nc-minimal-right text-center visible-on-sidebar-mini"></i>
                 <i class="nc-icon nc-minimal-left text-center visible-on-sidebar-regular"></i>
               </button>
@@ -361,7 +376,8 @@
                 </div>
               </div>
             </form>
-
+            <!-- navbar alert buttons START -->
+            {% if user.is_authenticated %}
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link btn-magnify" href="#pablo">
@@ -393,6 +409,8 @@
                 </a>
               </li>
             </ul>
+            {% endif %}
+            <!-- navbar alert buttons END -->
           </div>
         </div>
       </nav>
@@ -990,34 +1008,7 @@
 
 
       {% block footer %}
-      <footer class="footer footer-black  footer-white ">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li>
-                  <a href="https://ims.com.br/politica-de-privacidade/" target="_blank">Política de Privacidade</a>
-                </li>
-              </ul>
-            </nav>
-            <div class="credits ml-auto">
-              <span class="copyright">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>, disponível em
-                <a href="https://github.com/buccalon/guia" target="_blank">
-                <i class="fab fa-github-square"></i>
-                </a>
-                por
-                <a href="https://ims.com.br" target="_blank">
-                IMS
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
+        {% include 'footer.html' %}
       {% endblock %}
 
     </div>
@@ -1055,16 +1046,19 @@
   <!--  Plugin for the Bootstrap Table -->
   <script src="{% static 'js/plugins/nouislider.min.js' %}"></script>
   <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
   <!-- Chart JS -->
   <script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
   <!--  Notifications Plugin    -->
   <script src="{% static 'js/plugins/bootstrap-notify.js' %}"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{% static 'js/paper-dashboard.min.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/paper-dashboard.js' %}" type="text/javascript"></script>
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{% static 'demo/demo.js' %}"></script>
-  <script>
+  <!-- <script src="{% static 'demo/demo.js' %}"></script> -->
+  <!-- Guia scripts -->
+  <script src="{% static 'js/guia.js' %}"></script>
+
+  <!-- <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
       demo.initDashboardPageCharts();
@@ -1073,9 +1067,55 @@
       demo.initVectorMap();
 
     });
+
+
+  </script> -->
+
+  <script>
+
+  var sidebar_status = Boolean(false);
+
+    function mouseoutDisplayShow() {
+      if (sidebar_status == false){
+        document.getElementById('logo-small1').style.display = "block";
+        document.getElementById('logo-small2').style.display = "block";
+      } else{
+        document.getElementById('logo-small1').style.display = "none";
+        document.getElementById('logo-small2').style.display = "none";
+      }
+    }
+
+    function mouseoverDisplayNone() {
+      if (sidebar_status == false){
+        document.getElementById('logo-small1').style.display = "none";
+        document.getElementById('logo-small2').style.display = "none";
+      } else{
+        document.getElementById('logo-small1').style.display = "block";
+        document.getElementById('logo-small2').style.display = "block";
+      }
+    }
+    }
+
+
+
+    function sidebarButton(){
+      if (sidebar_status == false) {
+        $('body').removeClass('sidebar-mini');
+        document.getElementById('logo-small1').style.display = "none";
+        document.getElementById('logo-small2').style.display = "none";
+        sidebar_status = true;
+      } else {
+        $('body').addClass('sidebar-mini');
+        document.getElementById("logo-small1").style.display = "block";
+        document.getElementById("logo-small2").style.display = "block";
+        sidebar_status = false;
+      }
+
+    }
   </script>
   {% endblock %}
 
 </body>
+{% endblock %}
 
 </html>
