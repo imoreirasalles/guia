@@ -1,3 +1,5 @@
+/* Corrections of paper-dashboard theme */
+
 .sidebar .logo a.logo-mini, .off-canvas-sidebar .logo a.logo-mini{
   margin-left: 0px;
   width: 60px;
@@ -12,10 +14,47 @@
   padding: 0px;
 }
 
+.card{
+  border-radius: 0px;
+}
 .footer-back{
   background-color: #464646;
 }
 
 .footer-front{
   background-color: #666666;
+}
+
+/* ===================================== */
+/* Special Classes to Project Guia */
+
+/* COLORS AND SPACES - abstract */
+.back-dark{
+  background-color: #464646;
+}
+
+/* SPECIAL ELEMENTS */
+
+.front-header{
+  height: 150px;
+}
+
+.front-title{
+  color: #fff;
+  position: absolute;
+  bottom: 0px;
+  left: 35px;
+  right: auto;
+}
+
+.home-welcome-content{
+  position: absolute;
+  top: 30px;
+  margin: auto 20px;
+}
+
+.front-galery{
+  position: relative;
+  top: -60px;
+  margin: auto 20px;
 }
