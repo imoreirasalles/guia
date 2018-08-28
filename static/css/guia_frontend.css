@@ -1,4 +1,22 @@
+/* ===================================== */
 /* Corrections of paper-dashboard theme */
+
+.container{
+  margin: 0px;
+}
+
+.container-fluid{
+  padding: 0px;
+}
+
+.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.card{
+  border-radius: 0px;
+}
 
 .sidebar .logo a.logo-mini, .off-canvas-sidebar .logo a.logo-mini{
   margin-left: 0px;
@@ -12,18 +30,35 @@
 
 .main-panel > .content {
   padding: 0px;
+  margin-top: 60px;
 }
 
-.card{
-  border-radius: 0px;
-}
-.footer-back{
-  background-color: #464646;
+.card-stats .card-body{
+  margin: 0px;
+  padding: 5px;
 }
 
-.footer-front{
-  background-color: #666666;
+/* Corrections into mediaqueries */
+
+@media (min-width: 1200px){
+  .container{
+    max-width: 100%;
+  }
 }
+
+
+@media (min-width: 768px){
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 991px){
+  .main-panel {
+      min-height: 900px;
+  }
+}
+
 
 /* ===================================== */
 /* Special Classes to Project Guia */
@@ -31,6 +66,12 @@
 /* COLORS AND SPACES - abstract */
 .back-dark{
   background-color: #464646;
+  color: #fff;
+}
+
+.back-dark-over{
+  background-color: #666666;
+  color: #fff;
 }
 
 /* SPECIAL ELEMENTS */
@@ -40,14 +81,13 @@
 }
 
 .front-title{
-  color: #fff;
   position: absolute;
   bottom: 0px;
   left: 35px;
   right: auto;
 }
 
-.home-welcome-content{
+.front-home-welcome{
   position: absolute;
   top: 30px;
   margin: auto 20px;
@@ -57,4 +97,18 @@
   position: relative;
   top: -60px;
   margin: auto 20px;
+}
+
+/* .footer{
+  position: fixed;
+  bottom: 0px;
+  display: block;
+} */
+
+.footer-title{
+  position: relative;
+  top: 10px;
+  left: 35px;
+  right: auto;
+  margin-bottom: 20px;
 }
