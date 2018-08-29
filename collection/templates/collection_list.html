@@ -35,7 +35,7 @@
       <p> Pessoas </p>
     </a>
   </li>
-</ul>
+</ul>descriptin_level
 {% endblock %}
 <!-- block sidebar_menu END -->
 
@@ -77,7 +77,7 @@
         </form>
         <!-- navbar alert buttons START -->
         {% if user.is_authenticated %}
-        <ul class="navbar-nav">
+        <ul class="navbar-nav">title
           <li class="nav-item">
             <a class="nav-link btn-magnify" href="#pablo">
               <i class="nc-icon nc-layout-11"></i>
@@ -121,50 +121,6 @@
   <div class="content">
     <!-- content_row_card25percent START -->
     {% block content_row_card25percent %}
-     <div class ="row">
-        <div class="col-md-3">
-          <div class ="card">
-            <div class="card-header">
-              <div class="card-text">
-                <h3 class="card-title">Filtro</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class ="card">
-            <div class="card-header">
-              <div class="card-text">
-                <h5 class="card-title">Nível de Descrição</h5>
-                <select class="form-control form-control-sm">
-                  {% for collection in collection_list %}
-                    <option>{{collection.description_level}}</option>
-                  {% empty %}
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class ="card">
-            <div class="card-header">
-              <div class="card-text">
-                <h3 class="card-title">Filtro</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class ="card">
-            <div class="card-header">
-              <div class="card-text">
-                <h3 class="card-title">Filtro</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     {% endblock %}
     <!-- content_row_card25percent END -->
 
@@ -183,8 +139,75 @@
         <div class="card">
           <div class="card-header">
             <div class="card-text">
-              <h4 class="card-title">Coleções</h4>
-              <p class="card-category">Clique na coleção para ver detalhes das informações</p>
+              <h4 class="card-title">Todas as Coleções</h4>
+                  <form action="" method="get">
+                      <div class="row">
+                          <div class="col-md-3">
+                            <h5>Filtro por</h5>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="managementunit">Área Responsável</label>
+                              </div>
+                              <select class="custom-select" id="managementunit" name="managementunit" onchange="this.form.submit();">
+                                <option value="0">Todas as Áreas</option>
+                                  {% for managementunit in managementunit_list %}
+                                    <option value="{{managementunit.id_auto_series}}" {% if managementunit.selected %}selected=""{% endif %}>
+                                        {{managementunit.title}}
+                                    </option>
+                                  {% endfor%}
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <h5>Filtro por</h5>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="descriptionlevel">Nível de Descrição</label>
+                              </div>
+                              <select class="custom-select" id="descriptionlevel" name="descriptionlevel" onchange="this.form.submit();">
+                                <option value="0">Todos os Níveis</option>
+                                  {% for descriptionlevel in descriptionlevel_list %}
+                                  <option value="{{descriptionlevel.id_auto_series}}" >
+                                      {{descriptionlevel.title}}
+                                  </option>
+                                  {% endfor%}
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <h5>Filtro por</h5>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="accesscondition">Condição de Acesso</label>
+                              </div>
+                              <select class="custom-select" id="accesscondition" name="accesscondition" onchange="this.form.submit();">
+                                <option value="0">Todas as Condições</option>
+                                  {% for accesscondition in accesscondition_list %}
+                                  <option value="{{accesscondition.id_auto_series}}" >
+                                      {{accesscondition.title}}selected=""
+                                  </option>
+                                  {% endfor%}
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <h5>Filtro por</h5>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="genretag">Genero Documental</label>
+                              </div>
+                              <select class="custom-select" id="genretag" name="genretag" onchange="this.form.submit();">
+                                <option value="0">Todos os Generos</option>
+                                  {% for genretag in genretag_list %}collection_list
+                                  <option value="{{genretag.id_auto_series}}" >
+                                      {{genretag.title}}
+                                  </option>
+                                  {% endfor%}
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                  </form>
             </div>
           </div>
           <div class="card-body">
@@ -197,14 +220,14 @@
                   <th><a href="?order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a></th>
                   <th><a href="?order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a></th>
                   <th><a href="?order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a></th>
-                  <th>Status de Processamento</th>
+                  <th><a href="?order_by=items_online&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Status de Processamento</a></th>
                   <th><a href="?order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a></th>
                   <th><a href="?order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a></th>
                   <th><a href="?order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a></th>
                 </tr>
               </thead>
               <tbody>
-                {% for collection in collection_list %}
+                {% for collection in list %}
                 <tr>
                   <td><a href="{{ collection.get_absolute_url }}">
                     {{collection.id_human|default_if_none:"-"  }}</a></td>
@@ -225,11 +248,23 @@
                    </div>
                   </td>
                   <td>{{collection.access_condition|default_if_none:"-"}}</td>
-                  <td>{{collection.access_local_status|default_if_none:"-"}}</td>
-                  <td>{{collection.access_online_status|default_if_none:"-"}}</td>
+                  <td>
+                    {% if collection.access_local_status %}
+                      <i class="fa fa-check-circle fa-lg"></i>
+                    {% else %}
+                      <i class="fa fa-times-circle fa-lg"></i>
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if collection.access_online_status %}
+                      <i class="fa fa-check-circle fa-lg"></i>
+                    {% else %}
+                      <i class="fa fa-times-circle fa-lg"></i>
+                    {% endif %}
+                  </td>
                 </tr>
                 {% empty %}
-                <p>Não há nenhum registro cadastrado!</p>
+                <p>Não há dados para os filtros selecionados</p>
                 {% endfor %}
               </tbody>
             </table>
@@ -242,7 +277,7 @@
                         <span class="page-current">
                             Página {{ page_obj.number }} de
                             {{ page_obj.paginator.num_pages }}.
-                        </span>
+                        </span>Nível de Descrição
                         {% if page_obj.has_next %}
                             <a href="/collection?page={{ page_obj.next_page_number }}"> Próxima</a>
                         {% endif %}
