@@ -7,6 +7,10 @@ from django.views.generic.list import ListView
 from .models import *
 
 
+def login(request):
+    return render(request, 'login.html')
+
+
 class PostList(ListView):
     model = Post
     context_object_name = "post_list"
