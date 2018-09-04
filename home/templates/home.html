@@ -231,10 +231,47 @@
     </div>
   </div>
 
-
   <!-- content_row_datadards END -->
 
+  <!-- MODAL LOGIN Start -->
+  <div id="modal_login" class="modal" style="none">
+    <span onclick="modalLogin()" class="close" title="Close Modal">&times;
+    </span>
 
+    <!-- Modal Content -->
+    <form class="modal-content animate" action="">
+
+      <h3 class="title text-center">Guia IMS - Login</h3>
+      <hr>
+
+      <div class="container">
+        <div class="row">
+          <label for="login"><b>Login</b></label>
+          <input type="text" placeholder="Insira seu login" name="uname" required>
+        </div>
+
+        <div class="row">
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Insira sua senha" name="password" required>
+        </div>
+
+        <button type="submit">Entrar</button>
+
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <span class="psw"><a href="#">Esqueceu a senha?</a></span>
+          </div>
+          <div class="col-sm-12">
+            <span class="psw"><a href="#">Quero me cadastrar!</a></span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- MODAL LOGIN End -->
 
   {% endblock %}
   <!-- block content END -->
