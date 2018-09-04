@@ -18,6 +18,10 @@
   border-radius: 0px;
 }
 
+img{
+  border-radius: 0px;
+}
+
 .sidebar .logo a.logo-mini, .off-canvas-sidebar .logo a.logo-mini{
   margin-left: 0px;
   width: 60px;
