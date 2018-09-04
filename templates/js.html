@@ -40,62 +40,65 @@
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{% static 'js/paper-dashboard.js' %}" type="text/javascript"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-<!-- <script src="{% static 'demo/demo.js' %}"></script> -->
+<script src="{% static 'demo/demo.js' %}"></script>
 <!-- Guia scripts -->
 <script src="{% static 'js/guia.js' %}"></script>
 
-<!-- <script>
-  $(document).ready(function() {
-    // Javascript method's body can be found in assets/js/demos.js
-    demo.initDashboardPageCharts();
-
-
-    demo.initVectorMap();
-
-  });
-
-
-</script> -->
-
 <script>
 
+// Get the modal
+var modal = document.getElementById('modal_login');
+var modal_status = Boolean(false);
+
+// Set sidebar status
 var sidebar_status = Boolean(false);
+$(document).ready(function() {
+  demo.checkFullPageBackgroundImage();
+});
 
-  function mouseoutDisplayShow() {
-    if (sidebar_status == false){
-      document.getElementById('logo-small1').style.display = "block";
-      document.getElementById('logo-small2').style.display = "block";
-    } else{
-      document.getElementById('logo-small1').style.display = "none";
-      document.getElementById('logo-small2').style.display = "none";
-    }
+function modalLogin() {
+  if (modal_status == false){
+    modal.style.display = "block";
+    modal_status = true;
+  }else{
+    modal.style.display = "none";
+    modal_status = false;
+  }
+}
+
+function mouseoutDisplayShow() {
+  if (sidebar_status == false){
+    document.getElementById('logo-small1').style.display = "block";
+    document.getElementById('logo-small2').style.display = "block";
+  } else{
+    document.getElementById('logo-small1').style.display = "none";
+    document.getElementById('logo-small2').style.display = "none";
+  }
+}
+
+function mouseoverDisplayNone() {
+  if (sidebar_status == false){
+    document.getElementById('logo-small1').style.display = "none";
+    document.getElementById('logo-small2').style.display = "none";
+  } else{
+    document.getElementById('logo-small1').style.display = "block";
+    document.getElementById('logo-small2').style.display = "block";
+  }
+}
+
+function sidebarButton(){
+  if (sidebar_status == false) {
+    $('body').removeClass('sidebar-mini');
+    document.getElementById('logo-small1').style.display = "none";
+    document.getElementById('logo-small2').style.display = "none";
+    sidebar_status = true;
+  } else {
+    $('body').addClass('sidebar-mini');
+    document.getElementById("logo-small1").style.display = "block";
+    document.getElementById("logo-small2").style.display = "block";
+    sidebar_status = false;
   }
 
-  function mouseoverDisplayNone() {
-    if (sidebar_status == false){
-      document.getElementById('logo-small1').style.display = "none";
-      document.getElementById('logo-small2').style.display = "none";
-    } else{
-      document.getElementById('logo-small1').style.display = "block";
-      document.getElementById('logo-small2').style.display = "block";
-    }
-  }
-  }
+}
 
-
-
-  function sidebarButton(){
-    if (sidebar_status == false) {
-      $('body').removeClass('sidebar-mini');
-      document.getElementById('logo-small1').style.display = "none";
-      document.getElementById('logo-small2').style.display = "none";
-      sidebar_status = true;
-    } else {
-      $('body').addClass('sidebar-mini');
-      document.getElementById("logo-small1").style.display = "block";
-      document.getElementById("logo-small2").style.display = "block";
-      sidebar_status = false;
-    }
-
-  }
 </script>
