@@ -31,7 +31,7 @@ class CollectionList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        qr                       = Collection.objects.all()
+        qr = Collection.objects.all()
 
         descriptionlevel_filter = self.request.GET.get('descriptionlevel')
         if descriptionlevel_filter :
@@ -53,10 +53,10 @@ class CollectionList(ListView):
             if int(managementunit_filter) > 0:
                 qr = qr.filter(management_unit=int(managementunit_filter))
 
-        context['list']          = qr.order_by(self.get_ordering())
-        
-        context['now']           = timezone.now()
-        context['order']         = self.order
+        context['list'] = qr.order_by(self.get_ordering())
+
+        context['now'] = timezone.now()
+        context['order'] = self.order
 
         context['descriptionlevel_list'] = DescriptionLevel.objects.filter().order_by()
         context['accesscondition_list']  = AccessCondition.objects.filter().order_by()

@@ -14,13 +14,35 @@
   margin-right: 0;
 }
 
+.form-row{
+  padding: 5px 0px;
+}
+
 .card{
   border-radius: 0px;
+}
+
+.title{
+  font-weight: normal;
+}
+
+.title-modal{
+  margin-top: 15px;
 }
 
 img{
   border-radius: 0px;
 }
+
+input{
+  width: 90%;
+  font-size: 20px;
+}
+
+input::placeholder {
+  text-align: center;
+}
+
 
 .sidebar .logo a.logo-mini, .off-canvas-sidebar .logo a.logo-mini{
   margin-left: 0px;
@@ -54,6 +76,9 @@ img{
   padding: 5px;
 }
 
+.footer ul li {
+display: block;
+}
 
 
 /* Corrections into mediaqueries */
@@ -68,8 +93,22 @@ img{
   .footer .copyright{
     padding: 20px;
   }
+  .modal-content {
+     width: 400px;
+  }
 }
 
+@media (min-width: 991px){
+  .main-panel {
+      min-height: 900px;
+  }
+  .footer .copyright{
+    padding: 20px;
+  }
+  .modal-content {
+     width: 400px;
+  }
+}
 
 @media screen and (min-width: 768px){
   .container {
@@ -81,14 +120,14 @@ img{
   .footer .copyright{
     padding: 20px;
   }
+  .modal-content {
+     width: 400px;
+  }
 }
 
-@media (min-width: 991px){
-  .main-panel {
-      min-height: 900px;
-  }
-  .footer .copyright{
-    padding: 20px;
+@media screen and (min-width: 500px){
+  .modal-content {
+     width: 400px;
   }
 }
 
@@ -105,6 +144,22 @@ img{
 .back-dark-over{
   background-color: #666666;
   color: #fff;
+}
+
+.btn-grey-down{
+  background-color: #bdbcba;
+}
+
+.btn-grey-down a{
+  color: #84714b;
+}
+
+.btn-grey-up{
+  background-color: #afc5c2;
+}
+
+.btn-grey-up a{
+  color: #4b7e84;
 }
 
 /* MODAL LOGIN */
@@ -126,9 +181,12 @@ img{
 /* Modal Content/Box */
 .modal-content {
    background-color: #fefefe;
-   margin: 5px auto; /* 15% from the top and centered */
-   border: 1px solid #888;
-   width: 80%; /* Could be more or less, depending on screen size */
+   margin: 5px auto;
+   border-radius: 0px;
+}
+
+.modal-content .col-sm-6{
+  padding: 0;
 }
 
 /* The Close Button */

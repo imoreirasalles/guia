@@ -53,11 +53,12 @@
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-1">
       {% for post in post_list %}
-        <p class="front-home-welcome">
-          {{post.full_text}}
-        </p>
+      <p class="front-home-welcome">
+        {{post.full_text}}
+      </p>
       {% empty %}
-        <p class="front-home-welcome">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p class="front-home-welcome">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       {% endfor %}
 
     </div>
@@ -73,34 +74,37 @@
           </ol>
           <div class="carousel-inner">
 
-          {% for post in post_list %}
+            {% for post in post_list %}
 
             {% for capture in post.capture.all %}
-              {% if first_image_id == capture.id_auto_series %}
-                {% with first_active_image="active" %}
-                <div class="carousel-item {{first_active_image}}">
-                <img class="d-block w-100"
+            {% if first_image_id == capture.id_auto_series %}
+            {% with first_active_image="active" %}
+            <div class="carousel-item {{first_active_image}}">
+              <img class="d-block w-100"
                      src="{{MEDIA_URL}}{{ capture.image.url }}"
                      alt="{{ capture.title }}">
+
                 </div>
-                {% endwith %}
-              {% else %}
-                {% with first_active_image="" %}
-                <div class="carousel-item {{first_active_image}}">
-                <img class="d-block w-100"
+            {% endwith %}
+            {% else %}
+            {% with first_active_image="" %}
+            <div class="carousel-item {{first_active_image}}">
+              <img class="d-block w-100"
                      src="{{MEDIA_URL}}{{ capture.image.url }}"
                      alt="{{ capture.title }}">
+
                 </div>
-                {% endwith %}
-              {% endif %}
+            {% endwith %}
+            {% endif %}
 
             {% endfor %}
 
-          {% empty %}
+            {% empty %}
             <div class="carousel-item active">
               <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1770x996.jpg' %}" alt="IMS Paulista">
+
             </div>
-          {% endfor %}
+            {% endfor %}
 
 
           </div>
@@ -248,37 +252,57 @@
     </span>
 
     <!-- Modal Content -->
-    <form class="modal-content animate" action="">
+    <div class="modal-content">
+      <form class="animate" action="">
 
-      <h3 class="title text-center">Guia IMS - Login</h3>
-      <hr>
+        <h3 class="title title-modal text-center">Guia IMS - Login</h3>
 
-      <div class="container">
-        <div class="row">
-          <label for="login"><b>Login</b></label>
-          <input type="text" placeholder="Insira seu login" name="uname" required>
-        </div>
+        <div class="container">
 
-        <div class="row">
-          <label for="password"><b>Password</b></label>
-          <input type="password" placeholder="Insira sua senha" name="password" required>
-        </div>
-
-        <button type="submit">Entrar</button>
-
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <span class="psw"><a href="#">Esqueceu a senha?</a></span>
+          <div class="form-row text-center">
+            <div class="col-12">
+            <input type="text" placeholder="Insira seu LOGIN" name="uname" required>
+            </div>
           </div>
-          <div class="col-sm-12">
-            <span class="psw"><a href="#">Quero me cadastrar!</a></span>
+
+          <div class="form-row text-center">
+            <div class="col-12">
+            <input type="password" placeholder="Insira sua SENHA" name="password" required>
           </div>
+          </div>
+
+          <div class="form-row text-center">
+            <div class="col-12">
+            <button type="submit" class="btn">
+                Entrar
+                <span class="btn-label btn-label-right">
+                  <i class="nc-icon nc-minimal-right"></i>
+                </span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+      <div class="row text-center">
+        <div class="col-sm-6 col-xs-12">
+          <button class="btn btn-grey-down btn-sm">
+            <a href="#">Esqueceu a senha?</a>
+          </button>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <button class="btn btn-grey-up btn-sm">
+            <a href="#">Quero me cadastrar!</a>
+          </button>
         </div>
       </div>
-    </form>
+    </div>
+
+
+
+
+
   </div>
   <!-- MODAL LOGIN End -->
 

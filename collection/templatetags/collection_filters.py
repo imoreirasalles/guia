@@ -19,7 +19,8 @@ def add(value, arg):
 
 @register.filter(name='percent')
 def percent(value, arg):
-     if arg and value != None and arg and value != 0 and arg < value:
-         return 0
-     else:
-         return int((100*value)/(arg))
+     # if arg and value != None and arg and value != 0 and arg < value:
+     #     return 0
+     # else:
+     #     return int((100*value)/(arg))
+     return 10
