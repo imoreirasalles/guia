@@ -162,6 +162,27 @@ display: block;
   color: #4b7e84;
 }
 
+.deep_sea_rocket-blue{
+  color: #34738f;
+}
+
+.deep_sea_rocket-marine{
+  color: #245b75;
+}
+.deep_sea_rocket-red{
+  color: #be3e2b;
+}
+
+.deep_sea_rocket-orange{
+  color: #ed8a45;
+}
+
+.deep_sea_rocket-yellow{
+  color: #efc810;
+}
+
+
+
 /* MODAL LOGIN */
 /* The Modal (background) */
 .modal {
