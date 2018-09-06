@@ -22,6 +22,10 @@
   border-radius: 0px;
 }
 
+.card-stats .icon-big{
+  line-height: 0;
+}
+
 .title{
   font-weight: normal;
 }
@@ -80,6 +84,10 @@ input::placeholder {
 display: block;
 }
 
+.footer-nav ul li {
+display: inline-block;
+}
+
 
 /* Corrections into mediaqueries */
 
@@ -96,6 +104,9 @@ display: block;
   .modal-content {
      width: 400px;
   }
+  .card-stats .card-body .numbers .card-category{
+    margin-top: -20px;
+  }
 }
 
 @media (min-width: 991px){
@@ -107,6 +118,9 @@ display: block;
   }
   .modal-content {
      width: 400px;
+  }
+  .card-stats .card-body .numbers .card-category{
+    margin-top: -20px;
   }
 }
 
@@ -122,6 +136,9 @@ display: block;
   }
   .modal-content {
      width: 400px;
+  }
+  .card-stats .card-body .numbers .card-category{
+    margin-top: -20px;
   }
 }
 
@@ -164,21 +181,26 @@ display: block;
 
 .deep_sea_rocket-blue{
   color: #34738f;
+  background-color: #edf8ff;
 }
 
 .deep_sea_rocket-marine{
   color: #245b75;
+  background-color: #f2f1ff;
 }
 .deep_sea_rocket-red{
   color: #be3e2b;
+  background-color: #ffedee;
 }
 
 .deep_sea_rocket-orange{
   color: #ed8a45;
+  background-color: #fff9ed;
 }
 
 .deep_sea_rocket-yellow{
   color: #efc810;
+  background-color: #fffffa;
 }
 
 
