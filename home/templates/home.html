@@ -53,11 +53,12 @@
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-1">
       {% for post in post_list %}
-        <p class="front-home-welcome">
-          {{post.full_text}}
-        </p>
+      <p class="front-home-welcome">
+        {{post.full_text}}
+      </p>
       {% empty %}
-        <p class="front-home-welcome">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p class="front-home-welcome">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       {% endfor %}
 
     </div>
@@ -67,33 +68,45 @@
 
         <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
-            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+            {% for image in image_list %}
+            <li data-target="#carouselIndicators" data-slide-to="{{image}}" class="active"></li>
+            {% endfor %}
           </ol>
           <div class="carousel-inner">
 
-          {% for post in post_list %}
+            {% for post in post_list %}
 
             {% for capture in post.capture.all %}
-            <div class="carousel-item">
+            {% if first_image_id == capture.id_auto_series %}
+            {% with first_active_image="active" %}
+            <div class="carousel-item {{first_active_image}}">
               <img class="d-block w-100"
-                   src="{{MEDIA_URL}}{{ capture.image.url }}"
-                   alt="{{ capture.title }}">
-            </div>
+                     src="{{MEDIA_URL}}{{ capture.image.url }}"
+                     alt="{{ capture.title }}">
+
+                </div>
+            {% endwith %}
+            {% else %}
+            {% with first_active_image="" %}
+            <div class="carousel-item {{first_active_image}}">
+              <img class="d-block w-100"
+                     src="{{MEDIA_URL}}{{ capture.image.url }}"
+                     alt="{{ capture.title }}">
+
+                </div>
+            {% endwith %}
+            {% endif %}
+
             {% endfor %}
-          {% empty %}
+
+            {% empty %}
             <div class="carousel-item active">
               <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1770x996.jpg' %}" alt="IMS Paulista">
-            </div>
-          {% endfor %}
 
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1920x1080.jpg' %}" alt="Second slide">
             </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_2200x1238.jpg' %}" alt="Third slide">
-            </div>
+            {% endfor %}
+
+
           </div>
           <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -114,19 +127,22 @@
   <div class="container">
     <div class="row">
       <div class="col col1">
-        <div class="card card-stats">
+        <div class="card card-stats deep_sea_rocket-blue">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
-                <div class="icon-big text-center icon-warning">
+                <div class="icon-big text-center ">
                   <i class="far fa-folder-open"></i>
                 </div>
               </div>
               <div class="col-8">
                 <div class="numbers">
-                  <p class="card-title"> 1234567
-                    <p>
-                      <p class="card-category">Coleções</p>
+                  <p class="card-title">{{ view.collection_total }}<p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="numbers">
+                  <p class="card-category">Coleções</p>
                 </div>
               </div>
             </div>
@@ -137,19 +153,22 @@
         </div>
       </div>
       <div class="col col2">
-        <div class="card card-stats">
+        <div class="card card-stats deep_sea_rocket-marine">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
-                <div class="icon-big text-center icon-warning">
+                <div class="icon-big text-center">
                   <i class="far fa-images"></i>
                 </div>
               </div>
               <div class="col-8">
                 <div class="numbers">
-                  <p class="card-title"> 1234567
-                    <p>
-                      <p class="card-category">Exposições</p>
+                  <p class="card-title">{{ view.exhibition_total }}<p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="numbers">
+                  <p class="card-category">Exposições</p>
                 </div>
               </div>
             </div>
@@ -160,19 +179,22 @@
         </div>
       </div>
       <div class="col col3">
-        <div class="card card-stats">
+        <div class="card card-stats deep_sea_rocket-red">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
-                <div class="icon-big text-center icon-warning">
+                <div class="icon-big text-center">
                   <i class="fas fa-book-open"></i>
                 </div>
               </div>
               <div class="col-8">
                 <div class="numbers">
-                  <p class="card-title"> 1234567
-                    <p>
-                      <p class="card-category">Publicações</p>
+                  <p class="card-title">{{ view.publication_total }}<p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="numbers">
+                  <p class="card-category">Publicações</p>
                 </div>
               </div>
             </div>
@@ -183,19 +205,22 @@
         </div>
       </div>
       <div class="col col4">
-        <div class="card card-stats">
+        <div class="card card-stats deep_sea_rocket-orange">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
-                <div class="icon-big text-center icon-warning">
+                <div class="icon-big text-center">
                   <i class="far fa-calendar-alt"></i>
                 </div>
               </div>
               <div class="col-8">
                 <div class="numbers">
-                  <p class="card-title"> 1234567
-                    <p>
-                      <p class="card-category">Eventos</p>
+                  <p class="card-title">{{ view.event_total }}<p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="numbers">
+                  <p class="card-category">Eventos</p>
                 </div>
               </div>
             </div>
@@ -206,19 +231,22 @@
         </div>
       </div>
       <div class="col col5">
-        <div class="card card-stats">
+        <div class="card card-stats deep_sea_rocket-yellow">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
-                <div class="icon-big text-center icon-warning">
+                <div class="icon-big text-center">
                   <i class="far fa-user-circle"></i>
                 </div>
               </div>
               <div class="col-8">
                 <div class="numbers">
-                  <p class="card-title"> 1234567
-                    <p>
-                      <p class="card-category">Pessoas</p>
+                  <p class="card-title">{{ view.person_total }}<p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="numbers">
+                  <p class="card-category">Pessoas</p>
                 </div>
               </div>
             </div>
@@ -231,10 +259,67 @@
     </div>
   </div>
 
-
   <!-- content_row_datadards END -->
 
+  <!-- MODAL LOGIN Start -->
+  <div id="modal_login" class="modal" style="none">
+    <span onclick="modalLogin()" class="close" title="Close Modal">&times;
+    </span>
 
+    <!-- Modal Content -->
+    <div class="modal-content">
+      <form class="animate" action="">
+
+        <h3 class="title title-modal text-center">Guia IMS - Login</h3>
+
+        <div class="container">
+
+          <div class="form-row text-center">
+            <div class="col-12">
+            <input type="text" placeholder="Insira seu LOGIN" name="uname" required>
+            </div>
+          </div>
+
+          <div class="form-row text-center">
+            <div class="col-12">
+            <input type="password" placeholder="Insira sua SENHA" name="password" required>
+          </div>
+          </div>
+
+          <div class="form-row text-center">
+            <div class="col-12">
+            <button type="submit" class="btn">
+                Entrar
+                <span class="btn-label btn-label-right">
+                  <i class="nc-icon nc-minimal-right"></i>
+                </span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+      <div class="row text-center">
+        <div class="col-sm-6 col-xs-12">
+          <button class="btn btn-grey-down btn-sm">
+            <a href="#">Esqueceu a senha?</a>
+          </button>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <button class="btn btn-grey-up btn-sm">
+            <a href="#">Quero me cadastrar!</a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+  <!-- MODAL LOGIN End -->
 
   {% endblock %}
   <!-- block content END -->

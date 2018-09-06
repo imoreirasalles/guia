@@ -16,6 +16,11 @@ class EventTypeResource(resources.ModelResource):
 
     class Meta:
         model = EventType
+        fields = ('uuid', 'title', 'description')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(EventType)
@@ -50,6 +55,11 @@ class EventResource(resources.ModelResource):
 
     class Meta:
         model = Event
+        fields = ('uuid', 'title', 'id_human', 'date_start', 'date_end', 'type', 'location', 'abstract', 'full_text', 'team', 'other_data')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(Event)

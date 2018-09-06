@@ -46,6 +46,11 @@ class PersonResource(resources.ModelResource):
 
     class Meta:
         model = Person
+        fields = ('uuid', 'title', 'id_human', 'person_type', 'title_index', 'is_staff', 'is_partner', 'is_feature', 'gender', 'abstract', 'full_text', 'date_start', 'date_end', 'url', 'linked_open_data')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(Person)
