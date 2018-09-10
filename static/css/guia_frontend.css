@@ -67,7 +67,8 @@ input::placeholder {
 
 .main-panel > .content {
   padding: 0px;
-  margin-top: 60px;
+  margin-top: 53px;
+  min-height: calc(72vh - 123px);
 }
 
 .carousel-inner{
@@ -129,6 +130,10 @@ display: inline-block;
   .card-stats .card-body .numbers .card-category{
     margin-top: -20px;
   }
+  .navbar .container-fluid{
+
+    margin-top: 10px;
+  }
 }
 
 @media screen and (min-width: 768px){
@@ -147,14 +152,34 @@ display: inline-block;
   .card-stats .card-body .numbers .card-category{
     margin-top: -20px;
   }
+  .cards-data{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
 }
 
-@media screen and (min-width: 500px){
-  .modal-content {
-     width: 400px;
+@media only screen and (max-width: 768px) {
+  .front-galery{
+    position: unset !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+  .carousel-inner{
+    height: calc((9/16)*88vw);
+    width: 88vw;
   }
 }
 
+@media screen and (min-width: 576px){
+  .modal-content {
+     width: 400px;
+  }
+  .container{
+    max-width: 100%;
+  }
+
+}
 
 /* ===================================== */
 /* Special Classes to Project Guia */

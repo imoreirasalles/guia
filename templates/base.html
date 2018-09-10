@@ -989,11 +989,12 @@
       <!-- block content END -->
 
 
-      {% block footer %}
-        {% include 'footer.html' %}
-      {% endblock %}
+
 
     </div>
+    {% block footer %}
+      {% include 'footer.html' %}
+    {% endblock %}
   </div>
 
   {% block js %}
