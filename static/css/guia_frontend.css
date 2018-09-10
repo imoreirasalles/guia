@@ -60,6 +60,7 @@ input::placeholder {
 
 .navbar.navbar-transparent {
   border-bottom: 0px;
+  background-color: #464646 !important;
 }
 
 .main-panel > .content {
@@ -88,6 +89,10 @@ display: block;
 display: inline-block;
 }
 
+.navbar .form-group, .navbar .input-group {
+  background-color: #d6d6d6;
+  height: 33px;
+}
 
 /* Corrections into mediaqueries */
 
@@ -269,8 +274,12 @@ display: inline-block;
 
 /* SPECIAL ELEMENTS */
 
+.nav-search-form{
+  margin-right: 20px;
+}
+
 .front-header{
-  height: 150px;
+  height: 100px;
 }
 
 .front-title{
