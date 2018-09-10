@@ -31,7 +31,8 @@
 }
 
 .title-modal{
-  margin-top: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 img{
@@ -41,6 +42,7 @@ img{
 input{
   width: 90%;
   font-size: 20px;
+  border: solid 1px #e3e3e3;
 }
 
 input::placeholder {
@@ -91,7 +93,7 @@ display: inline-block;
 
 .navbar .form-group, .navbar .input-group {
   background-color: #d6d6d6;
-  height: 33px;
+  /* height: 33px; */
 }
 
 /* Corrections into mediaqueries */
@@ -213,24 +215,28 @@ display: inline-block;
 /* MODAL LOGIN */
 /* The Modal (background) */
 .modal {
-   display: none; /* Hidden by default */
-   position: fixed; /* Stay in place */
-   z-index: 9999; /* Sit on top */
-   left: 0;
-   top: 0;
-   width: 100%; /* Full width */
-   height: 100%; /* Full height */
-   overflow: auto; /* Enable scroll if needed */
-   background-color: rgb(0,0,0); /* Fallback color */
-   background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-   padding-top: 60px;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+  vertical-align: middle;
 }
 
 /* Modal Content/Box */
 .modal-content {
-   background-color: #fefefe;
-   margin: 5px auto;
-   border-radius: 0px;
+  background-color: #fefefe;
+  margin: 0 auto;
+  border-radius: 0px;
+  -webkit-transform: translate(0,-50%);
+  -o-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  top: 50%;
 }
 
 .modal-content .col-sm-6{
