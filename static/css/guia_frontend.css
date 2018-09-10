@@ -301,6 +301,7 @@ display: inline-block;
 .footer ul li a, a{
   color: #c4dce8;
   padding: 0px;
+  font-size: 0.7 rem;
 }
 
 .footer-title{
@@ -309,6 +310,7 @@ display: inline-block;
   left: 35px;
   right: auto;
   margin-bottom: 20px;
+  font-size: 1rem;
 }
 
 .footer-address{
@@ -316,9 +318,10 @@ display: inline-block;
 }
 
 .footer-address p{
-  font-size: 13px;
+  font-size: 0.7rem;
 }
 
 .footer-address h7{
   line-height: 200%;
+  font-size: 0.8rem;
 }
