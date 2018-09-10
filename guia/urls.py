@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from django.utils.translation import gettext_lazy as _
 
@@ -10,8 +11,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
+    path('login/', auth_views.login, name='login'),
+    path('logout/', auth_views.logout, name='logout'),
     path('base/', views.base, name='base'),
-    path('', include('home.urls')),
+    path('', include('home.urls'), name='home'),
     path('collection/', include('collection.urls')),
     path('exhibition/', views.exhibition, name='exhibition'),
     path('publication/', views.publication, name='publication'),
