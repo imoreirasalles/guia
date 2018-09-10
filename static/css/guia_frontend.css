@@ -65,6 +65,10 @@ input::placeholder {
   background-color: #464646 !important;
 }
 
+.bg-white{
+  height: 153px;
+}
+
 .main-panel > .content {
   padding: 0px;
   margin-top: 53px;
