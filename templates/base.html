@@ -351,10 +351,15 @@
                 </div>
               </div>
             </form>
-            <!-- Button to open the modal login form -->
+
+            <!-- modal login start -->
+            {% if user.is_authenticated %}
+            {% else %}
             <button onclick='modalLogin()' type='button' class="btn btn-sm">
               Login
             </button>
+            {% endif %}
+
             <!-- navbar alert buttons START -->
             {% if user.is_authenticated %}
             <ul class="navbar-nav">
@@ -982,18 +987,17 @@
         {% endblock %}
         <!-- content_row5 END -->
 
-
-
       </div>
       {% endblock %}
       <!-- block content END -->
 
-
-
-
     </div>
     {% block footer %}
       {% include 'footer.html' %}
+    {% endblock %}
+
+    {% block modal_login %}
+      {% include 'modal_login.html' %}
     {% endblock %}
   </div>
 

@@ -1,31 +1,54 @@
+{% load staticfiles %}
 <!-- MODAL LOGIN Start -->
-<div id="modal_login" class="modal">
-  <span onclick="document.getElementById('modal_login').style.display='none'"
-class="close" title="Close Modal">&times;</span>
+<div id="modal_login" class="modal" style="none">
+  <span onclick="modalLogin()" class="close" title="Close Modal">&times;
+  </span>
 
   <!-- Modal Content -->
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="imgcontainer">
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+  <div class="modal-content">
+    <form class="animate" action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      <img class="mx-auto d-block title-modal text-center" src="{% static 'img/ims_guia_logo.png' %}" alt="">
+      <div class="container">
+
+        <div class="form-row text-center">
+          <div class="col-12">
+          <input type="text" id="username" name="username" placeholder="Insira seu LOGIN" required>
+          </div>
+        </div>
+
+        <div class="form-row text-center">
+          <div class="col-12">
+          <input type="password" name="password" id="password" placeholder="Insira sua SENHA" required>
+        </div>
+        </div>
+
+        <div class="form-row text-center">
+          <div class="col-12">
+          <button type="submit" class="btn">
+              Entrar
+              <span class="btn-label btn-label-right">
+                <i class="nc-icon nc-minimal-right"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+    <div class="row text-center">
+      <div class="col-sm-6 col-xs-12">
+        <button class="btn btn-grey-down btn-sm">
+          <a href="#">Esqueceu a senha?</a>
+        </button>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <button class="btn btn-grey-up btn-sm">
+          <a href="#">Quero me cadastrar!</a>
+        </button>
+      </div>
     </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('modal_login').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
+  </div>
 </div>
 <!-- MODAL LOGIN End -->
