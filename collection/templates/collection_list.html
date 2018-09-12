@@ -11,7 +11,7 @@ Guia
 <!-- block sidebar_menu START -->
 {% block sidebar_menu %}
 <ul class="nav">
-  <li class="active">
+  <li class="active-out">
     <a href="{% url 'collection' %}">
       <i class="fal fa-folder-open sidebar-menu-icon deep_sea_rocket-blue-icon"></i>
       <p class="deep_sea_rocket-blue-icon">Coleções</p>
@@ -43,50 +43,57 @@ Guia
 {% block content %}
 <div class="content">
 
-<h4 class="card-title">Todas as Coleções</h4>
+  <div class="row">
+    <div class="col-sm-12 front-header back-dark">
+      {% for post in post_list %}
+      <h2 class="front-title">{{post.title}}</h2>
+      {% empty %}
+      <h2 class="front-title">Coleções</h2>
+      {% endfor %}
+    </div>
+  </div>
 
-<!-- form select START -->
-  <form action="" method="get">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="managementunit">
-              Área Responsável
-            </label>
-          </div>
-          <select class="custom-select" id="managementunit" name="managementunit" onchange="this.form.submit();">
-            <option value="0">Todas as Áreas</option>
-              {% for managementunit in managementunit_list %}
-                <option value="{{managementunit.id_auto_series}}"
-                {% if managementunit.selected %}selected=""{% endif %}>
-                    {{managementunit.title}}
-                </option>
-              {% endfor%}
+<div class="row back-dark-over control-bar">
+  <!-- form select START -->
+    <form action="" method="get">
+      <div class="row">
+        <div class="col-md-3">
+
+          <label class="control-label">
+            Área Responsável
+          </label>
+
+          <select multiple title="Selecione a(s) opções" id="managementunit" class="selectpicker" name="managementunit" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
+            {% for managementunit in managementunit_list %}
+              <option value="{{managementunit.id_auto_series}}"
+              {% if managementunit.selected %}selected=""{% endif %}>
+                  {{managementunit.title}}
+              </option>
+            {% endfor%}
           </select>
+
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="descriptionlevel">Nível de Descrição</label>
-          </div>
-          <select class="custom-select" id="descriptionlevel" name="descriptionlevel" onchange="this.form.submit();">
+        <div class="col-md-3">
+
+          <label class="control-label">
+            Nível de Descrição
+          </label>
+
+          <select multiple title="Selecione a(s) opções" id="descriptionlevel" name="descriptionlevel" class="selectpicker" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
             <option value="0">Todos os Níveis</option>
               {% for descriptionlevel in descriptionlevel_list %}
               <option value="{{descriptionlevel.id_auto_series}}" >
                   {{descriptionlevel.title}}
               </option>
               {% endfor%}
-                  </select>
+          </select>
+
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="accesscondition">Condição de Acesso</label>
-          </div>
-          <select class="custom-select" id="accesscondition" name="accesscondition" onchange="this.form.submit();">
+        <div class="col-md-3">
+          <label class="control-label">
+            Condição de Acesso
+          </label>
+          <select multiple title="Selecione a(s) opções" id="accesscondition" name="accesscondition" class="selectpicker" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
             <option value="0">Todas as Condições</option>
               {% for accesscondition in accesscondition_list %}
               <option value="{{accesscondition.id_auto_series}}" >
@@ -95,13 +102,11 @@ Guia
               {% endfor%}
           </select>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="genretag">Genero Documental</label>
-          </div>
-          <select class="custom-select" id="genretag" name="genretag" onchange="this.form.submit();">
+        <div class="col-md-3">
+          <label class="control-label">
+            Generos Documentais
+          </label>
+          <select multiple title="Selecione a(s) opções" id="genretag" name="genretag" class="selectpicker" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
             <option value="0">Todos os Generos</option>
               {% for genretag in genretag_list %}collection_list
               <option value="{{genretag.id_auto_series}}" >
@@ -111,65 +116,98 @@ Guia
           </select>
         </div>
       </div>
-    </div>
-  </form>
-<!-- form select END -->
+    </form>
+  <!-- form select END -->
+</div>
 
-  <table class="table table-hover" <thead class="text-warning">
-    <tr>
-      <th><a href="?order_by=id_human&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">ID<a></th>
-            <th><a href="?order_by=management_unit&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Área Responsável</a></th>
-      <th><a href="?order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a></th>
-      <th><a href="?order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a></th>
-      <th><a href="?order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a></th>
-      <th><a href="?order_by=items_online&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Status de Processamento</a></th>
-      <th><a href="?order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a></th>
-      <th><a href="?order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a></th>
-      <th><a href="?order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a></th>
-    </tr>
-    </thead>
-    <tbody>
-      {% for collection in list %}
+<div class="container">
+  <div class="row back-beige">
+    <table class="table table-hover" <thead class="text-warning">
       <tr>
-        <td><a href="{{ collection.get_absolute_url }}">
-              {{collection.id_human|default_if_none:"-"  }}</a></td>
-        <td>{{collection.management_unit|default_if_none:"-" }}</td>
-        <td><a href="{{ collection.get_absolute_url }}">
-              {{collection.title|default_if_none:"-" }}</a></td>
-        <td>{{collection.date_start|default_if_none:'-'|date:'Y' }} -
-          {{collection.date_end|default_if_none:'-'|date:'Y' }}</td>
-        <td>{{collection.description_level|default_if_none:"-" }}</td>
-        <td>
-          <div class="progress">
-            {% with collection.items_online|percent:collection.items_total as online %}
-            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{online}}%" aria-valuenow="{{online}}" aria-valuemin="0" aria-valuemax="100"></div>
-            {% endwith %}
-            {% with collection.items_processed|subtract:collection.items_online|percent:collection.items_total|default_if_none:'0' as processed %}
-            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{processed}}%" aria-valuenow="{{processed}}" aria-valuemin="0" aria-valuemax="100"></div>
-            {% endwith %}
-          </div>
-        </td>
-        <td>{{collection.access_condition|default_if_none:"-"}}</td>
-        <td>
-          {% if collection.access_local_status %}
-          <i class="fa fa-check-circle fa-lg"></i>
-          {% else %}
-          <i class="fa fa-times-circle fa-lg"></i>
-          {% endif %}
-        </td>
-        <td>
-          {% if collection.access_online_status %}
-          <i class="fa fa-check-circle fa-lg"></i>
-          {% else %}
-          <i class="fa fa-times-circle fa-lg"></i>
-          {% endif %}
-        </td>
+        <th><a href="?order_by=id_human&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">ID<a></th>
+              <th><a href="?order_by=management_unit&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Área Responsável</a></th>
+        <th><a href="?order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a></th>
+        <th><a href="?order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a></th>
+        <th><a href="?order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a></th>
+        <th><a href="?order_by=items_online&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Status de Processamento</a></th>
+        <th><a href="?order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a></th>
+        <th><a href="?order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a></th>
+        <th><a href="?order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a></th>
       </tr>
-      {% empty %}
-      <p>Não há dados para os filtros selecionados</p>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for collection in list %}
+        <tr>
+          <td><a href="{{ collection.get_absolute_url }}">
+                {{collection.id_human|default_if_none:"-"  }}</a></td>
+          <td>{{collection.management_unit|default_if_none:"-" }}</td>
+          <td><a href="{{ collection.get_absolute_url }}">
+                {{collection.title|default_if_none:"-" }}</a></td>
+          <td>{{collection.date_start|default_if_none:'-'|date:'Y' }} -
+            {{collection.date_end|default_if_none:'-'|date:'Y' }}</td>
+          <td>{{collection.description_level|default_if_none:"-" }}</td>
+          <td>
+            <div class="progress">
+              {% with collection.items_online|percent:collection.items_total as online %}
+              <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{online}}%" aria-valuenow="{{online}}" aria-valuemin="0" aria-valuemax="100"></div>
+              {% endwith %}
+              {% with collection.items_processed|subtract:collection.items_online|percent:collection.items_total|default_if_none:'0' as processed %}
+              <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{processed}}%" aria-valuenow="{{processed}}" aria-valuemin="0" aria-valuemax="100"></div>
+              {% endwith %}
+            </div>
+          </td>
+          <td>{{collection.access_condition|default_if_none:"-"}}</td>
+          <td>
+            {% if collection.access_local_status %}
+            <i class="fa fa-check-circle fa-lg"></i>
+            {% else %}
+            <i class="fa fa-times-circle fa-lg"></i>
+            {% endif %}
+          </td>
+          <td>
+            {% if collection.access_online_status %}
+            <i class="fa fa-check-circle fa-lg"></i>
+            {% else %}
+            <i class="fa fa-times-circle fa-lg"></i>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <p>Não há dados para os filtros selecionados</p>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#link" aria-label="Previous">
+        <span aria-hidden="true">
+          <i class="fal fa-arrow-to-left"></i>
+        </span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#link">1</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" href="#link">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#link">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#link" aria-label="Next">
+        <span aria-hidden="true">
+          <i class="fal fa-arrow-to-right"></i>
+        </span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
     {% if is_paginated %}
     <div class="pagination">

@@ -110,6 +110,9 @@ display: inline-block;
   /* height: 33px; */
 }
 
+.sidebar[data-color="white"] .nav li a, .sidebar[data-color="white"] .nav li a i, .sidebar[data-color="white"] .nav li a[data-toggle="collapse"], .sidebar[data-color="white"] .nav li a[data-toggle="collapse"] i, .sidebar[data-color="white"] .nav li a[data-toggle="collapse"] ~ div > ul > li .sidebar-mini-icon, .sidebar[data-color="white"] .nav li a[data-toggle="collapse"] ~ div > ul > li > a, .off-canvas-sidebar[data-color="white"] .nav li a, .off-canvas-sidebar[data-color="white"] .nav li a i, .off-canvas-sidebar[data-color="white"] .nav li a[data-toggle="collapse"], .off-canvas-sidebar[data-color="white"] .nav li a[data-toggle="collapse"] i, .off-canvas-sidebar[data-color="white"] .nav li a[data-toggle="collapse"] ~ div > ul > li .sidebar-mini-icon, .off-canvas-sidebar[data-color="white"] .nav li a[data-toggle="collapse"] ~ div > ul > li > a {
+  opacity: 1;
+}
 /* Corrections into mediaqueries */
 
 @media (min-width: 1200px){
@@ -146,6 +149,33 @@ display: inline-block;
   .navbar .container-fluid{
 
     margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .sidebar .sidebar-wrapper li.active-out > a:not([data-toggle="collapse"]):before, .sidebar .sidebar-wrapper li.active-out > [data-toggle="collapse"] + div .nav li:before{
+    border-right: 17px solid  #464646;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -16px;
+    opacity: 1;
+    top: 7px;
+    transition: opacity 150ms ease-in;
+  }
+  .sidebar .sidebar-wrapper li.active-out > a:not([data-toggle="collapse"]):after, .sidebar .sidebar-wrapper li.active-out > [data-toggle="collapse"] + div .nav li:after{
+    border-right: 17px solid #464646;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -17px;
+    opacity: 1;
+    top: 7px;
+    transition: opacity 150ms ease-in;
   }
 }
 
@@ -202,6 +232,20 @@ display: inline-block;
 }
 
 /* COLORS AND SPACES - abstract */
+
+.back-beige{
+  color: #464646;
+}
+
+.back-beige a{
+  color: #677e96;
+  text-decoration: none;
+}
+
+.back-beige a:hover{
+  color: #5082b5;
+}
+
 .back-dark{
   background-color: #464646;
   color: #fff;
@@ -408,11 +452,10 @@ display: inline-block;
   margin: auto 20px;
 }
 
-/* .footer{
-  position: fixed;
-  bottom: 0px;
-  display: block;
-} */
+.control-bar{
+  min-height: 80px;
+  padding: 15px 15px;
+}
 
 .footer ul li a, a{
   color: #c4dce8;
