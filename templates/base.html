@@ -50,7 +50,7 @@
             <div class="collapse" id="collapseExample">
               <ul class="nav">
                 <li>
-                  <a href="http://localhost:8000/admin/">
+                  <a href="{% url 'admin:index' %}">
                     <span class="sidebar-mini-icon">
                       <i class="fas fa-columns"></i>
                     </span>
@@ -58,7 +58,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="http://localhost:8000/admin/auth/user/">
+                  <a href="{% url 'admin:auth_user_change' user.id %}">
                     <span class="sidebar-mini-icon">
                       <i class="far fa-user"></i>
                     </span>
@@ -66,7 +66,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="http://localhost:8000/admin/logout/">
+                  <a href="{% url 'logout' %}">
                     <span class="sidebar-mini-icon">
                       <i class="fas fa-sign-out-alt"></i>
                     </span>
@@ -341,7 +341,7 @@
           </button>
 
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
+            <form class="nav-search-form">
               <div class="input-group no-border">
                 <input type="text" value="" class="form-control" placeholder="Pesquisar...">
                 <div class="input-group-append">
@@ -351,10 +351,15 @@
                 </div>
               </div>
             </form>
-            <!-- Button to open the modal login form -->
+
+            <!-- modal login start -->
+            {% if user.is_authenticated %}
+            {% else %}
             <button onclick='modalLogin()' type='button' class="btn btn-sm">
               Login
             </button>
+            {% endif %}
+
             <!-- navbar alert buttons START -->
             {% if user.is_authenticated %}
             <ul class="navbar-nav">
@@ -982,18 +987,18 @@
         {% endblock %}
         <!-- content_row5 END -->
 
-
-
       </div>
       {% endblock %}
       <!-- block content END -->
 
-
-      {% block footer %}
-        {% include 'footer.html' %}
-      {% endblock %}
-
     </div>
+    {% block footer %}
+      {% include 'footer.html' %}
+    {% endblock %}
+
+    {% block modal_login %}
+      {% include 'modal_login.html' %}
+    {% endblock %}
   </div>
 
   {% block js %}

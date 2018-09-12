@@ -9,25 +9,25 @@
 <ul class="nav">
   <li>
     <a href="{% url 'collection' %}">
-      <i class="fas fa-folder"></i>
+      <i class="fal fa-folder-open sidebar-menu-icon"></i>
       <p>Coleções</p>
     </a>
   </li>
   <li>
     <a href="{% url 'exhibition' %}">
-      <i class="fas fa-images"></i>
+      <i class="fal fa-images sidebar-menu-icon"></i>
       <p> Exposições </p>
     </a>
   </li>
   <li>
     <a href="{% url 'publication' %}">
-      <i class="fas fa-book"></i>
+      <i class="fal fa-book-open sidebar-menu-icon"></i>
       <p> Publicações </p>
     </a>
   </li>
   <li>
     <a href="{% url 'person' %}">
-      <i class="fas fa-user-circle"></i>
+      <i class="fal fa-user-circle sidebar-menu-icon"></i>
       <p> Pessoas </p>
     </a>
   </li>
@@ -63,7 +63,7 @@
 
     </div>
 
-    <div class="col-lg-6 col-md-6 col-sm-1">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="front-galery">
 
         <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
@@ -124,15 +124,15 @@
   </div>
 
   <!-- content_row_datacards START -->
-  <div class="container">
+  <div class="container cards-data">
     <div class="row">
-      <div class="col col1">
+      <div class="col-sm">
         <div class="card card-stats deep_sea_rocket-blue">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
                 <div class="icon-big text-center ">
-                  <i class="far fa-folder-open"></i>
+                  <i class="fal fa-folder-open"></i>
                 </div>
               </div>
               <div class="col-8">
@@ -148,17 +148,17 @@
             </div>
           </div>
           <div class="card-footer ">
-            <hr>
+            <hr id="hr-home">
           </div>
         </div>
       </div>
-      <div class="col col2">
+      <div class="col-sm">
         <div class="card card-stats deep_sea_rocket-marine">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
                 <div class="icon-big text-center">
-                  <i class="far fa-images"></i>
+                  <i class="fal fa-images"></i>
                 </div>
               </div>
               <div class="col-8">
@@ -174,17 +174,17 @@
             </div>
           </div>
           <div class="card-footer ">
-            <hr>
+            <hr id="hr-home">
           </div>
         </div>
       </div>
-      <div class="col col3">
+      <div class="col-sm">
         <div class="card card-stats deep_sea_rocket-red">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
                 <div class="icon-big text-center">
-                  <i class="fas fa-book-open"></i>
+                  <i class="fal fa-book-open"></i>
                 </div>
               </div>
               <div class="col-8">
@@ -200,17 +200,17 @@
             </div>
           </div>
           <div class="card-footer ">
-            <hr>
+            <hr id="hr-home">
           </div>
         </div>
       </div>
-      <div class="col col4">
+      <div class="col-sm">
         <div class="card card-stats deep_sea_rocket-orange">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
                 <div class="icon-big text-center">
-                  <i class="far fa-calendar-alt"></i>
+                  <i class="fal fa-calendar-alt"></i>
                 </div>
               </div>
               <div class="col-8">
@@ -226,17 +226,17 @@
             </div>
           </div>
           <div class="card-footer ">
-            <hr>
+            <hr id="hr-home">
           </div>
         </div>
       </div>
-      <div class="col col5">
+      <div class="col-sm">
         <div class="card card-stats deep_sea_rocket-yellow">
           <div class="card-body ">
             <div class="row">
               <div class="col-4">
                 <div class="icon-big text-center">
-                  <i class="far fa-user-circle"></i>
+                  <i class="fal fa-user-circle"></i>
                 </div>
               </div>
               <div class="col-8">
@@ -252,74 +252,13 @@
             </div>
           </div>
           <div class="card-footer ">
-            <hr>
+            <hr id="hr-home">
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <!-- content_row_datadards END -->
-
-  <!-- MODAL LOGIN Start -->
-  <div id="modal_login" class="modal" style="none">
-    <span onclick="modalLogin()" class="close" title="Close Modal">&times;
-    </span>
-
-    <!-- Modal Content -->
-    <div class="modal-content">
-      <form class="animate" action="">
-
-        <h3 class="title title-modal text-center">Guia IMS - Login</h3>
-
-        <div class="container">
-
-          <div class="form-row text-center">
-            <div class="col-12">
-            <input type="text" placeholder="Insira seu LOGIN" name="uname" required>
-            </div>
-          </div>
-
-          <div class="form-row text-center">
-            <div class="col-12">
-            <input type="password" placeholder="Insira sua SENHA" name="password" required>
-          </div>
-          </div>
-
-          <div class="form-row text-center">
-            <div class="col-12">
-            <button type="submit" class="btn">
-                Entrar
-                <span class="btn-label btn-label-right">
-                  <i class="nc-icon nc-minimal-right"></i>
-                </span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-      </form>
-      <div class="row text-center">
-        <div class="col-sm-6 col-xs-12">
-          <button class="btn btn-grey-down btn-sm">
-            <a href="#">Esqueceu a senha?</a>
-          </button>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-          <button class="btn btn-grey-up btn-sm">
-            <a href="#">Quero me cadastrar!</a>
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-  </div>
-  <!-- MODAL LOGIN End -->
 
   {% endblock %}
   <!-- block content END -->
