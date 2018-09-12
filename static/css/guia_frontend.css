@@ -65,6 +65,15 @@ input::placeholder {
   background-color: #464646 !important;
 }
 
+.sidebar .nav p, .off-canvas-sidebar .nav p{
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.svg-inline--fa{
+  vertical-align: -0.325em;
+}
+
 .bg-white{
   height: 153px;
 }
@@ -188,6 +197,10 @@ display: inline-block;
 /* ===================================== */
 /* Special Classes to Project Guia */
 
+.sidebar-menu-icon{
+  font-size: 25px;
+}
+
 /* COLORS AND SPACES - abstract */
 .back-dark{
   background-color: #464646;
@@ -215,30 +228,89 @@ display: inline-block;
   color: #4b7e84;
 }
 
-.deep_sea_rocket-blue{
+.deep_sea_rocket-blue, .deep_sea_rocket-blue #hr-home{
   color: #34738f;
   background-color: #edf8ff;
+  border-color: #34738f;
 }
 
-.deep_sea_rocket-marine{
-  color: #245b75;
-  background-color: #f2f1ff;
+.deep_sea_rocket-blue:hover{
+  color: #edf8ff;
+  background-color: #34738f;
 }
-.deep_sea_rocket-red{
+
+.deep_sea_rocket-blue:hover #hr-home{
+  border-color: #edf8ff;
+}
+
+.deep_sea_rocket-blue-icon{
+  color: #34738f;
+  border-color: #34738f;
+}
+
+.deep_sea_rocket-marine, .deep_sea_rocket-marine #hr-home{
+  color: #4f5a90;
+  background-color: #f2f1ff;
+  border-color: #4f5a90;
+}
+
+.deep_sea_rocket-marine:hover{
+  color: #f2f1ff;
+  background-color: #4f5a90;
+  border-color: #f2f1ff;
+}
+
+.deep_sea_rocket-marine:hover #hr-home{
+  border-color: #f2f1ff;
+}
+
+.deep_sea_rocket-red, .deep_sea_rocket-red #hr-home{
   color: #be3e2b;
   background-color: #ffedee;
+  border-color: #be3e2b;
 }
 
-.deep_sea_rocket-orange{
+.deep_sea_rocket-red:hover{
+  color: #ffedee;
+  background-color: #be3e2b;
+  border-color: #ffedee;
+}
+
+.deep_sea_rocket-red:hover #hr-home{
+  border-color: #ffedee;
+}
+
+.deep_sea_rocket-orange, .deep_sea_rocket-orange #hr-home{
   color: #ed8a45;
   background-color: #fff9ed;
+  border-color: #ed8a45;
 }
 
-.deep_sea_rocket-yellow{
+.deep_sea_rocket-orange:hover{
+  color: #fff9ed;
+  background-color: #ed8a45;
+  border-color: #fff9ed;
+}
+
+.deep_sea_rocket-orange:hover #hr-home{
+  border-color: #fff9ed;
+}
+
+.deep_sea_rocket-yellow, .deep_sea_rocket-yellow #hr-home{
   color: #efc810;
   background-color: #fffffa;
+  border-color: #efc810;
 }
 
+.deep_sea_rocket-yellow:hover{
+  color: #fffffa;
+  background-color: #efc810;
+  border-color: #fffffa;
+}
+
+.deep_sea_rocket-yellow:hover #hr-home{
+  border-color: #fffffa;
+}
 
 
 /* MODAL LOGIN */

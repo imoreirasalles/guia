@@ -13,25 +13,25 @@ Guia
 <ul class="nav">
   <li class="active">
     <a href="{% url 'collection' %}">
-      <i class="far fa-folder-open"></i>
-      <p>Coleções</p>
+      <i class="fal fa-folder-open sidebar-menu-icon deep_sea_rocket-blue-icon"></i>
+      <p class="deep_sea_rocket-blue-icon">Coleções</p>
     </a>
   </li>
   <li>
     <a href="{% url 'exhibition' %}">
-      <i class="fas fa-images"></i>
+      <i class="fal fa-images sidebar-menu-icon"></i>
       <p> Exposições </p>
     </a>
   </li>
   <li>
     <a href="{% url 'publication' %}">
-      <i class="fas fa-book"></i>
+      <i class="fal fa-book-open sidebar-menu-icon"></i>
       <p> Publicações </p>
     </a>
   </li>
   <li>
     <a href="{% url 'person' %}">
-      <i class="fas fa-user-circle"></i>
+      <i class="fal fa-user-circle sidebar-menu-icon"></i>
       <p> Pessoas </p>
     </a>
   </li>
@@ -43,7 +43,7 @@ Guia
 {% block content %}
 <div class="content">
 
-  <h4 class="card-title">Todas as Coleções</h4>
+<h4 class="card-title">Todas as Coleções</h4>
 
 <!-- form select START -->
   <form action="" method="get">
