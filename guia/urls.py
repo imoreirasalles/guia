@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, name='logout'),
     path('base/', views.base, name='base'),
+    path('notfound404/', views.notfound404, name='notfound404'),
     path('', include('home.urls'), name='home'),
     path('collection/', include('collection.urls')),
     path('exhibition/', views.exhibition, name='exhibition'),

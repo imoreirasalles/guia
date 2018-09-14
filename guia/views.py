@@ -13,6 +13,8 @@ def base(request):
 def home(request):
     return render(request, 'home.html')
 
+def notfound404(request):
+    return render(request, '404.html')
 
 def exhibition(request):
     return render(request, 'exhibition.html')
