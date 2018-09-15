@@ -18,7 +18,7 @@ from management.models import ManagementUnit
 
 class CollectionList(ListView):
     model = Collection
-    paginate_by = 3
+    paginate_by = 10
     context_object_name = "collection_list"
     template_name = "collection_list.html"
 
@@ -29,39 +29,43 @@ class CollectionList(ListView):
             selected_ordering = "-" + selected_ordering
         return selected_ordering
 
+    def get_queryset(self):
+        queryset = Collection.objects.all()
+        management_unit_list = self.request.GET.getlist('management_unit')
+        description_level_list = self.request.GET.getlist('description_level')
+        access_condition_list = self.request.GET.getlist('access_condition')
+        genre_tag_list = self.request.GET.getlist('genre_tag')
+
+        if (management_unit_list and int(management_unit_list[0]) > 0):
+            queryset = queryset.filter(management_unit__in=management_unit_list)
+
+        if (description_level_list and int(description_level_list[0]) > 0):
+            queryset = queryset.filter(description_level__in=description_level_list)
+
+        if (access_condition_list and int(access_condition_list[0]) > 0):
+            queryset = queryset.filter(access_condition__in=access_condition_list)
+
+        if (genre_tag_list and int(genre_tag_list[0]) > 0):
+            queryset = queryset.filter(description_level__in=genre_tag_list)
+
+        queryset = queryset.order_by(self.get_ordering())
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        qr = Collection.objects.all()
-
-        descriptionlevel_filter = self.request.GET.get('descriptionlevel')
-        if descriptionlevel_filter :
-            if int(descriptionlevel_filter) > 0:
-                qr = qr.filter(description_level=int(descriptionlevel_filter))
-
-        accesscondition_filter = self.request.GET.get('accesscondition')
-        if accesscondition_filter :
-            if int(accesscondition_filter) > 0:
-                qr = qr.filter(access_condition=int(accesscondition_filter))
-
-        genretag_filter = self.request.GET.get('genretag')
-        if genretag_filter :
-            if int(genretag_filter) > 0:
-                qr = qr.filter(genre_tags=int(genretag_filter))
-
-        managementunit_filter = self.request.GET.get('managementunit')
-        if managementunit_filter :
-            if int(managementunit_filter) > 0:
-                qr = qr.filter(management_unit=int(managementunit_filter))
-
-        context['list'] = qr.order_by(self.get_ordering())
-
-        context['now'] = timezone.now()
         context['order'] = self.order
+        context['management_unit_list']   = ManagementUnit.objects.filter().order_by()
+        context['description_level_list'] = DescriptionLevel.objects.filter().order_by()
+        context['access_condition_list']  = AccessCondition.objects.filter().order_by()
+        context['genre_tag_list'] = GenreTag.objects.filter().order_by()
 
-        context['descriptionlevel_list'] = DescriptionLevel.objects.filter().order_by()
-        context['accesscondition_list']  = AccessCondition.objects.filter().order_by()
-        context['genretag_list']         = GenreTag.objects.filter().order_by()
-        context['managementunit_list']   = ManagementUnit.objects.filter().order_by()
+        context['management_unit_selected'] = list(map(int, self.request.GET.getlist('management_unit')))
+
+        context['description_level_selected'] = list(map(int, self.request.GET.getlist('description_level')))
+
+        context['access_condition_selected'] = list(map(int, self.request.GET.getlist('access_condition')))
+
+        context['genre_tag_selected'] = list(map(int, self.request.GET.getlist('genre_tag')))
 
         return context
 

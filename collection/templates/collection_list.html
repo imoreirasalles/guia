@@ -58,72 +58,105 @@ Guia
     <form action="" method="get">
       <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-2">
 
           <label class="control-label">
             Área Responsável
           </label>
 
-          <select multiple title="Selecione a(s) opções" id="managementunit" class="selectpicker" name="managementunit" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
-            {% for managementunit in managementunit_list %}
-              <option value="{{managementunit.id_auto_series}}"
-              {% if managementunit.selected %}selected=""{% endif %}>
-                  {{managementunit.title}}
+          <select multiple title="Selecione" id="management_unit" class="selectpicker" name="management_unit" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
+            <option value="0"
+            {% if 0 in management_unit_selected %}
+              selected
+            {% endif %} >
+              Todas as Áreas</option>
+            {% for management_unit in management_unit_list %}
+              <option value="{{management_unit.id_auto_series}}"
+              {% if management_unit.id_auto_series in management_unit_selected %}
+              selected
+              {% endif %} >
+                  {{management_unit}}
               </option>
             {% endfor%}
           </select>
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
 
           <label class="control-label">
             Nível de Descrição
           </label>
 
-          <select multiple title="Selecione a(s) opções" id="descriptionlevel" name="descriptionlevel" class="selectpicker" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
-            <option value="0">Todos os Níveis</option>
-              {% for descriptionlevel in descriptionlevel_list %}
-              <option value="{{descriptionlevel.id_auto_series}}" >
-                  {{descriptionlevel.title}}
+          <select multiple title="Selecione" id="description_level" name="description_level" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
+            <option value="0"
+            {% if 0 in description_level_selected %}
+              selected
+            {% endif %} >
+                Todos os Níveis</option>
+              {% for description_level in description_level_list %}
+              <option value="{{description_level.id_auto_series}}"
+              {% if description_level.id_auto_series in description_level_selected %}
+              selected
+              {% endif %} >
+                  {{description_level}}
               </option>
               {% endfor%}
           </select>
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
 
           <label class="control-label">
             Condição de Acesso
           </label>
 
-          <select multiple title="Selecione a(s) opções" id="accesscondition" name="accesscondition" class="selectpicker" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
-            <option value="0">Todas as Condições</option>
-              {% for accesscondition in accesscondition_list %}
-              <option value="{{accesscondition.id_auto_series}}" >
-                  {{accesscondition.title}}selected=""
+          <select multiple title="Selecione" id="access_condition" name="access_condition" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
+            <option value="0"
+            {% if 0 in access_condition_selected %}
+              selected
+            {% endif %} >
+            Todas as Condições</option>
+              {% for access_condition in access_condition_list %}
+              <option value="{{access_condition.id_auto_series}}"
+              {% if access_condition.id_auto_series in access_condition_selected %}
+              selected
+              {% endif %} >
+                  {{access_condition}}
               </option>
               {% endfor%}
           </select>
 
         </div>
 
-        <div class="col-md-3">
-
+        <div class="col-md-2">
           <label class="control-label">
             Generos Documentais
           </label>
-          <select multiple title="Selecione a(s) opções" id="genretag" name="genretag" class="selectpicker" onchange="this.form.submit();" data-style="btn btn-sm btn-fill" data-size="7">
-            <option value="0">Todos os Generos</option>
-              {% for genretag in genretag_list %}collection_list
-              <option value="{{genretag.id_auto_series}}" >
-                  {{genretag.title}}
+          <select multiple title="Selecione" id="genre_tag" name="genre_tag" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
+            <option value="0"
+            {% if 0 in genre_tag_selected %}
+              selected
+            {% endif %} >
+            Todos os Generos</option>
+              {% for genre_tag in genre_tag_list %}collection_list
+              <option value="{{genre_tag.id_auto_series}}"
+              {% if genre_tag.id_auto_series in genre_tag_selected %}
+              selected
+              {% endif %} >
+                  {{genre_tag}}
               </option>
               {% endfor%}
           </select>
 
         </div>
+        <div class="col-md-4">
+          <a href="">
+          <button type="submit" class="button" class="btn btn-grey-down btn-sm">Filtrar</button>
+          </a>
+        </div>
+
       </div>
     </form>
   <!-- form select END -->
