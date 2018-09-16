@@ -16,4 +16,5 @@ urlpatterns = [
     path('',views.CollectionList.as_view(),name='collection'),
     path('<pk>/',views.CollectionDetail.as_view(),name='collection_detail'),
     path('<slug:slug>',views.CollectionDetail.as_view(),name='collection_detail_slug'),
+    path('collection_search/',views.CollectionSearchList.as_view(),name='blog_search_list_view'),
 ]

@@ -17,6 +17,7 @@ from management.models import ManagementUnit
 
 
 class CollectionList(ListView):
+    """CBV to list and process filter into all Collections"""
     model = Collection
     paginate_by = 10
     context_object_name = "collection_list"
@@ -71,8 +72,20 @@ class CollectionList(ListView):
 
 
 class CollectionDetail(DetailView):
+    """Process each collection in details"""
     model = Collection
     template_name = "collection_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+
+
+class CollectionSearchList(CollectionList):
+    """docstring for [object Object]."""
+    model = Collection
+    template_name = "collection_detail.html"    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
