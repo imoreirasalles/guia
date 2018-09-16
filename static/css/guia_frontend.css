@@ -271,7 +271,8 @@ display: inline-block;
 }
 
 .pagination-icon{
-  font-size: 25px;
+  font-size: 35px;
+  margin-top: -3px;
 }
 
 /* COLORS AND SPACES - abstract */

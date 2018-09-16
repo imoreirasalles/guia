@@ -39,17 +39,39 @@ Guia
 {% endblock %}
 <!-- block sidebar_menu END -->
 
+{% block navbar_top_search %}
+
+<!-- <form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
+  <button class="searchbutton" type="submit">
+    <i class="fa fa-search"></i>
+  </button>
+  <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+</form> -->
+
+<form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
+  <div class="input-group no-border">
+    <input type="text" value="" name="input_search"
+          id="searchbox" class="form-control" placeholder="Pesquisar...">
+
+    <div class="input-group-append">
+      <div class="input-group-text">
+        <a href="#" onclick="form.submit();">
+          <i class="nc-icon nc-zoom-split"></i>
+        </a>
+      </div>
+    </div>
+    <input type="submit" style="display: none">
+  </div>
+</form>
+{% endblock %}
+
 <!-- block content START -->
 {% block content %}
 <div class="content">
 
   <div class="row">
     <div class="col-sm-12 front-header back-dark">
-      {% for post in post_list %}
-      <h2 class="front-title">{{post.title}}</h2>
-      {% empty %}
       <h2 class="front-title">Coleções</h2>
-      {% endfor %}
     </div>
   </div>
 
@@ -206,7 +228,9 @@ Guia
           </td>
           <td>
             <a href="{{ collection.get_absolute_url }}">
-                {{collection.title|default_if_none:"-" }}</a>
+              {{ collection.aggregation_type|default_if_none:"" }}
+              {{collection.title|default_if_none:"-" }}
+            </a>
           </td>
           <td>{{collection.date_start|default_if_none:'-'|date:'Y' }} -
             {{collection.date_end|default_if_none:'-'|date:'Y' }}
@@ -258,14 +282,14 @@ Guia
     <li class="page-item">
       <a class="page-link-arrow" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
         <span aria-hidden="true">
-          <i class="fas fa-arrow-alt-circle-left pagination-icon"></i>
+          <i class="fas fa-arrow-square-left pagination-icon"></i>
         </span>
       </a>
     </li>
     {% else %}
     <li class="page-item">
         <span aria-hidden="true" class="page-link-arrow">
-          <i class="fal fa-caret-circle-left pagination-icon"></i>
+          <i class="fal fa-arrow-square-left pagination-icon"></i>
         </span>
     </li>
     {% endif %}
@@ -306,14 +330,14 @@ Guia
     <li class="page-item">
       <a class="page-link-arrow" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
         <span aria-hidden="true">
-          <i class="fas fa-arrow-alt-circle-right pagination-icon"></i>
+          <i class="fas fa-arrow-square-right pagination-icon"></i>
         </span>
       </a>
     </li>
     {% else %}
     <li class="page-item">
       <span aria-hidden="true" class="page-link-arrow">
-        <i class="fal fa-arrow-alt-circle-right pagination-icon"></i>
+        <i class="fal fa-arrow-square-right pagination-icon"></i>
       </span>
     </li>
     {% endif %}
