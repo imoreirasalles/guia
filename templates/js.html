@@ -70,9 +70,11 @@ function mouseoutDisplayShow() {
   if (sidebar_status == false){
     document.getElementById('logo-small1').style.display = "block";
     document.getElementById('logo-small2').style.display = "block";
+    // document.getElementsByClassName('sidebar-menu-item').style.display = "none";
   } else{
     document.getElementById('logo-small1').style.display = "none";
     document.getElementById('logo-small2').style.display = "none";
+    // document.getElementsByClassName('sidebar-menu-item').style.display = "block";
   }
 }
 
@@ -80,9 +82,11 @@ function mouseoverDisplayNone() {
   if (sidebar_status == false){
     document.getElementById('logo-small1').style.display = "none";
     document.getElementById('logo-small2').style.display = "none";
+    // document.getElementsByClassName('sidebar-menu-item').style.display = "block";
   } else{
     document.getElementById('logo-small1').style.display = "block";
     document.getElementById('logo-small2').style.display = "block";
+    // document.getElementsByClassName('sidebar-menu-item').style.display = "none";
   }
 }
 

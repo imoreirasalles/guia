@@ -270,6 +270,10 @@ display: inline-block;
   font-size: 25px;
 }
 
+.sidebar-menu-item{
+  display: none !important;
+}
+
 .pagination-icon{
   font-size: 35px;
   margin-top: -3px;
