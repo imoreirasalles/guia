@@ -136,10 +136,10 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
                     }),
     )
     form = CollectionAdminForm
-    class Media:
-        css = {
-             'all': ('css/guia_admin.css',)
-        }
+    # class Media:
+    #     css = {
+    #          'all': ('css/guia_admin.css',)
+    #     }
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'author':
