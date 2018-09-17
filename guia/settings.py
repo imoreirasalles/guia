@@ -60,7 +60,6 @@ from django.utils.translation import ugettext_lazy as _
 
 MIDDLEWARE = [
     'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -72,6 +71,9 @@ MIDDLEWARE = [
     'admin_reorder.middleware.ModelAdminReorder',
     'reversion.middleware.RevisionMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware', ] + MIDDLEWARE
 
 ROOT_URLCONF = 'guia.urls'
 
