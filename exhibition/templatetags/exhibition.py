@@ -12,7 +12,7 @@ def th_with_order_by(context, field, label, *args, **kwargs):
     label = _(label)
     icon = ''
 
-    if field in request.GET.get('order_by'):
+    if field in request.GET.get('order_by', ''):
         icon = '<i class="fa fa-long-arrow-up"></i>'
         if '-' in request.GET.get('order_by'):
             icon = '<i class="fa fa-long-arrow-down"></i>'
