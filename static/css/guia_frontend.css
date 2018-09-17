@@ -352,6 +352,16 @@ display: inline-block;
   border-color: #446B7E;
 }
 
+.deep_sea_rocket-blue-active_on{
+  color: #fff;
+  border-color: #fff;
+}
+
+.deep_sea_rocket-blue-active_base{
+    background-color: #446B7E;
+}
+
+
 .deep_sea_rocket-marine, .deep_sea_rocket-marine #hr-home{
   color: #4f5a90;
   background-color: #f2f1ff;
