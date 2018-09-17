@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 
 def person(request):
-    return render(request, 'person.html')
+    return render(request, 'person_list.html')
