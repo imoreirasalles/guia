@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'import_export',
+    'debug_toolbar',
     # My apps
     'collection',
     'digitalassetsmanagement',
@@ -59,6 +60,7 @@ from django.utils.translation import ugettext_lazy as _
 
 MIDDLEWARE = [
     'raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -289,3 +291,11 @@ if env('DJANGO_SENTRY_DSN', default=False):
             },
         },
     }
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': 'guia.settings.custom_show_toolbar',
+}
+
+def custom_show_toolbar(request):
+    return True  # Always show toolbar, for example purposes only.

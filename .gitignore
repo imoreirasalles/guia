@@ -92,3 +92,4 @@ db_data/
 
 ## Static Files
 staticfiles/
+.idea

@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load collection_filters %}
+{% load i18n %}
+
+<!-- block title_page START -->
+{% block title_page %}
+Guia
+{% endblock %}
+<!-- block title_page END -->
+
+<!-- block sidebar_menu START -->
+{% block sidebar_menu %}
+<ul class="nav">
+  <li>
+    <a href="{% url 'collection' %}">
+      <i class="fal fa-folder-open"></i>
+      <p class="deep_sea_rocket-blue-icon">Coleções</p>
+    </a>
+  </li>
+  <li class="active-out">
+    <a href="{% url 'exhibition' %}">
+      <i class="fal fa-images sidebar-menu-icon deep_sea_rocket-blue-icon"></i>
+      <p> Exposições </p>
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'publication' %}">
+      <i class="fal fa-book-open sidebar-menu-icon"></i>
+      <p> Publicações </p>
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'person' %}">
+      <i class="fal fa-user-circle sidebar-menu-icon"></i>
+      <p> Pessoas </p>
+    </a>
+  </li>
+</ul>
+{% endblock %}
+<!-- block sidebar_menu END -->
+
+{% block navbar_top_search %}
+
+<!-- <form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
+  <button class="searchbutton" type="submit">
+    <i class="fa fa-search"></i>
+  </button>
+  <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+</form> -->
+
+<form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
+  <div class="input-group no-border">
+    <input type="text" value="" name="input_search"
+          id="searchbox" class="form-control" placeholder="Pesquisar...">
+
+    <div class="input-group-append">
+      <div class="input-group-text">
+        <a href="#" onclick="form.submit();">
+          <i class="nc-icon nc-zoom-split"></i>
+        </a>
+      </div>
+    </div>
+    <input type="submit" style="display: none">
+  </div>
+</form>
+{% endblock %}
+
+<!-- block content START -->
+{% block content %}
+  <div class="content">
+
+    <div class="row">
+      <div class="col-sm-12 front-header back-dark">
+        <h2 class="front-title">Exibições</h2>
+      </div>
+    </div>
+
+  <div class="row back-dark-over control-bar">
+    <!-- form select START -->
+  {#    <form action="" method="get">#}
+  {#      <div class="row">#}
+  {##}
+  {#        <div class="col-md-2">#}
+  {##}
+  {#          <label class="control-label">#}
+  {#            Área Responsável#}
+  {#          </label>#}
+  {##}
+  {#          <select multiple title="Selecione" id="management_unit" class="selectpicker" name="management_unit" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
+  {#            <option value="0"#}
+  {#            {% if 0 in management_unit_selected %}#}
+  {#              selected#}
+  {#            {% endif %} >#}
+  {#              Todas as Áreas</option>#}
+  {#            {% for management_unit in management_unit_list %}#}
+  {#              <option value="{{management_unit.id_auto_series}}"#}
+  {#              {% if management_unit.id_auto_series in management_unit_selected %}#}
+  {#              selected#}
+  {#              {% endif %} >#}
+  {#                  {{management_unit}}#}
+  {#              </option>#}
+  {#            {% endfor%}#}
+  {#          </select>#}
+  {##}
+  {#        </div>#}
+  {##}
+  {#        <div class="col-md-2">#}
+  {##}
+  {#          <label class="control-label">#}
+  {#            Nível de Descrição#}
+  {#          </label>#}
+  {##}
+  {#          <select multiple title="Selecione" id="description_level" name="description_level" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
+  {#            <option value="0"#}
+  {#            {% if 0 in description_level_selected %}#}
+  {#              selected#}
+  {#            {% endif %} >#}
+  {#                Todos os Níveis</option>#}
+  {#              {% for description_level in description_level_list %}#}
+  {#              <option value="{{description_level.id_auto_series}}"#}
+  {#              {% if description_level.id_auto_series in description_level_selected %}#}
+  {#              selected#}
+  {#              {% endif %} >#}
+  {#                  {{description_level}}#}
+  {#              </option>#}
+  {#              {% endfor%}#}
+  {#          </select>#}
+  {##}
+  {#        </div>#}
+  {##}
+  {#        <div class="col-md-2">#}
+  {##}
+  {#          <label class="control-label">#}
+  {#            Condição de Acesso#}
+  {#          </label>#}
+  {##}
+  {#          <select multiple title="Selecione" id="access_condition" name="access_condition" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
+  {#            <option value="0"#}
+  {#            {% if 0 in access_condition_selected %}#}
+  {#              selected#}
+  {#            {% endif %} >#}
+  {#            Todas as Condições</option>#}
+  {#              {% for access_condition in access_condition_list %}#}
+  {#              <option value="{{access_condition.id_auto_series}}"#}
+  {#              {% if access_condition.id_auto_series in access_condition_selected %}#}
+  {#              selected#}
+  {#              {% endif %} >#}
+  {#                  {{access_condition}}#}
+  {#              </option>#}
+  {#              {% endfor%}#}
+  {#          </select>#}
+  {##}
+  {#        </div>#}
+  {##}
+  {#        <div class="col-md-2">#}
+  {#          <label class="control-label">#}
+  {#            Generos Documentais#}
+  {#          </label>#}
+  {#          <select multiple title="Selecione" id="genre_tag" name="genre_tag" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
+  {#            <option value="0"#}
+  {#            {% if 0 in genre_tag_selected %}#}
+  {#              selected#}
+  {#            {% endif %} >#}
+  {#            Todos os Generos</option>#}
+  {#              {% for genre_tag in genre_tag_list %}collection_list#}
+  {#              <option value="{{genre_tag.id_auto_series}}"#}
+  {#              {% if genre_tag.id_auto_series in genre_tag_selected %}#}
+  {#              selected#}
+  {#              {% endif %} >#}
+  {#                  {{genre_tag}}#}
+  {#              </option>#}
+  {#              {% endfor%}#}
+  {#          </select>#}
+  {##}
+  {#        </div>#}
+  {#        <div class="col-md-4">#}
+  {#          <a href="">#}
+  {#          <button type="submit" class="button" class="btn btn-grey-down btn-sm">Filtrar</button>#}
+  {#          </a>#}
+  {#        </div>#}
+  {##}
+  {#      </div>#}
+  {#    </form>#}
+    <!-- form select END -->
+  </div>
+
+  <div class="container-fluid">
+    <div class="row back-beige">
+      <div class="col-md-12 table-responsive">
+        <table class="table table-hover">
+          <thead class="text-warning">
+            <tr>
+              <th>{% trans "ID" %}</th>
+              <th>{% trans "Institucional ID" %}</th>
+              <th>{% trans "Title" %}</th>
+              <th>{% trans "Initial Date" %}</th>
+              <th>{% trans "Final date" %}</th>
+              <th>{% trans "Location" %}</th>
+              <th>{% trans "Catalog(s)" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for object in object_list %}
+              <tr id="id-exhibition-{{ object.id_auto_series }}">
+                <td>
+                  <a href="{{ object.get_absolute_url }}">{{ object.id_auto_series }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">{{ object.id_human|default_if_none:"-" }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">{{ object.title|default_if_none:"-" }}</a>
+                </td>
+                <td>{{ object.date_start|default_if_none:"-" }}</td>
+                <td>{{ object.date_end|default_if_none:"-" }}</td>
+                <td>{{ object.location|default_if_none:"-" }}</td>
+                <td>
+                  {% for catalog in object.catalog.all %}
+                    <a href="#">{{ catalog.title }}</a>{% if not forloop.last %},{% else %}.{% endif %}
+                  {% empty %}
+                    -
+                  {% endfor %}
+                </td>
+              </tr>
+
+            {% empty %}
+            <p>Não há dados para os filtros selecionados</p>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- pagination START -->
+  {% if is_paginated %}
+    <nav aria-label="Collection Pagination">
+      <ul class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.previous_page_number }})" aria-label="Previous">
+            <span aria-hidden="true">
+              <i class="fas fa-arrow-square-left pagination-icon"></i>
+            </span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <span aria-hidden="true" class="page-link-arrow">
+              <i class="fal fa-arrow-square-left pagination-icon"></i>
+            </span>
+        </li>
+        {% endif %}
+
+        {% for i in page_obj.paginator.page_range %}
+          <li class="page-item {% if i == page_obj.number %}active{% endif %}">
+            <a class="page-link" href="javascript: go_to_page({{ i }})">
+              {{ i }}
+            </a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.next_page_number }})" aria-label="Next">
+            <span aria-hidden="true">
+              <i class="fas fa-arrow-square-right pagination-icon"></i>
+            </span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <span aria-hidden="true" class="page-link-arrow">
+            <i class="fal fa-arrow-square-right pagination-icon"></i>
+          </span>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
+  <!-- pagination END -->
+
+  <form id="filterAndPagination">
+    <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
+  </form>
+
+
+{% endblock %}
+<!-- block content END -->
+
+{% block js %}
+  {{ block.super }}
+
+  <script>
+    function go_to_page(page) {
+        var form = $("#filterAndPagination");
+        form.find("input[name='page']").val(page);
+        form.submit();
+    }
+  </script>
+
+
+{% endblock %}

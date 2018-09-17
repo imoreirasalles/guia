@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Exhibition
 
-# Create your views here.
+
+class ExhibitionListView(ListView):
+    queryset = Exhibition.objects.all()
+    paginate_by = 2

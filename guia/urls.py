@@ -9,6 +9,8 @@ from django.utils.translation import gettext_lazy as _
 # project guia imports
 from . import views
 
+from exhibition.views import ExhibitionListView
+
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('login/', auth_views.login, name='login'),
@@ -19,7 +21,7 @@ urlpatterns = [
     path('error500/', views.error500, name='error500'),
     path('', include('home.urls'), name='home'),
     path('collection/', include('collection.urls')),
-    path('exhibition/', views.exhibition, name='exhibition'),
+    path('exhibition/', ExhibitionListView.as_view(), name='exhibition'),
     path('publication/', views.publication, name='publication'),
     path('person/', include('person.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -33,3 +35,11 @@ admin.site.index_title = _('Input and Admin Data')
 
 # default: "Django site admin"
 admin.site.site_title = _('Admin Panel')
+
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
