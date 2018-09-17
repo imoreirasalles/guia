@@ -20,7 +20,7 @@ urlpatterns = [
     path('', include('home.urls'), name='home'),
     path('collection/', include('collection.urls')),
     path('exhibition/', views.exhibition, name='exhibition'),
-    path('publication/', views.publication, name='publication'),
+    path('publication/', include('publication.urls')),
     path('person/', include('person.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
