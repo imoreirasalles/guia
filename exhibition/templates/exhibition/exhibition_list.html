@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load collection_filters %}
+{% load exhibition %}
 {% load i18n %}
 
 <!-- block title_page START -->
@@ -72,6 +73,7 @@ Guia
   <form id="filterAndPagination" class="form">
     <div class="row back-dark-over control-bar">
       <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
+      <input type="hidden" name="order_by" value="{{ request.GET.order_by|default_if_none:'' }}">
 
       <div class="form-group col-md-5 col-sm-12">
         <label for="id_date">Filtre por data</label>
@@ -106,12 +108,12 @@ Guia
         <table class="table table-hover">
           <thead class="text-warning">
             <tr>
-              <th>{% trans "ID" %}</th>
-              <th>{% trans "Institucional ID" %}</th>
-              <th>{% trans "Title" %}</th>
-              <th>{% trans "Initial Date" %}</th>
-              <th>{% trans "Final date" %}</th>
-              <th>{% trans "Location" %}</th>
+              <th>{% th_with_order_by "pk" "ID" %}</th>
+              <th>{% th_with_order_by 'id_human' "Institucional ID" %}</th>
+              <th>{% th_with_order_by 'title' "Title" %}</th>
+              <th>{% th_with_order_by 'date_start' "Initial Date" %}</th>
+              <th>{% th_with_order_by 'date_end' "Final date" %}</th>
+              <th>{% th_with_order_by 'location' "Location" %}</th>
               <th>{% trans "Catalog(s)" %}</th>
             </tr>
           </thead>
@@ -140,7 +142,7 @@ Guia
               </tr>
 
             {% empty %}
-            <p>Não há dados para os filtros selecionados</p>
+            <td colspan="7">Não há dados para os filtros selecionados</td>
             {% endfor %}
           </tbody>
         </table>
@@ -207,6 +209,19 @@ Guia
     function go_to_page(page) {
         var form = $("#filterAndPagination");
         form.find("input[name='page']").val(page);
+        form.submit();
+    }
+
+    function order_by(new_value) {
+        var form = $("#filterAndPagination");
+        var field = form.find("input[name='order_by']");
+        var current_value = field.val();
+
+        if(current_value.indexOf(new_value) >= 0 && current_value.indexOf('-') < 0) {
+            new_value = "-" + new_value;
+        }
+
+        field.val(new_value);
         form.submit();
     }
 

@@ -21,12 +21,19 @@ class ExhibitionListView(ListView):
 
         date = self.request.GET.get('date')
         location = self.request.GET.get('location')
+        order_by = self.request.GET.get('order_by')
 
         if date:
-            date = datetime.strptime(date, "%d/%m/%Y")
-            queryset = queryset.filter(date_start__gte=date, date_end__lte=date)
+            try:
+                date = datetime.strptime(date, "%d/%m/%Y")
+                queryset = queryset.filter(date_start__gte=date, date_end__lte=date)
+            except ValueError:
+                pass
 
         if location:
             queryset = queryset.filter(location__pk=location)
+
+        if order_by:
+            queryset = queryset.order_by(order_by)
 
         return queryset
