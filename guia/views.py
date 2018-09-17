@@ -23,8 +23,8 @@ def error500(request):
     return HttpResponseServerError(render(request, '500.html'))
 
 def exhibition(request):
-    return render(request, 'exhibition.html')
+    return render(request, 'exhibition_list.html')
 
 
 def publication(request):
-    return render(request, 'publication.html')
+    return render(request, 'publication_list.html')

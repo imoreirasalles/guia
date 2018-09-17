@@ -271,7 +271,11 @@ display: inline-block;
 }
 
 .sidebar-menu-item{
-  display: none !important;
+  display: none;
+}
+
+.sidebar .nav p, .off-canvas-sidebar .nav p{
+  display: none;
 }
 
 .pagination-icon{
@@ -329,14 +333,14 @@ display: inline-block;
 }
 
 .deep_sea_rocket-blue, .deep_sea_rocket-blue #hr-home{
-  color: #34738f;
+  color: #446B7E;
   background-color: #edf8ff;
-  border-color: #34738f;
+  border-color: #446B7E;
 }
 
 .deep_sea_rocket-blue:hover{
   color: #edf8ff;
-  background-color: #34738f;
+  background-color: #446B7E;
 }
 
 .deep_sea_rocket-blue:hover #hr-home{
@@ -344,9 +348,19 @@ display: inline-block;
 }
 
 .deep_sea_rocket-blue-icon{
-  color: #34738f;
-  border-color: #34738f;
+  color: #446B7E;
+  border-color: #446B7E;
 }
+
+.deep_sea_rocket-blue-active_on{
+  color: #fff;
+  border-color: #fff;
+}
+
+.deep_sea_rocket-blue-active_base{
+    background-color: #446B7E;
+}
+
 
 .deep_sea_rocket-marine, .deep_sea_rocket-marine #hr-home{
   color: #4f5a90;

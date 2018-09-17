@@ -148,6 +148,20 @@ python3.5 manage.py makemigrations
 $ python3.5 manage.py migrate
 ```
 
+##### 3.3 Importando e exportando dados
+
+Para exportar dados:
+
+```
+$ python manage.py dumpdata > data.json
+```
+
+Para importar dados:
+
+```
+$ python manage.py loaddata data.json
+```
+
 ## Atalhos
 
 ### Rodando a aplicação localmente

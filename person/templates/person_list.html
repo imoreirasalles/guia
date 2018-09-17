@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load collection_filters %}
+
+
+{% block title_page %}
+Guia - Pessoas
+{% endblock %}
+
+
+{% block sidebar_menu %}
+  {% include 'person_sidebar_menu.html' %}
+{% endblock %}
+
+
+{% block navbar_top_search %}
+
+<!-- <form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
+  <button class="searchbutton" type="submit">
+    <i class="fa fa-search"></i>
+  </button>
+  <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+</form> -->
+
+<form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
+  <div class="input-group no-border">
+    <input type="text" value="" name="input_search"
+          id="searchbox" class="form-control" placeholder="Pesquisar...">
+
+    <div class="input-group-append">
+      <div class="input-group-text">
+        <a href="#" onclick="form.submit();">
+          <i class="nc-icon nc-zoom-split"></i>
+        </a>
+      </div>
+    </div>
+    <input type="submit" style="display: none">
+  </div>
+</form>
+{% endblock %}
+
+<!-- block content START -->
+{% block content %}
+<div class="content">
+
+  <div class="row">
+    <div class="col-sm-12 front-header back-dark">
+      <h2 class="front-title">Pessoas</h2>
+    </div>
+  </div>
+
+
+
+
+
+
+  {% endblock %}
+    <!-- block content END -->
