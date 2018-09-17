@@ -42,13 +42,6 @@ Guia
 
 {% block navbar_top_search %}
 
-<!-- <form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
-  <button class="searchbutton" type="submit">
-    <i class="fa fa-search"></i>
-  </button>
-  <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
-</form> -->
-
 <form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
   <div class="input-group no-border">
     <input type="text" value="" name="input_search"
@@ -76,114 +69,36 @@ Guia
       </div>
     </div>
 
-  <div class="row back-dark-over control-bar">
-    <!-- form select START -->
-  {#    <form action="" method="get">#}
-  {#      <div class="row">#}
-  {##}
-  {#        <div class="col-md-2">#}
-  {##}
-  {#          <label class="control-label">#}
-  {#            Área Responsável#}
-  {#          </label>#}
-  {##}
-  {#          <select multiple title="Selecione" id="management_unit" class="selectpicker" name="management_unit" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
-  {#            <option value="0"#}
-  {#            {% if 0 in management_unit_selected %}#}
-  {#              selected#}
-  {#            {% endif %} >#}
-  {#              Todas as Áreas</option>#}
-  {#            {% for management_unit in management_unit_list %}#}
-  {#              <option value="{{management_unit.id_auto_series}}"#}
-  {#              {% if management_unit.id_auto_series in management_unit_selected %}#}
-  {#              selected#}
-  {#              {% endif %} >#}
-  {#                  {{management_unit}}#}
-  {#              </option>#}
-  {#            {% endfor%}#}
-  {#          </select>#}
-  {##}
-  {#        </div>#}
-  {##}
-  {#        <div class="col-md-2">#}
-  {##}
-  {#          <label class="control-label">#}
-  {#            Nível de Descrição#}
-  {#          </label>#}
-  {##}
-  {#          <select multiple title="Selecione" id="description_level" name="description_level" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
-  {#            <option value="0"#}
-  {#            {% if 0 in description_level_selected %}#}
-  {#              selected#}
-  {#            {% endif %} >#}
-  {#                Todos os Níveis</option>#}
-  {#              {% for description_level in description_level_list %}#}
-  {#              <option value="{{description_level.id_auto_series}}"#}
-  {#              {% if description_level.id_auto_series in description_level_selected %}#}
-  {#              selected#}
-  {#              {% endif %} >#}
-  {#                  {{description_level}}#}
-  {#              </option>#}
-  {#              {% endfor%}#}
-  {#          </select>#}
-  {##}
-  {#        </div>#}
-  {##}
-  {#        <div class="col-md-2">#}
-  {##}
-  {#          <label class="control-label">#}
-  {#            Condição de Acesso#}
-  {#          </label>#}
-  {##}
-  {#          <select multiple title="Selecione" id="access_condition" name="access_condition" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
-  {#            <option value="0"#}
-  {#            {% if 0 in access_condition_selected %}#}
-  {#              selected#}
-  {#            {% endif %} >#}
-  {#            Todas as Condições</option>#}
-  {#              {% for access_condition in access_condition_list %}#}
-  {#              <option value="{{access_condition.id_auto_series}}"#}
-  {#              {% if access_condition.id_auto_series in access_condition_selected %}#}
-  {#              selected#}
-  {#              {% endif %} >#}
-  {#                  {{access_condition}}#}
-  {#              </option>#}
-  {#              {% endfor%}#}
-  {#          </select>#}
-  {##}
-  {#        </div>#}
-  {##}
-  {#        <div class="col-md-2">#}
-  {#          <label class="control-label">#}
-  {#            Generos Documentais#}
-  {#          </label>#}
-  {#          <select multiple title="Selecione" id="genre_tag" name="genre_tag" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">#}
-  {#            <option value="0"#}
-  {#            {% if 0 in genre_tag_selected %}#}
-  {#              selected#}
-  {#            {% endif %} >#}
-  {#            Todos os Generos</option>#}
-  {#              {% for genre_tag in genre_tag_list %}collection_list#}
-  {#              <option value="{{genre_tag.id_auto_series}}"#}
-  {#              {% if genre_tag.id_auto_series in genre_tag_selected %}#}
-  {#              selected#}
-  {#              {% endif %} >#}
-  {#                  {{genre_tag}}#}
-  {#              </option>#}
-  {#              {% endfor%}#}
-  {#          </select>#}
-  {##}
-  {#        </div>#}
-  {#        <div class="col-md-4">#}
-  {#          <a href="">#}
-  {#          <button type="submit" class="button" class="btn btn-grey-down btn-sm">Filtrar</button>#}
-  {#          </a>#}
-  {#        </div>#}
-  {##}
-  {#      </div>#}
-  {#    </form>#}
-    <!-- form select END -->
-  </div>
+  <form id="filterAndPagination" class="form">
+    <div class="row back-dark-over control-bar">
+      <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
+
+      <div class="form-group col-md-5 col-sm-12">
+        <label for="id_date">Filtre por data</label>
+        <input type="text" id="id_date" class="form-control datepicker" name="date" value="{{ request.GET.date }}">
+      </div>
+
+      <div class="form-group col-md-4 col-sm-12">
+        <label for="id_location">Filtre por localização</label>
+        <select class="form-control" id="id_location" name="location">
+          <option value="">-</option>
+          {% for value, label in locations %}
+            <option value="{{ value }}" {% if value|lower == request.GET.location %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group col-md-1 col-sm-12">
+        <label for="id_location"></label>
+        <button type="submit" class="btn btn-danger">Filtrar</button>
+      </div>
+
+      <div class="form-group col-md-1 col-sm-12">
+        <label for="id_location"></label>
+        <a href="{% url "exhibition" %}" class="btn btn-default">Limpar Filtros</a>
+      </div>
+    </div>
+  </form>
 
   <div class="container-fluid">
     <div class="row back-beige">
@@ -282,11 +197,6 @@ Guia
   {% endif %}
   <!-- pagination END -->
 
-  <form id="filterAndPagination">
-    <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
-  </form>
-
-
 {% endblock %}
 <!-- block content END -->
 
@@ -299,6 +209,21 @@ Guia
         form.find("input[name='page']").val(page);
         form.submit();
     }
+
+    $('.datepicker').datetimepicker({
+      format: 'DD/MM/YYYY',
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down",
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-screenshot',
+        clear: 'fa fa-trash',
+        close: 'fa fa-remove'
+      }
+    });
   </script>
 
 
