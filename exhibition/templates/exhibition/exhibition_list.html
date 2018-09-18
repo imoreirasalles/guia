@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load collection_filters %}
+{% load exhibition %}
+{% load i18n %}
+
+<!-- block title_page START -->
+{% block title_page %}
+Guia
+{% endblock %}
+<!-- block title_page END -->
+
+{% block sidebar_menu %}
+  {% include 'exhibition/exhibition_sidebar_menu.html' %}
+{% endblock %}
+
+
+{% block navbar_top_search %}
+
+<form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
+  <div class="input-group no-border">
+    <input type="text" value="" name="input_search"
+          id="searchbox" class="form-control" placeholder="Pesquisar...">
+
+    <div class="input-group-append">
+      <div class="input-group-text">
+        <a href="#" onclick="form.submit();">
+          <i class="nc-icon nc-zoom-split"></i>
+        </a>
+      </div>
+    </div>
+    <input type="submit" style="display: none">
+  </div>
+</form>
+{% endblock %}
+
+<!-- block content START -->
+{% block content %}
+  <div class="content">
+
+    <div class="row">
+      <div class="col-sm-12 front-header back-dark">
+        <h2 class="front-title">Exibições</h2>
+      </div>
+    </div>
+
+  <form id="filterAndPagination" class="form">
+    <div class="row back-dark-over control-bar">
+      <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
+      <input type="hidden" name="order_by" value="{{ request.GET.order_by|default_if_none:'' }}">
+
+      <div class="form-group col-md-5 col-sm-12">
+        <label for="id_date">Filtre por data</label>
+        <input type="text" id="id_date" class="form-control datepicker" name="date" value="{{ request.GET.date }}">
+      </div>
+
+      <div class="form-group col-md-4 col-sm-12">
+        <label for="id_location">Filtre por localização</label>
+        <select class="form-control" id="id_location" name="location">
+          <option value="">-</option>
+          {% for value, label in locations %}
+            <option value="{{ value }}" {% if value|lower == request.GET.location %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group col-md-1 col-sm-12">
+        <label for="id_location"></label>
+        <button type="submit" class="btn btn-danger">Filtrar</button>
+      </div>
+
+      <div class="form-group col-md-1 col-sm-12">
+        <label for="id_location"></label>
+        <a href="{% url "exhibition" %}" class="btn btn-default">Limpar Filtros</a>
+      </div>
+    </div>
+  </form>
+
+  <div class="container-fluid">
+    <div class="row back-beige">
+      <div class="col-md-12 table-responsive">
+        <table class="table table-hover">
+          <thead class="text-warning">
+            <tr>
+              <th>{% th_with_order_by "pk" "ID" %}</th>
+              <th>{% th_with_order_by 'id_human' "Institucional ID" %}</th>
+              <th>{% th_with_order_by 'title' "Title" %}</th>
+              <th>{% th_with_order_by 'date_start' "Initial Date" %}</th>
+              <th>{% th_with_order_by 'date_end' "Final date" %}</th>
+              <th>{% th_with_order_by 'location' "Location" %}</th>
+              <th>{% trans "Catalog(s)" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for object in object_list %}
+              <tr id="id-exhibition-{{ object.id_auto_series }}">
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_auto_series }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_human|default_if_none:"-" }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.title|default_if_none:"-" }}</a>
+                </td>
+                <td>{{ object.date_start|default_if_none:"-" }}</td>
+                <td>{{ object.date_end|default_if_none:"-" }}</td>
+                <td>{{ object.location|default_if_none:"-" }}</td>
+                <td>
+                  {% for catalog in object.catalog.all %}
+                    <a href="#">{{ catalog.title }}</a>{% if not forloop.last %},{% else %}.{% endif %}
+                  {% empty %}
+                    -
+                  {% endfor %}
+                </td>
+              </tr>
+
+            {% empty %}
+            <td colspan="7">Não há dados para os filtros selecionados</td>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- pagination START -->
+  {% if is_paginated %}
+    <nav aria-label="Collection Pagination">
+      <ul class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.previous_page_number }})" aria-label="Previous">
+            <span aria-hidden="true">
+              <i class="fas fa-arrow-square-left pagination-icon"></i>
+            </span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <span aria-hidden="true" class="page-link-arrow">
+              <i class="fal fa-arrow-square-left pagination-icon"></i>
+            </span>
+        </li>
+        {% endif %}
+
+        {% for i in page_obj.paginator.page_range %}
+          <li class="page-item {% if i == page_obj.number %}active{% endif %}">
+            <a class="page-link" href="javascript: go_to_page({{ i }})">
+              {{ i }}
+            </a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.next_page_number }})" aria-label="Next">
+            <span aria-hidden="true">
+              <i class="fas fa-arrow-square-right pagination-icon"></i>
+            </span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <span aria-hidden="true" class="page-link-arrow">
+            <i class="fal fa-arrow-square-right pagination-icon"></i>
+          </span>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
+  <!-- pagination END -->
+
+{% endblock %}
+<!-- block content END -->
+
+{% block js %}
+  {{ block.super }}
+
+  <script>
+    function go_to_page(page) {
+        var form = $("#filterAndPagination");
+        form.find("input[name='page']").val(page);
+        form.submit();
+    }
+
+    function order_by(new_value) {
+        var form = $("#filterAndPagination");
+        var field = form.find("input[name='order_by']");
+        var current_value = field.val();
+
+        if(current_value.indexOf(new_value) >= 0 && current_value.indexOf('-') < 0) {
+            new_value = "-" + new_value;
+        }
+
+        field.val(new_value);
+        form.submit();
+    }
+
+    $('.datepicker').datetimepicker({
+      format: 'DD/MM/YYYY',
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down",
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-screenshot',
+        clear: 'fa fa-trash',
+        close: 'fa fa-remove'
+      }
+    });
+  </script>
+
+
+{% endblock %}

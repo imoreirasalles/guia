@@ -24,3 +24,9 @@ def percent(value, arg):
      # else:
      #     return int((100*value)/(arg))
      return 10
+
+
+# Verbose name filter
+@register.filter
+def verbose_name_filter(obj, field_name):
+    return obj._meta.get_field(field_name).verbose_name

@@ -1,41 +1,13 @@
 {% extends 'base.html' %} {% load staticfiles %}
 
-<!-- block title_page START -->
 {% block title_page %} Guia {% endblock %}
-<!-- block title_page END -->
 
-<!-- block sidebar_menu START -->
+
 {% block sidebar_menu %}
-<ul class="nav">
-  <li>
-    <a href="{% url 'collection' %}">
-      <i class="fal fa-folder-open sidebar-menu-icon"></i>
-      <p>Coleções</p>
-    </a>
-  </li>
-  <li>
-    <a href="{% url 'exhibition' %}">
-      <i class="fal fa-images sidebar-menu-icon"></i>
-      <p> Exposições </p>
-    </a>
-  </li>
-  <li>
-    <a href="{% url 'publication' %}">
-      <i class="fal fa-book-open sidebar-menu-icon"></i>
-      <p> Publicações </p>
-    </a>
-  </li>
-  <li>
-    <a href="{% url 'person' %}">
-      <i class="fal fa-user-circle sidebar-menu-icon"></i>
-      <p> Pessoas </p>
-    </a>
-  </li>
-</ul>
+  {% include 'sidebar_menu.html' %}
 {% endblock %}
-<!-- block sidebar_menu END -->
 
-<!-- block content START -->
+
 {% block content %}
 <div class="content">
 
@@ -47,7 +19,6 @@
       <h2 class="front-title">Bem-vindo ao Guia IMS</h2>
       {% endfor %}
     </div>
-
   </div>
 
   <div class="row">
@@ -129,7 +100,7 @@
       <div class="col-sm">
         <div class="card card-stats deep_sea_rocket-blue">
           <div class="card-body ">
-            <div class="row">
+            <div class="row mt-2">
               <div class="col-4">
                 <div class="icon-big text-center ">
                   <i class="fal fa-folder-open"></i>
@@ -153,9 +124,9 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card card-stats deep_sea_rocket-marine">
+        <div class="card card-stats deep_sea_rocket-blue">
           <div class="card-body ">
-            <div class="row">
+            <div class="row mt-2">
               <div class="col-4">
                 <div class="icon-big text-center">
                   <i class="fal fa-images"></i>
@@ -179,9 +150,9 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card card-stats deep_sea_rocket-red">
+        <div class="card card-stats deep_sea_rocket-blue">
           <div class="card-body ">
-            <div class="row">
+            <div class="row mt-2">
               <div class="col-4">
                 <div class="icon-big text-center">
                   <i class="fal fa-book-open"></i>
@@ -205,9 +176,9 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card card-stats deep_sea_rocket-orange">
+        <div class="card card-stats deep_sea_rocket-blue">
           <div class="card-body ">
-            <div class="row">
+            <div class="row mt-2">
               <div class="col-4">
                 <div class="icon-big text-center">
                   <i class="fal fa-calendar-alt"></i>
@@ -231,9 +202,9 @@
         </div>
       </div>
       <div class="col-sm">
-        <div class="card card-stats deep_sea_rocket-yellow">
+        <div class="card card-stats deep_sea_rocket-blue">
           <div class="card-body ">
-            <div class="row">
+            <div class="row mt-2">
               <div class="col-4">
                 <div class="icon-big text-center">
                   <i class="fal fa-user-circle"></i>

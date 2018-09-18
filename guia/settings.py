@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'import_export',
+    'debug_toolbar',
     # My apps
     'collection',
     'digitalassetsmanagement',
@@ -70,6 +71,9 @@ MIDDLEWARE = [
     'admin_reorder.middleware.ModelAdminReorder',
     'reversion.middleware.RevisionMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware', ] + MIDDLEWARE
 
 ROOT_URLCONF = 'guia.urls'
 
@@ -289,3 +293,11 @@ if env('DJANGO_SENTRY_DSN', default=False):
             },
         },
     }
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': 'guia.settings.custom_show_toolbar',
+}
+
+def custom_show_toolbar(request):
+    return True  # Always show toolbar, for example purposes only.

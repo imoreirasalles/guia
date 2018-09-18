@@ -20,8 +20,8 @@ class ContainerResource(resources.ModelResource):
     class Meta:
         model = Container
         fields = ('uuid', 'title', 'id_human', 'aggregation_type', 'description', 'description_level')
-        skip_unchanged = True
-        report_skipped = False
+        skip_unchanged = False
+        report_skipped = True
         import_id_fields = ('uuid',)
         exclude = ('id_auto_series')
 
@@ -38,7 +38,7 @@ class ContainerAdmin(CompareVersionAdmin, ImportExportModelAdmin):
 class CollectionResource(resources.ModelResource):
     class Meta:
         model = Collection
-        fields = ('uuid', 'title', 'abstract', 'full_text',
+        fields = ('uuid', 'id_human', 'title', 'abstract', 'full_text',
                 'description_level', 'aggregation_type',
                 'genre_tags', 'dimensions', 'date_start',
                 'date_start_caption', 'date_end',
@@ -48,7 +48,7 @@ class CollectionResource(resources.ModelResource):
                 'access_local_status', 'access_online_status',
                 'access_link', 'location_generic',
                 'location_specific', 'inventary_status',      'inventary_last_date', 'management_unit')
-        skip_unchanged = True
+        skip_unchanged = False
         report_skipped = True
         import_id_fields = ('uuid',)
 
@@ -136,10 +136,10 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
                     }),
     )
     form = CollectionAdminForm
-    class Media:
-        css = {
-             'all': ('css/guia_admin.css',)
-        }
+    # class Media:
+    #     css = {
+    #          'all': ('css/guia_admin.css',)
+    #     }
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'author':

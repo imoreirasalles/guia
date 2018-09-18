@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load collection_filters %}
+
+
+{% block title_page %}
+Guia
+{% endblock %}
+
+
+{% block sidebar_menu %}
+  {% include 'sidebar_menu_person.html' %}
+{% endblock %}
+
+
+<!-- block content START -->
+{% block content %}
+<div class="content">
+
+  <div class="row">
+    <div class="col-sm-12 front-header back-dark">
+      <h2 class="front-title">
+        {{ collection.aggregation_type }}
+        {{ collection.title }}
+      </h2>
+    </div>
+  </div>
+
+<!-- abstract START -->
+<div class="row back-dark-over control-bar">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <p>{{ collection.abstract }}</p>
+        </div>
+        <div class="col-sm-6">
+          <button class="btn">
+            Catálogo on line
+            <span class="btn-label btn-label-right">
+              <i class="nc-icon nc-minimal-right"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+
+</div>
+<!-- abstract END -->
+
+<!-- container content START -->
+<div class="container mt-3 mb-3">
+  <div class="row back-beige">
+
+    <!-- collection detail full text START -->
+    <div class="col-sm-6">
+      {% if collection.full_text %}
+      {{ collection.full_text }}
+      {% else %}
+      <p>Esta coleção ainda não possui texto descritivo.</p>
+      {% endif %}
+    </div>
+    <!-- collection detail full text END -->
+
+    <div class="col-sm-6">
+
+
+      <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          {% for image in image_list %}
+          <li data-target="#carouselIndicators" data-slide-to="{{image}}" class="active"></li>
+          {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+
+          {% for post in post_list %}
+
+          {% for capture in post.capture.all %}
+          {% if first_image_id == capture.id_auto_series %}
+          {% with first_active_image="active" %}
+          <div class="carousel-item {{first_active_image}}">
+            <img class="d-block w-100"
+                   src="{{MEDIA_URL}}{{ capture.image.url }}"
+                   alt="{{ capture.title }}">
+
+              </div>
+          {% endwith %}
+          {% else %}
+          {% with first_active_image="" %}
+          <div class="carousel-item {{first_active_image}}">
+            <img class="d-block w-100"
+                   src="{{MEDIA_URL}}{{ capture.image.url }}"
+                   alt="{{ capture.title }}">
+
+              </div>
+          {% endwith %}
+          {% endif %}
+
+          {% endfor %}
+
+          {% empty %}
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1770x996.jpg' %}" alt="IMS Paulista">
+
+          </div>
+          {% endfor %}
+
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- container content END -->
+
+
+{% endblock %}
+<!-- block content END -->
