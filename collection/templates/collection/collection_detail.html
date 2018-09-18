@@ -62,7 +62,7 @@ Guia
 
     <div class="col-sm-6">
 
-
+    <!-- carroussel START -->
       <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           {% for image in image_list %}
@@ -99,10 +99,8 @@ Guia
           {% empty %}
           <div class="carousel-item active">
             <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1770x996.jpg' %}" alt="IMS Paulista">
-
           </div>
           {% endfor %}
-
 
         </div>
         <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
@@ -114,6 +112,8 @@ Guia
           <span class="sr-only">Next</span>
         </a>
       </div>
+      <!-- carroussel END -->
+
     </div>
 
   </div>

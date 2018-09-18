@@ -10,36 +10,10 @@ Guia
 {% endblock %}
 <!-- block title_page END -->
 
-<!-- block sidebar_menu START -->
 {% block sidebar_menu %}
-<ul class="nav">
-  <li>
-    <a href="{% url 'collection' %}">
-      <i class="fal fa-folder-open"></i>
-      <p class="deep_sea_rocket-blue-icon">Coleções</p>
-    </a>
-  </li>
-  <li class="active-out">
-    <a href="{% url 'exhibition' %}">
-      <i class="fal fa-images sidebar-menu-icon deep_sea_rocket-blue-icon"></i>
-      <p> Exposições </p>
-    </a>
-  </li>
-  <li>
-    <a href="{% url 'publication' %}">
-      <i class="fal fa-book-open sidebar-menu-icon"></i>
-      <p> Publicações </p>
-    </a>
-  </li>
-  <li>
-    <a href="{% url 'person' %}">
-      <i class="fal fa-user-circle sidebar-menu-icon"></i>
-      <p> Pessoas </p>
-    </a>
-  </li>
-</ul>
+  {% include 'exhibition/exhibition_sidebar_menu.html' %}
 {% endblock %}
-<!-- block sidebar_menu END -->
+
 
 {% block navbar_top_search %}
 

@@ -21,7 +21,7 @@ urlpatterns = [
     path('error500/', views.error500, name='error500'),
     path('', include('home.urls'), name='home'),
     path('collection/', include('collection.urls')),
-    path('exhibition/', ExhibitionListView.as_view(), name='exhibition'),
+    path('exhibition/', include('exhibition.urls')),
     path('publication/', include('publication.urls')),
     path('person/', include('person.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
