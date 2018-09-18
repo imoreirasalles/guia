@@ -2,7 +2,6 @@
 {% load staticfiles %}
 {% load collection_filters %}
 
-
 {% block title_page %}
 Guia
 {% endblock %}
@@ -28,21 +27,21 @@ Guia
 
 <!-- abstract START -->
 <div class="row back-dark-over control-bar">
-
-      <div class="row">
-        <div class="col-sm-6">
-          <p>{{ collection.abstract }}</p>
-        </div>
-        <div class="col-sm-6">
-          <button class="btn">
-            Catálogo on line
-            <span class="btn-label btn-label-right">
-              <i class="nc-icon nc-minimal-right"></i>
-            </span>
-          </button>
-        </div>
-      </div>
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <p>{{ collection.abstract }}</p>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn">
+        Catálogo on line
+        <span class="btn-label btn-label-right">
+          <i class="nc-icon nc-minimal-right"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
 </div>
 <!-- abstract END -->
 
@@ -63,6 +62,7 @@ Guia
     <div class="col-sm-6">
 
     <!-- carroussel START -->
+    <div class="mb-3">
       <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           {% for image in image_list %}
@@ -112,7 +112,158 @@ Guia
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <!-- carroussel END -->
+    </div>
+    <!-- carroussel END -->
+
+<!-- table basic info START -->
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title"> Informações Básicas</h4>
+  </div>
+  <hr>
+  <div class="card-body">
+
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="row">Códido de Identificação</th>
+            <td>{{collection.id_human}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Área Responsável</th>
+            <td>{{collection.management_unit}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Data Baliza</th>
+            <td>{{collection.date_start|default_if_none:'-'|date:'Y' }} -
+              {{collection.date_end|default_if_none:'-'|date:'Y' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Condição de Acesso</th>
+            <td>
+              {{collection.access_condition}}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Disponível Presencialmente</th>
+            <td>
+              {% if collection.access_local_status %}
+              <i class="far fa-check-circle bullet-check"></i>
+              {% else %}
+              <i class="far fa-times-circle bullet-times"></i>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Disponível Online</th>
+            <td>
+              {% if collection.access_online_status %}
+              <i class="far fa-check-circle bullet-check"></i>
+              {% else %}
+              <i class="far fa-times-circle bullet-times"></i>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Gêneros Documentais</th>
+            <td>
+              {% for genre_tag in collection.genre_tags.all %}
+                <a href="#">{{ genre_tag }}</a>
+                  {% if not forloop.last %},{% else %}.{% endif %}
+              {% empty %}
+                -
+              {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Localização</th>
+            <td>
+              {{ collection.location_generic }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+</div>
+<!-- table basic info END -->
+
+<!-- table dimensions info START -->
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title"> Dimensões</h4>
+  </div>
+  <hr>
+  <div class="card-body">
+
+      <table class="table table-striped">
+        <tbody>
+          {% for key, value in dimensions.items %}
+          <tr>
+            <th scope="row">{{ key }}</th>
+            <td>{{value}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+  </div>
+</div>
+<!-- table dimensions info END -->
+
+<!-- table inventary info START -->
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title"> Inventário</h4>
+  </div>
+  <hr>
+  <div class="card-body">
+
+      <table class="table table-striped">
+        <tbody>
+          {% for key, value in inventary_data.items %}
+          <tr>
+            <th scope="row">{{ key }}</th>
+            <td>{{value}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+  </div>
+</div>
+<!-- table inventary info END -->
+
+<!-- table inventary info START -->
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title"> Processamento </h4>
+  </div>
+  <hr>
+  <div class="card-body">
+
+      <table class="table table-striped">
+        <tbody>
+
+          <tr>
+            <th scope="row">Total de Itens</th>
+            <td>{{ collection.items_total }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Total de Itens Processados</th>
+            <td>{{ collection.items_processed }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Total de Itens Online</th>
+            <td>{{ collection.items_online }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+  </div>
+</div>
+<!-- table inventary info END -->
 
     </div>
 

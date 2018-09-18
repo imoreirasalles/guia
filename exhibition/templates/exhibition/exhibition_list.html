@@ -95,13 +95,16 @@ Guia
             {% for object in object_list %}
               <tr id="id-exhibition-{{ object.id_auto_series }}">
                 <td>
-                  <a href="{{ object.get_absolute_url }}">{{ object.id_auto_series }}</a>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_auto_series }}</a>
                 </td>
                 <td>
-                  <a href="{{ object.get_absolute_url }}">{{ object.id_human|default_if_none:"-" }}</a>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_human|default_if_none:"-" }}</a>
                 </td>
                 <td>
-                  <a href="{{ object.get_absolute_url }}">{{ object.title|default_if_none:"-" }}</a>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.title|default_if_none:"-" }}</a>
                 </td>
                 <td>{{ object.date_start|default_if_none:"-" }}</td>
                 <td>{{ object.date_end|default_if_none:"-" }}</td>
