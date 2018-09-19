@@ -52,7 +52,7 @@ Guia
     <!-- collection detail full text START -->
     <div class="col-sm-6">
       {% if collection.full_text %}
-      {{ collection.full_text }}
+      {{ collection.full_text|safe }}
       {% else %}
       <p>Esta coleção ainda não possui texto descritivo.</p>
       {% endif %}

@@ -8,14 +8,27 @@ from .models import *
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
+import tablib
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+from import_export.fields import Field
 
 
 class ExhibitionResource(resources.ModelResource):
-
+    # id_human = Field(attribute='id_human', column_name='Identificador Institucional')
+    # title = Field(attribute='title', column_name='Título')
+    # abstract = Field(attribute='abstract', column_name='Resumo da Exposição')
+    # full_text = Field(attribute='full_text', column_name='Apresentação Completa da Exposição')
+    # date_start = Field(attribute='date_start', column_name='Data de Lançamento da Exposição - AAAA-MM-DD')
+    # date_end = Field(attribute='date_end', column_name='Data de Encerramento da Exposição - AAAA-MM-DD')
+    # link = Field(attribute='link', column_name='Link - EX.: http://ims.com.br')
     class Meta:
         model = Exhibition
+        fields = ('uuid', 'title', 'id_human', 'abstract', 'full_text', 'date_start', 'date_end', 'location', 'link')
+        skip_unchanged = True
+        report_skipped = False
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 class ExhibitionAdminForm(forms.ModelForm):
