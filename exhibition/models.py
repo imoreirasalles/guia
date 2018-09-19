@@ -74,6 +74,12 @@ class Exhibition(Base):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        if self.slug != None:
+            return reverse('exhibition_detail_slug', kwargs={'slug': self.slug})
+        else:
+            return reverse('exhibition_detail', kwargs={'pk': self.id_auto_series})        
+
     class Meta:
         verbose_name=_('Exhibition')
         verbose_name_plural=_('Exhibitions')

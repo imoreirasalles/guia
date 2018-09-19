@@ -8,7 +8,7 @@ Guia
 
 
 {% block sidebar_menu %}
-  {% include 'collection/collection_sidebar_menu.html' %}
+  {% include 'exhibition/exhibition_sidebar_menu.html' %}
 {% endblock %}
 
 
@@ -19,8 +19,8 @@ Guia
   <div class="row">
     <div class="col-sm-12 front-header back-dark">
       <h2 class="front-title">
-        {{ collection.aggregation_type }}
-        {{ collection.title }}
+        Exposição
+        {{ exhibition.title }}
       </h2>
     </div>
   </div>
@@ -30,7 +30,7 @@ Guia
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
-      <p>{{ collection.abstract }}</p>
+      <p>{{ exhibition.abstract }}</p>
     </div>
     <div class="col-sm-6">
       <button class="btn">
@@ -44,6 +44,7 @@ Guia
 </div>
 </div>
 <!-- abstract END -->
+
 
 <!-- container content START -->
 <div class="container mt-3 mb-3">
@@ -59,61 +60,8 @@ Guia
     </div>
     <!-- collection detail full text END -->
 
-    <div class="col-sm-6">
 
-    <!-- carroussel START -->
-    <div class="mb-3">
-      <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          {% for image in image_list %}
-          <li data-target="#carouselIndicators" data-slide-to="{{image}}" class="active"></li>
-          {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-
-          {% for post in post_list %}
-
-          {% for capture in post.capture.all %}
-          {% if first_image_id == capture.id_auto_series %}
-          {% with first_active_image="active" %}
-          <div class="carousel-item {{first_active_image}}">
-            <img class="d-block w-100"
-                   src="{{MEDIA_URL}}{{ capture.image.url }}"
-                   alt="{{ capture.title }}">
-
-              </div>
-          {% endwith %}
-          {% else %}
-          {% with first_active_image="" %}
-          <div class="carousel-item {{first_active_image}}">
-            <img class="d-block w-100"
-                   src="{{MEDIA_URL}}{{ capture.image.url }}"
-                   alt="{{ capture.title }}">
-
-              </div>
-          {% endwith %}
-          {% endif %}
-
-          {% endfor %}
-
-          {% empty %}
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1770x996.jpg' %}" alt="IMS Paulista">
-          </div>
-          {% endfor %}
-
-        </div>
-        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-    <!-- carroussel END -->
+<div class="col-sm-6">
 
 <!-- table basic info START -->
 <div class="card">
@@ -187,7 +135,6 @@ Guia
   </div>
 </div>
 <!-- table basic info END -->
-
 <!-- table dimensions info START -->
 <div class="card">
   <div class="card-header">
@@ -195,10 +142,10 @@ Guia
   </div>
   <hr>
   <div class="card-body">
-      <table class="table table-striped">
 
+      <table class="table table-striped">
         <tbody>
-          {% for key, value in object.dimensions.iteritems %}
+          {% for key, value in object.dimensions.items %}
           <tr>
             <th scope="row">{{ key }}</th>
             <td>{{value}}</td>

@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Exhibition
 from location.models import Location
 from datetime import datetime
@@ -37,3 +37,12 @@ class ExhibitionListView(ListView):
             queryset = queryset.order_by(order_by)
 
         return queryset
+
+
+class ExhibitionDetail(DetailView):
+    """Process each exhibition in details"""
+    model = Exhibition
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

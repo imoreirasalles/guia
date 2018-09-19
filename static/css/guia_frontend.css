@@ -86,10 +86,18 @@ input::placeholder {
 
 .carousel-inner{
   background-color: #ddd;
-  height: calc((9/16)*42vw);
+  height: calc((9/16)*42vw) !important;
   transition: height 500ms ease, transform 500ms ease, width 500ms ease;
   transform: scale(1);
   width: 42vw;
+}
+
+.carousel-inner-detail {
+    background-color: #ddd;
+    height: calc((9/16)*42vw) !important;
+    transition: height 500ms ease, transform 500ms ease, width 500ms ease;
+    transform: scale(1);
+    width: 90vw;
 }
 
 .card-stats .card-body{
@@ -555,4 +563,37 @@ display: inline-block;
 .footer-address h7{
   line-height: 200%;
   font-size: 0.8rem;
+}
+
+
+.slider {
+    width: 50%;
+    margin: 100px auto;
+}
+
+.slick-slide {
+  margin: 0px 20px;
+}
+
+.slick-slide img {
+  width: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+}
+
+
+.slick-slide {
+  transition: all ease-in-out .3s;
+  opacity: .2;
+}
+
+.slick-active {
+  opacity: .5;
+}
+
+.slick-current {
+  opacity: 1;
 }
