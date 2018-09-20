@@ -1,37 +1,26 @@
-# core django imports
-from django.shortcuts import render
-from django.http import HttpResponse
+from datetime import date
+
 from django.utils import timezone
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-
-# Project guia imports
+from home.mixins import OrderByMixin, SearchMixin
 from .models import *
 
 
-class PublicationList(ListView):
-    """CBV to list and process filter into all Publications"""
-    model = Publication
-    paginate_by = 10
-    context_object_name = "publication_list"
-    template_name = "publication_list.html"
+class PublicationListView(SearchMixin, OrderByMixin, ListView):
+    queryset = Publication.objects.all()
+    paginate_by = 20
+    filters = (
+        ('date_released', 'date_released', date),
+        ('title', 'title__icontains', str),
+        ('type', 'type__pk', int),
+    )
 
-    def get_ordering(self):
-        self.order = self.request.GET.get('order', 'asc')
-        selected_ordering = self.request.GET.get('order_by', 'title')
-        if self.order == "desc":
-            selected_ordering = "-" + selected_ordering
-        return selected_ordering
-
-    def get_queryset(self):
-        queryset = Publication.objects.all()
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    def get_context_data(self, *args, **kwargs):
+        output = super().get_context_data(*args, **kwargs)
+        output['types'] = PublicationType.objects.values_list('pk', 'title')
+        return output
 
 
 class CollectionDetail(DetailView):
