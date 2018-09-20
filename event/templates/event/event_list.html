@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load utils %}
+{% load i18n %}
+
+
+{% block title_page %}Eventos{% endblock %}
+
+
+{% block navbar_top_search %}
+
+<!-- <form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
+  <button class="searchbutton" type="submit">
+    <i class="fa fa-search"></i>
+  </button>
+  <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+</form> -->
+
+<form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
+  <div class="input-group no-border">
+    <input type="text" value="" name="input_search"
+          id="searchbox" class="form-control" placeholder="Pesquisar...">
+
+    <div class="input-group-append">
+      <div class="input-group-text">
+        <a href="#" onclick="form.submit();">
+          <i class="nc-icon nc-zoom-split"></i>
+        </a>
+      </div>
+    </div>
+    <input type="submit" style="display: none">
+  </div>
+</form>
+{% endblock %}
+
+<!-- block content START -->
+{% block content %}
+<div class="content">
+
+  <div class="row">
+    <div class="col-sm-12 front-header back-dark">
+      <h2 class="front-title">Eventos</h2>
+    </div>
+  </div>
+
+  <form id="filterAndPagination" class="form">
+    <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
+    <input type="hidden" name="order_by" value="{{ request.GET.order_by|default_if_none:'' }}">
+
+    <div class="back-dark-over control-bar">
+      <div class="row">
+        <div class="form-group col-md-8 col-sm-12">
+          <label for="id_date">Busque pelo título</label>
+          <input type="text" id="id_title" class="form-control" name="title" value="{{ request.GET.title }}">
+        </div>
+
+        <div class="form-group col-md-4 col-sm-12">
+          <label for="id_type">Tipo</label><br>
+          <select class="form-control" name="type" id="id_type">
+            <option value="">-</option>
+            {% for value, label in types %}
+              <option value="{{ value }}" {% if value|lower == request.GET.type %}selected {% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-md-3 col-sm-12">
+          <label for="id_date">Filtre por data de início</label>
+          <input type="text" id="id_date_start" class="form-control datepicker" name="date_start" value="{{ request.GET.date_start }}">
+        </div>
+
+        <div class="form-group col-md-3 col-sm-12">
+          <label for="id_date">Filtre por data final</label>
+          <input type="text" id="id_date_end" class="form-control datepicker" name="date_end" value="{{ request.GET.date_end }}">
+        </div>
+
+        <div class="form-group col-md-3 col-sm-12">
+          <label for="id_location">Filtre por localização</label>
+          <select class="form-control" id="id_location" name="location">
+            <option value="">-</option>
+            {% for value, label in locations %}
+              <option value="{{ value }}" {% if value|lower == request.GET.location %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-md-1 col-sm-12">
+          <label for=""></label>
+          <button type="submit" class="btn btn-danger">Filtrar</button>
+        </div>
+
+        <div class="form-group col-md-1 col-sm-12">
+          <label for=""></label>
+          <a href="{% url "event" %}" class="btn btn-default">Limpar Filtros</a>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="container-fluid">
+    <div class="row back-beige">
+      <div class="col-md-12 table-responsive">
+        <table class="table table-hover">
+          <thead class="text-warning">
+            <tr>
+              <th>{% th_with_order_by "pk" "ID" %}</th>
+              <th>{% th_with_order_by 'id_human' "Institucional ID" %}</th>
+              <th>{% th_with_order_by 'title' "Title" %}</th>
+              <th>{% th_with_order_by 'date_start' "Initial Date" %}</th>
+              <th>{% th_with_order_by 'date_end' "Final date" %}</th>
+              <th>{% th_with_order_by 'type' "Type" %}</th>
+              <th>{% th_with_order_by 'location' "Location" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for object in object_list %}
+              <tr id="id-exhibition-{{ object.id_auto_series }}">
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_auto_series }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_human|default_if_none:"-" }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.title|default_if_none:"-" }}</a>
+                </td>
+                <td>{{ object.date_start|default_if_none:"-" }}</td>
+                <td>{{ object.date_end|default_if_none:"-" }}</td>
+                <td>{{ object.type|default_if_none:"-" }}</td>
+                <td>{{ object.location|default_if_none:"-" }}</td>
+              </tr>
+
+            {% empty %}
+            <td colspan="7">Não há dados para os filtros selecionados</td>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {% include 'utils/pagination.html' %}
+
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% include 'utils/list_js.html' %}
+  {% include 'utils/datepicker.html' %}
+{% endblock %}

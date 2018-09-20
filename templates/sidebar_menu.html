@@ -20,6 +20,12 @@
         <p class="sidebar-menu-item {% if 'publication' in section %}deep_sea_rocket-blue-active_on{% endif %}"> Publicações </p>
       </a>
     </li>
+    <li class="{% if 'event' in section %}deep_sea_rocket-blue-active_base{% endif %}">
+      <a href="{% url 'event' %}">
+        <i class="fal fa-calendar sidebar-menu-icon {% if 'event' in section %}deep_sea_rocket-blue-active_on{% endif %}"></i>
+        <p class="sidebar-menu-item {% if 'event' in section %}deep_sea_rocket-blue-active_on{% endif %}">Eventos</p>
+      </a>
+    </li>
     <li class="{% if 'person' in section %}deep_sea_rocket-blue-active_base{% endif %}">
       <a href="{% url 'person' %}">
         <i class="fal fa-user-circle sidebar-menu-icon {% if 'person' in section %}deep_sea_rocket-blue-active_on{% endif %}"></i>
