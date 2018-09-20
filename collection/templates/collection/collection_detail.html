@@ -218,22 +218,58 @@ Guia
   <hr>
   <div class="card-body">
 
-      <table class="table table-striped">
+    <div class="progress">
+
+      <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{i_total}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+
+    </div>
+      <table class="table table-bordered">
         <tbody>
+          <tr>
+            <th scope="row">Total de Itens
+              <span class="badge badge-pill badge-info">
+                {{i_total}}%
+              </span>
+            </th>
+            <td class="text-center">{{ collection.items_total }} </td>
+          </tr>
+        </tbody>
+      </table>
 
-          <tr>
-            <th scope="row">Total de Itens</th>
-            <td>{{ collection.items_total }}</td>
-          </tr>
-          <tr>
-            <th scope="row">Total de Itens Processados</th>
-            <td>{{ collection.items_processed }}</td>
-          </tr>
-          <tr>
-            <th scope="row">Total de Itens Online</th>
-            <td>{{ collection.items_online }}</td>
-          </tr>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{i_processed}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 
+      </div>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th scope="row">Total de Itens Processados
+              <span class="badge badge-pill badge-success">
+                {{i_processed}}%
+              </span>
+            </th>
+            <td class="text-center">
+              {{ collection.items_processed }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{i_online}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th scope="row">Total de Itens Online
+              <span class="badge badge-pill badge-warning">
+                {{i_online}}%
+              </span>
+            </th>
+            <td class="text-center">
+              {{ collection.items_online }}
+            </td>
+          </tr>
         </tbody>
       </table>
 
