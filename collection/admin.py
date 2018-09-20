@@ -1,12 +1,11 @@
 from django.contrib import admin
 from django import forms
 from django.conf import settings
-
+from django.utils.translation import ugettext_lazy
 # Project Guia imports
 from .models import *
 from person.models import Person
 ## Third part imports ##
-from django.utils.translation import ugettext_lazy
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin

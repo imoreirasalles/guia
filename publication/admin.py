@@ -49,6 +49,11 @@ class PublicationResource(resources.ModelResource):
 
     class Meta:
         model = Publication
+        fields = ('uuid', 'title', 'id_human', 'type', 'abstract', 'full_text', 'date_released', )
+        skip_unchanged = False
+        report_skipped = True
+        import_id_fields = ('uuid',)
+        exclude = ('id_auto_series')
 
 
 @admin.register(Publication)

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+import json
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -78,11 +79,9 @@ class CollectionDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
-        context['dimensions'] = {"Metros Lineares":"12","Metros Quadrados":"15","Metros Cúbicos":"20"}
-        context['inventary_data'] = {"Envólucros":"12",
-                                    "Caixas":"15",
-                                    "Fotografias":"20",
-                                    "Cadernos":"20"}
+        context['dimensions'] = json.loads(self.get_object().dimensions)
+        context['inventary_data'] = json.loads(self.get_object().inventary_data)
+
         return context
 
 

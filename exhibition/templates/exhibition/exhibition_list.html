@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load collection_filters %}
-{% load exhibition %}
+{% load utils %}
 {% load i18n %}
 
 <!-- block title_page START -->
@@ -49,12 +49,17 @@ Guia
       <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
       <input type="hidden" name="order_by" value="{{ request.GET.order_by|default_if_none:'' }}">
 
-      <div class="form-group col-md-5 col-sm-12">
-        <label for="id_date">Filtre por data</label>
-        <input type="text" id="id_date" class="form-control datepicker" name="date" value="{{ request.GET.date }}">
+      <div class="form-group col-md-3 col-sm-12">
+        <label for="id_date">Filtre por data de início</label>
+        <input type="text" id="id_date" class="form-control datepicker" name="date_start" value="{{ request.GET.date_start }}">
       </div>
 
-      <div class="form-group col-md-4 col-sm-12">
+      <div class="form-group col-md-3 col-sm-12">
+        <label for="id_date">Filtre por data final</label>
+        <input type="text" id="id_date" class="form-control datepicker" name="date_end" value="{{ request.GET.date_end }}">
+      </div>
+
+      <div class="form-group col-md-3 col-sm-12">
         <label for="id_location">Filtre por localização</label>
         <select class="form-control" id="id_location" name="location">
           <option value="">-</option>
@@ -127,96 +132,13 @@ Guia
     </div>
   </div>
 
-  <!-- pagination START -->
-  {% if is_paginated %}
-    <nav aria-label="Collection Pagination">
-      <ul class="pagination justify-content-center">
-
-        {% if page_obj.has_previous %}
-        <li class="page-item">
-          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.previous_page_number }})" aria-label="Previous">
-            <span aria-hidden="true">
-              <i class="fas fa-arrow-square-left pagination-icon"></i>
-            </span>
-          </a>
-        </li>
-        {% else %}
-        <li class="page-item">
-            <span aria-hidden="true" class="page-link-arrow">
-              <i class="fal fa-arrow-square-left pagination-icon"></i>
-            </span>
-        </li>
-        {% endif %}
-
-        {% for i in page_obj.paginator.page_range %}
-          <li class="page-item {% if i == page_obj.number %}active{% endif %}">
-            <a class="page-link" href="javascript: go_to_page({{ i }})">
-              {{ i }}
-            </a>
-        </li>
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-        <li class="page-item">
-          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.next_page_number }})" aria-label="Next">
-            <span aria-hidden="true">
-              <i class="fas fa-arrow-square-right pagination-icon"></i>
-            </span>
-          </a>
-        </li>
-        {% else %}
-        <li class="page-item">
-          <span aria-hidden="true" class="page-link-arrow">
-            <i class="fal fa-arrow-square-right pagination-icon"></i>
-          </span>
-        </li>
-        {% endif %}
-      </ul>
-    </nav>
-  {% endif %}
-  <!-- pagination END -->
+  {% include 'utils/pagination.html' %}
 
 {% endblock %}
 <!-- block content END -->
 
 {% block js %}
   {{ block.super }}
-
-  <script>
-    function go_to_page(page) {
-        var form = $("#filterAndPagination");
-        form.find("input[name='page']").val(page);
-        form.submit();
-    }
-
-    function order_by(new_value) {
-        var form = $("#filterAndPagination");
-        var field = form.find("input[name='order_by']");
-        var current_value = field.val();
-
-        if(current_value.indexOf(new_value) >= 0 && current_value.indexOf('-') < 0) {
-            new_value = "-" + new_value;
-        }
-
-        field.val(new_value);
-        form.submit();
-    }
-
-    $('.datepicker').datetimepicker({
-      format: 'DD/MM/YYYY',
-      icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
-        clear: 'fa fa-trash',
-        close: 'fa fa-remove'
-      }
-    });
-  </script>
-
-
+  {% include 'utils/list_js.html' %}
+  {% include 'utils/datepicker.html' %}
 {% endblock %}

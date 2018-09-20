@@ -7,7 +7,7 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.PublicationList.as_view(),
+    path('',views.PublicationListView.as_view(),
         name='publication'),
     # path('<pk>/',views.PublicationDetail.as_view(),
     #     name='publication_detail'),
