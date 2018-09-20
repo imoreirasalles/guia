@@ -81,6 +81,7 @@ class CollectionDetail(DetailView):
         context['now'] = timezone.now()
         context['dimensions'] = json.loads(self.get_object().dimensions)
         context['inventary_data'] = json.loads(self.get_object().inventary_data)
+
         return context
 
 
