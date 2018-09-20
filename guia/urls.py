@@ -24,6 +24,7 @@ urlpatterns = [
     path('exhibition/', include('exhibition.urls')),
     path('publication/', include('publication.urls')),
     path('person/', include('person.urls')),
+    path('event/', include('event.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

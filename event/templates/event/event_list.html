@@ -4,7 +4,7 @@
 {% load i18n %}
 
 
-{% block title_page %}Guia - Pessoas{% endblock %}
+{% block title_page %}Eventos{% endblock %}
 
 
 {% block navbar_top_search %}
@@ -39,7 +39,7 @@
 
   <div class="row">
     <div class="col-sm-12 front-header back-dark">
-      <h2 class="front-title">Pessoas</h2>
+      <h2 class="front-title">Eventos</h2>
     </div>
   </div>
 
@@ -49,56 +49,49 @@
 
     <div class="back-dark-over control-bar">
       <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
+        <div class="form-group col-md-8 col-sm-12">
           <label for="id_date">Busque pelo título</label>
           <input type="text" id="id_title" class="form-control" name="title" value="{{ request.GET.title }}">
         </div>
-      </div>
 
-      <div class="row">
-        <div class="form-group col-md-2 col-sm-12">
-          <label for="id_date">Filtre por data de início</label>
-          <input type="text" id="id_date" class="form-control datepicker" name="date_start" value="{{ request.GET.date_start }}">
-        </div>
-
-        <div class="form-group col-md-2 col-sm-12">
-          <label for="id_date">Filtre por data final</label>
-          <input type="text" id="id_date" class="form-control datepicker" name="date_end" value="{{ request.GET.date_end }}">
-        </div>
-
-        <div class="form-group col-md-2 col-sm-12">
-          <label for="id_gender">Gênero</label><br>
-          <select class="form-control" name="gender" id="id_gender">
+        <div class="form-group col-md-4 col-sm-12">
+          <label for="id_type">Tipo</label><br>
+          <select class="form-control" name="type" id="id_type">
             <option value="">-</option>
-            {% for value in genders %}
-              <option value="{{ value }}" {% if value|lower == request.GET.gender %}selected{% endif %}>{{ value }}</option>
+            {% for value, label in types %}
+              <option value="{{ value }}" {% if value|lower == request.GET.type %}selected {% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-md-3 col-sm-12">
+          <label for="id_date">Filtre por data de início</label>
+          <input type="text" id="id_date_start" class="form-control datepicker" name="date_start" value="{{ request.GET.date_start }}">
+        </div>
+
+        <div class="form-group col-md-3 col-sm-12">
+          <label for="id_date">Filtre por data final</label>
+          <input type="text" id="id_date_end" class="form-control datepicker" name="date_end" value="{{ request.GET.date_end }}">
+        </div>
+
+        <div class="form-group col-md-3 col-sm-12">
+          <label for="id_location">Filtre por localização</label>
+          <select class="form-control" id="id_location" name="location">
+            <option value="">-</option>
+            {% for value, label in locations %}
+              <option value="{{ value }}" {% if value|lower == request.GET.location %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
           </select>
         </div>
 
         <div class="form-group col-md-1 col-sm-12">
-          <label for="id_is_staff">Membro?</label><br>
-          {% checkbox_with_switch 'is_staff' %}
-        </div>
-
-        <div class="form-group col-md-1 col-sm-12">
-          <label for="id_is_partner">Sócio?</label><br>
-          {% checkbox_with_switch 'is_partner' %}
-        </div>
-
-        <div class="form-group col-md-1 col-sm-12">
-          <label for="id_is_feature">Autoridade?</label><br>
-          {% checkbox_with_switch 'is_feature' %}
-        </div>
-
-        <div class="form-group col-md-1 col-sm-12">
-          <label for="id_location"></label>
+          <label for=""></label>
           <button type="submit" class="btn btn-danger">Filtrar</button>
         </div>
 
         <div class="form-group col-md-1 col-sm-12">
-          <label for="id_location"></label>
-          <a href="{% url "person" %}" class="btn btn-default">Limpar Filtros</a>
+          <label for=""></label>
+          <a href="{% url "event" %}" class="btn btn-default">Limpar Filtros</a>
         </div>
       </div>
     </div>
@@ -115,11 +108,8 @@
               <th>{% th_with_order_by 'title' "Title" %}</th>
               <th>{% th_with_order_by 'date_start' "Initial Date" %}</th>
               <th>{% th_with_order_by 'date_end' "Final date" %}</th>
-              <th>{% th_with_order_by 'gender' "Gender" %}</th>
-              <th>{% th_with_order_by 'person_type' "Person Type" %}</th>
-              <th>{% th_with_order_by 'is_staff' "Staff Member" %}</th>
-              <th>{% th_with_order_by 'is_partner' "Institutional Partner" %}</th>
-              <th>{% th_with_order_by 'is_feature' "Authority Member" %}</th>
+              <th>{% th_with_order_by 'type' "Type" %}</th>
+              <th>{% th_with_order_by 'location' "Location" %}</th>
             </tr>
           </thead>
           <tbody>
@@ -139,16 +129,12 @@
                 </td>
                 <td>{{ object.date_start|default_if_none:"-" }}</td>
                 <td>{{ object.date_end|default_if_none:"-" }}</td>
-                <td>{{ object.gender|default_if_none:"-" }}</td>
-                <td>{{ object.person_type|default_if_none:"-" }}</td>
-                <td>{{ object.is_staff|boolean_with_icons }}</td>
-                <td>{{ object.is_partner|boolean_with_icons }}</td>
-                <td>{{ object.is_feature|boolean_with_icons }}</td>
-
+                <td>{{ object.type|default_if_none:"-" }}</td>
+                <td>{{ object.location|default_if_none:"-" }}</td>
               </tr>
 
             {% empty %}
-            <td colspan="10">Não há dados para os filtros selecionados</td>
+            <td colspan="7">Não há dados para os filtros selecionados</td>
             {% endfor %}
           </tbody>
         </table>
@@ -163,6 +149,5 @@
 {% block js %}
   {{ block.super }}
   {% include 'utils/list_js.html' %}
-  {% include 'utils/checkbox_with_switch.html' %}
   {% include 'utils/datepicker.html' %}
 {% endblock %}
