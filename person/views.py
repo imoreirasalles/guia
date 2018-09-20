@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Person
 from location.models import Location
 from datetime import datetime, date
@@ -22,3 +22,7 @@ class PersonListView(SearchMixin, OrderByMixin, ListView):
         output = super().get_context_data(*args, **kwargs)
         output['genders'] = self.queryset.distinct('gender').values_list('gender', flat=True)
         return output
+
+
+class PersonDetailView(DetailView):
+    model = Person
