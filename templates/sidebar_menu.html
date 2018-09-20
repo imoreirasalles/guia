@@ -5,25 +5,25 @@
     <li class="{% if 'collection' in section %}deep_sea_rocket-blue-active_base{% endif %}">
       <a href="{% url 'collection' %}">
         <i class="fal fa-folder-open sidebar-menu-icon {% if 'collection' in section %}deep_sea_rocket-blue-active_on{% endif %}"></i>
-        <p class="sidebar-menu-item">Coleções</p>
+        <p class="sidebar-menu-item {% if 'collection' in section %}deep_sea_rocket-blue-active_on{% endif %}">Coleções</p>
       </a>
     </li>
-    <li class="{% if 'collection' in section %}deep_sea_rocket-blue-active_base{% endif %}">
+    <li class="{% if 'exhibition' in section %}deep_sea_rocket-blue-active_base{% endif %}">
       <a href="{% url 'exhibition' %}">
-        <i class="fal fa-images sidebar-menu-icon {% if 'publication' in section %}deep_sea_rocket-blue-active_on{% endif %}"></i>
-        <p class="sidebar-menu-item"> Exposições </p>
+        <i class="fal fa-images sidebar-menu-icon {% if 'exhibition' in section %}deep_sea_rocket-blue-active_on{% endif %}"></i>
+        <p class="sidebar-menu-item {% if 'exhibition' in section %}deep_sea_rocket-blue-active_on{% endif %}"> Exposições </p>
       </a>
     </li>
     <li class="{% if 'publication' in section %}deep_sea_rocket-blue-active_base{% endif %}">
       <a href="{% url 'publication' %}">
         <i class="fal fa-book-open sidebar-menu-icon {% if 'publication' in section %}deep_sea_rocket-blue-active_on{% endif %}"></i>
-        <p class="sidebar-menu-item deep_sea_rocket-blue-active_on"> Publicações </p>
+        <p class="sidebar-menu-item {% if 'publication' in section %}deep_sea_rocket-blue-active_on{% endif %}"> Publicações </p>
       </a>
     </li>
-    <li class="{% if 'collection' in section %}deep_sea_rocket-blue-active_base{% endif %}">
+    <li class="{% if 'person' in section %}deep_sea_rocket-blue-active_base{% endif %}">
       <a href="{% url 'person' %}">
         <i class="fal fa-user-circle sidebar-menu-icon {% if 'person' in section %}deep_sea_rocket-blue-active_on{% endif %}"></i>
-        <p class="sidebar-menu-item"> Pessoas </p>
+        <p class="sidebar-menu-item {% if 'person' in section %}deep_sea_rocket-blue-active_on{% endif %}"> Pessoas </p>
       </a>
     </li>
   {% endwith %}
