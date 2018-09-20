@@ -1,13 +1,20 @@
+from datetime import date
+
 from django.views.generic import ListView, DetailView
-from .models import Exhibition
+
+from home.mixins import OrderByMixin, SearchMixin
 from location.models import Location
-from datetime import datetime
-from home.mixins import OrderByMixin
+from .models import Exhibition
 
 
-class ExhibitionListView(OrderByMixin, ListView):
+class ExhibitionListView(SearchMixin, OrderByMixin, ListView):
     queryset = Exhibition.objects.all()
     paginate_by = 20
+    filters = (
+        ('date_start', 'date_start__gte', date),
+        ('date_end', 'date_end__lte', date),
+        ('location', 'location__pk', int),
+    )
 
     def get_context_data(self, *args, **kwargs):
         output = super().get_context_data(*args, **kwargs)
@@ -16,32 +23,6 @@ class ExhibitionListView(OrderByMixin, ListView):
         output['locations'] = [(location.pk, str(location)) for location in
                                Location.objects.filter(pk__in=location_ids)]
         return output
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-
-        date_start = self.request.GET.get('date_start')
-        date_end = self.request.GET.get('date_end')
-        location = self.request.GET.get('location')
-
-        if date_start:
-            try:
-                date = datetime.strptime(date_start, "%d/%m/%Y")
-                queryset = queryset.filter(date_start__gte=date)
-            except ValueError:
-                pass
-
-        if date_end:
-            try:
-                date = datetime.strptime(date_end, "%d/%m/%Y")
-                queryset = queryset.filter(date_end__lte=date)
-            except ValueError:
-                pass
-
-        if location:
-            queryset = queryset.filter(location__pk=location)
-
-        return queryset
 
 
 class ExhibitionDetail(DetailView):
