@@ -1,16 +1,13 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load collection_filters %}
+{% load utils %}
+{% load i18n %}
 
 
-{% block title_page %}
-Guia - Pessoas
-{% endblock %}
+{% block title_page %}Guia - Pessoas{% endblock %}
 
 
-{% block sidebar_menu %}
-  {% include 'person/person_sidebar_menu.html' %}
-{% endblock %}
+{% block sidebar_menu %}{% include 'person/person_sidebar_menu.html' %}{% endblock %}
 
 
 {% block navbar_top_search %}
@@ -49,10 +46,171 @@ Guia - Pessoas
     </div>
   </div>
 
+  <form id="filterAndPagination" class="form">
+    <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
+    <input type="hidden" name="order_by" value="{{ request.GET.order_by|default_if_none:'' }}">
 
+    <div class="back-dark-over control-bar">
+      <div class="row">
+        <div class="form-group col-md-12 col-sm-12">
+          <label for="id_date">Busque pelo título</label>
+          <input type="text" id="id_title" class="form-control" name="title" value="{{ request.GET.title }}">
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="form-group col-md-2 col-sm-12">
+          <label for="id_date">Filtre por data de início</label>
+          <input type="text" id="id_date" class="form-control datepicker" name="date_start" value="{{ request.GET.date_start }}">
+        </div>
 
+        <div class="form-group col-md-2 col-sm-12">
+          <label for="id_date">Filtre por data final</label>
+          <input type="text" id="id_date" class="form-control datepicker" name="date_end" value="{{ request.GET.date_end }}">
+        </div>
 
+        <div class="form-group col-md-2 col-sm-12">
+          <label for="id_gender">Gênero</label><br>
+          <select class="form-control" name="gender" id="id_gender">
+            <option value="">-</option>
+            {% for value in genders %}
+              <option value="{{ value }}" {% if value|lower == request.GET.gender %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+          </select>
+        </div>
 
-  {% endblock %}
-    <!-- block content END -->
+        <div class="form-group col-md-1 col-sm-12">
+          <label for="id_is_staff">Membro?</label><br>
+          {% checkbox_with_switch 'is_staff' %}
+        </div>
+
+        <div class="form-group col-md-1 col-sm-12">
+          <label for="id_is_partner">Sócio?</label><br>
+          {% checkbox_with_switch 'is_partner' %}
+        </div>
+
+        <div class="form-group col-md-1 col-sm-12">
+          <label for="id_is_feature">Autoridade?</label><br>
+          {% checkbox_with_switch 'is_feature' %}
+        </div>
+
+        <div class="form-group col-md-1 col-sm-12">
+          <label for="id_location"></label>
+          <button type="submit" class="btn btn-danger">Filtrar</button>
+        </div>
+
+        <div class="form-group col-md-1 col-sm-12">
+          <label for="id_location"></label>
+          <a href="{% url "person" %}" class="btn btn-default">Limpar Filtros</a>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="container-fluid">
+    <div class="row back-beige">
+      <div class="col-md-12 table-responsive">
+        <table class="table table-hover">
+          <thead class="text-warning">
+            <tr>
+              <th>{% th_with_order_by "pk" "ID" %}</th>
+              <th>{% th_with_order_by 'id_human' "Institucional ID" %}</th>
+              <th>{% th_with_order_by 'title' "Title" %}</th>
+              <th>{% th_with_order_by 'date_start' "Initial Date" %}</th>
+              <th>{% th_with_order_by 'date_end' "Final date" %}</th>
+              <th>{% th_with_order_by 'gender' "Gender" %}</th>
+              <th>{% th_with_order_by 'person_type' "Person Type" %}</th>
+              <th>{% th_with_order_by 'is_staff' "Staff Member" %}</th>
+              <th>{% th_with_order_by 'is_partner' "Institutional Partner" %}</th>
+              <th>{% th_with_order_by 'is_feature' "Authority Member" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for object in object_list %}
+              <tr id="id-exhibition-{{ object.id_auto_series }}">
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_auto_series }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.id_human|default_if_none:"-" }}</a>
+                </td>
+                <td>
+                  <a href="{{ object.get_absolute_url }}">
+                    {{ object.title|default_if_none:"-" }}</a>
+                </td>
+                <td>{{ object.date_start|default_if_none:"-" }}</td>
+                <td>{{ object.date_end|default_if_none:"-" }}</td>
+                <td>{{ object.gender|default_if_none:"-" }}</td>
+                <td>{{ object.person_type|default_if_none:"-" }}</td>
+                <td>{{ object.is_staff|boolean_with_icons }}</td>
+                <td>{{ object.is_partner|boolean_with_icons }}</td>
+                <td>{{ object.is_feature|boolean_with_icons }}</td>
+
+              </tr>
+
+            {% empty %}
+            <td colspan="10">Não há dados para os filtros selecionados</td>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {% if is_paginated %}
+    <nav aria-label="Collection Pagination">
+      <ul class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.previous_page_number }})" aria-label="Previous">
+            <span aria-hidden="true">
+              <i class="fas fa-arrow-square-left pagination-icon"></i>
+            </span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <span aria-hidden="true" class="page-link-arrow">
+              <i class="fal fa-arrow-square-left pagination-icon"></i>
+            </span>
+        </li>
+        {% endif %}
+
+        {% for i in page_obj.paginator.page_range %}
+          <li class="page-item {% if i == page_obj.number %}active{% endif %}">
+            <a class="page-link" href="javascript: go_to_page({{ i }})">
+              {{ i }}
+            </a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link-arrow" href="javascript: go_to_page({{ page_obj.next_page_number }})" aria-label="Next">
+            <span aria-hidden="true">
+              <i class="fas fa-arrow-square-right pagination-icon"></i>
+            </span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <span aria-hidden="true" class="page-link-arrow">
+            <i class="fal fa-arrow-square-right pagination-icon"></i>
+          </span>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
+
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% include 'utils/list_js.html' %}
+  {% include 'utils/checkbox_with_switch.html' %}
+  {% include 'utils/datepicker.html' %}
+{% endblock %}

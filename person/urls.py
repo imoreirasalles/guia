@@ -6,5 +6,5 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.person, name='person'),
+    path('', views.PersonListView.as_view(), name='person'),
 ]
