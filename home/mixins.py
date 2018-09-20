@@ -30,6 +30,9 @@ class SearchMixin:
     def get_queryset(self):
         queryset = super().get_queryset()
 
+        if not hasattr(self, 'filters'):
+            return queryset
+
         for request_param, model_filter_arg, type_ in self.filters:
             filter_value = self.request.GET.get(request_param)
             if filter_value:
