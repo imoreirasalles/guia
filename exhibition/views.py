@@ -2,9 +2,10 @@ from django.views.generic import ListView, DetailView
 from .models import Exhibition
 from location.models import Location
 from datetime import datetime
+from home.mixins import OrderByMixin
 
 
-class ExhibitionListView(ListView):
+class ExhibitionListView(OrderByMixin, ListView):
     queryset = Exhibition.objects.all()
     paginate_by = 20
 
@@ -22,7 +23,6 @@ class ExhibitionListView(ListView):
         date_start = self.request.GET.get('date_start')
         date_end = self.request.GET.get('date_end')
         location = self.request.GET.get('location')
-        order_by = self.request.GET.get('order_by')
 
         if date_start:
             try:
@@ -40,9 +40,6 @@ class ExhibitionListView(ListView):
 
         if location:
             queryset = queryset.filter(location__pk=location)
-
-        if order_by:
-            queryset = queryset.order_by(order_by)
 
         return queryset
 
