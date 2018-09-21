@@ -7,8 +7,8 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.CollectionList.as_view(),name='collection'),
-    path('<pk>/',views.CollectionDetail.as_view(),name='collection_detail'),
-    path('<slug:slug>',views.CollectionDetail.as_view(),name='collection_detail_slug'),
-    path('collection_search/',views.CollectionSearchList.as_view(),name='blog_search_list_view'),
+    path('',views.CollectionListView.as_view(),name='collection'),
+    path('<pk>/',views.CollectionDetailView.as_view(),name='collection_detail'),
+    path('<slug:slug>',views.CollectionDetailView.as_view(),name='collection_detail_slug'),
+    path('collection_search/',views.CollectionSearchListView.as_view(),name='blog_search_list_view'),
 ]

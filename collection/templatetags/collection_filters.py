@@ -4,11 +4,15 @@ register = template.Library()
 
 @register.filter(name='subtract')
 def subtract(value, arg):
-     if arg and value != None:
-         return value - arg
+     if (value != None) & (arg != None) :
+         if arg and value != None:
+             return value - arg
+         else:
+             return 0
      else:
-         return 0
+          return 0
 
+@register.filter(name='percent')
 def percent(value, arg):
       if (value != None) & (arg != None) :
           if (arg == 0) | (value == 0) | (int(arg) < int(value)) :
@@ -17,15 +21,6 @@ def percent(value, arg):
               return int((100*value)/(arg))
       else:
           return 0
-
-@register.filter(name='percent')
-def percent(value, arg):
-     # if arg and value != None and arg and value != 0 and arg < value:
-     #     return 0
-     # else:
-     #     return int((100*value)/(arg))
-     return 10
-
 
 # Verbose name filter
 @register.filter

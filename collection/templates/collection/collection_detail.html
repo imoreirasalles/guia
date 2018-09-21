@@ -211,74 +211,80 @@ Guia
 <!-- table inventary info END -->
 
 <!-- table inventary info START -->
-<div class="card">
-  <div class="card-header">
-    <h4 class="card-title"> Processamento </h4>
-  </div>
-  <hr>
-  <div class="card-body">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title"> Processamento </h4>
+          </div>
+          <hr>
+          <div class="card-body">
+              {% with collection.items_total|percent:collection.items_total|default_if_none:'0' as total %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{total}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Total de Itens
+                          <span class="badge badge-pill badge-info">
+                            {{total}}%
+                          </span>
+                        </th>
+                        <td class="text-center">{{ collection.items_total }} </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              {% endwith %}
 
-    <div class="progress">
+              {% with collection.items_processed|percent:collection.items_total|default_if_none:'0' as processed %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{processed}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
 
-      <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{i_total}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Total de Itens Processados
+                        <span class="badge badge-pill badge-success">
+                          {{processed}}%
+                        </span>
+                      </th>
+                      <td class="text-center">
+                        {{ collection.items_processed }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              {% endwith %}
 
-    </div>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th scope="row">Total de Itens
-              <span class="badge badge-pill badge-info">
-                {{i_total}}%
-              </span>
-            </th>
-            <td class="text-center">{{ collection.items_total }} </td>
-          </tr>
-        </tbody>
-      </table>
+              {% with collection.items_online|percent:collection.items_total|default_if_none:'0' as online %}
+              <div class="progress">
+                <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{online}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th scope="row">Total de Itens Online
+                      <span class="badge badge-pill badge-warning">
+                        {{online}}%
+                      </span>
+                    </th>
+                    <td class="text-center">
+                      {{ collection.items_online }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              {% endwith %}
 
-      <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{i_processed}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 
-      </div>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th scope="row">Total de Itens Processados
-              <span class="badge badge-pill badge-success">
-                {{i_processed}}%
-              </span>
-            </th>
-            <td class="text-center">
-              {{ collection.items_processed }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="progress">
-        <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{i_online}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th scope="row">Total de Itens Online
-              <span class="badge badge-pill badge-warning">
-                {{i_online}}%
-              </span>
-            </th>
-            <td class="text-center">
-              {{ collection.items_online }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-  </div>
-</div>
+          </div>
+        </div>
 <!-- table inventary info END -->
 
     </div>
-
   </div>
 </div>
 <!-- container content END -->

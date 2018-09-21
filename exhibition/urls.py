@@ -7,10 +7,7 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.ExhibitionListView.as_view(),
-        name='exhibition'),
-    path('<pk>/',views.ExhibitionDetail.as_view(),
-        name='exhibition_detail'),
-    path('<slug:slug>',views.ExhibitionDetail.as_view(),
-        name='exhibition_detail_slug'),
+    path('',views.ExhibitionListView.as_view(),name='exhibition'),
+    path('<pk>/',views.ExhibitionDetailView.as_view(),name='exhibition_detail'),
+    path('<slug:slug>',views.ExhibitionDetailView.as_view(),name='exhibition_detail_slug'),
 ]

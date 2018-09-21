@@ -23,7 +23,7 @@ class PublicationListView(SearchMixin, OrderByMixin, ListView):
         return output
 
 
-class CollectionDetail(DetailView):
+class PublicationDetailView(DetailView):
     """Process each collection in details"""
     model = Publication
     template_name = "publication_detail.html"
