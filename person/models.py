@@ -100,3 +100,8 @@ class Person(Base):
     class Meta:
         verbose_name = _('Person')
         verbose_name_plural = _('People')
+    
+    def get_absolute_url(self):
+        if self.slug:
+            return reverse('person_detail_slug', kwargs={'slug': self.slug})
+        return reverse('person_detail', kwargs={'pk': self.id_auto_series})
