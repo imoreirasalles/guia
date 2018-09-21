@@ -9,14 +9,6 @@ Guia - Coleções
 
 
 {% block navbar_top_search %}
-
-<!-- <form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
-  <button class="searchbutton" type="submit">
-    <i class="fa fa-search"></i>
-  </button>
-  <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
-</form> -->
-
 <form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
   <div class="input-group no-border">
     <input type="text" value="" name="input_search"
@@ -48,106 +40,68 @@ Guia - Coleções
   <!-- form select START -->
     <form action="" method="get">
       <div class="row">
-
-        <div class="col-md-2">
-
-          <label class="control-label">
-            Área Responsável
-          </label>
-
+        <div class="form-group col-md-2 col-sm-12">
+          <label for="id_date">Busque pelo título</label>
+          <input type="text" id="id_title" class="form-control" name="title" value="{{ request.GET.title }}">
+        </div>
+        <div class="form-group col-md-2 col-sm-12">
+          <label class="control-label">Filtre por Área Responsável</label>
           <select multiple title="Selecione" id="management_unit" class="selectpicker" name="management_unit" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
             <option value="0"
-            {% if 0 in management_unit_selected %}
-              selected
-            {% endif %} >
+            {% if 0 in management_unit_selected %} selected {% endif %} >
               Todas as Áreas</option>
             {% for management_unit in management_unit_list %}
               <option value="{{management_unit.id_auto_series}}"
-              {% if management_unit.id_auto_series in management_unit_selected %}
-              selected
-              {% endif %} >
+              {% if management_unit.id_auto_series in management_unit_selected %} selected {% endif %} >
                   {{management_unit}}
               </option>
             {% endfor%}
           </select>
-
         </div>
-
-        <div class="col-md-2">
-
-          <label class="control-label">
-            Nível de Descrição
-          </label>
-
+        <div class="form-group col-md-2 col-sm-12">
+          <label class="control-label">Filtre por Nível de Descrição</label>
           <select multiple title="Selecione" id="description_level" name="description_level" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
             <option value="0"
-            {% if 0 in description_level_selected %}
-              selected
-            {% endif %} >
+            {% if 0 in description_level_selected %} selected {% endif %} >
                 Todos os Níveis</option>
               {% for description_level in description_level_list %}
               <option value="{{description_level.id_auto_series}}"
-              {% if description_level.id_auto_series in description_level_selected %}
-              selected
-              {% endif %} >
+              {% if description_level.id_auto_series in description_level_selected %} selected {% endif %} >
                   {{description_level}}
               </option>
               {% endfor%}
           </select>
-
         </div>
-
-        <div class="col-md-2">
-
-          <label class="control-label">
-            Condição de Acesso
-          </label>
-
+        <div class="form-group col-md-2 col-sm-12">
+          <label class="control-label">Filtre por Condição de Acesso</label>
           <select multiple title="Selecione" id="access_condition" name="access_condition" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
             <option value="0"
-            {% if 0 in access_condition_selected %}
-              selected
-            {% endif %} >
+            {% if 0 in access_condition_selected %} selected {% endif %} >
             Todas as Condições</option>
               {% for access_condition in access_condition_list %}
               <option value="{{access_condition.id_auto_series}}"
-              {% if access_condition.id_auto_series in access_condition_selected %}
-              selected
-              {% endif %} >
+              {% if access_condition.id_auto_series in access_condition_selected %} selected {% endif %} >
                   {{access_condition}}
               </option>
               {% endfor%}
           </select>
-
         </div>
-
-        <div class="col-md-2">
-          <label class="control-label">
-            Generos Documentais
-          </label>
+        <div class="form-group col-md-2 col-sm-12">
+          <label class="control-label">Filtre por Generos Documentais</label>
           <select multiple title="Selecione" id="genre_tag" name="genre_tag" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
-            <option value="0"
-            {% if 0 in genre_tag_selected %}
-              selected
-            {% endif %} >
+            <option value="0" {% if 0 in genre_tag_selected %} selected {% endif %} >
             Todos os Generos</option>
               {% for genre_tag in genre_tag_list %}collection_list
-              <option value="{{genre_tag.id_auto_series}}"
-              {% if genre_tag.id_auto_series in genre_tag_selected %}
-              selected
-              {% endif %} >
+              <option value="{{genre_tag.id_auto_series}}" {% if genre_tag.id_auto_series in genre_tag_selected %} selected {% endif %} >
                   {{genre_tag}}
               </option>
               {% endfor%}
           </select>
-
         </div>
-        <div class="col-md-4">
-          <a href="">
-          <button type="submit" class="button" class="btn btn-grey-down btn-sm">Filtrar</button>
-          </a>
+        <div class="form-group col-md-2 col-sm-12">
+          <button type="submit" class="btn btn-danger">Filtrar</button>
+          <a href="{% url "collection" %}" class="btn btn-default">Limpar Filtros</a>
         </div>
-
       </div>
     </form>
   <!-- form select END -->
@@ -158,31 +112,31 @@ Guia - Coleções
     <table class="table table-hover" <thead class="text-warning">
       <tr>
         <th>
-          <a href="?order_by=id_human&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">ID<a>
+          <a href="?{{request.GET.urlencode }}&order_by=id_human&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">ID<a>
         </th>
         <th>
-          <a href="?order_by=management_unit&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Área Responsável</a>
+          <a href="?{{request.GET.urlencode }}&order_by=management_unit&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Área Responsável</a>
         </th>
         <th>
-          <a href="?order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a>
+          <a href="?{{request.GET.urlencode }}&order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a>
         </th>
         <th>
-          <a href="?order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a>
+          <a href="?{{request.GET.urlencode }}&order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a>
         </th>
         <th>
-          <a href="?order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a>
+          <a href="?{{request.GET.urlencode }}&order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a>
         </th>
         <th>
-          <a href="?order_by=items_online&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Status de Processamento</a>
+          <a href="?{{request.GET.urlencode }}&order_by=items_online&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Status de Processamento</a>
         </th>
         <th>
-          <a href="?order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a>
+          <a href="?{{request.GET.urlencode }}&order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a>
         </th>
         <th>
-          <a href="?order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a>
+          <a href="?{{request.GET.urlencode }}&order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a>
         </th>
         <th>
-          <a href="?order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a>
+          <a href="?{{request.GET.urlencode }}&order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a>
         </th>
       </tr>
       </thead>
