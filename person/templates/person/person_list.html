@@ -49,13 +49,12 @@
 
     <div class="back-dark-over control-bar">
       <div class="row">
-        <div class="form-group col-md-12 col-sm-12">
+
+        <div class="form-group col-md-2 col-sm-12">
           <label for="id_date">Busque pelo título</label>
           <input type="text" id="id_title" class="form-control" name="title" value="{{ request.GET.title }}">
         </div>
-      </div>
 
-      <div class="row">
         <div class="form-group col-md-2 col-sm-12">
           <label for="id_date">Filtre por data de início</label>
           <input type="text" id="id_date" class="form-control datepicker" name="date_start" value="{{ request.GET.date_start }}">
@@ -67,36 +66,38 @@
         </div>
 
         <div class="form-group col-md-2 col-sm-12">
-          <label for="id_gender">Gênero</label><br>
-          <select class="form-control" name="gender" id="id_gender">
-            <option value="">-</option>
+          <label for="id_gender">Filtre por Gênero</label><br>
+          <select  title="Selecione" id="id_gender" name="gender" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
+            <option value="">Todos os Gêneros</option>
             {% for value in genders %}
               <option value="{{ value }}" {% if value|lower == request.GET.gender %}selected{% endif %}>{{ value }}</option>
             {% endfor %}
           </select>
         </div>
 
-        <div class="form-group col-md-1 col-sm-12">
-          <label for="id_is_staff">Membro?</label><br>
-          {% checkbox_with_switch 'is_staff' %}
+        <div class="form-group col-md-2 col-sm-12">
+          <div class="row">
+              <div class="col-md-4">
+                <label for="id_is_staff">Membro?</label>
+                {% checkbox_with_switch 'is_staff' %}
+              </div>
+
+              <div class="col-md-4">
+                <label for="id_is_partner">Sócio?</label>
+                {% checkbox_with_switch 'is_partner' %}
+              </div>
+
+              <div class="col-md-4">
+                <label for="id_is_feature">Autoridade?</label>
+                {% checkbox_with_switch 'is_feature' %}
+              </div>
+          </div>
         </div>
 
-        <div class="form-group col-md-1 col-sm-12">
-          <label for="id_is_partner">Sócio?</label><br>
-          {% checkbox_with_switch 'is_partner' %}
-        </div>
 
-        <div class="form-group col-md-1 col-sm-12">
-          <label for="id_is_feature">Autoridade?</label><br>
-          {% checkbox_with_switch 'is_feature' %}
-        </div>
-
-        <div class="form-group col-md-1 col-sm-12">
+        <div class="form-group col-md-2 col-sm-12">
           <label for="id_location"></label>
           <button type="submit" class="btn btn-danger">Filtrar</button>
-        </div>
-
-        <div class="form-group col-md-1 col-sm-12">
           <label for="id_location"></label>
           <a href="{% url "person" %}" class="btn btn-default">Limpar Filtros</a>
         </div>

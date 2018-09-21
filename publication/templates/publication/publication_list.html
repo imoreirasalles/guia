@@ -11,13 +11,6 @@ Guia - Publicações
 
 {% block navbar_top_search %}
 
-<!-- <form id="searchform" action="{% url 'blog_search_list_view' %}" method="get" accept-charset="utf-8">
-  <button class="searchbutton" type="submit">
-    <i class="fa fa-search"></i>
-  </button>
-  <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
-</form> -->
-
 <form id="searchform" class="nav-search-form" action="" method="get" accept-charset="utf-8">
   <div class="input-group no-border">
     <input type="text" value="" name="input_search"
@@ -51,7 +44,7 @@ Guia - Publicações
 
     <div class="back-dark-over control-bar">
       <div class="row">
-        <div class="form-group col-md-5 col-sm-12">
+        <div class="form-group col-md-6 col-sm-12">
           <label for="id_date">Busque pelo título</label>
           <input type="text" id="id_title" class="form-control" name="title" value="{{ request.GET.title }}">
         </div>
@@ -62,21 +55,18 @@ Guia - Publicações
         </div>
 
         <div class="form-group col-md-2 col-sm-12">
-          <label for="id_type">Tipo</label><br>
-          <select class="form-control" name="type" id="id_type">
-            <option value="">-</option>
+          <label for="id_type">Filtre por Tipo</label><br>
+          <select  title="Selecione" id="id_type" name="type" class="selectpicker" onchange="" data-style="btn btn-sm btn-fill" data-size="7">
+            <option value="">Todos os Tipos</option>
             {% for value, label in types %}
               <option value="{{ value }}" {% if value|lower == request.GET.type %}selected {% endif %}>{{ label }}</option>
             {% endfor %}
           </select>
         </div>
 
-        <div class="form-group col-md-1 col-sm-12">
+        <div class="form-group col-md-2 col-sm-12">
           <label for=""></label>
           <button type="submit" class="btn btn-danger">Filtrar</button>
-        </div>
-
-        <div class="form-group col-md-1 col-sm-12">
           <label for=""></label>
           <a href="{% url "publication" %}" class="btn btn-default">Limpar Filtros</a>
         </div>
@@ -125,7 +115,7 @@ Guia - Publicações
     </div>
   </div>
 
-  {% include 'utils/pagination.html' %}
+{% include 'utils/pagination.html' %}
 
 {% endblock %}
 
