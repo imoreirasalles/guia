@@ -26,7 +26,6 @@ class PublicationListView(SearchMixin, OrderByMixin, ListView):
 class PublicationDetailView(DetailView):
     """Process each collection in details"""
     model = Publication
-    template_name = "publication_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

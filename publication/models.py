@@ -2,6 +2,7 @@ from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
 from guia.models import Base
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
@@ -50,6 +51,11 @@ class Publication(Base):
         on_delete=models.SET_NULL,
         help_text=_('Choose the more appropriate type to means this publication'),
         verbose_name=_('Type'))
+    capture = models.ManyToManyField(
+        'digitalassetsmanagement.Capture',
+        blank=True,
+        help_text=_('Choose some introduction and representative images'),
+        verbose_name=_('Captures'))        
     abstract = models.TextField(
         null=True,
         blank=True,
@@ -90,6 +96,27 @@ class Publication(Base):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        if self.slug != None:
+            return reverse('publication_detail_slug', kwargs={'slug': self.slug})
+        else:
+            return reverse('publication_detail', kwargs={'pk': self.id_auto_series})
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series == None:
+            super(Publication, self).save(*args, **kwargs)
+        if self.title == None:
+            title_str = "[no-title]"
+        else:
+            title_str = self.title
+
+
+        slug_auto = slugify(str(self.id_auto_series) + '_' +
+                            'publication_' +
+                            str(title_str))
+        self.slug = slug_auto
+        super(Publication, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name=_('Publication')

@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load collection_filters %}
-
 
 {% block title_page %}
 Guia
@@ -15,8 +13,7 @@ Guia
   <div class="row">
     <div class="col-sm-12 front-header back-dark">
       <h2 class="front-title">
-        {{ collection.aggregation_type }}
-        {{ collection.title }}
+        {{ object.title }}
       </h2>
     </div>
   </div>
@@ -25,16 +22,8 @@ Guia
 <div class="row back-dark-over control-bar">
 
       <div class="row">
-        <div class="col-sm-6">
-          <p>{{ collection.abstract }}</p>
-        </div>
-        <div class="col-sm-6">
-          <button class="btn">
-            Catálogo on line
-            <span class="btn-label btn-label-right">
-              <i class="nc-icon nc-minimal-right"></i>
-            </span>
-          </button>
+        <div class="col-sm-12">
+          <p>{{ object.abstract }}</p>
         </div>
       </div>
 
@@ -45,71 +34,123 @@ Guia
 <div class="container mt-3 mb-3">
   <div class="row back-beige">
 
-    <!-- collection detail full text START -->
     <div class="col-sm-6">
-      {% if collection.full_text %}
-      {{ collection.full_text }}
+      {% if object.full_text %}
+      {{ object.full_text }}
       {% else %}
-      <p>Esta coleção ainda não possui texto descritivo.</p>
+      <p>Esta publicação ainda não possui texto descritivo.</p>
       {% endif %}
     </div>
-    <!-- collection detail full text END -->
 
     <div class="col-sm-6">
 
-
-      <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          {% for image in image_list %}
-          <li data-target="#carouselIndicators" data-slide-to="{{image}}" class="active"></li>
-          {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-
-          {% for post in post_list %}
-
-          {% for capture in post.capture.all %}
-          {% if first_image_id == capture.id_auto_series %}
-          {% with first_active_image="active" %}
-          <div class="carousel-item {{first_active_image}}">
-            <img class="d-block w-100"
-                   src="{{MEDIA_URL}}{{ capture.image.url }}"
-                   alt="{{ capture.title }}">
-
-              </div>
-          {% endwith %}
-          {% else %}
-          {% with first_active_image="" %}
-          <div class="carousel-item {{first_active_image}}">
-            <img class="d-block w-100"
-                   src="{{MEDIA_URL}}{{ capture.image.url }}"
-                   alt="{{ capture.title }}">
-
-              </div>
-          {% endwith %}
-          {% endif %}
-
-          {% endfor %}
-
-          {% empty %}
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1770x996.jpg' %}" alt="IMS Paulista">
+<!-- Carousel START -->
+<div class="mb-3">
+  <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      {% for image in object.capture.all %}
+      <li data-target="#carouselIndicators" data-slide-to="{{image}}" class="active"></li>
+      {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+      {% for capture in object.capture.all %}
+      <div class="carousel-item {% if capture == object.capture.all|first %}active{% endif%}">
+        <img class="d-block w-100"
+               src="{{MEDIA_URL}}{{  capture.image.url }}"
+               alt="{{ capture.title }}">
 
           </div>
-          {% endfor %}
-
-
-        </div>
-        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+      {% empty %}
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{% static 'img/2018_ims_paulista_1770x996.jpg' %}" alt="IMS Paulista">
       </div>
+      {% endfor %}
     </div>
+
+    <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<!-- Carousel END -->
+
+<!-- table basic info START -->
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title"> Informações Básicas</h4>
+  </div>
+  <hr>
+  <div class="card-body">
+
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="row">Códido de Identificação</th>
+            <td>{{object.id_human}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Área Responsável</th>
+            <td>{{object.management_unit}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Data Baliza</th>
+            <td>{{object.date_start|default_if_none:'-'|date:'Y' }} -
+              {{object.date_end|default_if_none:'-'|date:'Y' }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Condição de Acesso</th>
+            <td>
+              {{object.access_condition}}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Disponível Presencialmente</th>
+            <td>
+              {% if object.access_local_status %}
+              <i class="far fa-check-circle bullet-check"></i>
+              {% else %}
+              <i class="far fa-times-circle bullet-times"></i>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Disponível Online</th>
+            <td>
+              {% if object.access_online_status %}
+              <i class="far fa-check-circle bullet-check"></i>
+              {% else %}
+              <i class="far fa-times-circle bullet-times"></i>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Gêneros Documentais</th>
+            <td>
+              {% for genre_tag in object.genre_tags.all %}
+                <a href="#">{{ genre_tag }}</a>
+                  {% if not forloop.last %},{% else %}.{% endif %}
+              {% empty %}
+                -
+              {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Localização</th>
+            <td>
+              {{ object.location_generic }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+  </div>
+</div>
+<!-- table basic info END -->
 
   </div>
 </div>
