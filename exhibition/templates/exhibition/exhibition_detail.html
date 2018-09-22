@@ -23,7 +23,7 @@ Guia - Exposições
 
       <div class="row">
         <div class="col-sm-12">
-          <p>{{ object.abstract }}</p>
+          <p>{{ object.abstract|safe }}</p>
         </div>
       </div>
 
@@ -36,7 +36,7 @@ Guia - Exposições
 
     <div class="col-sm-6">
       {% if object.full_text %}
-      {{ object.full_text }}
+      {{ object.full_text|safe }}
       {% else %}
       <p>Esta Exposição ainda não possui texto descritivo.</p>
       {% endif %}
