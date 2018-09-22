@@ -17,7 +17,7 @@ from management.models import ManagementUnit
 
 
 
-class CollectionList(ListView):
+class CollectionListView(ListView):
     """CBV to list and process filter into all Collections"""
     model = Collection
     paginate_by = 10
@@ -38,6 +38,8 @@ class CollectionList(ListView):
         access_condition_list = self.request.GET.getlist('access_condition')
         genre_tag_list = self.request.GET.getlist('genre_tag')
 
+        title_filter = self.request.GET.get('title')
+
         if (management_unit_list and int(management_unit_list[0]) > 0):
             queryset = queryset.filter(management_unit__in=management_unit_list)
 
@@ -49,6 +51,9 @@ class CollectionList(ListView):
 
         if (genre_tag_list and int(genre_tag_list[0]) > 0):
             queryset = queryset.filter(description_level__in=genre_tag_list)
+
+        if (title_filter):
+            queryset = queryset.filter(title__contains=title_filter)
 
         queryset = queryset.order_by(self.get_ordering())
         return queryset
@@ -72,7 +77,7 @@ class CollectionList(ListView):
         return context
 
 
-class CollectionDetail(DetailView):
+class CollectionDetailView(DetailView):
     """Process each collection in details"""
     model = Collection
 
@@ -85,27 +90,10 @@ class CollectionDetail(DetailView):
         items_processed = self.get_object().items_processed
         items_online = self.get_object().items_online
 
-        if items_total > 0:
-            context['i_total'] = 100
-        else:
-            context['i_total'] = 0
-
-        if items_processed > 0 and items_total > 0 and items_processed <= items_total:
-                items_processed = int((items_processed / items_total)*100)
-                context['i_processed'] = items_processed
-        else:
-            context['i_processed'] = 0
-
-        if items_online > 0 and items_total > 0 and items_online <= items_total:
-                items_online = int((items_online / items_total)*100)
-                context['i_online'] = items_online
-        else:
-            context['i_online'] = 0
-
         return context
 
 
-class CollectionSearchList(CollectionList):
+class CollectionSearchListView(CollectionListView):
     """docstring for [object Object]."""
     model = Collection
     paginate_by = 10

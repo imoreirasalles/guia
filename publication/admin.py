@@ -58,9 +58,9 @@ class PublicationResource(resources.ModelResource):
 
 @admin.register(Publication)
 class PublicationAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
-    readonly_fields = ('created', 'uuid', 'slug',)
+    readonly_fields = ('created', 'uuid', 'slug', )
     resource_class = PublicationResource
     list_display = ('id_auto_series', 'uuid', 'title', 'date_released')
     search_fields = ['__all__']
-    filter_horizontal = ('author', 'publisher')
+    filter_horizontal = ('author', 'publisher', 'capture')
     form = PublicationAdminForm

@@ -25,3 +25,7 @@ class EventListView(SearchMixin, OrderByMixin, ListView):
         output['types'] = EventType.objects.values_list('pk', 'title')
         output['locations'] = Location.objects.values_list('pk', 'title')
         return output
+
+
+class EventDetailView(DetailView):
+    model = Event

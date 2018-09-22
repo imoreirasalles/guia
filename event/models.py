@@ -2,6 +2,7 @@ from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
 from guia.models import Base
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 
 # Third part imports
@@ -86,6 +87,27 @@ class Event(Base):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        if self.slug != None:
+            return reverse('event_detail_slug', kwargs={'slug': self.slug})
+        else:
+            return reverse('event_detail', kwargs={'pk': self.id_auto_series})
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series == None:
+            super(Event, self).save(*args, **kwargs)
+        if self.title == None:
+            title_str = "[no-title]"
+        else:
+            title_str = self.title
+
+        slug_auto = slugify(str(self.id_auto_series) +
+                            '_event_' +
+                            str(title_str))
+
+        self.slug = slug_auto
+        super(Event, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name=_('Event')

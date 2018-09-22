@@ -7,10 +7,7 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.PublicationListView.as_view(),
-        name='publication'),
-    # path('<pk>/',views.PublicationDetail.as_view(),
-    #     name='publication_detail'),
-    # path('<slug:slug>',views.PublicationDetail.as_view(),
-    #     name='publication_detail_slug'),
+    path('',views.PublicationListView.as_view(),name='publication'),
+    path('<pk>/',views.PublicationDetailView.as_view(),name='publication_detail'),
+    path('<slug:slug>',views.PublicationDetailView.as_view(),name='publication_detail_slug'),
 ]

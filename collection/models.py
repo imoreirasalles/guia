@@ -286,7 +286,6 @@ class Collection(Base):
         else:
             title_str = self.title
 
-
         slug_auto = slugify(str(self.id_auto_series) + '-' +
                             str(aggregation_type_str) + '-' +
                             str(title_str))

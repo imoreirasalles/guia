@@ -23,10 +23,9 @@ class PublicationListView(SearchMixin, OrderByMixin, ListView):
         return output
 
 
-class CollectionDetail(DetailView):
+class PublicationDetailView(DetailView):
     """Process each collection in details"""
     model = Publication
-    template_name = "publication_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

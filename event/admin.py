@@ -55,7 +55,7 @@ class EventResource(resources.ModelResource):
 
     class Meta:
         model = Event
-        fields = ('uuid', 'title', 'id_human', 'date_start', 'date_end', 'type', 'location', 'abstract', 'full_text', 'team', 'other_data')
+        fields = ('uuid', 'title', 'id_human', 'date_start', 'date_end', 'type', 'location', 'abstract', 'full_text',)
         skip_unchanged = True
         report_skipped = False
         import_id_fields = ('uuid',)

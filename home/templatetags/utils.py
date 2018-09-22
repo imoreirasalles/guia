@@ -1,6 +1,7 @@
 from django import template
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+import json
 
 register = template.Library()
 
@@ -42,5 +43,14 @@ def checkbox_with_switch(context, field_name, *args, **kwargs):
         state = 'true'
 
     return format_html('<input type="checkbox" name="{field_name}" id="id_{field_name}" ' \
-           'class="bootstrap-switch" {checked} data-state="{state}" data-on-text="SIM" ' \
-           'data-off-text="NÃO">'.format(field_name=field_name, checked=checked, state=state))
+                       'class="bootstrap-switch" {checked} data-state="{state}" data-on-text="SIM" ' \
+                       'data-off-text="NÃO">'.format(field_name=field_name, checked=checked,
+                                                     state=state))
+
+
+@register.filter
+def json_to_dict(value, *args, **kwargs):
+    try:
+        return json.loads(value).items()
+    except Exception as e:
+        return

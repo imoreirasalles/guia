@@ -25,7 +25,7 @@ class ExhibitionListView(SearchMixin, OrderByMixin, ListView):
         return output
 
 
-class ExhibitionDetail(DetailView):
+class ExhibitionDetailView(DetailView):
     """Process each exhibition in details"""
     model = Exhibition
 
