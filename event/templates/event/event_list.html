@@ -77,27 +77,19 @@
       <div class="col-md-12 table-responsive">
         <table class="table table-hover">
           <thead class="text-warning">
-            <tr>
-              <th>{% th_with_order_by "pk" "ID" %}</th>
-              <th>{% th_with_order_by 'id_human' "Institucional ID" %}</th>
-              <th>{% th_with_order_by 'title' "Title" %}</th>
-              <th>{% th_with_order_by 'date_start' "Initial Date" %}</th>
-              <th>{% th_with_order_by 'date_end' "Final date" %}</th>
-              <th>{% th_with_order_by 'type' "Type" %}</th>
-              <th>{% th_with_order_by 'location' "Location" %}</th>
-            </tr>
+            {% if object_list %}
+              <tr>
+                <th>{% th_with_order_by 'title' "Title" %}</th>
+                <th>{% th_with_order_by 'date_start' "Initial Date" %}</th>
+                <th>{% th_with_order_by 'date_end' "Final date" %}</th>
+                <th>{% th_with_order_by 'type' "Type" %}</th>
+                <th>{% th_with_order_by 'location' "Location" %}</th>
+              </tr>
+            {% endif %}  
           </thead>
           <tbody>
             {% for object in object_list %}
               <tr id="id-exhibition-{{ object.id_auto_series }}">
-                <td>
-                  <a href="{{ object.get_absolute_url }}">
-                    {{ object.id_auto_series }}</a>
-                </td>
-                <td>
-                  <a href="{{ object.get_absolute_url }}">
-                    {{ object.id_human|default_if_none:"-" }}</a>
-                </td>
                 <td>
                   <a href="{{ object.get_absolute_url }}">
                     {{ object.title|default_if_none:"-" }}</a>

@@ -38,6 +38,8 @@ class CollectionListView(ListView):
         access_condition_list = self.request.GET.getlist('access_condition')
         genre_tag_list = self.request.GET.getlist('genre_tag')
 
+        title_filter = self.request.GET.get('title')
+
         if (management_unit_list and int(management_unit_list[0]) > 0):
             queryset = queryset.filter(management_unit__in=management_unit_list)
 
@@ -49,6 +51,9 @@ class CollectionListView(ListView):
 
         if (genre_tag_list and int(genre_tag_list[0]) > 0):
             queryset = queryset.filter(description_level__in=genre_tag_list)
+
+        if (title_filter):
+            queryset = queryset.filter(title__contains=title_filter)
 
         queryset = queryset.order_by(self.get_ordering())
         return queryset

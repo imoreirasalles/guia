@@ -28,7 +28,7 @@ Guia - Coleções
       <div class="row">
         <div class="form-group col-md-2 col-sm-12">
           <label for="id_date">Busque pelo título</label>
-          <input type="text" id="id_title" class="form-control" name="title" value="{{ request.GET.title }}">
+          <input type="text" id="title" class="form-control" name="title" value="{{ request.GET.title }}">
         </div>
         <div class="form-group col-md-2 col-sm-12">
           <label class="control-label">Filtre por Área Responsável</label>
@@ -96,43 +96,38 @@ Guia - Coleções
 <div class="container">
   <div class="row back-beige">
     <table class="table table-hover" <thead class="text-warning">
-      <tr>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=id_human&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">ID<a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=management_unit&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Área Responsável</a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=items_online&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Status de Processamento</a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a>
-        </th>
-        <th>
-          <a href="?{{request.GET.urlencode }}&order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a>
-        </th>
-      </tr>
+      {% if collection_list %}
+        <tr>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=management_unit&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Área Responsável</a>
+          </th>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=title&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Título</a>
+          </th>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=date_start&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Data Baliza</a>
+          </th>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=description_level&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Nível de Descrição</a>
+          </th>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=items_online&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Status de Processamento</a>
+          </th>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=access_condition&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Condição de Acesso</a>
+          </th>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=access_local_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Presencial</a>
+          </th>
+          <th>
+            <a href="?{{request.GET.urlencode }}&order_by=access_online_status&order={% if order == 'desc' %}asc{% else %}desc{% endif %}">Online</a>
+          </th>
+        </tr>
+      {% endif %}
       </thead>
       <tbody>
         {% for collection in collection_list %}
         <tr>
-          <td>
-            <a href="{{ collection.get_absolute_url }}">
-                {{collection.id_human|default_if_none:"-"  }}</a>
-          </td>
           <td>{{collection.management_unit|default_if_none:"-" }}
           </td>
           <td>
@@ -147,7 +142,7 @@ Guia - Coleções
           <td>{{collection.description_level|default_if_none:"-" }}
           </td>
           <td>
-            <div class="progress">
+            <div class="progress" title ="Total de Itens | Itens processados | Itens online">
               {% with collection.items_online|percent:collection.items_total as online %}
               <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{online}}%" aria-valuenow="{{online}}" aria-valuemin="0" aria-valuemax="100">
               </div>
