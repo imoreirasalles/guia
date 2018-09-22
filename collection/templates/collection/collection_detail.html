@@ -28,12 +28,16 @@ Guia
       <p>{{ collection.abstract }}</p>
     </div>
     <div class="col-sm-6">
+      {{colection.catalog}}
+      {% comment %} <a href="{% url 'colection.catalog' %}"> {% endcomment %}
+      <a href="#">
       <button class="btn">
         Catálogo on line
         <span class="btn-label btn-label-right">
           <i class="nc-icon nc-minimal-right"></i>
         </span>
       </button>
+      </a>
     </div>
   </div>
 </div>

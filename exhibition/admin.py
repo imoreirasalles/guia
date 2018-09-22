@@ -53,7 +53,7 @@ class ExhibitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAd
     list_filter = ('location', 'date_start', 'date_end')
     list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end', 'link')
     search_fields = ['id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'team']
-    filter_horizontal = ('catalog', 'publication')
+    filter_horizontal = ('catalog', 'publication', 'capture')
     form = ExhibitionAdminForm
 
 

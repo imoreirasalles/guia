@@ -31,6 +31,11 @@ class Exhibition(Base):
         blank=True,
         help_text=_('Ex.: This exhibition is about...'),
         verbose_name=_('Full Text'))
+    capture = models.ManyToManyField(
+        'digitalassetsmanagement.capture',
+        blank=True,
+        help_text=_('Choose some introduction and representative images'),
+        verbose_name=_('Capture'))        
     date_start = models.DateField(
         null=True,
         blank=True,
@@ -78,7 +83,7 @@ class Exhibition(Base):
         if self.slug != None:
             return reverse('exhibition_detail_slug', kwargs={'slug': self.slug})
         else:
-            return reverse('exhibition_detail', kwargs={'pk': self.id_auto_series})        
+            return reverse('exhibition_detail', kwargs={'pk': self.id_auto_series})
 
     class Meta:
         verbose_name=_('Exhibition')
