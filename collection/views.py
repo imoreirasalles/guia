@@ -84,8 +84,18 @@ class CollectionDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
-        context['dimensions'] = json.loads(self.get_object().dimensions)
-        context['inventary_data'] = json.loads(self.get_object().inventary_data)
+        dimensions = self.get_object().dimensions
+        inventary_data = self.get_object().inventary_data
+
+        try:
+            context['dimensions'] = json.loads(dimensions)
+        except:
+            context['dimensions'] = {"Informações sobre dimensão": "0"}
+        try:
+            context['inventary_data'] = json.loads(inventary_data)
+        except:
+            context['inventary_data'] = {"Informações sobre inventário": "0"}
+
         items_total = self.get_object().items_total
         items_processed = self.get_object().items_processed
         items_online = self.get_object().items_online
