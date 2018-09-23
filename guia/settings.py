@@ -16,7 +16,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env.str('SECRET_KEY', default="MySecret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=True)
+# DEBUG = env.bool('DEBUG', default=True)
+DEBUG = True
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['0.0.0.0', 'localhost', '127.0.0.0'])
 
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'import_export',
-    'debug_toolbar',
+    # 'debug_toolbar',
     # My apps
     'collection',
     'digitalassetsmanagement',
@@ -72,8 +73,8 @@ MIDDLEWARE = [
     'reversion.middleware.RevisionMiddleware',
 ]
 
-if DEBUG:
-    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware', ] + MIDDLEWARE
+# if DEBUG:
+#     MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware', ] + MIDDLEWARE
 
 ROOT_URLCONF = 'guia.urls'
 
@@ -295,9 +296,9 @@ if env('DJANGO_SENTRY_DSN', default=False):
     }
 
 
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': 'guia.settings.custom_show_toolbar',
-}
+# DEBUG_TOOLBAR_CONFIG = {
+#     'SHOW_TOOLBAR_CALLBACK': 'guia.settings.custom_show_toolbar',
+# }
 
 def custom_show_toolbar(request):
     return True  # Always show toolbar, for example purposes only.
