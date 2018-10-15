@@ -140,7 +140,8 @@
             {% endif %}
 
             <!-- navbar alert buttons START -->
-            {% if user.is_authenticated %}
+            {% block navbar_alert_buttons %}
+            <!-- {% if user.is_authenticated %}
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link btn-magnify" href="#pablo">
@@ -172,8 +173,10 @@
                 </a>
               </li>
             </ul>
-            {% endif %}
+            {% endif %} -->
+            {% endblock %}
             <!-- navbar alert buttons END -->
+
           </div>
         </div>
       </nav>
