@@ -169,7 +169,7 @@ class Collection(Base):
         'digitalassetsmanagement.capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Capture'))
+        verbose_name=_('Image'))
     author = models.ManyToManyField(
         'person.Person',
         related_name='collection_author',

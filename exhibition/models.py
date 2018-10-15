@@ -35,7 +35,7 @@ class Exhibition(Base):
         'digitalassetsmanagement.capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Capture'))        
+        verbose_name=_('Image'))        
     date_start = models.DateField(
         null=True,
         blank=True,

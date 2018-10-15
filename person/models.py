@@ -62,7 +62,7 @@ class Person(Base):
         'digitalassetsmanagement.Capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Captures'))
+        verbose_name=_('Image(s)'))
     abstract = models.TextField(
         null=True,
         blank=True,
@@ -100,7 +100,7 @@ class Person(Base):
     class Meta:
         verbose_name = _('Person')
         verbose_name_plural = _('People')
-    
+
     def get_absolute_url(self):
         if self.slug:
             return reverse('person_detail_slug', kwargs={'slug': self.slug})

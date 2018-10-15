@@ -55,7 +55,7 @@ class Publication(Base):
         'digitalassetsmanagement.Capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Captures'))        
+        verbose_name=_('Image(s)'))        
     abstract = models.TextField(
         null=True,
         blank=True,

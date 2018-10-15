@@ -20,7 +20,7 @@ class Capture(Base):
         null=True,
         blank=True,
         help_text=_('Choose the image whish represents this capture'),
-        verbose_name=_('Capture'))
+        verbose_name=_('Image'))
 
     def __str__(self):
         if self.image != None:
@@ -41,8 +41,8 @@ class Capture(Base):
         super(Capture, self).save(*args, **kwargs)
 
     class Meta:
-        verbose_name = _('Capture')
-        verbose_name_plural = _('Captures')
+        verbose_name = _('Image')
+        verbose_name_plural = _('Images')
 
 
 @reversion.register()
