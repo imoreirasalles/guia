@@ -1,13 +1,19 @@
+# Translation of Guia.
+# Copyright (C) 2018 Guia
+# This file is distributed under the same license as the PACKAGE package.
+# Felipe Cabral <felipehistory at gmail.com>, 2018.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-15 19:51+0000\n"
+"POT-Creation-Date: 2018-10-22 18:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Felipe Cabral <felipehistory at gmail.com>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: pt-brMIME-Version: 1.0\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -61,11 +67,10 @@ msgstr "Acesso"
 msgid "Processed Status"
 msgstr "Status de Processamento"
 
-#: collection/admin.py:130 collection/models.py:37
-#: digitalassetsmanagement/models.py:62 event/models.py:23
-#: glossary/models.py:22 glossary/models.py:40 glossary/models.py:58
-#: glossary/models.py:81 management/models.py:25 management/models.py:77
-#: publication/models.py:27
+#: collection/admin.py:130 digitalassetsmanagement/models.py:62
+#: event/models.py:23 glossary/models.py:22 glossary/models.py:40
+#: glossary/models.py:58 glossary/models.py:81 management/models.py:25
+#: management/models.py:77 publication/models.py:27
 msgid "Description"
 msgstr "Descrição"
 
@@ -102,6 +107,11 @@ msgstr "Tipo de Agregação"
 #: collection/models.py:36
 msgid "Ex.: This container is..."
 msgstr "Ex.: Uma coleção é um agrupamento de objetos..."
+
+#: collection/models.py:37 event/admin.py:38 exhibition/admin.py:38
+#: publication/admin.py:33
+msgid "Full Description"
+msgstr "Descrição Completa"
 
 #: collection/models.py:41
 msgid "Itens that composes the container"
@@ -225,7 +235,7 @@ msgstr "Escolha algumas imagens representativas"
 #: collection/models.py:172 digitalassetsmanagement/models.py:23
 #: digitalassetsmanagement/models.py:44 exhibition/models.py:38
 msgid "Image"
-msgstr ""
+msgstr "Imagem"
 
 #: collection/models.py:177
 msgid "Choose some collection's authors"
@@ -362,36 +372,33 @@ msgid "Digital Assets Management App"
 msgstr "App Gestão de Ativos Digitais"
 
 #: digitalassetsmanagement/models.py:22
-msgid "Choose the image whish represents this capture"
-msgstr "Escolha a imagem que representa essa captura"
+msgid "Choose the image whish represents this image"
+msgstr "Escolha a imagem que representa esse registro"
 
 #: digitalassetsmanagement/models.py:29
 msgid "No file image"
-msgstr ""
+msgstr "Sem arquivo de imagem"
 
 #: digitalassetsmanagement/models.py:45 home/models.py:27
 msgid "Images"
-msgstr ""
+msgstr "Imagens"
 
 #: digitalassetsmanagement/models.py:61
 msgid "Ex.: Gelatin negative of the first photo..."
 msgstr "Ex.: Negativo de gelatina da primeira foto..."
 
 #: digitalassetsmanagement/models.py:66
-msgid "Capture(s) taked from this item."
-msgstr "Capturas do item"
+msgid "Image(s) taked from this item."
+msgstr "Imagem(ns) do item"
 
-#: digitalassetsmanagement/models.py:67
-msgid "Capture(s)"
-msgstr "Captura(s)"
+#: digitalassetsmanagement/models.py:67 person/models.py:65
+#: publication/models.py:58
+msgid "Image(s)"
+msgstr "Imagens"
 
 #: digitalassetsmanagement/models.py:99
 msgid "Item"
 msgstr "Item"
-
-#: event/admin.py:38 exhibition/admin.py:38 publication/admin.py:33
-msgid "Full Description"
-msgstr "Descrição Completa"
 
 #: event/admin.py:42 event/models.py:81 exhibition/admin.py:42
 #: exhibition/admin.py:68 exhibition/models.py:65 exhibition/models.py:136
@@ -571,7 +578,7 @@ msgid "Ex.: Some documents here have copyright..."
 msgstr "Ex.: Alguns documentos aqui tem direitos autorais reservados..."
 
 #: glossary/models.py:87
-msgid ": No condition"
+msgid "No condition"
 msgstr "Nenhuma condição encontrada"
 
 #: glossary/models.py:92
@@ -619,19 +626,19 @@ msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 msgid "Slug"
 msgstr "Slug (apelido)"
 
-#: guia/settings.py:106
+#: guia/settings.py:107
 msgid "key"
 msgstr "Chave"
 
-#: guia/settings.py:111
+#: guia/settings.py:112
 msgid "value"
 msgstr "Valor"
 
-#: guia/settings.py:155
+#: guia/settings.py:156
 msgid "Portuguese"
 msgstr "Português"
 
-#: guia/settings.py:156
+#: guia/settings.py:157
 msgid "English"
 msgstr "Inglês"
 
@@ -649,7 +656,7 @@ msgstr "Painel Administrativo"
 
 #: home/models.py:21
 msgid "Ex.: Welcome to Guia..."
-msgstr "Ex.: Bem-vindo ao Guia..."
+msgstr "Ex.: Bem vindo ao Guia..."
 
 #: home/models.py:22
 msgid "Content"
@@ -657,11 +664,11 @@ msgstr "Conteúdo"
 
 #: home/models.py:37
 msgid "Home Post"
-msgstr "Home Post"
+msgstr "Post da Home"
 
 #: home/models.py:38
 msgid "Home Posts"
-msgstr "Home Posts"
+msgstr "Posts da Home"
 
 #: location/apps.py:7
 msgid "Location App"
@@ -911,10 +918,6 @@ msgstr "Ex.: Masculino / Feminino"
 msgid "Gender"
 msgstr "Gênero"
 
-#: person/models.py:65 publication/models.py:58
-msgid "Image(s)"
-msgstr ""
-
 #: person/models.py:69
 msgid "Ex.: This person is..."
 msgstr "Ex.: Essa pessoa é..."
@@ -1037,7 +1040,7 @@ msgstr "Instituto Moreira Salles"
 
 #: templates/admin/base_site.html:9
 msgid "Django administration"
-msgstr "Instituto Moreira Salles - Painel"
+msgstr "Guia - Painel Administrativo"
 
 #: templates/admin/change_list.html:8
 msgid "Import"

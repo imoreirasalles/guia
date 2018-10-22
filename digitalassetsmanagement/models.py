@@ -19,7 +19,7 @@ class Capture(Base):
     image = models.ImageField(
         null=True,
         blank=True,
-        help_text=_('Choose the image whish represents this capture'),
+        help_text=_('Choose the image whish represents this image'),
         verbose_name=_('Image'))
 
     def __str__(self):
@@ -63,8 +63,8 @@ class Item(Base):
     capture = models.ManyToManyField(
         Capture,
         blank=True,
-        help_text=_('Capture(s) taked from this item.'),
-        verbose_name=_('Capture(s)'))
+        help_text=_('Image(s) taked from this item.'),
+        verbose_name=_('Image(s)'))
 
     def __str__(self):
         if self.title == None:

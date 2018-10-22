@@ -34,7 +34,7 @@ class Container(Base):
         null=True,
         blank=True,
         help_text=_('Ex.: This container is...'),
-        verbose_name=_('Description'))
+        verbose_name=_('Full Description'))
     items = models.ManyToManyField(
         'digitalassetsmanagement.Item',
         blank=True,

@@ -84,7 +84,7 @@ class AccessCondition(Base):
         if self.title_long != None:
             AccessCondition_str = str(self.title) + str(': ') + str(self.title_long)
         else:
-            AccessCondition_str = self.title + _(': No condition')
+            AccessCondition_str = self.title + ':' + _('No condition')
         return AccessCondition_str
 
     class Meta:
