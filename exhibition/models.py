@@ -1,6 +1,6 @@
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
-from guia.models import Base
+from guia.models import Base, DraftModel
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -12,7 +12,7 @@ from django.apps import apps
 
 
 @reversion.register()
-class Exhibition(Base):
+class Exhibition(Base, DraftModel):
     """To store Exhibition data"""
     id_human = models.CharField(
         max_length=64,
