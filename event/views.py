@@ -4,13 +4,14 @@ from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
+from guia.views import BaseDraftDetailView, BaseDraftListView
 from home.mixins import OrderByMixin, SearchMixin
 from .models import Event, EventType
 from location.models import Location
 
 
-class EventListView(SearchMixin, OrderByMixin, ListView):
-    queryset = Event.objects.all()
+class EventListView(SearchMixin, OrderByMixin, BaseDraftListView):
+    model = Event
     paginate_by = 20
     filters = (
         ('title', 'title__icontains', str),
@@ -27,5 +28,5 @@ class EventListView(SearchMixin, OrderByMixin, ListView):
         return output
 
 
-class EventDetailView(DetailView):
+class EventDetailView(BaseDraftDetailView):
     model = Event
