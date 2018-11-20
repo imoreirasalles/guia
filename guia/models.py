@@ -53,7 +53,7 @@ class Base(models.Model):
         abstract = True
 
 
-class DrafModel(models.Model):
+class DraftModel(models.Model):
     is_draft = models.BooleanField(
         default=False,
         db_index=True,

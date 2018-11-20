@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='collection',
             name='is_draft',
-            field=models.BooleanField(db_index=True, default=False, help_text='Objects as "draft" is not available on the website', verbose_name='Is draft?'),
+            field=models.BooleanField(db_index=True, default=False, help_text='Objects as "draft" are not available on the website', verbose_name='Is draft?'),
         ),
     ]
