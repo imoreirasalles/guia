@@ -1,10 +1,9 @@
 from datetime import date
 
-from django.views.generic import ListView, DetailView
-
 from guia.views import BaseDraftListView, BaseDraftDetailView
 from home.mixins import OrderByMixin, SearchMixin
 from location.models import Location
+
 from .models import Exhibition
 
 
@@ -29,7 +28,3 @@ class ExhibitionListView(SearchMixin, OrderByMixin, BaseDraftListView):
 class ExhibitionDetailView(BaseDraftDetailView):
     """Process each exhibition in details"""
     model = Exhibition
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context

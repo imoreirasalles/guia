@@ -7,9 +7,6 @@ from django.utils.translation import gettext_lazy as _
 # Third part imports
 import reversion
 
-# Project Apps Imports
-from django.apps import apps
-
 
 @reversion.register()
 class Exhibition(Base, DraftModel):
@@ -35,7 +32,7 @@ class Exhibition(Base, DraftModel):
         'digitalassetsmanagement.capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Image'))        
+        verbose_name=_('Image'))
     date_start = models.DateField(
         null=True,
         blank=True,
@@ -80,14 +77,14 @@ class Exhibition(Base, DraftModel):
         return self.title
 
     def get_absolute_url(self):
-        if self.slug != None:
+        if self.slug is not None:
             return reverse('exhibition_detail_slug', kwargs={'slug': self.slug})
         else:
             return reverse('exhibition_detail', kwargs={'pk': self.id_auto_series})
 
     class Meta:
-        verbose_name=_('Exhibition')
-        verbose_name_plural=_('Exhibitions')
+        verbose_name = _('Exhibition')
+        verbose_name_plural = _('Exhibitions')
 
 
 @reversion.register()
@@ -139,5 +136,5 @@ class ExhibitionEdition(Base):
         return self.title
 
     class Meta:
-        verbose_name=_('Exhibition Edition')
-        verbose_name_plural=_('Exhibition Editions')
+        verbose_name = _('Exhibition Edition')
+        verbose_name_plural = _('Exhibition Editions')
