@@ -57,7 +57,7 @@ class DrafModel(models.Model):
     is_draft = models.BooleanField(
         default=False,
         db_index=True,
-        help_text=_('Objects as "draft" is not available on the website'),
+        help_text=_('Objects as "draft" are not available on the website'),
         verbose_name=_('Is draft?'))
 
     objects = DraftManager()
