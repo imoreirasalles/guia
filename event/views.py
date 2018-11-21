@@ -1,13 +1,10 @@
 from datetime import date
 
-from django.utils import timezone
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
+from location.models import Location
 
 from guia.views import BaseDraftDetailView, BaseDraftListView
 from home.mixins import OrderByMixin, SearchMixin
 from .models import Event, EventType
-from location.models import Location
 
 
 class EventListView(SearchMixin, OrderByMixin, BaseDraftListView):
