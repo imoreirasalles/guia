@@ -58,7 +58,7 @@ class PersonAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin)
     readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = PersonResource
     list_filter = ('person_type', 'is_staff', 'is_partner', 'is_feature', 'gender', 'date_start', 'date_end')
-    list_display = ('id_auto_series', 'uuid', 'person_type', 'title', 'gender')
+    list_display = ('id_auto_series', 'uuid', 'person_type', 'title', 'gender', 'is_draft')
     search_fields = ['__all__']
     filter_horizontal = ('capture',)
     form = PersonAdminForm
