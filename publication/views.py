@@ -1,15 +1,15 @@
 from datetime import date
 
 from django.utils import timezone
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
+
+from guia.views import BaseDraftDetailView, BaseDraftListView
 
 from home.mixins import OrderByMixin, SearchMixin
-from .models import *
+from .models import Publication, PublicationType
 
 
-class PublicationListView(SearchMixin, OrderByMixin, ListView):
-    queryset = Publication.objects.all()
+class PublicationListView(SearchMixin, OrderByMixin, BaseDraftListView):
+    model = Publication
     paginate_by = 20
     filters = (
         ('date_released', 'date_released', date),
@@ -23,7 +23,7 @@ class PublicationListView(SearchMixin, OrderByMixin, ListView):
         return output
 
 
-class PublicationDetailView(DetailView):
+class PublicationDetailView(BaseDraftDetailView):
     """Process each collection in details"""
     model = Publication
 

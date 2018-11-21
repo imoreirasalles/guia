@@ -19,8 +19,8 @@ class Capture(Base):
     image = models.ImageField(
         null=True,
         blank=True,
-        help_text=_('Choose the image whish represents this capture'),
-        verbose_name=_('Capture'))
+        help_text=_('Choose the image whish represents this image'),
+        verbose_name=_('Image'))
 
     def __str__(self):
         if self.image != None:
@@ -41,8 +41,8 @@ class Capture(Base):
         super(Capture, self).save(*args, **kwargs)
 
     class Meta:
-        verbose_name = _('Capture')
-        verbose_name_plural = _('Captures')
+        verbose_name = _('Image')
+        verbose_name_plural = _('Images')
 
 
 @reversion.register()
@@ -63,8 +63,8 @@ class Item(Base):
     capture = models.ManyToManyField(
         Capture,
         blank=True,
-        help_text=_('Capture(s) taked from this item.'),
-        verbose_name=_('Capture(s)'))
+        help_text=_('Image(s) taked from this item.'),
+        verbose_name=_('Image(s)'))
 
     def __str__(self):
         if self.title == None:

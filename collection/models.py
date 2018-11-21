@@ -1,6 +1,6 @@
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
-from guia.models import Base
+from guia.models import Base, DraftModel
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
@@ -34,7 +34,7 @@ class Container(Base):
         null=True,
         blank=True,
         help_text=_('Ex.: This container is...'),
-        verbose_name=_('Description'))
+        verbose_name=_('Full Description'))
     items = models.ManyToManyField(
         'digitalassetsmanagement.Item',
         blank=True,
@@ -91,7 +91,7 @@ class Container(Base):
 
 
 @reversion.register()
-class Collection(Base):
+class Collection(Base, DraftModel):
     """
     Main class of collection
     """
@@ -169,7 +169,7 @@ class Collection(Base):
         'digitalassetsmanagement.capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Capture'))
+        verbose_name=_('Image'))
     author = models.ManyToManyField(
         'person.Person',
         related_name='collection_author',

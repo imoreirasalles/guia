@@ -67,6 +67,6 @@ class EventAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = EventResource
     list_filter = ('type', 'location', 'date_start', 'date_end')
-    list_display = ('id_auto_series', 'title', 'date_start', 'date_end', 'type', 'location')
+    list_display = ('id_auto_series', 'title', 'date_start', 'date_end', 'type', 'location', 'is_draft')
     search_fields = ['__all__']
     form = EventAdminForm

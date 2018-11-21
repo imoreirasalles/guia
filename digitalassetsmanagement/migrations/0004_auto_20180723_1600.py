@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='capture',
             name='image',
-            field=models.ImageField(blank=True, help_text='Choose the image whish represents this capture', null=True, upload_to='', verbose_name='Capture'),
+            field=models.ImageField(blank=True, help_text='Choose the image whish represents this image', null=True, upload_to='', verbose_name='Image'),
         ),
     ]

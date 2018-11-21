@@ -1,6 +1,6 @@
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
-from guia.models import Base
+from guia.models import Base, DraftModel
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -12,7 +12,7 @@ from django.apps import apps
 
 
 @reversion.register()
-class Person(Base):
+class Person(Base, DraftModel):
     """
     Person Class used to record info about partners, authors, organizations, etc
     """
@@ -62,7 +62,7 @@ class Person(Base):
         'digitalassetsmanagement.Capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Captures'))
+        verbose_name=_('Image(s)'))
     abstract = models.TextField(
         null=True,
         blank=True,
@@ -100,7 +100,7 @@ class Person(Base):
     class Meta:
         verbose_name = _('Person')
         verbose_name_plural = _('People')
-    
+
     def get_absolute_url(self):
         if self.slug:
             return reverse('person_detail_slug', kwargs={'slug': self.slug})
