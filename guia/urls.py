@@ -14,6 +14,8 @@ from exhibition.views import ExhibitionListView
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('login/', auth_views.login, name='login'),
+    path('forgot-password/', views.ForgotPasswordView.as_view(), name='forgot-password'),
+    path('forgot-password/success/', views.ForgotPasswordSuccessView.as_view(), name='forgot-password-success'),
     path('logout/', auth_views.logout, name='logout'),
     path('base/', views.base, name='base'),
     path('error404/', views.error404, name='error404'),
