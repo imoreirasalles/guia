@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     # 3rd part apps
     'admin_reorder',
+    'widget_tweaks',
     'django_json_widget',
     'django_admin_json_editor',
     'ckeditor',
