@@ -78,8 +78,8 @@ class CollectionAdminForm(forms.ModelForm):
         return Collection.objects.filter(author__is=True)
 
     class Meta:
-       model = Collection
-       fields = '__all__'
+        model = Collection
+        fields = '__all__'
 
 
 @admin.register(Collection)
@@ -87,12 +87,13 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
     readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = CollectionResource
     list_filter = ('management_unit', 'aggregation_type', 'description_level', 'access_condition', 'genre_tags')
-    list_display = ('id_auto_series', 'id_human', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total')
+    list_display = ('id_auto_series', 'id_human', 'management_unit', 'aggregation_type', 'title', 'description_level', 'access_condition', 'inventary_status', 'items_total', 'is_draft')
     search_fields = ['id_human', 'id_old', 'abstract', 'full_text', 'description_level__title', 'aggregation_type__title', 'genre_tags__title', 'dimensions', 'date_start', 'date_start_caption', 'date_end', 'date_end_caption', 'capture__title', 'author__title', 'container__title', 'access_condition__title', 'location_generic__title', 'management_unit__title', 'other_data', ]
     filter_horizontal = ('capture', 'genre_tags', 'author', 'container')
     fieldsets = (
                 (ugettext_lazy('Indentification'),
                     {'fields':  (
+                        ('is_draft'),
                         ('uuid', 'created'),
                         ('id_human', 'id_old'),
                         ('management_unit', 'aggregation_type'),
