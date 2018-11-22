@@ -2,10 +2,12 @@
 from django.conf import settings
 from django.core import signing
 from django.core.mail import EmailMultiAlternatives
+from django.contrib.auth import get_user_model, authenticate, login as login_django
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import FormView, ListView, TemplateView
+from django.views.generic import FormView, ListView, TemplateView, UpdateView
 
 # Project guia imports
 from home.models import Post
@@ -15,7 +17,9 @@ from publication.models import Publication
 from event.models import Event
 from person.models import Person
 
-from .forms import ForgotPasswordForm
+from .forms import ForgotPasswordForm, ResetPasswordForm
+
+User = get_user_model()
 
 
 def login(request):
@@ -71,30 +75,31 @@ class ForgotPasswordView(FormView):
         return redirect('forgot-password-success')
 
     def sendmail(self, user):
-        from_email = settings.EMAIL_HOST_USER
-        to = user.email
+        from_email = settings.DEFAULT_FROM_EMAIL
+        to_email = user.email
         data = {
             'id': user.id,
             'last_login': '',
         }
         if user.last_login:
-            data['last_login'] = user.last_login.strftime('%Y-%m-%d')
+            data['last_login'] = user.last_login.strftime('%Y-%m-%d %H:%M:%S')
 
-        link = reverse('reset-password', kwargs={'token': signing.dumps(data)})
+        link = reverse('reset-password-form', kwargs={'token': signing.dumps(data)})
 
         html_content = _('''
-        Follow the link to update your password in the IMS Guide: <a href="{link}">click here</a>.<br>
+        Follow the link to update your password in the IMS Guide: <a href="{base_url}{link}">click here</a>.<br>
         If you did not request a password change, disregard this email.<br><br>
         IMS Guide.
-        ''').format(link=link)
+        ''').format(base_url=settings.BASE_URL, link=link)
         text_content = _('''
-        Follow the link to update your password in the IMS Guide: <a href="{link}">click here</a>.<br>
-        If you did not request a password change, disregard this email.<br><br>
+        Follow the link to update your password in the IMS Guide: {base_url}{link}
+        If you did not request a password change, disregard this email.
+
         IMS Guide.
-        ''').format(link=link)
+        ''').format(base_url=settings.BASE_URL, link=link)
 
         subject = _('Reset password - Institute Moreira Salles')
-        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
         msg.attach_alternative(html_content, 'text/html')
         msg.send()
 
@@ -103,6 +108,40 @@ class ForgotPasswordSuccessView(TemplateView):
     template_name = 'forgot_password_success.html'
 
 
-class ResetPasswordFormView(FormView):
-    form_class = ForgotPasswordForm
-    template_name = 'forgot_password.html'
+class ResetPasswordUpdateView(UpdateView):
+    model = User
+    form_class = ResetPasswordForm
+    template_name = 'reset_password_form.html'
+
+    def get_object(self):
+        data = signing.loads(self.kwargs['token'])
+        try:
+            user = User.objects.get(id=data['id'])
+            return user
+
+        except User.DoesNotExist:
+            return None
+        return user
+
+    def get(self, request, *args, **kwargs):
+        result = super().get(request, *args, **kwargs)
+
+        data = signing.loads(self.kwargs['token'])
+        if self.object.last_login.strftime('%Y-%m-%d %H:%M:%S') != data['last_login']:
+            raise Http404(_('Page not found'))
+
+        return result
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        user = self.object
+        user.set_password(data['new_password'])
+        user.save()
+
+        authenticated_user = authenticate(
+            self.request,
+            username=user.username,
+            password=data['new_password']
+        )
+        login_django(self.request, authenticated_user)
+        return redirect('home')

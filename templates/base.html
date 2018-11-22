@@ -34,7 +34,7 @@
 
         <!-- block sidebar_user START -->
         {% block sidebar_user %}
-        {% if user.is_authenticated %}
+        {% if request.user.is_authenticated %}
         <div class="user">
           <div class="photo">
             <img src="{% static 'img/user_default.png' %}" />
@@ -132,11 +132,10 @@
             {% endblock %}
 
             <!-- modal login start -->
-            {% if user.is_authenticated %}
-            {% else %}
-            <button onclick='modalLogin()' type='button' class="btn btn-sm">
-              Login
-            </button>
+            {% if not request.user.is_authenticated %}
+                <button onclick='modalLogin()' type='button' class="btn btn-sm">
+                Login
+                </button>
             {% endif %}
 
             <!-- navbar alert buttons START -->
