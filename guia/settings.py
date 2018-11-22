@@ -21,6 +21,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['0.0.0.0', 'localhost', '127.0.0.0'])
 
+BASE_URL = env.str('BASE_URL')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -172,6 +174,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -202,7 +205,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 
 # Emails settings
-
+DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
 EMAIL_HOST = env.str('EMAIL_HOST')
 EMAIL_PORT = env.int('EMAIL_PORT', default=587)
 EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
