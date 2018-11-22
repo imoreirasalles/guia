@@ -47,34 +47,34 @@ msgstr "Outros Dados não Estruturados"
 msgid "Indentification"
 msgstr "Identificação"
 
-#: collection/admin.py:102
+#: collection/admin.py:103
 msgid "Basic Infos"
 msgstr "Informações Básicas"
 
-#: collection/admin.py:111
+#: collection/admin.py:112
 msgid "Location and Dimensions"
 msgstr "Localização e Dimensões"
 
-#: collection/admin.py:116
+#: collection/admin.py:117
 msgid "Inventory and Patrimony"
 msgstr "Inventário e Patrimonio"
 
-#: collection/admin.py:121
+#: collection/admin.py:122
 msgid "Access"
 msgstr "Acesso"
 
-#: collection/admin.py:126
+#: collection/admin.py:127
 msgid "Processed Status"
 msgstr "Status de Processamento"
 
-#: collection/admin.py:130 digitalassetsmanagement/models.py:62
+#: collection/admin.py:131 digitalassetsmanagement/models.py:62
 #: event/models.py:23 glossary/models.py:22 glossary/models.py:40
 #: glossary/models.py:58 glossary/models.py:81 management/models.py:25
 #: management/models.py:77 publication/models.py:27
 msgid "Description"
 msgstr "Descrição"
 
-#: collection/admin.py:133
+#: collection/admin.py:134
 msgid "Other Infos"
 msgstr "Outras Informações"
 
@@ -367,6 +367,10 @@ msgstr "Coleção"
 msgid "Collections"
 msgstr "Coleções"
 
+#: collection/views.py:87
+msgid "No Collections was found matching the query"
+msgstr "Nenhuma Coleção foi encontrada correspondendo à consulta"
+
 #: digitalassetsmanagement/apps.py:7
 msgid "Digital Assets Management App"
 msgstr "App Gestão de Ativos Digitais"
@@ -585,48 +589,56 @@ msgstr "Nenhuma condição encontrada"
 msgid "Access Conditions"
 msgstr "Condições de Acesso"
 
-#: guia/models.py:21
+#: guia/models.py:23
 msgid "Auto Increment ID"
 msgstr "ID auto incremental"
 
-#: guia/models.py:22
+#: guia/models.py:24
 msgid "ID"
 msgstr "ID"
 
-#: guia/models.py:25
+#: guia/models.py:27
 msgid "Auto set field"
 msgstr "Campo de Preenchimento Automático"
 
-#: guia/models.py:26
+#: guia/models.py:28
 msgid "Created in"
 msgstr "Criado em"
 
-#: guia/models.py:32
+#: guia/models.py:34
 msgid "This is an auto set field"
 msgstr "Campo de Preenchimento Automático"
 
-#: guia/models.py:33
+#: guia/models.py:35
 msgid "Universal Unique Identifier"
 msgstr "Identificador Único Universal"
 
-#: guia/models.py:39
+#: guia/models.py:41
 msgid "Ex.: The title of this record"
 msgstr "Ex.: Título do registro"
 
-#: guia/models.py:40 management/models.py:20 management/models.py:41
+#: guia/models.py:42 management/models.py:20 management/models.py:41
 #: management/models.py:72 management/models.py:93 publication/models.py:21
 msgid "Title"
 msgstr "Título"
 
-#: guia/models.py:47
+#: guia/models.py:49
 msgid "Ex.: complete-collection-sebastiao-salgado"
 msgstr "Usado em URLs e links. Ex.: complete-collection-sebastiao-salgado"
 
-#: guia/models.py:48
+#: guia/models.py:50
 msgid "Slug"
 msgstr "Slug (apelido)"
 
-#: guia/settings.py:110
+#: guia/models.py:60
+msgid "Objects as \"draft\" are not available on the website"
+msgstr "Objetos como \"rascunho\" não estão disponíveis no site"
+
+#: guia/models.py:61
+msgid "Is draft?"
+msgstr "É rascunho?"
+
+#: guia/settings.py:107
 msgid "key"
 msgstr "Chave"
 

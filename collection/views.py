@@ -2,13 +2,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils import timezone
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
 import json
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 # Project guia imports
+from guia.views import BaseDraftDetailView, BaseDraftListView
+
 from .models import *
 from glossary.models import DescriptionLevel
 from glossary.models import AccessCondition
@@ -16,8 +16,7 @@ from glossary.models import GenreTag
 from management.models import ManagementUnit
 
 
-
-class CollectionListView(ListView):
+class CollectionListView(BaseDraftListView):
     """CBV to list and process filter into all Collections"""
     model = Collection
     paginate_by = 10
@@ -32,7 +31,7 @@ class CollectionListView(ListView):
         return selected_ordering
 
     def get_queryset(self):
-        queryset = Collection.objects.all()
+        queryset = super().get_queryset()
         management_unit_list = self.request.GET.getlist('management_unit')
         description_level_list = self.request.GET.getlist('description_level')
         access_condition_list = self.request.GET.getlist('access_condition')
@@ -77,7 +76,7 @@ class CollectionListView(ListView):
         return context
 
 
-class CollectionDetailView(DetailView):
+class CollectionDetailView(BaseDraftDetailView):
     """Process each collection in details"""
     model = Collection
 

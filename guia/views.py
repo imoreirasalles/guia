@@ -1,9 +1,8 @@
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseForbidden
+from django.http import Http404, HttpResponseNotFound, HttpResponseServerError, HttpResponseForbidden
+from django.views.generic import DetailView, ListView
+from django.utils.translation import gettext_lazy as _
+
 from django.shortcuts import render
-from django.utils import timezone
 
 
 def base(request):
@@ -32,3 +31,16 @@ def exhibition(request):
 
 def publication(request):
     return render(request, 'publication_list.html')
+
+
+class BaseDraftListView(ListView):
+    def get_queryset(self):
+        return self.model.objects.published()
+
+
+class BaseDraftDetailView(DetailView):
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.is_draft:
+            raise Http404(_('Page not found'))
+        return obj

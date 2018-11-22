@@ -33,7 +33,6 @@ class PostList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['collection_total'] = Collection.objects.all().count()
         if (Post.objects.order_by('id_auto_series').exists()):
             post = Post.objects.latest('capture')
             context['first_image_id'] = post.capture.first().id_auto_series
@@ -45,23 +44,23 @@ class PostList(ListView):
         return context
 
     def collection_total(self):
-        collection_total = Collection.objects.all().count()
+        collection_total = Collection.objects.published().count()
         return collection_total
 
     def exhibition_total(self):
-        exhibition_total = Exhibition.objects.all().count()
+        exhibition_total = Exhibition.objects.published().count()
         return exhibition_total
 
     def publication_total(self):
-        publication_total = Publication.objects.all().count()
+        publication_total = Publication.objects.published().count()
         return publication_total
 
     def event_total(self):
-        event_total = Event.objects.all().count()
+        event_total = Event.objects.published().count()
         return event_total
 
     def person_total(self):
-        person_total = Person.objects.all().count()
+        person_total = Person.objects.published().count()
         return person_total
 
 

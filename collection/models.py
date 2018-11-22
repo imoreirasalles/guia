@@ -1,6 +1,6 @@
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
-from guia.models import Base
+from guia.models import Base, DraftModel
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
@@ -91,7 +91,7 @@ class Container(Base):
 
 
 @reversion.register()
-class Collection(Base):
+class Collection(Base, DraftModel):
     """
     Main class of collection
     """

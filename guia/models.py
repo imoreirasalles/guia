@@ -9,6 +9,8 @@ from datetime import datetime
 # Third part imports
 import uuid
 
+from .managers import DraftManager
+
 # Project Apps Imports
 from django.apps import apps
 
@@ -46,6 +48,19 @@ class Base(models.Model):
         blank=True,
         help_text=_('Ex.: complete-collection-sebastiao-salgado'),
         verbose_name=_('Slug'))
+
+    class Meta:
+        abstract = True
+
+
+class DraftModel(models.Model):
+    is_draft = models.BooleanField(
+        default=False,
+        db_index=True,
+        help_text=_('Objects as "draft" are not available on the website'),
+        verbose_name=_('Is draft?'))
+
+    objects = DraftManager()
 
     class Meta:
         abstract = True
