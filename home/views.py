@@ -1,9 +1,11 @@
 # core django imports
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import View
-from django.views.generic.list import ListView
-from django.views.generic import TemplateView
+from django.conf import settings
+from django.core import signing
+from django.core.mail import EmailMultiAlternatives
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import FormView, ListView, TemplateView
 
 # Project guia imports
 from home.models import Post
@@ -12,6 +14,8 @@ from exhibition.models import Exhibition
 from publication.models import Publication
 from event.models import Event
 from person.models import Person
+
+from .forms import ForgotPasswordForm
 
 
 def login(request):
@@ -55,3 +59,50 @@ class PostList(ListView):
     def person_total(self):
         person_total = Person.objects.all().count()
         return person_total
+
+
+class ForgotPasswordView(FormView):
+    form_class = ForgotPasswordForm
+    template_name = 'forgot_password.html'
+
+    def form_valid(self, form):
+        user = form.cleaned_data['username']
+        self.sendmail(user)
+        return redirect('forgot-password-success')
+
+    def sendmail(self, user):
+        from_email = settings.EMAIL_HOST_USER
+        to = user.email
+        data = {
+            'id': user.id,
+            'last_login': '',
+        }
+        if user.last_login:
+            data['last_login'] = user.last_login.strftime('%Y-%m-%d')
+
+        link = reverse('reset-password', kwargs={'token': signing.dumps(data)})
+
+        html_content = _('''
+        Follow the link to update your password in the IMS Guide: <a href="{link}">click here</a>.<br>
+        If you did not request a password change, disregard this email.<br><br>
+        IMS Guide.
+        ''').format(link=link)
+        text_content = _('''
+        Follow the link to update your password in the IMS Guide: <a href="{link}">click here</a>.<br>
+        If you did not request a password change, disregard this email.<br><br>
+        IMS Guide.
+        ''').format(link=link)
+
+        subject = _('Reset password - Institute Moreira Salles')
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg.attach_alternative(html_content, 'text/html')
+        msg.send()
+
+
+class ForgotPasswordSuccessView(TemplateView):
+    template_name = 'forgot_password_success.html'
+
+
+class ResetPasswordFormView(FormView):
+    form_class = ForgotPasswordForm
+    template_name = 'forgot_password.html'
