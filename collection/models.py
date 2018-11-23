@@ -269,28 +269,27 @@ class Collection(Base, DraftModel):
         return collection_str
 
     def get_absolute_url(self):
-        if self.slug != None:
+        if self.slug is not None:
             return reverse('collection_detail_slug', kwargs={'slug': self.slug})
         else:
             return reverse('collection_detail', kwargs={'pk': self.id_auto_series})
 
     def save(self, *args, **kwargs):
-        if self.id_auto_series == None:
-            super(Collection, self).save(*args, **kwargs)
-        if self.aggregation_type == None:
+        if self.id_auto_series is None:
+            super().save()
+
+        if self.aggregation_type is None:
             aggregation_type_str = "[no-aggregation]"
         else:
             aggregation_type_str = self.aggregation_type
-        if self.title == None:
-            title_str = "[no-title]"
-        else:
-            title_str = self.title
 
-        slug_auto = slugify(str(self.id_auto_series) + '-' +
-                            str(aggregation_type_str) + '-' +
-                            str(title_str))
-        self.slug = slug_auto
-        super(Collection, self).save(*args, **kwargs)
+        raw_slug = [
+            str(aggregation_type_str),
+            self.title,
+            str(self.id_auto_series),
+        ]
+        self.slug = slugify(' '.join(raw_slug))
+        return super().save()
 
     class Meta:
         verbose_name = _('Collection')

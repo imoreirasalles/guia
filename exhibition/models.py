@@ -1,8 +1,10 @@
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
-from guia.models import Base, DraftModel
+from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+
+from guia.models import Base, DraftModel
 
 # Third part imports
 import reversion
@@ -81,6 +83,17 @@ class Exhibition(Base, DraftModel):
             return reverse('exhibition_detail_slug', kwargs={'slug': self.slug})
         else:
             return reverse('exhibition_detail', kwargs={'pk': self.id_auto_series})
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series is None:
+            super().save()
+
+        raw_slug = [
+            self.title,
+            str(self.id_auto_series),
+        ]
+        self.slug = slugify(' '.join(raw_slug))
+        return super().save()
 
     class Meta:
         verbose_name = _('Exhibition')
