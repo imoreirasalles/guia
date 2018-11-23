@@ -1,9 +1,10 @@
 from django.contrib.postgres.fields import JSONField
 from django.contrib.gis.db import models
-from guia.models import Base, DraftModel
+from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from guia.models import Base, DraftModel
 # Third part imports
 import reversion
 
@@ -94,14 +95,30 @@ class Person(Base, DraftModel):
         help_text=_('Ex.: VIAF, ULAN, Wiki Data, etc'),
         verbose_name=_('Linked Open Data Dictionary'))
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name = _('Person')
         verbose_name_plural = _('People')
+
+    def __str__(self):
+        return self.title
 
     def get_absolute_url(self):
         if self.slug:
             return reverse('person_detail_slug', kwargs={'slug': self.slug})
         return reverse('person_detail', kwargs={'pk': self.id_auto_series})
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series is None:
+            super().save()
+
+        if self.title is None:
+            title_str = "[no-title]"
+        else:
+            title_str = self.title
+
+        raw_slug = [
+            title_str,
+            str(self.id_auto_series),
+        ]
+        self.slug = slugify(' '.join(raw_slug))
+        return super().save()

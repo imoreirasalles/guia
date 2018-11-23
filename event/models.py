@@ -89,26 +89,28 @@ class Event(Base, DraftModel):
         return self.title
 
     def get_absolute_url(self):
-        if self.slug != None:
+        if self.slug is not None:
             return reverse('event_detail_slug', kwargs={'slug': self.slug})
         else:
             return reverse('event_detail', kwargs={'pk': self.id_auto_series})
 
     def save(self, *args, **kwargs):
-        if self.id_auto_series == None:
-            super(Event, self).save(*args, **kwargs)
-        if self.title == None:
+        if self.id_auto_series is None:
+            super().save()
+
+        if self.title is None:
             title_str = "[no-title]"
         else:
             title_str = self.title
 
-        slug_auto = slugify(str(self.id_auto_series) +
-                            '_event_' +
-                            str(title_str))
-
-        self.slug = slug_auto
-        super(Event, self).save(*args, **kwargs)
+        raw_slug = [
+            title_str,
+            'event',
+            str(self.id_auto_series),
+        ]
+        self.slug = slugify(' '.join(raw_slug))
+        return super().save()
 
     class Meta:
-        verbose_name=_('Event')
-        verbose_name_plural=_('Events')
+        verbose_name = _('Event')
+        verbose_name_plural = _('Events')

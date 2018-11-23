@@ -55,7 +55,7 @@ class Publication(Base, DraftModel):
         'digitalassetsmanagement.Capture',
         blank=True,
         help_text=_('Choose some introduction and representative images'),
-        verbose_name=_('Image(s)'))        
+        verbose_name=_('Image(s)'))
     abstract = models.TextField(
         null=True,
         blank=True,
@@ -98,26 +98,28 @@ class Publication(Base, DraftModel):
         return self.title
 
     def get_absolute_url(self):
-        if self.slug != None:
+        if self.slug is not None:
             return reverse('publication_detail_slug', kwargs={'slug': self.slug})
         else:
             return reverse('publication_detail', kwargs={'pk': self.id_auto_series})
 
     def save(self, *args, **kwargs):
-        if self.id_auto_series == None:
-            super(Publication, self).save(*args, **kwargs)
-        if self.title == None:
+        if self.id_auto_series is None:
+            super().save()
+
+        if self.title is None:
             title_str = "[no-title]"
         else:
             title_str = self.title
 
-
-        slug_auto = slugify(str(self.id_auto_series) + '_' +
-                            'publication_' +
-                            str(title_str))
-        self.slug = slug_auto
-        super(Publication, self).save(*args, **kwargs)
+        raw_slug = [
+            title_str,
+            'publication',
+            str(self.id_auto_series),
+        ]
+        self.slug = slugify(' '.join(raw_slug))
+        return super().save()
 
     class Meta:
-        verbose_name=_('Publication')
-        verbose_name_plural=_('Publications')
+        verbose_name = _('Publication')
+        verbose_name_plural = _('Publications')
