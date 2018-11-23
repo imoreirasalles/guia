@@ -56,3 +56,4 @@ Werkzeug==0.14.1
 Wheelhouse==0.1.3
 xlrd==1.1.0
 xlwt==1.3.0
+django-widget-tweaks==1.4.3
