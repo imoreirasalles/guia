@@ -1,9 +1,10 @@
 # core django imports
-from django.shortcuts import render
+from django.contrib.auth import get_user_model, authenticate, login as login_django
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic.list import ListView
-from django.views.generic import TemplateView
+from django.views.generic import CreateView, TemplateView
 
 # Project guia imports
 from home.models import Post
@@ -12,6 +13,10 @@ from exhibition.models import Exhibition
 from publication.models import Publication
 from event.models import Event
 from person.models import Person
+
+from .forms import UserForm
+
+User = get_user_model()
 
 
 def login(request):
@@ -55,3 +60,19 @@ class PostList(ListView):
     def person_total(self):
         person_total = Person.objects.published().count()
         return person_total
+
+
+class UserCreateView(CreateView):
+    form_class = UserForm
+    model = User
+    template_name = 'register.html'
+
+    def form_valid(self, form):
+        user = form.save()
+        authenticated_user = authenticate(
+            self.request,
+            username=user.username,
+            password=form.cleaned_data['password']
+        )
+        login_django(self.request, authenticated_user)
+        return redirect('home')

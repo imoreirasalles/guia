@@ -10,5 +10,5 @@ from . import views
 
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
-    path('login/', views.login, name='login'),
+    path('signup/', views.UserCreateView.as_view(), name='signup'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
