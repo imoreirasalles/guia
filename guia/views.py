@@ -1,11 +1,6 @@
-from django.conf import settings
-from django.conf.urls.static import static
-from django.utils import timezone
-
-from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError, HttpResponseForbidden
+from django.http import Http404, HttpResponseNotFound, HttpResponseServerError, HttpResponseForbidden
 from django.views.generic import DetailView, ListView
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render
 
@@ -17,14 +12,18 @@ def base(request):
 def home(request):
     return render(request, 'home.html')
 
+
 def error404(request):
     return HttpResponseNotFound(render(request, '404.html'))
+
 
 def error403(request):
     return HttpResponseForbidden(render(request, '403.html'))
 
+
 def error500(request):
     return HttpResponseServerError(render(request, '500.html'))
+
 
 def exhibition(request):
     return render(request, 'exhibition_list.html')
