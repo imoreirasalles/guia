@@ -1,4 +1,5 @@
 # core django imports
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils import timezone
@@ -52,7 +53,7 @@ class CollectionListView(BaseDraftListView):
             queryset = queryset.filter(description_level__in=genre_tag_list)
 
         if (title_filter):
-            queryset = queryset.filter(title__contains=title_filter)
+            queryset = queryset.filter(Q(title__icontains=title_filter) | Q(abstract__icontains=title_filter))
 
         queryset = queryset.order_by(self.get_ordering())
         return queryset
