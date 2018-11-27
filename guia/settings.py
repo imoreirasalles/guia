@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'reversion_compare',
     'import_export',
     'debug_toolbar',
+    'widget_tweaks',
     # My apps
     'collection',
     'digitalassetsmanagement',

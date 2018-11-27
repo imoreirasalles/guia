@@ -7,7 +7,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import FormView, ListView, TemplateView, UpdateView
+from django.views.generic import CreateView, FormView, ListView, TemplateView, UpdateView
 
 # Project guia imports
 from home.models import Post
@@ -17,7 +17,8 @@ from publication.models import Publication
 from event.models import Event
 from person.models import Person
 
-from .forms import ForgotPasswordForm, ResetPasswordForm
+from .forms import ForgotPasswordForm, ResetPasswordForm, UserForm
+
 
 User = get_user_model()
 
@@ -62,6 +63,22 @@ class PostList(ListView):
     def person_total(self):
         person_total = Person.objects.published().count()
         return person_total
+
+
+class UserCreateView(CreateView):
+    form_class = UserForm
+    model = User
+    template_name = 'register.html'
+
+    def form_valid(self, form):
+        user = form.save()
+        authenticated_user = authenticate(
+            self.request,
+            username=user.username,
+            password=form.cleaned_data['password']
+        )
+        login_django(self.request, authenticated_user)
+        return redirect('home')
 
 
 class ForgotPasswordView(FormView):
