@@ -1,5 +1,7 @@
 from datetime import date
 
+from django.db.models import Q
+
 from guia.views import BaseDraftListView, BaseDraftDetailView
 from home.mixins import OrderByMixin, SearchMixin
 from location.models import Location
@@ -15,6 +17,15 @@ class ExhibitionListView(SearchMixin, OrderByMixin, BaseDraftListView):
         ('date_end', 'date_end__lte', date),
         ('location', 'location__pk', int),
     )
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        title = self.request.GET.get('title', None)
+
+        if title:
+            return queryset.filter(Q(Q(title__icontains=title) | Q(abstract__icontains=title)))
+
+        return queryset
 
     def get_context_data(self, *args, **kwargs):
         output = super().get_context_data(*args, **kwargs)
