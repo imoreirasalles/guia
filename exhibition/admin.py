@@ -24,7 +24,7 @@ class ExhibitionResource(resources.ModelResource):
     # link = Field(attribute='link', column_name='Link - EX.: http://ims.com.br')
     class Meta:
         model = Exhibition
-        fields = ('uuid', 'title', 'id_human', 'abstract', 'full_text', 'date_start', 'date_end', 'location', 'link')
+        fields = ('uuid', 'title', 'id_human', 'abstract', 'full_text', 'date_start', 'date_end', 'link')
         skip_unchanged = True
         report_skipped = False
         import_id_fields = ('uuid',)
@@ -50,8 +50,8 @@ class ExhibitionAdminForm(forms.ModelForm):
 class ExhibitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = ExhibitionResource
-    list_filter = ('location', 'date_start', 'date_end')
-    list_display = ('id_auto_series', 'uuid', 'title', 'location', 'date_start', 'date_end', 'link', 'is_draft')
+    list_filter = ('date_start', 'date_end')
+    list_display = ('id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'link', 'is_draft')
     search_fields = ['id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'team']
     filter_horizontal = ('catalog', 'publication', 'capture')
     form = ExhibitionAdminForm

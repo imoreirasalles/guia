@@ -43,11 +43,8 @@ class Exhibition(Base, DraftModel):
         blank=True,
         help_text=_('Choose an final date'),
         verbose_name=_('Final date'))
-    location = models.ForeignKey(
+    locations = models.ManyToManyField(
         'location.Location',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('What is the exhibition edition location?'),
         verbose_name=_('Location'))
     link = models.URLField(
