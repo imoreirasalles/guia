@@ -93,6 +93,10 @@ class Person(Base, DraftModel):
         blank=True,
         help_text=_('Ex.: VIAF, ULAN, Wiki Data, etc'),
         verbose_name=_('Linked Open Data Dictionary'))
+    docs = models.ManyToManyField(
+        'digitalassetsmanagement.Doc',
+        blank=True,
+        verbose_name=_('Documents'))
 
     def __str__(self):
         return self.title
