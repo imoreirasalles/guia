@@ -22,12 +22,13 @@ class PersonListView(SearchMixin, OrderByMixin, BaseDraftListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        queryset = queryset.filter(personAuthor__isnull=False)
         title = self.request.GET.get('title', None)
 
         if title:
             return queryset.filter(Q(Q(title__icontains=title) | Q(abstract__icontains=title)))
 
-        return queryset
+        return queryset.distinct()
 
     def get_context_data(self, *args, **kwargs):
         output = super().get_context_data(*args, **kwargs)
