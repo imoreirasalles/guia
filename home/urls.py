@@ -10,7 +10,6 @@ from . import views
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
     path('signup/', views.UserCreateView.as_view(), name='signup'),
-    path('login/', views.login, name='login'),
     path('forgot-password/', views.ForgotPasswordView.as_view(), name='forgot-password'),
     path('forgot-password/success/', views.ForgotPasswordSuccessView.as_view(), name='forgot-password-success'),
     path('reset-password/<str:token>/', views.ResetPasswordUpdateView.as_view(), name='reset-password-form'),
