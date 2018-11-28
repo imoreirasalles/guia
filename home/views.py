@@ -23,21 +23,19 @@ from .forms import ForgotPasswordForm, ResetPasswordForm, UserForm
 User = get_user_model()
 
 
-def login(request):
-    return render(request, 'login.html')
-
-
 class PostList(ListView):
-    model = Post
     context_object_name = "post_list"
     template_name = "home.html"
 
+    def get_queryset(self):
+        return Post.objects.all().order_by('-created')[0:1]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if (Post.objects.order_by('id_auto_series').exists()):
-            post = Post.objects.latest('capture')
-            context['first_image_id'] = post.capture.first().id_auto_series
-            image_list = [str(index) for index in range(post.capture.count())]
+        posts = context['object_list']
+        if posts:
+            context['first_image_id'] = posts[0].capture.first().id_auto_series
+            image_list = [str(index) for index in range(posts[0].capture.count())]
             context['image_list'] = image_list
         else:
             context['first_active_image'] = ''
