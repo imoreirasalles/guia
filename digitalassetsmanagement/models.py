@@ -94,7 +94,29 @@ class Item(Base):
         self.slug = slug_auto
         super(Item, self).save(*args, **kwargs)
 
-
     class Meta:
         verbose_name = _('Item')
         verbose_name_plural = _('Items')
+
+
+@reversion.register()
+class Doc(Base):
+    file = models.FileField(verbose_name=_('File'))
+
+    def __str__(self):
+        file_str = '{} File [{}]'.format(self.title, str(self.file))
+        id_str = 'ID [' + str(self.id_auto_series) + '] '
+        return (id_str + "  " + file_str)
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series is None:
+            super(Doc, self).save(*args, **kwargs)
+
+        slug_auto = slugify(str(self.id_auto_series) + '-doc-' + self.title)
+
+        self.slug = slug_auto
+        super(Doc, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')

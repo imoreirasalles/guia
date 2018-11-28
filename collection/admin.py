@@ -132,7 +132,7 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
                     {'fields': ('full_text', 'container'),
                     }),
                 (ugettext_lazy('Other Infos'),
-                    {'fields': ('other_data',),
+                    {'fields': ('other_data', 'docs',),
                     }),
     )
     form = CollectionAdminForm

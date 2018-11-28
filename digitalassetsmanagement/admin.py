@@ -51,3 +51,19 @@ class ItemAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('id_auto_series', 'uuid', 'title', 'description')
     search_fields = ['__all__']
     filter_horizontal = ('capture',)
+
+
+class DocForm(forms.ModelForm):
+    class Meta:
+        model = Doc
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].required = True
+
+
+@admin.register(Doc)
+class DocAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    readonly_fields = ('created', 'uuid', 'slug',)
+    form = DocForm

@@ -258,6 +258,10 @@ class Collection(Base, DraftModel):
         blank=True,
         help_text=_('Other unstructured data of this collection'),
         verbose_name=_('Other Data'))
+    docs = models.ManyToManyField(
+        'digitalassetsmanagement.Doc',
+        blank=True,
+        verbose_name=_('Documents'))
 
     def __str__(self):
         if self.title == None:

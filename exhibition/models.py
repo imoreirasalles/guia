@@ -72,6 +72,10 @@ class Exhibition(Base, DraftModel):
         blank=True,
         help_text=_("Is there any other publications about the exhibition?"),
         verbose_name=_('Publication(s)'))
+    docs = models.ManyToManyField(
+        'digitalassetsmanagement.Doc',
+        blank=True,
+        verbose_name=_('Documents'))
 
     def __str__(self):
         return self.title
