@@ -262,6 +262,10 @@ class Collection(Base, DraftModel):
         'digitalassetsmanagement.Doc',
         blank=True,
         verbose_name=_('Documents'))
+    acquisitions = models.ManyToManyField(
+        'management.Acquisition',
+        blank=True,
+        verbose_name=_('Acquisitions'))
 
     def __str__(self):
         if self.title == None:
