@@ -88,6 +88,11 @@ class Event(Base, DraftModel):
         'digitalassetsmanagement.Doc',
         blank=True,
         verbose_name=_('Documents'))
+    audience = models.IntegerField(
+        verbose_name=_('Audience'),
+        blank=True,
+        null=True,
+        help_text=_("Number of participants"))
 
     def __str__(self):
         return self.title
