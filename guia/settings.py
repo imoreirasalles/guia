@@ -204,13 +204,13 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 
-# Emails settings
-DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
-EMAIL_HOST = env.str('EMAIL_HOST')
-EMAIL_PORT = env.int('EMAIL_PORT', default=587)
-EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+# Emails settings - uncomment and preset correctly to apply email recovery
+# DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
+# EMAIL_HOST = env.str('EMAIL_HOST')
+# EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+# EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+# EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
 
 
 # Ckeditor configuration
