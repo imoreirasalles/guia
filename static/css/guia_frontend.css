@@ -510,14 +510,21 @@ display: inline-block;
 }
 
 .front-header{
-  height: 100px;
+  min-height: 100px;
+  height: auto;
 }
 
 .front-title{
-  position: absolute;
-  bottom: 0px;
-  left: 35px;
-  right: auto;
+  position: relative;
+  z-index: 25000;
+  left: 75px;
+  top: 0;
+}
+
+@media only screen and (max-width: 990px) {
+    .front-title {
+        left: 0 !important;
+    }
 }
 
 .front-home-welcome{
@@ -596,4 +603,8 @@ display: inline-block;
 
 .slick-current {
   opacity: 1;
+}
+
+.fix-align-form label {
+    min-height: 44px;
 }

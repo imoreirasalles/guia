@@ -9,7 +9,6 @@ from django.utils.translation import gettext_lazy as _
 # project guia imports
 from . import views
 
-from exhibition.views import ExhibitionListView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),

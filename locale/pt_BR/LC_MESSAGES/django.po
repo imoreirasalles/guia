@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-20 00:26-0200\n"
+"POT-Creation-Date: 2018-11-22 17:46-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -642,29 +642,55 @@ msgstr "É rascunho?"
 msgid "key"
 msgstr "Chave"
 
-#: guia/settings.py:112
+#: guia/settings.py:115
 msgid "value"
 msgstr "Valor"
 
-#: guia/settings.py:156
+#: guia/settings.py:159
 msgid "Portuguese"
 msgstr "Português"
 
-#: guia/settings.py:157
+#: guia/settings.py:160
 msgid "English"
 msgstr "Inglês"
 
-#: guia/urls.py:32
+#: guia/urls.py:31
 msgid "My Project"
 msgstr "Instituto Moreira Salles"
 
-#: guia/urls.py:35
+#: guia/urls.py:34
 msgid "Input and Admin Data"
 msgstr "Área de Entrada e Administração de Dados"
 
-#: guia/urls.py:38
+#: guia/urls.py:37
 msgid "Admin Panel"
 msgstr "Painel Administrativo"
+
+#: home/forms.py:10
+msgid "Username or Email"
+msgstr "Login ou e-mail"
+
+#: home/forms.py:26
+#, python-brace-format
+msgid "User \"{username}\" doesn't have e-mail"
+msgstr "Usuário \"{username}\" não possui e-mail"
+
+#: home/forms.py:32
+#, python-brace-format
+msgid "User \"{username}\" not found"
+msgstr "Usuário \"{username}\" não encontrado"
+
+#: home/forms.py:38
+msgid "New pasword"
+msgstr "Nova senha"
+
+#: home/forms.py:42
+msgid "Confirm pasword"
+msgstr "Confirmar senha"
+
+#: home/forms.py:53 home/forms.py:54
+msgid "The passwords are not equals"
+msgstr "As senhas não são iguais"
 
 #: home/models.py:21
 msgid "Ex.: Welcome to Guia..."
@@ -681,6 +707,52 @@ msgstr "Post da Home"
 #: home/models.py:38
 msgid "Home Posts"
 msgstr "Posts da Home"
+
+#: home/views.py:89
+#, python-brace-format
+msgid ""
+"\n"
+"        Follow the link to update your password in the IMS Guide: <a href="
+"\"{base_url}{link}\">click here</a>.<br>\n"
+"        If you did not request a password change, disregard this email."
+"<br><br>\n"
+"        IMS Guide.\n"
+"        "
+msgstr ""
+"\n"
+"        Segue o link para atualizar sua senha no Guia IMS: <a href="
+"\"{base_url}{link}\">clique aqui</a>.<br>\n"
+"        Se você não solicitou uma alteração de senha, desconsidere esse e-mail"
+"<br><br>\n"
+"        Guia IMS.\n"
+"        "
+
+#: home/views.py:94
+#, python-brace-format
+msgid ""
+"\n"
+"        Follow the link to update your password in the IMS Guide: {base_url}"
+"{link}\n"
+"        If you did not request a password change, disregard this email.\n"
+"\n"
+"        IMS Guide.\n"
+"        "
+msgstr ""
+"\n"
+"        Segue o link para atualizar sua senha no Guia IMS: {base_url}"
+"{link}\n"
+"        Se você não solicitou uma alteração de senha, desconsidere esse e-mail.\n"
+"\n"
+"        Guia IMS.\n"
+"        "
+
+#: home/views.py:101
+msgid "Reset password - Institute Moreira Salles"
+msgstr "Redefinir senha - Institute Moreira Salles"
+
+#: home/views.py:131
+msgid "Page not found"
+msgstr "Página não encontrada"
 
 #: location/apps.py:7
 msgid "Location App"

@@ -30,12 +30,16 @@ Exibições
       <input type="hidden" name="page" value="{{ page_obj.number|default_if_none:'1' }}">
       <input type="hidden" name="order_by" value="{{ request.GET.order_by|default_if_none:'' }}">
 
-      <div class="form-group col-md-4 col-sm-12">
+      <div class="form-group col-md-2 col-sm-12">
+        <label for="id_date">Busque pelo título</label>
+        <input type="text" id="title" class="form-control" name="title" value="{{ request.GET.title }}">
+      </div>
+      <div class="form-group col-md-3 col-sm-12">
         <label for="id_date">Filtre por data de início</label>
         <input type="text" id="id_date" class="form-control datepicker" name="date_start" value="{{ request.GET.date_start }}">
       </div>
 
-      <div class="form-group col-md-4 col-sm-12">
+      <div class="form-group col-md-3 col-sm-12">
         <label for="id_date">Filtre por data final</label>
         <input type="text" id="id_date" class="form-control datepicker" name="date_end" value="{{ request.GET.date_end }}">
       </div>

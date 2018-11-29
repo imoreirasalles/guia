@@ -23,11 +23,11 @@ class Capture(Base):
         verbose_name=_('Image'))
 
     def __str__(self):
-        if self.image != None:
-            Capture_file_str = 'IMG [' + str(self.image) + ']'
+        if self.image:
+            Capture_file_str = '{} IMG [{}]'.format(self.title, str(self.image))
         else:
             self.image = _('No file image')
-            Capture_file_str = 'IMG [' + str(self.image) + ']'
+            Capture_file_str = 'IMG [{}]'.format(str(self.image))
         Capture_id_str = 'ID [' + str(self.id_auto_series) + '] '
         return (Capture_id_str + "  " + Capture_file_str)
 
@@ -94,7 +94,29 @@ class Item(Base):
         self.slug = slug_auto
         super(Item, self).save(*args, **kwargs)
 
-
     class Meta:
         verbose_name = _('Item')
         verbose_name_plural = _('Items')
+
+
+@reversion.register()
+class Doc(Base):
+    file = models.FileField(verbose_name=_('File'))
+
+    def __str__(self):
+        file_str = '{} File [{}]'.format(self.title, str(self.file))
+        id_str = 'ID [' + str(self.id_auto_series) + '] '
+        return (id_str + "  " + file_str)
+
+    def save(self, *args, **kwargs):
+        if self.id_auto_series is None:
+            super(Doc, self).save(*args, **kwargs)
+
+        slug_auto = slugify(str(self.id_auto_series) + '-doc-' + self.title)
+
+        self.slug = slug_auto
+        super(Doc, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')

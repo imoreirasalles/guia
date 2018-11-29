@@ -45,11 +45,8 @@ class Exhibition(Base, DraftModel):
         blank=True,
         help_text=_('Choose an final date'),
         verbose_name=_('Final date'))
-    location = models.ForeignKey(
+    locations = models.ManyToManyField(
         'location.Location',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
         help_text=_('What is the exhibition edition location?'),
         verbose_name=_('Location'))
     link = models.URLField(
@@ -74,6 +71,15 @@ class Exhibition(Base, DraftModel):
         blank=True,
         help_text=_("Is there any other publications about the exhibition?"),
         verbose_name=_('Publication(s)'))
+    docs = models.ManyToManyField(
+        'digitalassetsmanagement.Doc',
+        blank=True,
+        verbose_name=_('Documents'))
+    audience = models.IntegerField(
+        verbose_name=_('Audience'),
+        blank=True,
+        null=True,
+        help_text=_("Number of participants"))
 
     def __str__(self):
         return self.title
