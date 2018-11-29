@@ -14,6 +14,10 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
 
+from digitalassetsmanagement.models import Doc
+from management.models import Acquisition
+
+
 
 class ContainerResource(resources.ModelResource):
     class Meta:
@@ -74,6 +78,25 @@ class CollectionAdminForm(forms.ModelForm):
         widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=True),
         label=ugettext_lazy('Other Unstructured Data'))
 
+    docs = forms.ModelMultipleChoiceField(
+        queryset=Doc.objects.all(),
+        label=ugettext_lazy('Documents'),
+        required=False,
+        widget=admin.widgets.FilteredSelectMultiple(
+            verbose_name=ugettext_lazy('Documents'),
+            is_stacked=False
+        )
+    )
+    acquisitions = forms.ModelMultipleChoiceField(
+        queryset=Acquisition.objects.all(),
+        label=ugettext_lazy('Acquisitions'),
+        required=False,
+        widget=admin.widgets.FilteredSelectMultiple(
+            verbose_name=ugettext_lazy('Acquisitions'),
+            is_stacked=False
+        )
+    )
+
     def get_queryset(self):
         return Collection.objects.filter(author__is=True)
 
@@ -132,7 +155,7 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
                     {'fields': ('full_text', 'container'),
                     }),
                 (ugettext_lazy('Other Infos'),
-                    {'fields': ('other_data', 'docs',),
+                    {'fields': ('other_data', 'docs', 'acquisitions',),
                     }),
     )
     form = CollectionAdminForm
