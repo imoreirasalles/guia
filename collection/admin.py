@@ -16,6 +16,7 @@ from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
 
 from digitalassetsmanagement.models import Capture, Doc
+from digitalassetsmanagement.widgets import MultipleSelectPreviewImageWidget
 from management.models import Acquisition
 
 
@@ -100,10 +101,7 @@ class CollectionAdminForm(forms.ModelForm):
         queryset=Capture.objects.all(),
         label=ugettext_lazy('Image'),
         required=False,
-        widget=FilteredSelectMultiple(
-            verbose_name=ugettext_lazy('Image'),
-            is_stacked=False
-        )
+        widget=MultipleSelectPreviewImageWidget()
     )
 
     class Meta:
@@ -176,10 +174,6 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
                     }),
     )
     form = CollectionAdminForm
-    # class Media:
-    #     css = {
-    #          'all': ('css/guia_admin.css',)
-    #     }
 
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
