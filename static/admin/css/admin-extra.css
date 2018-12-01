@@ -67,3 +67,11 @@ div.field-box.field-id_old{
 div.field-box.field-uuid, div.field-box.field-id_human, div.field-box.field-management_unit, div.field-box.field-title, div.field-box.field-date_start, div.field-box.field-date_end, div.field-box.field-access_condition {
   width: 500px;
 }
+
+.capture-preview-image {
+    height: 200px;
+    overflow-y: scroll;
+}
+.preview-image {
+    width: 100px;
+}
