@@ -142,7 +142,7 @@ Guia - Exposições
           <tr>
             <th scope="row">Localização</th>
             <td>
-              {{ object.location_generic }}
+              {{ object.locations.all|join:", " }}
             </td>
           </tr>
         </tbody>

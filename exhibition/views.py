@@ -15,7 +15,7 @@ class ExhibitionListView(SearchMixin, OrderByMixin, BaseDraftListView):
     filters = (
         ('date_start', 'date_start__gte', date),
         ('date_end', 'date_end__lte', date),
-        ('location', 'location__pk', int),
+        ('location', 'locations', int),
     )
 
     def get_queryset(self):
@@ -30,7 +30,7 @@ class ExhibitionListView(SearchMixin, OrderByMixin, BaseDraftListView):
     def get_context_data(self, *args, **kwargs):
         output = super().get_context_data(*args, **kwargs)
         queryset = self.get_queryset()
-        location_ids = queryset.distinct('location').values_list('location__pk', flat=True)
+        location_ids = queryset.distinct('locations').values_list('locations__pk', flat=True)
         output['locations'] = [(location.pk, str(location)) for location in
                                Location.objects.filter(pk__in=location_ids)]
         return output
