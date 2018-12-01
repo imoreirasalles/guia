@@ -23,6 +23,11 @@ class Capture(Base):
         verbose_name=_('Image'))
 
     def __str__(self):
+        """
+        Keep the pattern of "str" to be used by custom widget (MultipleSelectPreviewImageWidget).
+
+        Expected pattern: "ID [image ID] some title IMG [image path]"
+        """
         if self.image:
             Capture_file_str = '{} IMG [{}]'.format(self.title, str(self.image))
         else:

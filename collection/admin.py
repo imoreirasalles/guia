@@ -1,22 +1,22 @@
 from django.contrib import admin
+from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy
 # Project Guia imports
 from .models import *
 from person.models import Person
-## Third part imports ##
+# Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
-import tablib
+
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from import_export.fields import Field
 
-from digitalassetsmanagement.models import Doc
+from digitalassetsmanagement.models import Capture, Doc
+from digitalassetsmanagement.widgets import MultipleSelectPreviewImageWidget
 from management.models import Acquisition
-
 
 
 class ContainerResource(resources.ModelResource):
@@ -77,7 +77,6 @@ class CollectionAdminForm(forms.ModelForm):
         required=False,
         widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=True),
         label=ugettext_lazy('Other Unstructured Data'))
-
     docs = forms.ModelMultipleChoiceField(
         queryset=Doc.objects.all(),
         label=ugettext_lazy('Documents'),
@@ -96,13 +95,27 @@ class CollectionAdminForm(forms.ModelForm):
             is_stacked=False
         )
     )
-
-    def get_queryset(self):
-        return Collection.objects.filter(author__is=True)
+    capture = forms.ModelMultipleChoiceField(
+        queryset=Capture.objects.all(),
+        label=ugettext_lazy('Image'),
+        required=False,
+        widget=MultipleSelectPreviewImageWidget()
+    )
 
     class Meta:
         model = Collection
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['capture'].widget = RelatedFieldWidgetWrapper(
+            self.fields['capture'].widget,
+            Collection._meta.get_field('capture').remote_field,
+            self.admin_site
+        )
+
+    def get_queryset(self):
+        return Collection.objects.filter(author__is=True)
 
 
 @admin.register(Collection)
@@ -159,10 +172,10 @@ class CollectionAdmin(CompareVersionAdmin, ImportExportModelAdmin):
                     }),
     )
     form = CollectionAdminForm
-    # class Media:
-    #     css = {
-    #          'all': ('css/guia_admin.css',)
-    #     }
+
+    def __init__(self, model, admin_site):
+        super().__init__(model, admin_site)
+        self.form.admin_site = admin_site
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == 'author':
