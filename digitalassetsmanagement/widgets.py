@@ -5,7 +5,7 @@ from django.conf import settings
 
 class MultipleSelectPreviewImageWidget(forms.CheckboxSelectMultiple):
     option_template_name = 'forms/widgets/preview_image_checkbox_option.html'
-    REGEX = '\[([\w+]+)\][\w ]+\[([\w_\-.]+)\]'
+    REGEX = '\[([\w+]+)\][\w _\-.]+\[([\w_\-.]+)\]'
 
     @property
     def media(self):

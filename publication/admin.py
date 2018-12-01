@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
@@ -10,6 +11,8 @@ from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+from digitalassetsmanagement.models import Capture
+from digitalassetsmanagement.widgets import MultipleSelectPreviewImageWidget
 
 
 class PublicationTypeResource(resources.ModelResource):
@@ -39,10 +42,24 @@ class PublicationAdminForm(forms.ModelForm):
         required=False,
         widget=JSONEditorWidget(settings.DATA_SCHEMA, collapsed=False),
         label=_('Other Unstructured Data'))
+    capture = forms.ModelMultipleChoiceField(
+        queryset=Capture.objects.all(),
+        label=_('Image'),
+        required=False,
+        widget=MultipleSelectPreviewImageWidget()
+    )
 
     class Meta:
         model = Publication
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['capture'].widget = RelatedFieldWidgetWrapper(
+            self.fields['capture'].widget,
+            Publication._meta.get_field('capture').remote_field,
+            self.admin_site
+        )
 
 
 class PublicationResource(resources.ModelResource):
@@ -64,3 +81,7 @@ class PublicationAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelA
     search_fields = ['title']
     filter_horizontal = ('author', 'publisher', 'capture')
     form = PublicationAdminForm
+
+    def __init__(self, model, admin_site):
+        super().__init__(model, admin_site)
+        self.form.admin_site = admin_site

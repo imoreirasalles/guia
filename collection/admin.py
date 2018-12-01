@@ -1,24 +1,22 @@
 from django.contrib import admin
-from django.contrib.admin.widgets import FilteredSelectMultiple, RelatedFieldWidgetWrapper
+from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy
 # Project Guia imports
 from .models import *
 from person.models import Person
-## Third part imports ##
+# Third part imports ##
 from ckeditor.widgets import CKEditorWidget
 from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
-import tablib
+
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from import_export.fields import Field
 
 from digitalassetsmanagement.models import Capture, Doc
 from digitalassetsmanagement.widgets import MultipleSelectPreviewImageWidget
 from management.models import Acquisition
-
 
 
 class ContainerResource(resources.ModelResource):
