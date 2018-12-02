@@ -71,6 +71,9 @@ div.field-box.field-uuid, div.field-box.field-id_human, div.field-box.field-mana
 .capture-preview-image {
     height: 200px;
     overflow-y: scroll;
+    margin-right: 5px;
+    float: left;
+    width: 800px;
 }
 .preview-image {
     width: 100px;

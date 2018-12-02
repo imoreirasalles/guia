@@ -13,8 +13,9 @@ import tablib
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from import_export.fields import Field
-from digitalassetsmanagement.models import Capture
+from digitalassetsmanagement.models import Capture, Doc
 from digitalassetsmanagement.widgets import MultipleSelectPreviewImageWidget
+from location.models import Location
 
 
 
@@ -50,6 +51,24 @@ class ExhibitionAdminForm(forms.ModelForm):
         required=False,
         widget=MultipleSelectPreviewImageWidget()
     )
+    locations = forms.ModelMultipleChoiceField(
+        queryset=Location.objects.all(),
+        label=_('Locations'),
+        required=False,
+        widget=admin.widgets.FilteredSelectMultiple(
+            verbose_name=_('Locations'),
+            is_stacked=False
+        )
+    )
+    docs = forms.ModelMultipleChoiceField(
+        queryset=Doc.objects.all(),
+        label=_('Documents'),
+        required=False,
+        widget=admin.widgets.FilteredSelectMultiple(
+            verbose_name=_('Documents'),
+            is_stacked=False
+        )
+    )
 
     class Meta:
         model = Exhibition
@@ -60,6 +79,16 @@ class ExhibitionAdminForm(forms.ModelForm):
         self.fields['capture'].widget = RelatedFieldWidgetWrapper(
             self.fields['capture'].widget,
             Exhibition._meta.get_field('capture').remote_field,
+            self.admin_site
+        )
+        self.fields['docs'].widget = RelatedFieldWidgetWrapper(
+            self.fields['docs'].widget,
+            Exhibition._meta.get_field('docs').remote_field,
+            self.admin_site
+        )
+        self.fields['locations'].widget = RelatedFieldWidgetWrapper(
+            self.fields['locations'].widget,
+            Exhibition._meta.get_field('locations').remote_field,
             self.admin_site
         )
 

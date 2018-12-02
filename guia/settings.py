@@ -240,7 +240,7 @@ ADMIN_REORDER = (
                 'person.Person',)},
     {'app': 'digitalassetsmanagement',
     'label': 'Digital Assets Management',
-    'models': ('digitalassetsmanagement.Item',)},
+    'models': ('digitalassetsmanagement.Item', 'digitalassetsmanagement.Doc')},
     {'app': 'management',
     'label': 'Gestão do Acervo',
     'models': ('management.ManagementUnit',
