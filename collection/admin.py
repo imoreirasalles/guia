@@ -108,9 +108,19 @@ class CollectionAdminForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['acquisitions'].widget = RelatedFieldWidgetWrapper(
+            self.fields['acquisitions'].widget,
+            Collection._meta.get_field('acquisitions').remote_field,
+            self.admin_site
+        )
         self.fields['capture'].widget = RelatedFieldWidgetWrapper(
             self.fields['capture'].widget,
             Collection._meta.get_field('capture').remote_field,
+            self.admin_site
+        )
+        self.fields['docs'].widget = RelatedFieldWidgetWrapper(
+            self.fields['docs'].widget,
+            Collection._meta.get_field('docs').remote_field,
             self.admin_site
         )
 

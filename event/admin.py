@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
 from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
@@ -50,6 +51,17 @@ class EventAdminForm(forms.ModelForm):
         model = Event
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['docs'].widget = admin.widgets.FilteredSelectMultiple(
+            verbose_name=_('Documents'),
+            is_stacked=False
+        )
+        self.fields['docs'].widget = RelatedFieldWidgetWrapper(
+            self.fields['docs'].widget,
+            Event._meta.get_field('docs').remote_field,
+            self.admin_site
+        )
 
 class EventResource(resources.ModelResource):
 
@@ -70,3 +82,7 @@ class EventAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('id_auto_series', 'title', 'date_start', 'date_end', 'type', 'location', 'is_draft')
     search_fields = ['__all__']
     form = EventAdminForm
+
+    def __init__(self, model, admin_site):
+        super().__init__(model, admin_site)
+        self.form.admin_site = admin_site
