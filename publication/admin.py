@@ -11,7 +11,7 @@ from django_admin_json_editor import JSONEditorWidget
 from reversion_compare.admin import CompareVersionAdmin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from digitalassetsmanagement.models import Capture
+from digitalassetsmanagement.models import Capture, Doc
 from digitalassetsmanagement.widgets import MultipleSelectPreviewImageWidget
 
 
@@ -48,6 +48,15 @@ class PublicationAdminForm(forms.ModelForm):
         required=False,
         widget=MultipleSelectPreviewImageWidget()
     )
+    docs = forms.ModelMultipleChoiceField(
+        queryset=Doc.objects.all(),
+        label=_('Documents'),
+        required=False,
+        widget=admin.widgets.FilteredSelectMultiple(
+            verbose_name=_('Documents'),
+            is_stacked=False
+        )
+    )
 
     class Meta:
         model = Publication
@@ -58,6 +67,11 @@ class PublicationAdminForm(forms.ModelForm):
         self.fields['capture'].widget = RelatedFieldWidgetWrapper(
             self.fields['capture'].widget,
             Publication._meta.get_field('capture').remote_field,
+            self.admin_site
+        )
+        self.fields['docs'].widget = RelatedFieldWidgetWrapper(
+            self.fields['docs'].widget,
+            Publication._meta.get_field('docs').remote_field,
             self.admin_site
         )
 
