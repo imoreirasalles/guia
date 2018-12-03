@@ -101,7 +101,7 @@
               </tr>
               <tr>
                 <th scope="row">{% trans "type" %}</th>
-                <td>{{ object.person_type|default_if_none:"-" }}</td>
+                <td>{{ object.get_person_type_display }}</td>
               </tr>
               <tr>
                 <th scope="row">{% trans "staff member" %}?</th>
@@ -117,11 +117,11 @@
               </tr>
               <tr>
                 <th scope="row">{% trans "gender" %}?</th>
-                <td>{{ object.gender|boolean_with_icons }}</td>
+                <td>{{ object.get_gender_display }}</td>
               </tr>
               <tr>
                 <th scope="row">{% trans "initial date" %}?</th>
-                <td>{{ object.gender|boolean_with_icons }}</td>
+                <td>{{ object.date_start|date:"d/m/Y" }}</td>
               </tr>
               {% for key, value in object.linked_open_data|json_to_dict %}
                 <tr>
