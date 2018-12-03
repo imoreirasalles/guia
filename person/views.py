@@ -22,7 +22,7 @@ class PersonListView(SearchMixin, OrderByMixin, BaseDraftListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(personAuthor__isnull=False)
+        queryset = queryset.filter(Q(personAuthor__isnull=False) | Q(is_feature=True))
         title = self.request.GET.get('title', None)
 
         if title:

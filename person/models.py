@@ -17,6 +17,14 @@ class Person(Base, DraftModel):
     """
     Person Class used to record info about partners, authors, organizations, etc
     """
+    PERSON_TYPES = (
+        ('individual', _('Individual')),
+        ('juridical', _('Juridical'))
+    )
+    GENDER = (
+        ('m', _('Male')),
+        ('f', _('Female'))
+    )
     id_human = models.CharField(
         max_length=64,
         null=True,
@@ -28,6 +36,7 @@ class Person(Base, DraftModel):
         max_length=32,
         null=True,
         blank=True,
+        choices=PERSON_TYPES,
         help_text=_('Choose the more appropriate option'),
         verbose_name=_('Person Type'))
     title_index = models.CharField(
@@ -55,6 +64,7 @@ class Person(Base, DraftModel):
         max_length=1,
         null=True,
         blank=True,
+        choices=GENDER,
         help_text=_('Biological sex gender'),
         verbose_name=_('Gender'))
     # nation_origin =
