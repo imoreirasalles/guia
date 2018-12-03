@@ -608,3 +608,9 @@ display: inline-block;
 .fix-align-form label {
     min-height: 44px;
 }
+
+@media screen and (min-width: 992px){
+    .table-responsive {
+        overflow: inherit;
+    }
+}
