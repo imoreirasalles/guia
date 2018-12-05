@@ -36,17 +36,17 @@ build to production:
   tags:
     - docker
 
-# deploy to production:
-#   stage: deploy
-#   image: cdrx/rancher-gitlab-deploy
-#   script:
-#     - upgrade --environment IMS --stack guia-ims-prod --service backend --no-finish-upgrade --sidekicks
-#     - upgrade --environment IMS --stack guia-ims-dev --service postgres --no-finish-upgrade
-#   only:
-#     - tags
-#   environment: production
-#   tags:
-#     - docker
+deploy to production:
+  stage: deploy
+  image: cdrx/rancher-gitlab-deploy
+  script:
+    - upgrade --environment IMS --stack guia-ims-prod --service backend --no-finish-upgrade --sidekicks
+    - upgrade --environment IMS --stack guia-ims-prod --service postgres --no-finish-upgrade
+  only:
+    - tags
+  environment: production
+  tags:
+    - docker
 
 ##########
 ## Homolog
