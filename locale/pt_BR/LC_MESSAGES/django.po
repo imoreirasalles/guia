@@ -41,7 +41,7 @@ msgstr "Dados de inventário"
 #: collection/admin.py:75 event/admin.py:46 management/admin.py:71
 #: publication/admin.py:41
 msgid "Other Unstructured Data"
-msgstr "Outros Dados não Estruturados"
+msgstr "Outros Dados"
 
 #: collection/admin.py:94
 msgid "Indentification"
@@ -87,14 +87,14 @@ msgstr "App Coleções"
 #: exhibition/models.py:22 exhibition/models.py:101 person/models.py:24
 #: publication/models.py:45
 msgid "Institucional Identifier"
-msgstr "Idenficador Institucional"
+msgstr "ID IMS"
 
 #: collection/models.py:25 collection/models.py:105
 #: digitalassetsmanagement/models.py:57 event/models.py:42
 #: exhibition/models.py:23 exhibition/models.py:102 person/models.py:25
 #: publication/models.py:46
 msgid "Institucional ID"
-msgstr "ID Institucional"
+msgstr "ID IMS"
 
 #: collection/models.py:31
 msgid "Container Aggregation Type"
@@ -190,9 +190,7 @@ msgstr "Alimente com informações sobre as dimensões do agrupamento. "
 #: collection/models.py:149 event/models.py:46 exhibition/models.py:42
 #: exhibition/models.py:125 management/models.py:116 person/models.py:79
 msgid "Choose a start date"
-msgstr ""
-"Escolha uma data inicial que representa a data de composição da primeira "
-"obra presente nessa coleção."
+msgstr "Escolha uma data inicial"
 
 #: collection/models.py:150 event/models.py:47 exhibition/models.py:43
 #: exhibition/models.py:126 management/models.py:117 person/models.py:80
