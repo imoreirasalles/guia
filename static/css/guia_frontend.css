@@ -343,6 +343,10 @@ display: inline-block;
   color: #ffa007;
 }
 
+.cards-data a{
+  text-decoration: none !important;
+}
+
 .deep_sea_rocket-blue, .deep_sea_rocket-blue #hr-home{
   color: #446B7E;
   background-color: #edf8ff;
