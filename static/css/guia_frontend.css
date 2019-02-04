@@ -320,7 +320,7 @@ display: inline-block;
 }
 
 .btn-grey-down{
-  background-color: #bdbcba;
+  background-color: #716e69;
 }
 
 .btn-grey-down a{
@@ -328,7 +328,11 @@ display: inline-block;
 }
 
 .btn-grey-up{
-  background-color: #afc5c2;
+  background-color: #4b7e84;
+}
+
+.btn-grey-up:hover{
+  background-color: #3e6660;
 }
 
 .btn-grey-up a{
