@@ -12,11 +12,17 @@ from .models import Exhibition
 class ExhibitionListView(SearchMixin, OrderByMixin, BaseDraftListView):
     model = Exhibition
     paginate_by = 20
+
     filters = (
         ('date_start', 'date_start__gte', date),
         ('date_end', 'date_end__lte', date),
         ('location', 'locations', int),
     )
+
+    def get_ordering(self):
+        ordering = self.request.GET.get('ordering', 'date_start')
+        # validate ordering here
+        return ordering
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -26,6 +32,7 @@ class ExhibitionListView(SearchMixin, OrderByMixin, BaseDraftListView):
             return queryset.filter(Q(Q(title__icontains=title) | Q(abstract__icontains=title)))
 
         return queryset
+        # .objects.order_by('-date_start')
 
     def get_context_data(self, *args, **kwargs):
         output = super().get_context_data(*args, **kwargs)

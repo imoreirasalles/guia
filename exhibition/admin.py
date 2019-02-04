@@ -98,7 +98,7 @@ class ExhibitionAdmin(CompareVersionAdmin, ImportExportModelAdmin, admin.ModelAd
     readonly_fields = ('created', 'uuid', 'slug',)
     resource_class = ExhibitionResource
     list_filter = ('date_start', 'date_end')
-    list_display = ('id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'link', 'is_draft')
+    list_display = ('id_auto_series', 'title', 'date_start', 'date_end', 'link', 'is_draft')
     search_fields = ['id_auto_series', 'uuid', 'title', 'date_start', 'date_end', 'team']
     filter_horizontal = ('catalog', 'publication', 'capture')
     form = ExhibitionAdminForm
