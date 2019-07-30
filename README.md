@@ -1,6 +1,6 @@
 # Guia de Coleções
 
-Sistema de Gestão de Acervos do Instituto Moreira Salles
+Sistema de gestão de acervos do Instituto Moreira Salles
 
 ![guia-ims](docs/guia-ims.jpg)
 
