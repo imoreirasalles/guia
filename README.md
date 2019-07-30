@@ -2,12 +2,13 @@
 
 Sistema de Gestão de Acervos do Instituto Moreira Salles
 
+![guia-ims](docs/guia-ims.jpg)
+
+
 ## Tecnologias utilizadas
-* Python 3.5 >= (https://www.python.org)
-* Django 2.0 >= (https://www.djangoproject.com)
-  * Python Decouple (https://github.com/henriquebastos/python-decouple)
-* Django Rest Framework 3.0 >= (http://www.django-rest-framework.org)
-* PostgreSQL 9.6 >= (https://www.postgresql.org)
+* Python (https://www.python.org)
+* Django (https://www.djangoproject.com)
+* PostgreSQL (https://www.postgresql.org)
 
 ## Documentação
 
