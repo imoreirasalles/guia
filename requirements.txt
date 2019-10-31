@@ -52,7 +52,7 @@ texttable==0.9.1
 unicodecsv==0.14.1
 urllib3==1.22
 websocket-client==0.48.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 Wheelhouse==0.1.3
 xlrd==1.1.0
 xlwt==1.3.0
