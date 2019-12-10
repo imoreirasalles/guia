@@ -1,7 +1,0 @@
-<label>
-    <input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}{% include "django/forms/widgets/attrs.html" %} />
-    {% if widget.capture_url %}
-        <img src="{{ widget.capture_url }}" alt="{{ widget.name }}" class="preview-image">
-    {% endif %}
-    {{ widget.label }}
-</label>
