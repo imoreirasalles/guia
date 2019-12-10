@@ -1,0 +1,63 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Collection List</h1>
+
+
+<ul>
+{% for item in collections %}
+    <li>
+      <h2>{{ item.label }}</h2>
+      <p>{{ item.summary }}</p>
+      <p><a href="{{ item.get_absolute_url }}">{{ item.uuid }}</a></p>
+    </li>
+{% endfor %}
+</ul>
+
+
+
+
+    {% if jsonsample %}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      const collections = {{ jsonsample|safe }};
+    </script>
+
+    <div id="collection_app">
+      [[message]]
+
+      <ul>
+        <li v-for="collection in collections">
+          <h3><a v-bind:href="collection.url">[[ collection.label ]]</a></3>
+          <p>Size: [[ collection.size ]]</p>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      var app = new Vue({
+        delimiters: ["[[", "]]"],
+        el: "#collection_app",
+        data: {
+          message: "Hello Vue!",
+          collections: collections
+        },
+        methods: {
+          greet: function(name) {
+            console.log("Hello from " + name + "!");
+          }
+        }
+      });
+    </script>
+    {% else %}
+    <p>No items available.</p>
+    {% endif %}
+  </body>
+</html>

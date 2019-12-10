@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Collection Form</title>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
+  <style>
+    body {
+      background-color: #f4f3ef;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="container">
+
+    <div class="columns is-desktop">
+      <div class="column">
+
+        <b-navbar class="is-dark">
+          <template slot="brand">
+            <b-navbar-item tag="router-link" :to="{ path: '/' }">
+              <h1 class="subtitle" style="color: honeydew;">Guia IMS</h1>
+            </b-navbar-item>
+          </template>
+
+          <template slot="end">
+            <b-navbar-item tag="div">
+              <div class="buttons">
+                <a class="button" @click="loginModal()" outlined>
+                  <strong>Log In</strong>
+                </a>
+              </div>
+            </b-navbar-item>
+          </template>
+        </b-navbar>
+
+      </div>
+    </div>
+
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Coleção Gilberto Ferrez
+          </h1>
+          <h2 class="subtitle">
+            Formulário de edição
+          </h2>
+        </div>
+      </div>
+    </section>
+
+
+
+    <div class="columns is-desktop">
+      <div class="column">
+
+        <section class="section">
+          <div class="container">
+            <h2 class="subtitle">
+              <strong>Article</strong> form
+            </h2>
+
+
+
+            <div class="columns is-desktop">
+              <div class="column">
+                <b-field label="Título" :label-position="labelPosition">
+                  <b-input value="Coleção Gilberto Ferrez"></b-input>
+                </b-field>
+              </div>
+            </div>
+
+            <div class="columns is-desktop">
+              <div class="column">
+                <b-field label="Resumo" :label-position="labelPosition">
+                  <b-input type="textarea" minlength="10" maxlength="140" placeholder="Breve descrição...">
+                  </b-input>
+                </b-field>
+              </div>
+            </div>
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field>
+                  <p class="control">
+                    <button class="button">
+                      <b-icon icon="format-bold"></b-icon>
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button class="button">
+                      <b-icon icon="format-italic"></b-icon>
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button class="button">
+                      <b-icon icon="format-underline"></b-icon>
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button class="button">
+                      <b-icon icon="format-align-left"></b-icon>
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button class="button">
+                      <b-icon icon="format-align-center"></b-icon>
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button class="button">
+                      <b-icon icon="format-align-right"></b-icon>
+                    </button>
+                  </p>
+                </b-field>
+
+                <b-field label="Descrição completa" :label-position="labelPosition">
+                  <b-input type="textarea" minlength="10" placeholder="Descrição completa...">
+                  </b-input>
+                </b-field>
+
+
+                <b-field>
+                  <template slot="label">
+                    Links
+                    <b-tooltip type="is-dark" label="URLs para outros endereços" position="is-right">
+                      <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                    </b-tooltip>
+                  </template>
+                </b-field>
+
+
+
+
+
+
+                <div class="columns is-desktop">
+                  <div class="column">
+
+                    <b-field label="Nome" :label-position="labelPosition">
+                      <b-input placeholder="Site IMS" type="text">
+                      </b-input>
+                    </b-field>
+
+                  </div>
+                  <div class="column is-three-quarters">
+
+                    <b-field label="URL" :label-position="labelPosition">
+                      <b-input placeholder="https://ims.com.br/acervos/" type="url"></b-input>
+                    </b-field>
+
+                  </div>
+                </div>
+
+                <div class="columns is-desktop">
+                  <div class="column">
+
+                    <b-field label="Nome" :label-position="labelPosition">
+                      <b-input placeholder="Cumulus" type="text">
+                      </b-input>
+                    </b-field>
+
+                  </div>
+                  <div class="column is-three-quarters">
+
+                    <b-field label="URL" :label-position="labelPosition">
+                      <b-input placeholder="http://acervos.ims.com.br/" type="url"></b-input>
+                    </b-field>
+
+                  </div>
+                </div>
+
+                <div class="columns is-desktop">
+                  <div class="column">
+
+                    <b-field label="Nome" :label-position="labelPosition">
+                      <b-input placeholder="Brasiliana" type="text">
+                      </b-input>
+                    </b-field>
+
+                  </div>
+                  <div class="column is-three-quarters">
+
+                    <b-field label="URL" :label-position="labelPosition">
+                      <b-input placeholder="http://acervos.ims.com.br/" type="url"></b-input>
+                    </b-field>
+
+                  </div>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+
+
+
+            <section>
+              <b-field>
+                <b-upload v-model="dropFiles" multiple drag-drop>
+                  <section class="section">
+                    <div class="content has-text-centered">
+                      <p>
+                        <b-icon icon="upload" size="is-large">
+                        </b-icon>
+                      </p>
+                      <p>Drop your files here or click to upload</p>
+                    </div>
+                  </section>
+                </b-upload>
+              </b-field>
+
+              <div class="tags">
+                <span v-for="(file, index) in dropFiles" :key="index" class="tag is-primary">
+                  {{file.name}}
+                  <button class="delete is-small" type="button" @click="deleteDropFile(index)">
+                  </button>
+                </span>
+              </div>
+            </section>
+
+          </div>
+        </section>
+      </div>
+      <div class="column">
+
+        <section class="section">
+          <div class="container">
+            <h2 class="subtitle">
+              <strong>Metadata</strong> form
+            </h2>
+
+            <b-field>
+              <template slot="label">
+                Informações básicas
+                <b-tooltip type="is-dark" label="Campos obrigatórios para identificação da coleção" position="is-right">
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+            </b-field>
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field label="Código de identificação" :label-position="labelPosition">
+                  <b-input placeholder="Digite o código de identificação..." type="text" required
+                    validation-message="Somentre letras e números" pattern="[a-z]*">
+                  </b-input>
+                </b-field>
+
+              </div>
+            </div>
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field label="Tipo de coleção" :label-position="labelPosition">
+                  <b-select placeholder="Selecione uma opção..." expanded>
+                    <option value="archive">Arquivo</option>
+                    <option value="library">Biblioteca</option>
+                    <option value="collection">Coleção</option>
+                    <option value="collection_small">Conjunto</option>
+                  </b-select>
+                </b-field>
+
+              </div>
+
+              <div class="column">
+
+                <b-field label="Área responsável" :label-position="labelPosition">
+                  <b-select placeholder="Selecione uma opção..." expanded>
+                    <option value="archive">Biblioteca de Fotografia</option>
+                    <option value="archive">Gestão de Acervos</option>
+                    <option value="archive">Fotografia</option>
+                    <option value="library">Fotografia Contemporânea</option>
+                    <option value="collection">Iconografia</option>
+                    <option value="collection_small">Literatura</option>
+                    <option value="collection_small">Música</option>
+                  </b-select>
+                </b-field>
+
+              </div>
+            </div>
+
+            <div class="columns is-desktop">
+
+              <div class="column">
+                <b-field label="Data inicial" :label-position="labelPosition">
+                  <b-datepicker placeholder="Selecione uma data..." icon="calendar-today" editable>
+                  </b-datepicker>
+                </b-field>
+              </div>
+
+              <div class="column">
+                <b-field label="Data final" :label-position="labelPosition">
+                  <b-datepicker placeholder="Selecione uma data..." icon="calendar-today" editable>
+                  </b-datepicker>
+                </b-field>
+              </div>
+            </div>
+
+            <b-field>
+              <template slot="label">
+                Processamento e acesso
+                <b-tooltip type="is-dark" label="Informações administrativas sobre a coleção" position="is-right">
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+            </b-field>
+
+
+            <div class="columns is-desktop">
+
+              <div class="column">
+                <b-field label="Total de itens" :label-position="labelPosition">
+                  <b-input placeholder="Digite um número" type="number" min="0" max="999999999">
+                  </b-input>
+                </b-field>
+              </div>
+
+              <div class="column">
+                <b-field label="Nível de descrição" :label-position="labelPosition">
+                  <b-select placeholder="Selecione uma opção..." expanded>
+                    <option value="1">Inicial</option>
+                    <option value="2">Intermediária</option>
+                    <option value="3">Avançada</option>
+                  </b-select>
+                </b-field>
+              </div>
+
+            </div>
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field label="Condição de acesso" :label-position="labelPosition">
+                  <b-select placeholder="Selecione uma opção..." expanded>
+                    <option value="open">Pleno</option>
+                    <option value="partial">Parcial</option>
+                    <option value="close">Restrito</option>
+                  </b-select>
+                </b-field>
+
+              </div>
+
+              <div class="column">
+
+                <b-field label="Justificativa de restrição" :label-position="labelPosition">
+                  <b-select placeholder="Selecione uma opção..." expanded>
+                    <option value="contract">Restrição contratual</option>
+                    <option value="rights">Direitos autorais</option>
+                    <option value="conservation">Estado de conservação</option>
+                    <option value="processing">Em processamento</option>
+                  </b-select>
+                </b-field>
+
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field>
+                  <template slot="label">
+                    Status de processamento
+                    <b-tooltip type="is-dark" label="Estimativa do número de itens já processados">
+                      <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                    </b-tooltip>
+                  </template>
+                </b-field>
+
+                <b-field>
+                  <b-slider size="is-medium" :min="0" :max="100" :step="5" :custom-formatter="val => val + '%'">
+                    <template v-for="val in [0, 20, 40, 60, 80, 100]">
+                      <b-slider-tick :value="val" :key="val">{{ val }}%</b-slider-tick>
+                    </template>
+                  </b-slider>
+                </b-field>
+
+              </div>
+            </div>
+
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field>
+                  <template slot="label">
+                    Status de difusão online
+                    <b-tooltip type="is-dark" label="Estimativa do número de itens disponíveis na internet">
+                      <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                    </b-tooltip>
+                  </template>
+                </b-field>
+
+
+                <b-field>
+                  <b-slider size="is-medium" :min="0" :max="100" :step="5" :custom-formatter="val => val + '%'">
+                    <template v-for="val in [0, 20, 40, 60, 80, 100]">
+                      <b-slider-tick :value="val" :key="val">{{ val }}%</b-slider-tick>
+                    </template>
+                  </b-slider>
+                </b-field>
+
+              </div>
+            </div>
+
+            <b-field>
+              <template slot="label">
+                Conteúdo
+                <b-tooltip type="is-dark" label="Informações sobre os itens da coleção">
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+            </b-field>
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field label="Tipos de objetos" :label-position="labelPosition">
+                  <b-taginput v-model="tags" ellipsis :allow-new="allowNew" icon="label"
+                    placeholder="Selecione algumas opções...">
+                  </b-taginput>
+                </b-field>
+
+
+
+              </div>
+            </div>
+
+            <div class="columns is-desktop">
+              <div class="column">
+
+                <b-field label="Idiomas" :label-position="labelPosition">
+                  <b-taginput v-model="tags" ellipsis :allow-new="allowNew" icon="label"
+                    placeholder="Selecione algumas opções...">
+                  </b-taginput>
+                </b-field>
+
+
+              </div>
+            </div>
+
+            <b-field>
+              <template slot="label">
+                Dimensões
+                <b-tooltip type="is-dark" label="Estimativas do espaço ocupado">
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+            </b-field>
+
+            <div class="columns is-desktop">
+
+
+
+              <div class="column">
+                <b-field label="m2" :label-position="labelPosition">
+                  <b-input placeholder="Número" type="number" min="0" max="999999999">
+                  </b-input>
+                </b-field>
+              </div>
+
+              <div class="column">
+                <b-field label="m3" :label-position="labelPosition">
+                  <b-input placeholder="Número" type="number" min="0" max="999999999">
+                  </b-input>
+                </b-field>
+              </div>
+
+              <div class="column">
+                <b-field label="mL" :label-position="labelPosition">
+                  <b-input placeholder="Número" type="number" min="0" max="999999999">
+                  </b-input>
+                </b-field>
+              </div>
+
+              <div class="column">
+                <b-field label="Kg" :label-position="labelPosition">
+                  <b-input placeholder="Número" type="number" min="0" max="999999999">
+                  </b-input>
+                </b-field>
+              </div>
+
+              <div class="column">
+                <b-field label="Volumes" :label-position="labelPosition">
+                  <b-input placeholder="Número" type="number" min="0" max="999999999">
+                  </b-input>
+                </b-field>
+              </div>
+
+
+            </div>
+
+
+            <b-field>
+              <template slot="label">
+                Gestão
+                <b-tooltip type="is-dark" label="Informações administrativas sobre a coleção">
+                  <b-icon size="is-small" icon="help-circle-outline"></b-icon>
+                </b-tooltip>
+              </template>
+            </b-field>
+
+
+
+            <div class="columns is-desktop">
+              <div class="column is-three-quarters">
+                <b-field>
+                  <b-field label="Notas administrativas" :label-position="labelPosition">
+                    <b-input type="textarea" minlength="10" maxlength="140" placeholder="Descreva brevemente...">
+                    </b-input>
+                  </b-field>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <b-switch :value="false" type="is-success">
+                    Contrato
+                  </b-switch>
+                </div>
+                <div class="field">
+                  <b-switch :value="false" type="is-success">
+                    Seguro
+                  </b-switch>
+                </div>
+                <div class="field">
+                  <b-switch :value="false" type="is-success">
+                    Inventário
+                  </b-switch>
+                </div>
+                </b-field>
+
+              </div>
+            </div>
+
+            <template>
+              <section class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    <b-button @click="clickMe" class="is-danger" outlined>Excluir</b-button>
+                  </div>
+                </div>
+
+                <div class="level-right">
+                  <div class="level-item">
+                    <b-button @click="clickMe" class="is-light">Salvar rascunho</b-button>
+                  </div>
+                  <div class="level-item">
+                    <b-button @click="clickMe" outlined>Publicar</b-button>
+                  </div>
+                </div>
+              </section>
+            </template>
+        </section>
+      </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Guia IMS</strong> by <a href="https://ims.com.br">Instituto Moreira Salles</a>. The source code is
+        licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+
+  <script>
+
+
+    const ModalForm = {
+      props: ['email', 'password'],
+      template: `
+            <form action="">
+                <div class="modal-card" style="width: auto">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Login</p>
+                    </header>
+                    <section class="modal-card-body">
+                        <b-field label="Email">
+                            <b-input
+                                type="email"
+                                :value="email"
+                                placeholder="Your email"
+                                required>
+                            </b-input>
+                        </b-field>
+
+                        <b-field label="Password">
+                            <b-input
+                                type="password"
+                                :value="password"
+                                password-reveal
+                                placeholder="Your password"
+                                required>
+                            </b-input>
+                        </b-field>
+
+                        <b-checkbox>Remember me</b-checkbox>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button" type="button" @click="$parent.close()">Close</button>
+                        <button class="button is-primary">Login</button>
+                    </footer>
+                </div>
+            </form>
+        `
+    }
+
+
+
+    const example = {
+      data() {
+        return {
+          dates: [],
+          labelPosition: 'inside'
+        };
+      },
+      methods: {
+        loginModal() {
+          this.$buefy.modal.open({
+            parent: this,
+            component: ModalForm,
+            hasModalCard: true,
+            customClass: 'custom-class custom-class-2'
+          })
+        }
+      }
+    };
+
+    const app = new Vue(example);
+    app.$mount("#app");
+  </script>
+</body>
+
+</html>

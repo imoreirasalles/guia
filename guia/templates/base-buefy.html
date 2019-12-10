@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Guia IMS</title>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
+  <style>
+    body {
+      background-color: #f4f3ef;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <section class="hero is-dark is-large">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <h1 class="title is-size-1">
+          Guia IMS
+        </h1>
+        <h2 class="subtitle has-text-weight-light">
+          Acervo e memória institucional do Instituto Moreira Salles, desde 1992.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-medium is-family-sans-serif has-text-centered	">
+    <div class="columns is-desktop">
+      <div class="column">
+        <div class="box">
+          <p class="subtitle is-size-1">235</p>
+          <p class="title is-size-5">Coleções</p>
+          <p class="subtitle is-size-6">Lorem ipsum.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="box">
+          <p class="subtitle is-size-1">316</p>
+          <p class="title is-size-5">Exposições</p>
+          <p class="subtitle is-size-6">Lorem ipsum.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="box">
+          <p class="subtitle is-size-1">165</p>
+          <p class="title is-size-5">Publicações</p>
+          <p class="subtitle is-size-6">Lorem ipsum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Guia IMS</strong> by <a href="https://ims.com.br">Instituto Moreira Salles</a>. The source code is
+        licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+
+  <script>
+    const example = {
+      data() {
+        return {
+          dates: [],
+          labelPosition: 'inside'
+        };
+      },
+      methods: {
+        loginModal() {
+          this.$buefy.modal.open({
+            parent: this,
+            component: ModalForm,
+            hasModalCard: true,
+            customClass: 'custom-class custom-class-2'
+          })
+        }
+      }
+    };
+
+    const app = new Vue(example);
+    app.$mount("#app");
+  </script>
+</body>
+
+</html>
