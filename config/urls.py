@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 # Admin Title
-admin.site.site_header = "Guia IMS"
+admin.site.site_header = "Instituto Moreira Salles"
 admin.site.site_title = "Guia IMS Admin Portal"
 admin.site.index_title = "Welcome to the Instituto Moreira Salles collections guide!"
 
