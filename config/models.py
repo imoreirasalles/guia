@@ -14,7 +14,7 @@ class BaseModel(models.Model):
     id = models.BigAutoField(
         primary_key=True,
         editable=False,
-        help_text=_('Auto increment identifier'),
+        help_text=_('Sequential identifier'),
         verbose_name=_('ID'))
     uuid = models.UUIDField(
         default=uuid.uuid4,
