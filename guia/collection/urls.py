@@ -8,7 +8,7 @@ from . import views
 
 urlpatterns = [
     path('', views.CollectionList.as_view(), name='collection_list'),
-    path('<slug:slug>/', views.CollectionDetail.as_view(), name='collection_detail'),
-    path('<slug:slug>/edit/',  TemplateView.as_view(template_name="collection/collection_form.html"), name='collection_form'),
+    path('<uuid:uuid>/', views.CollectionDetail.as_view(), name='collection_detail'),
+    path('<uuid:uuid>/edit/', TemplateView.as_view(template_name="collection/collection_form.html"), name='collection_form'),
 
 ]

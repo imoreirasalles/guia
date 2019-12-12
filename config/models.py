@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import JSONField
@@ -24,13 +24,13 @@ class BaseModel(models.Model):
         help_text=_('Universal unique identifier'),
         verbose_name=_('UUID'))
     created_at = models.DateTimeField(
-        default=datetime.now,
-        help_text=_('Auto set field'),
+        default=timezone.now,
+        help_text=_('Date this resource was created'),
         verbose_name=_('Created at'),
         editable=False)
     updated_at = models.DateTimeField(
-        default=datetime.now,
-        help_text=_('Auto set field'),
+        default=timezone.now,
+        help_text=_('Date this resource was last updated'),
         verbose_name=_('Updated at'),
         editable=False)
     label = models.CharField(
@@ -38,9 +38,9 @@ class BaseModel(models.Model):
         null=True,
         blank=False,
         max_length=128,
-        help_text=_('Short title'),
+        help_text=_('Short title for this resource'),
         verbose_name=_('Label'))
-    summary = models.CharField(
+    summary = models.TextField(
         default=None,
         null=True,
         blank=True,
@@ -50,12 +50,12 @@ class BaseModel(models.Model):
     published = models.BooleanField(
         default=False,
         db_index=True,
-        help_text=_('False by default'),
+        help_text=_('This resource is available to the public'),
         verbose_name=_('Published'))
     extra = JSONField(
         null=True,
         blank=True,
-        help_text=_('Semi-structured data'),
+        help_text=_('Semi-structured data in JSON'),
         verbose_name=_('Extra'))
     slug = models.SlugField(
         default=None,
@@ -64,5 +64,5 @@ class BaseModel(models.Model):
         null=True,
         blank=True,
         editable=False,
-        help_text=_('Generated based on UUID'),
+        help_text=_('String presented as part of the URL'),
         verbose_name=_('Slug'))
