@@ -14,6 +14,7 @@ django-allauth==0.40.0  # https://github.com/pennersr/django-allauth
 django-crispy-forms==1.8.0  # https://github.com/django-crispy-forms/django-crispy-forms
 django-redis==4.10.0  # https://github.com/niwinz/django-redis
 django-import-export==2.0 # https://github.com/django-import-export/django-import-export
+django-ckeditor==5.8.0 # https://github.com/django-ckeditor/django-ckeditor
 
 
 # Django REST Framework

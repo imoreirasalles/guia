@@ -9,6 +9,10 @@ from config.models import BaseModel
 from django.apps import apps
 
 
+from ckeditor.fields import RichTextField
+
+
+
 
 class Collection(BaseModel):
 
@@ -27,7 +31,7 @@ class Collection(BaseModel):
         max_length=32,
         help_text=_('Human readable identifier'),
         verbose_name=_('Identifier'))
-    article = models.TextField(
+    article = RichTextField(
         null=True,
         blank=True,
         help_text=_('Full description'),

@@ -16,6 +16,7 @@ class CollectionAdmin(admin.ModelAdmin):
                     }),
                 (_('Full description'),
                     {'fields': (
+                        ('id_human'),
                         ('aggregation_type'),
                         ('start_date', 'end_date'),
                         ('article'))
@@ -26,7 +27,6 @@ class CollectionAdmin(admin.ModelAdmin):
                     }),
                 (_('Management'),
                     {'fields': (
-                        ('id_human'),
                         ('inventory_status', 'inventory_date'),
                         ('contract_status', 'contract_date'),
                         ('insurance_status', 'insurance_date')),

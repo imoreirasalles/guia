@@ -70,6 +70,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "import_export",
+    "ckeditor",
 ]
 
 LOCAL_APPS = [
@@ -267,3 +268,27 @@ SOCIALACCOUNT_ADAPTER = "guia.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+
+# CKEditor Configs
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_CustomConfig': [
+            {'name': 'document', 'items': [
+                'Bold',
+                'Italic',
+                '-',
+                'NumberedList',
+                'BulletedList',
+                'Blockquote',
+                '-',
+                'Link',
+                'Unlink',
+                '-',
+                'Source',
+            ]},
+        ],
+        'toolbar': 'CustomConfig',
+        'tabSpaces': 4,
+    }
+}
