@@ -16,6 +16,7 @@ class CollectionAdmin(admin.ModelAdmin):
                     }),
                 (_('Full description'),
                     {'fields': (
+                        ('aggregation_type'),
                         ('start_date', 'end_date'),
                         ('article'))
                     }),

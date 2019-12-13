@@ -6,6 +6,8 @@ from django.utils import timezone
 
 
 from config.models import BaseModel
+from django.apps import apps
+
 
 
 class Collection(BaseModel):
@@ -85,6 +87,14 @@ class Collection(BaseModel):
         blank=True,
         help_text=_('When the last contract was signed?'),
         verbose_name=_('Contract date'))
+    aggregation_type = models.ForeignKey(
+        'vocabulary.Term',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=_('Select the aggregation type'),
+        verbose_name=_('Aggregation Type'))
+    
 
     def __str__(self):
         return self.label
