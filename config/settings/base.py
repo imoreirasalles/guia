@@ -77,6 +77,7 @@ LOCAL_APPS = [
     "guia.collection.apps.CollectionConfig",
     "guia.exhibition.apps.ExhibitionConfig",
     "guia.publication.apps.PublicationConfig",
+    "guia.vocabulary.apps.VocabularyConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
