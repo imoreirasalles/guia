@@ -1,11 +1,10 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
+
 from .models import Collection
 
-# Register your models here.
-
-
+@admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ("label", "summary", "inventory_status", "contract_status", "insurance_status", "dimention_items", "published",)
     readonly_fields = ["created_at", "updated_at", "uuid", "slug", ]
@@ -32,6 +31,3 @@ class CollectionAdmin(admin.ModelAdmin):
                         ('insurance_status', 'insurance_date')),
                     }),
     )
-
-
-admin.site.register(Collection, CollectionAdmin)
