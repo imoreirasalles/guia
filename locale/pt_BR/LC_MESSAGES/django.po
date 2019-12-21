@@ -1,0 +1,522 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-21 20:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: config/models.py:17
+msgid "Sequential identifier"
+msgstr ""
+
+#: config/models.py:18
+msgid "ID"
+msgstr ""
+
+#: config/models.py:24
+msgid "Universal unique identifier"
+msgstr ""
+
+#: config/models.py:25
+msgid "UUID"
+msgstr ""
+
+#: config/models.py:28
+msgid "Date this resource was created"
+msgstr ""
+
+#: config/models.py:29
+msgid "Created at"
+msgstr ""
+
+#: config/models.py:33
+msgid "Date this resource was last updated"
+msgstr ""
+
+#: config/models.py:34
+msgid "Updated at"
+msgstr ""
+
+#: config/models.py:41
+msgid "Short title for this resource"
+msgstr ""
+
+#: config/models.py:42
+msgid "Label"
+msgstr ""
+
+#: config/models.py:48
+msgid "Brief description"
+msgstr ""
+
+#: config/models.py:49
+msgid "Summary"
+msgstr ""
+
+#: config/models.py:53
+msgid "This resource is available to the public"
+msgstr ""
+
+#: config/models.py:54
+msgid "Published"
+msgstr ""
+
+#: config/models.py:58
+msgid "Semi-structured data in JSON"
+msgstr ""
+
+#: config/models.py:59
+msgid "Extra"
+msgstr ""
+
+#: config/models.py:67
+msgid "String presented as part of the URL"
+msgstr ""
+
+#: config/models.py:68
+msgid "Slug"
+msgstr ""
+
+#: guia/collection/admin.py:12
+msgid "Basic information"
+msgstr ""
+
+#: guia/collection/admin.py:17 guia/collection/models.py:37
+msgid "Full description"
+msgstr ""
+
+#: guia/collection/admin.py:24
+msgid "Progress Bar"
+msgstr ""
+
+#: guia/collection/admin.py:28
+msgid "Management"
+msgstr ""
+
+#: guia/collection/apps.py:7
+msgid "Collection App"
+msgstr ""
+
+#: guia/collection/models.py:24
+msgid "Collection"
+msgstr ""
+
+#: guia/collection/models.py:25
+msgid "Collections"
+msgstr ""
+
+#: guia/collection/models.py:32 guia/vocabulary/models.py:64
+msgid "Human readable identifier"
+msgstr ""
+
+#: guia/collection/models.py:33 guia/vocabulary/models.py:65
+msgid "Identifier"
+msgstr ""
+
+#: guia/collection/models.py:38
+msgid "Article"
+msgstr ""
+
+#: guia/collection/models.py:42
+msgid "Choose a start date"
+msgstr ""
+
+#: guia/collection/models.py:43
+msgid "Initial Date"
+msgstr ""
+
+#: guia/collection/models.py:47
+msgid "Choose an final date"
+msgstr ""
+
+#: guia/collection/models.py:48
+msgid "Final date"
+msgstr ""
+
+#: guia/collection/models.py:52
+msgid "Total collection items"
+msgstr ""
+
+#: guia/collection/models.py:53
+msgid "Total of items"
+msgstr ""
+
+#: guia/collection/models.py:57
+msgid "Percentage of work done"
+msgstr ""
+
+#: guia/collection/models.py:58
+msgid "Work progress bar"
+msgstr ""
+
+#: guia/collection/models.py:62
+msgid "Percentage of work available online"
+msgstr "Estimativa de difusão online"
+
+#: guia/collection/models.py:63
+msgid "Online progress bar"
+msgstr ""
+
+#: guia/collection/models.py:67
+msgid "This collection has any inventory?"
+msgstr ""
+
+#: guia/collection/models.py:68
+msgid "Inventory"
+msgstr ""
+
+#: guia/collection/models.py:72
+msgid "When the last inventory was completed?"
+msgstr ""
+
+#: guia/collection/models.py:73
+msgid "Inventory date"
+msgstr ""
+
+#: guia/collection/models.py:77
+msgid "This collection has any insurance?"
+msgstr ""
+
+#: guia/collection/models.py:78
+msgid "Insurance"
+msgstr ""
+
+#: guia/collection/models.py:82
+msgid "When the last insurance was signed?"
+msgstr ""
+
+#: guia/collection/models.py:83
+msgid "Insurance date"
+msgstr ""
+
+#: guia/collection/models.py:87
+msgid "This collection has any contract?"
+msgstr ""
+
+#: guia/collection/models.py:88
+msgid "Contract"
+msgstr ""
+
+#: guia/collection/models.py:92
+msgid "When the last contract was signed?"
+msgstr ""
+
+#: guia/collection/models.py:93
+msgid "Contract date"
+msgstr ""
+
+#: guia/collection/models.py:99
+msgid "Select the aggregation type"
+msgstr ""
+
+#: guia/collection/models.py:100
+msgid "Aggregation Type"
+msgstr ""
+
+#: guia/templates/account/account_inactive.html:5
+#: guia/templates/account/account_inactive.html:8
+msgid "Account Inactive"
+msgstr ""
+
+#: guia/templates/account/account_inactive.html:10
+msgid "This account is inactive."
+msgstr ""
+
+#: guia/templates/account/email.html:7
+msgid "Account"
+msgstr ""
+
+#: guia/templates/account/email.html:10
+msgid "E-mail Addresses"
+msgstr ""
+
+#: guia/templates/account/email.html:13
+msgid "The following e-mail addresses are associated with your account:"
+msgstr ""
+
+#: guia/templates/account/email.html:27
+msgid "Verified"
+msgstr ""
+
+#: guia/templates/account/email.html:29
+msgid "Unverified"
+msgstr ""
+
+#: guia/templates/account/email.html:31
+msgid "Primary"
+msgstr ""
+
+#: guia/templates/account/email.html:37
+msgid "Make Primary"
+msgstr ""
+
+#: guia/templates/account/email.html:38
+msgid "Re-send Verification"
+msgstr ""
+
+#: guia/templates/account/email.html:39
+msgid "Remove"
+msgstr ""
+
+#: guia/templates/account/email.html:46
+msgid "Warning:"
+msgstr ""
+
+#: guia/templates/account/email.html:46
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+
+#: guia/templates/account/email.html:51
+msgid "Add E-mail Address"
+msgstr ""
+
+#: guia/templates/account/email.html:56
+msgid "Add E-mail"
+msgstr ""
+
+#: guia/templates/account/email.html:66
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr ""
+
+#: guia/templates/account/email_confirm.html:6
+#: guia/templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr ""
+
+#: guia/templates/account/email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+
+#: guia/templates/account/email_confirm.html:20
+msgid "Confirm"
+msgstr ""
+
+#: guia/templates/account/email_confirm.html:27
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+
+#: guia/templates/account/login.html:6 guia/templates/account/login.html:10
+#: guia/templates/account/login.html:46 guia/templates/base.html:94
+msgid "Sign In"
+msgstr ""
+
+#: guia/templates/account/login.html:16
+#, python-format
+msgid ""
+" Please sign in with one of your\n"
+"  existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a> "
+"for\n"
+"  a %(site_name)s account and sign in below: "
+msgstr ""
+
+#: guia/templates/account/login.html:26
+msgid "or"
+msgstr ""
+
+#: guia/templates/account/login.html:33
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"  <a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+
+#: guia/templates/account/login.html:44
+msgid "Forgot Password?"
+msgstr ""
+
+#: guia/templates/account/logout.html:5 guia/templates/account/logout.html:8
+#: guia/templates/account/logout.html:17 guia/templates/base.html:75
+msgid "Sign Out"
+msgstr ""
+
+#: guia/templates/account/logout.html:10
+msgid "Are you sure you want to sign out?"
+msgstr ""
+
+#: guia/templates/account/password_change.html:6
+#: guia/templates/account/password_change.html:9
+#: guia/templates/account/password_change.html:14
+#: guia/templates/account/password_reset_from_key.html:5
+#: guia/templates/account/password_reset_from_key.html:8
+#: guia/templates/account/password_reset_from_key_done.html:4
+#: guia/templates/account/password_reset_from_key_done.html:7
+msgid "Change Password"
+msgstr ""
+
+#: guia/templates/account/password_reset.html:7
+#: guia/templates/account/password_reset.html:11
+#: guia/templates/account/password_reset_done.html:6
+#: guia/templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr ""
+
+#: guia/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: guia/templates/account/password_reset.html:21
+msgid "Reset My Password"
+msgstr ""
+
+#: guia/templates/account/password_reset.html:24
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: guia/templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: guia/templates/account/password_reset_from_key.html:8
+msgid "Bad Token"
+msgstr ""
+
+#: guia/templates/account/password_reset_from_key.html:12
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: guia/templates/account/password_reset_from_key.html:18
+msgid "change password"
+msgstr ""
+
+#: guia/templates/account/password_reset_from_key.html:21
+#: guia/templates/account/password_reset_from_key_done.html:8
+msgid "Your password is now changed."
+msgstr ""
+
+#: guia/templates/account/password_set.html:6
+#: guia/templates/account/password_set.html:9
+#: guia/templates/account/password_set.html:14
+msgid "Set Password"
+msgstr ""
+
+#: guia/templates/account/signup.html:6
+msgid "Signup"
+msgstr ""
+
+#: guia/templates/account/signup.html:9 guia/templates/account/signup.html:19
+#: guia/templates/base.html:85
+msgid "Sign Up"
+msgstr ""
+
+#: guia/templates/account/signup.html:11
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+
+#: guia/templates/account/signup_closed.html:5
+#: guia/templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr ""
+
+#: guia/templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed."
+msgstr ""
+
+#: guia/templates/account/verification_sent.html:5
+#: guia/templates/account/verification_sent.html:8
+#: guia/templates/account/verified_email_required.html:5
+#: guia/templates/account/verified_email_required.html:8
+msgid "Verify Your E-mail Address"
+msgstr ""
+
+#: guia/templates/account/verification_sent.html:10
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: guia/templates/account/verified_email_required.html:12
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+
+#: guia/templates/account/verified_email_required.html:16
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside this e-mail. Please\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+
+#: guia/templates/account/verified_email_required.html:20
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr ""
+
+#: guia/templates/base.html:69
+msgid "My Profile"
+msgstr ""
+
+#: guia/users/apps.py:7
+msgid "Users"
+msgstr ""
+
+#: guia/users/forms.py:16
+msgid "This username has already been taken."
+msgstr ""
+
+#: guia/users/models.py:11
+msgid "Name of User"
+msgstr ""
+
+#: guia/users/views.py:34
+msgid "Infos successfully updated"
+msgstr ""
+
+#: guia/vocabulary/apps.py:7 guia/vocabulary/models.py:56
+msgid "Vocabulary"
+msgstr ""
+
+#: guia/vocabulary/models.py:18
+msgid "Term"
+msgstr ""
+
+#: guia/vocabulary/models.py:19
+msgid "Terms"
+msgstr ""
+
+#: guia/vocabulary/models.py:26
+msgid "https://www.wikidata.org/wiki/Q3180571"
+msgstr ""
+
+#: guia/vocabulary/models.py:27
+msgid "Semantic URL"
+msgstr ""
+
+#: guia/vocabulary/models.py:57
+msgid "Vocabularies"
+msgstr ""
