@@ -40,7 +40,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Guia IMS"
-copyright = """2019, Bruno Buccalon"""
+copyright = """2019, Instituto Moreira Salles"""
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -184,7 +184,7 @@ latex_documents = [
         "index",
         "guia.tex",
         "Guia IMS Documentation",
-        """Bruno Buccalon""",
+        """Instituto Moreira Salles""",
         "manual",
     )
 ]
@@ -219,7 +219,7 @@ man_pages = [
         "index",
         "guia",
         "Guia IMS Documentation",
-        ["""Bruno Buccalon"""],
+        ["""Instituto Moreira Salles"""],
         1,
     )
 ]
@@ -238,7 +238,7 @@ texinfo_documents = [
         "index",
         "guia",
         "Guia IMS Documentation",
-        """Bruno Buccalon""",
+        """Instituto Moreira Salles""",
         "Guia IMS",
         """Discovery prototype for Collections, Exhibitions and Publications""",
         "Miscellaneous",
