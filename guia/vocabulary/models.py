@@ -18,6 +18,14 @@ class Term(BaseModel):
         verbose_name = _('Term')
         verbose_name_plural = _('Terms')
 
+    id_human = models.CharField(
+        default=None,
+        null=True,
+        blank=True,
+        max_length=32,
+        help_text=_('Human readable identifier'),
+        verbose_name=_('Identifier'))
+
     semantic_url = models.URLField(
         default=None,
         null=True,
@@ -25,25 +33,6 @@ class Term(BaseModel):
         max_length=200,
         help_text=_('https://www.wikidata.org/wiki/Q3180571'),
         verbose_name=_('Semantic URL'))
-
-    def __str__(self):
-        return self.label
-
-    def get_absolute_url(self):
-        return reverse('collection_detail', kwargs={'uuid': self.uuid})
-
-    def save(self, *args, **kwargs):
-
-        # Slugify UUID
-        if self.slug != self.uuid:
-            self.slug = slugify(self.uuid)
-
-        # Update date
-        if self.updated_at:
-            self.updated_at = timezone.now()
-
-        return super().save(*args, **kwargs)
-
 
 
 class Vocabulary(BaseModel):
@@ -64,26 +53,17 @@ class Vocabulary(BaseModel):
         help_text=_('Human readable identifier'),
         verbose_name=_('Identifier'))
 
+    semantic_url = models.URLField(
+        default=None,
+        null=True,
+        blank=True,
+        max_length=200,
+        help_text=_('https://www.wikidata.org/wiki/Q3180571'),
+        verbose_name=_('Semantic URL'))
+
     terms = models.ManyToManyField(
         Term,
         blank=True,
-        related_name='terms')
-
-
-    def __str__(self):
-        return self.label
-
-    def get_absolute_url(self):
-        return reverse('collection_detail', kwargs={'uuid': self.uuid})
-
-    def save(self, *args, **kwargs):
-
-        # Slugify UUID
-        if self.slug != self.uuid:
-            self.slug = slugify(self.uuid)
-
-        # Update date
-        if self.updated_at:
-            self.updated_at = timezone.now()
-
-        return super().save(*args, **kwargs)
+        related_name='vocabularies',
+        help_text=_('Select the terms used in this vocabulary'),
+        verbose_name=_('Terms'))

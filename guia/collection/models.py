@@ -1,17 +1,15 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils import timezone
 
 
 from config.models import BaseModel
+from vocabulary.models import Term
 from django.apps import apps
 
 
 from ckeditor.fields import RichTextField
-
-
 
 
 class Collection(BaseModel):
@@ -66,54 +64,53 @@ class Collection(BaseModel):
         blank=True,
         help_text=_('This collection has any inventory?'),
         verbose_name=_('Inventory'))
-    inventory_date = models.DateField(
+    inventory_start_date = models.DateField(
         null=True,
         blank=True,
-        help_text=_('When the last inventory was completed?'),
-        verbose_name=_('Inventory date'))
+        help_text=_('When the inventory beggins?'),
+        verbose_name=_('Inventory start date'))
+    inventory_end_date = models.DateField(
+        null=True,
+        blank=True,
+        help_text=_('When the inventory ends?'),
+        verbose_name=_('Inventory end date'))
     insurance_status = models.NullBooleanField(
         null=True,
         blank=True,
         help_text=_('This collection has any insurance?'),
         verbose_name=_('Insurance'))
-    insurance_date = models.DateField(
+    insurance_start_date = models.DateField(
         null=True,
         blank=True,
-        help_text=_('When the last insurance was signed?'),
-        verbose_name=_('Insurance date'))
+        help_text=_('When the insurance beggins?'),
+        verbose_name=_('Insurance start date'))
+    insurance_end_date = models.DateField(
+        null=True,
+        blank=True,
+        help_text=_('When the insurance ends?'),
+        verbose_name=_('Insurance end date'))
     contract_status = models.NullBooleanField(
         null=True,
         blank=True,
         help_text=_('This collection has any contract?'),
         verbose_name=_('Contract'))
-    contract_date = models.DateField(
+    contract_start_date = models.DateField(
         null=True,
         blank=True,
-        help_text=_('When the last contract was signed?'),
-        verbose_name=_('Contract date'))
-    aggregation_type = models.ForeignKey(
-        'vocabulary.Term',
+        help_text=_('When the contract beggins?'),
+        verbose_name=_('Contract start date'))
+    contract_end_date = models.DateField(
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
-        help_text=_('Select the aggregation type'),
+        help_text=_('When the contract ends?'),
+        verbose_name=_('Contract end date'))
+    aggregation_type = models.ManyToManyField(
+        Term,
+        blank=True,
+        related_name='aggregation_types',
+        limit_choices_to={'vocabularies__id_human': 'aggregation_type'},
+        help_text=_('Select the terms used in this vocabulary'),
         verbose_name=_('Aggregation Type'))
-    
-
-    def __str__(self):
-        return self.label
 
     def get_absolute_url(self):
         return reverse('collection_detail', kwargs={'uuid': self.uuid})
-
-    def save(self, *args, **kwargs):
-
-        # Slugify UUID
-        if self.slug != self.uuid:
-            self.slug = slugify(self.uuid)
-
-        # Update date
-        if self.updated_at:
-            self.updated_at = timezone.now()
-
-        return super().save(*args, **kwargs)

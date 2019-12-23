@@ -1,6 +1,7 @@
 import uuid
 from django.utils import timezone
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.fields import JSONField
 
@@ -66,3 +67,18 @@ class BaseModel(models.Model):
         editable=False,
         help_text=_('String presented as part of the URL'),
         verbose_name=_('Slug'))
+
+    def __str__(self):
+        return self.label
+
+    def save(self, *args, **kwargs):
+
+        # Slugify UUID
+        if self.slug != self.uuid:
+            self.slug = slugify(self.uuid)
+
+        # Update date
+        if self.updated_at:
+            self.updated_at = timezone.now()
+
+        return super().save(*args, **kwargs)
