@@ -25,15 +25,13 @@ class BaseModel(models.Model):
         help_text=_('Universal unique identifier'),
         verbose_name=_('UUID'))
     created_at = models.DateTimeField(
-        default=timezone.now,
+        auto_now_add=True,
         help_text=_('Date this resource was created'),
-        verbose_name=_('Created at'),
-        editable=False)
+        verbose_name=_('Created at'))
     updated_at = models.DateTimeField(
-        default=timezone.now,
+        auto_now=True,
         help_text=_('Date this resource was last updated'),
-        verbose_name=_('Updated at'),
-        editable=False)
+        verbose_name=_('Updated at'))
     label = models.CharField(
         default=None,
         null=True,
@@ -76,9 +74,5 @@ class BaseModel(models.Model):
         # Slugify UUID
         if self.slug != self.uuid:
             self.slug = slugify(self.uuid)
-
-        # Update date
-        if self.updated_at:
-            self.updated_at = timezone.now()
 
         return super().save(*args, **kwargs)

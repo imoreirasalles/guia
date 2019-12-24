@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.core.validators import MaxValueValidator
 from django.urls import reverse
 from django.utils import timezone
 
@@ -55,11 +56,13 @@ class Collection(BaseModel):
         help_text=_('Total of linear meters occupied by the collection'),
         verbose_name=_('Linear meters'))
     progress_technical = models.PositiveIntegerField(
+        validators=[MaxValueValidator(100)],
         null=True,
         blank=True,
         help_text=_('Percentage of items available to researchers'),
         verbose_name=_('Technical progress'))
     progress_online = models.PositiveIntegerField(
+        validators=[MaxValueValidator(100)],
         null=True,
         blank=True,
         help_text=_('Percentage of items available online'),
@@ -115,6 +118,22 @@ class Collection(BaseModel):
         blank=True,
         help_text=_('Administrative information not publicly available'),
         verbose_name=_('Private notes'))
+    management_team = models.ForeignKey(
+        Term,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='management_teams',
+        limit_choices_to={'vocabularies__id_human': 'management_team'},
+        help_text=_('Select the terms used in this vocabulary'),
+        verbose_name=_('Management Team'))
+    management_storage = models.ManyToManyField(
+        Term,
+        blank=True,
+        related_name='management_storages',
+        limit_choices_to={'vocabularies__id_human': 'management_storage'},
+        help_text=_('Select the terms used in this vocabulary'),
+        verbose_name=_('Management Storage'))
     aggregation_type = models.ManyToManyField(
         Term,
         blank=True,
@@ -122,15 +141,6 @@ class Collection(BaseModel):
         limit_choices_to={'vocabularies__id_human': 'aggregation_type'},
         help_text=_('Select the terms used in this vocabulary'),
         verbose_name=_('Aggregation Type'))
-    management_unit = models.ForeignKey(
-        Term,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='management_units',
-        limit_choices_to={'vocabularies__id_human': 'management_unit'},
-        help_text=_('Select the terms used in this vocabulary'),
-        verbose_name=_('Management Unit'))
     acquisition_type = models.ForeignKey(
         Term,
         blank=True,
@@ -140,6 +150,34 @@ class Collection(BaseModel):
         limit_choices_to={'vocabularies__id_human': 'acquisition_type'},
         help_text=_('Select the terms used in this vocabulary'),
         verbose_name=_('Acquisition Type'))
+    restriction_type = models.ManyToManyField(
+        Term,
+        blank=True,
+        related_name='restriction_types',
+        limit_choices_to={'vocabularies__id_human': 'restriction_type'},
+        help_text=_('Select the terms used in this vocabulary'),
+        verbose_name=_('Access Restrictions'))
+    items_type = models.ManyToManyField(
+        Term,
+        blank=True,
+        related_name='items_types',
+        limit_choices_to={'vocabularies__id_human': 'items_type'},
+        help_text=_('Select the terms used in this vocabulary'),
+        verbose_name=_('Resource Types'))
+    language_type = models.ManyToManyField(
+        Term,
+        blank=True,
+        related_name='language_types',
+        limit_choices_to={'vocabularies__id_human': 'language_type'},
+        help_text=_('Select the terms used in this vocabulary'),
+        verbose_name=_('Languages'))
+    featured_people = models.ManyToManyField(
+        Term,
+        blank=True,
+        related_name='featured_peoples',
+        limit_choices_to={'vocabularies__id_human': 'featured_people'},
+        help_text=_('Select the terms used in this vocabulary'),
+        verbose_name=_('Featured People'))
 
     def get_absolute_url(self):
         return reverse('collection_detail', kwargs={'uuid': self.uuid})

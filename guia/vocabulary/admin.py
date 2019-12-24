@@ -7,8 +7,9 @@ from .models import Term, Vocabulary
 
 @admin.register(Term)
 class TermAdmin(admin.ModelAdmin):
-    list_display = ('label', 'summary', 'id_human', 'semantic_url')
-    fields = ('label', 'summary', 'id_human', 'semantic_url', 'extra')
+    list_display = ('label', 'summary', 'term_type', 'semantic_url')
+    #fields = ('label', 'summary', 'id_human', 'semantic_url', 'extra')
+    list_filter = ('term_type', 'vocabularies')
 
 
 @admin.register(Vocabulary)

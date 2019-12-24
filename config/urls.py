@@ -5,6 +5,11 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+
+from rest_framework_simplejwt import views as jwt_views
+from .api import router
+
+
 # Admin Title
 admin.site.site_header = "Instituto Moreira Salles"
 admin.site.site_title = "Guia IMS Admin Portal"
@@ -22,6 +27,10 @@ urlpatterns = [
     path("collection/", include("collection.urls")),
     path("exhibition/", include("exhibition.urls")),
     path("publication/", include("publication.urls")),
+    # DRF Simple JWT
+    # path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/v1/', include(router.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

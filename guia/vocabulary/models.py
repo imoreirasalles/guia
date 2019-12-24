@@ -23,7 +23,7 @@ class Term(BaseModel):
         null=True,
         blank=True,
         max_length=32,
-        help_text=_('Human readable identifier'),
+        help_text=_('What this thing is?'),
         verbose_name=_('Identifier'))
 
     semantic_url = models.URLField(
@@ -33,6 +33,17 @@ class Term(BaseModel):
         max_length=200,
         help_text=_('https://www.wikidata.org/wiki/Q3180571'),
         verbose_name=_('Semantic URL'))
+
+    term_type = models.ForeignKey(
+        'self',
+        default=None,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name='term_types',
+        limit_choices_to={'vocabularies__id_human': 'term_type'},
+        help_text=_('Select a term'),
+        verbose_name=_('Type'))
 
 
 class Vocabulary(BaseModel):
