@@ -1,12 +1,11 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 
-from rest_framework_simplejwt import views as jwt_views
 from .api import router
 
 
@@ -20,17 +19,14 @@ urlpatterns = [
     path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # User management
-    path("users/", include("guia.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path("collection/", include("collection.urls")),
     path("exhibition/", include("exhibition.urls")),
     path("publication/", include("publication.urls")),
-    # DRF Simple JWT
-    # path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/v1/', include(router.urls)),
+    # DRF
+    path("api/v1/", include(router.urls)),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
