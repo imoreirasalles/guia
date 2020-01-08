@@ -310,3 +310,8 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+DJOSER = {
+    'TOKEN_MODEL': None,
+    'USER_ID_FIELD': 'User._meta.pk.username'
+}
