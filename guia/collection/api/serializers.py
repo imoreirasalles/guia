@@ -6,16 +6,16 @@ from vocabulary.api.serializers import TermSerializer
 
 
 class CollectionSerializer(serializers.ModelSerializer):
-    identifier = serializers.CharField(source='id_human')
+    recordName = serializers.CharField(source='id_human')
     startDate = serializers.DateField(source='start_date')
     endDate = serializers.DateField(source='end_date')
     availableByRequest = serializers.IntegerField(source='progress_technical')
     availableOnline = serializers.IntegerField(source='progress_online')
     numberOfItems = serializers.IntegerField(source='items_total')
-    aggregation_type = TermSerializer(read_only=True, many=True)
+    aggregationType = TermSerializer(read_only=True, many=True, source='aggregation_type')
     people = TermSerializer(read_only=True, many=True, source='featured_people')
 
     class Meta:
         model = Collection
-        fields = ('uuid', 'identifier', 'label', 'summary', 'startDate',
-                  'endDate', 'numberOfItems', 'availableByRequest', 'availableOnline', 'aggregation_type', 'people')
+        fields = ('uuid', 'recordName', 'label', 'summary', 'startDate', 'endDate',
+            'numberOfItems', 'availableByRequest', 'availableOnline', 'aggregationType', 'people')
